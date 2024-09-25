@@ -414,7 +414,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 880, y: -100}
+  m_AnchoredPosition: {x: 780, y: -100}
   m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &402561480
@@ -1188,10 +1188,10 @@ MonoBehaviour:
   isSkillButtonActive: 0
   isItemButtonActive: 0
   EnemyPositions:
-  - {x: -1.2, y: -2.2}
-  - {x: -2.95, y: -0.2}
-  - {x: -4.2, y: -3.2}
-  - {x: -5.95, y: -1.2}
+  - {x: 0, y: -2.2}
+  - {x: -1.75, y: -0.2}
+  - {x: -3, y: -3.2}
+  - {x: -4.7, y: -1.2}
   EnemyPositionNumber: 0
   Characters:
   - {fileID: 1834799418}
@@ -1314,7 +1314,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 730, y: 170}
+  m_AnchoredPosition: {x: 630, y: 170}
   m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &860030720
@@ -2104,7 +2104,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 580, y: 30}
+  m_AnchoredPosition: {x: 470, y: 30}
   m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1609528151
