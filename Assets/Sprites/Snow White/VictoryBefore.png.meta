@@ -1,0 +1,527 @@
+fileFormatVersion: 2
+guid: fae243c88007949d5a06f07cb669b2b9
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: VictoryBefore_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 555
+        width: 106
+        height: 111
+      alignment: 9
+      pivot: {x: 0.975, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7a4ea135d0f1428cb8d70f631c8662d
+      internalID: 1647412412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VictoryBefore_1
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 555
+        width: 106
+        height: 111
+      alignment: 9
+      pivot: {x: 0.975, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f38529cf7736b4cdcad08236657a5fca
+      internalID: 294970158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VictoryBefore_2
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 555
+        width: 106
+        height: 111
+      alignment: 9
+      pivot: {x: 0.975, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27026dcd48591497aa60881c9bb19637
+      internalID: -1015866859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VictoryBefore_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 444
+        width: 106
+        height: 111
+      alignment: 9
+      pivot: {x: 0.975, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 644b12eee8d774ac1a0525eff96c2f6f
+      internalID: 1949808690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VictoryBefore_4
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 444
+        width: 106
+        height: 111
+      alignment: 9
+      pivot: {x: 0.975, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc64f9e5c81f54402b53450069f4055c
+      internalID: -315272223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VictoryBefore_5
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 444
+        width: 106
+        height: 111
+      alignment: 9
+      pivot: {x: 0.975, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f5db1342cdb446229c870396ddad9cc
+      internalID: 1742501051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VictoryBefore_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 333
+        width: 106
+        height: 111
+      alignment: 9
+      pivot: {x: 0.975, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d67438c55fefe4127a1021d46d82a838
+      internalID: -1223794119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VictoryBefore_7
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 333
+        width: 106
+        height: 111
+      alignment: 9
+      pivot: {x: 0.975, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc09c977fa59a454b965c5bea79f3197
+      internalID: -939164415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VictoryBefore_8
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 333
+        width: 106
+        height: 111
+      alignment: 9
+      pivot: {x: 0.975, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 855dace918d564e8e9efc6844b06f6dd
+      internalID: -2064897717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VictoryBefore_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 222
+        width: 106
+        height: 111
+      alignment: 9
+      pivot: {x: 0.975, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5db7b630d516a452fabb0018d2f37504
+      internalID: 274727738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VictoryBefore_10
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 222
+        width: 106
+        height: 111
+      alignment: 9
+      pivot: {x: 0.975, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 714ab293408d641649c7bc5a73c260be
+      internalID: -1724049092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VictoryBefore_11
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 222
+        width: 106
+        height: 111
+      alignment: 9
+      pivot: {x: 0.975, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c678c0629715e4da2adbdcba605b497f
+      internalID: -2028276351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VictoryBefore_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 111
+        width: 106
+        height: 111
+      alignment: 9
+      pivot: {x: 0.975, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb05214931e1d44508f5892a9c12fe5b
+      internalID: -402317516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VictoryBefore_13
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 111
+        width: 106
+        height: 111
+      alignment: 9
+      pivot: {x: 0.975, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b771a8a5464594cc685c5f26326b5c54
+      internalID: -150008346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VictoryBefore_14
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 111
+        width: 106
+        height: 111
+      alignment: 9
+      pivot: {x: 0.975, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ef255267615b48bca55d1d56eb7ecf6
+      internalID: -951043099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VictoryBefore_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 106
+        height: 111
+      alignment: 9
+      pivot: {x: 0.975, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39d2f5a92edbf4c2c8ceffe90f60f15b
+      internalID: 614665993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VictoryBefore_16
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 0
+        width: 106
+        height: 111
+      alignment: 9
+      pivot: {x: 0.975, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d864b028d78d454cacf164c26afe15f
+      internalID: -1150558122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      VictoryBefore_0: 1647412412
+      VictoryBefore_1: 294970158
+      VictoryBefore_10: -1724049092
+      VictoryBefore_11: -2028276351
+      VictoryBefore_12: -402317516
+      VictoryBefore_13: -150008346
+      VictoryBefore_14: -951043099
+      VictoryBefore_15: 614665993
+      VictoryBefore_16: -1150558122
+      VictoryBefore_2: -1015866859
+      VictoryBefore_3: 1949808690
+      VictoryBefore_4: -315272223
+      VictoryBefore_5: 1742501051
+      VictoryBefore_6: -1223794119
+      VictoryBefore_7: -939164415
+      VictoryBefore_8: -2064897717
+      VictoryBefore_9: 274727738
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
