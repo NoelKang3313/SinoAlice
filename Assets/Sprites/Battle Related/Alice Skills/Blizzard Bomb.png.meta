@@ -1,0 +1,390 @@
+fileFormatVersion: 2
+guid: 3d470ef74380b4fcda55013af6e4affc
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Blizzard Bomb_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 158
+        width: 44
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0515e3a1cde64ce99be7d15f06db597
+      internalID: 264672361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blizzard Bomb_2
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 116
+        width: 109
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5fd4250b417a4496a0c101be4e17ceb
+      internalID: 1869240333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blizzard Bomb_3
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 110
+        width: 150
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20bccd2ef92404c91a699d59079e3700
+      internalID: -1106466288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blizzard Bomb_4
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 107
+        width: 142
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ae2dbd90a2f44f15b0a99fc50ecae02
+      internalID: 939807977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blizzard Bomb_1
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 59
+        width: 45
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4de6193d82194cf19143aa2417853dc
+      internalID: 1633211503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blizzard Bomb_5
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 55
+        width: 72
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c7ecbf15cfe94bfc9d3793114ac95ea
+      internalID: 1244125484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blizzard Bomb_6
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 54
+        width: 113
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c9bf9405b7124c3dbf202d1db6be7b6
+      internalID: -1664338163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blizzard Bomb_7
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 54
+        width: 112
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa126602ae63a4cdf86772b2bb4f572b
+      internalID: -359409911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Blizzard Bomb_0: 264672361
+      Blizzard Bomb_1: 1633211503
+      Blizzard Bomb_10: -965743609
+      Blizzard Bomb_13: 5296106
+      Blizzard Bomb_14: -1534153165
+      Blizzard Bomb_15: -902776009
+      Blizzard Bomb_16: -864207907
+      Blizzard Bomb_17: 223920581
+      Blizzard Bomb_18: 1538197098
+      Blizzard Bomb_19: 201002802
+      Blizzard Bomb_2: 1869240333
+      Blizzard Bomb_20: -419618235
+      Blizzard Bomb_21: -176852472
+      Blizzard Bomb_22: 1747848217
+      Blizzard Bomb_23: 631643605
+      Blizzard Bomb_24: 697695948
+      Blizzard Bomb_25: 821336822
+      Blizzard Bomb_26: -1295809646
+      Blizzard Bomb_27: -566354041
+      Blizzard Bomb_28: 1342703024
+      Blizzard Bomb_29: 749671203
+      Blizzard Bomb_3: -1106466288
+      Blizzard Bomb_30: -1638184271
+      Blizzard Bomb_31: -1411885196
+      Blizzard Bomb_32: 290189584
+      Blizzard Bomb_33: -1494326575
+      Blizzard Bomb_34: -744672238
+      Blizzard Bomb_35: -1181380994
+      Blizzard Bomb_36: 730711461
+      Blizzard Bomb_37: -52811952
+      Blizzard Bomb_38: -729533783
+      Blizzard Bomb_4: 939807977
+      Blizzard Bomb_40: -1102780691
+      Blizzard Bomb_41: -1033079397
+      Blizzard Bomb_43: -1669429579
+      Blizzard Bomb_44: 1776461246
+      Blizzard Bomb_45: 739877068
+      Blizzard Bomb_46: -625069451
+      Blizzard Bomb_47: 20725728
+      Blizzard Bomb_48: -768338918
+      Blizzard Bomb_49: 1352443655
+      Blizzard Bomb_5: 1244125484
+      Blizzard Bomb_50: -978772604
+      Blizzard Bomb_51: -1399491911
+      Blizzard Bomb_52: 254710093
+      Blizzard Bomb_53: 742548879
+      Blizzard Bomb_54: -1098869047
+      Blizzard Bomb_56: -1551108850
+      Blizzard Bomb_57: -293284734
+      Blizzard Bomb_58: 1183117226
+      Blizzard Bomb_59: -628338730
+      Blizzard Bomb_6: -1664338163
+      Blizzard Bomb_60: -1008824346
+      Blizzard Bomb_61: 500936611
+      Blizzard Bomb_62: 1783712795
+      Blizzard Bomb_63: -321941438
+      Blizzard Bomb_64: -132236506
+      Blizzard Bomb_65: -1591141252
+      Blizzard Bomb_66: 1704806007
+      Blizzard Bomb_67: -919323229
+      Blizzard Bomb_68: -428763346
+      Blizzard Bomb_69: -495045257
+      Blizzard Bomb_7: -359409911
+      Blizzard Bomb_70: -1023434701
+      Blizzard Bomb_71: -268845645
+      Blizzard Bomb_72: 24824494
+      Blizzard Bomb_73: 644114781
+      Blizzard Bomb_8: -1827263086
+      Blizzard Bomb_9: -1870239684
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

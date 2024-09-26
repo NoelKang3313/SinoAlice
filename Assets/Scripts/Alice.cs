@@ -73,17 +73,22 @@ public class Alice : CharacterStats
                     }
                 }
             }
-            else if (GameManager.instance.isGuardButtonActive && GameManager.instance.isAction)
+            else if (GameManager.instance.isGuardButtonActive)
             {
-                uiManager.ActionPanel.SetActive(false);
-
                 animator.SetBool("MagicStandby", false);
-                animator.SetBool("Standby", false);
+                animator.SetBool("Standby", true);
 
-                GameManager.instance.isAliceTurn = false;
-                GameManager.instance.isAction = false;
+                if (GameManager.instance.isAction)
+                {
+                    animator.SetBool("Standby", false);
 
-                shield = Instantiate(ShieldPrefab, transform.position - new Vector3(1.2f, -1.2f, 0), Quaternion.identity);
+                    uiManager.ActionPanel.SetActive(false);
+
+                    GameManager.instance.isAliceTurn = false;
+                    GameManager.instance.isAction = false;
+
+                    shield = Instantiate(ShieldPrefab, transform.position - new Vector3(1.2f, -1.2f, 0), Quaternion.identity);
+                }
             }
             else if (GameManager.instance.isSkillButtonActive)
             {
