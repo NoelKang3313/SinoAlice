@@ -14,6 +14,20 @@ public class Alice : CharacterStats
     public GameObject ShieldPrefab;
     private GameObject shield;
 
+    [Header("Skills")]
+    public GameObject GlacialArrowPrefab;
+    private GameObject glacialArrow;
+    public GameObject AquaBombPrefab;
+    private GameObject aquaBomb;
+    public GameObject BlizzardBombPrefab;
+    private GameObject blizzardBomb;
+    public GameObject TidalWavePrefab;
+    private GameObject tidalWave;
+    public GameObject HealingWindPrefab;
+    private GameObject healingWind;
+
+    private bool isSkillInstantiated;
+
     void Awake()
     {
         _name = "Alice";
@@ -58,10 +72,10 @@ public class Alice : CharacterStats
 
                     animator.SetTrigger("Move");
                     transform.position = Vector2.MoveTowards(transform.position,
-                        GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber], moveSpeed * Time.deltaTime);
+                        GameManager.instance.AttackEnemyPositions[GameManager.instance.EnemyPositionNumber], moveSpeed * Time.deltaTime);
 
-                    if (transform.position == new Vector3(GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].x,
-                        GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].y, 0))
+                    if (transform.position == new Vector3(GameManager.instance.AttackEnemyPositions[GameManager.instance.EnemyPositionNumber].x,
+                        GameManager.instance.AttackEnemyPositions[GameManager.instance.EnemyPositionNumber].y, 0))
                     {
                         GameManager.instance.isAliceTurn = false;
                         GameManager.instance.isAction = false;
@@ -92,11 +106,130 @@ public class Alice : CharacterStats
             }
             else if (GameManager.instance.isSkillButtonActive)
             {
-                animator.SetBool("MagicStandby", true);
+                animator.SetBool("Standby", false);
+                animator.SetBool("MagicStandby", true);                
+
+                if(GameManager.instance.isAction)
+                {                    
+                    animator.SetBool("MagicAttack", true);
+
+                    uiManager.ActionPanel.SetActive(false);
+
+                    switch(GameManager.instance.SkillButtonNumber)
+                    {
+                        case 0:
+                            if (!isSkillInstantiated)
+                            {
+                                isSkillInstantiated = true;
+                                glacialArrow = Instantiate(GlacialArrowPrefab,
+                                    GameManager.instance.SkillEnemyPositions[GameManager.instance.EnemyPositionNumber], Quaternion.identity);
+                            }
+
+                            if (glacialArrow.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                            {
+                                Destroy(glacialArrow);
+                                isSkillInstantiated = false;
+
+                                GameManager.instance.isAliceTurn = false;
+                                GameManager.instance.isAction = false;
+
+                                animator.SetBool("MagicAttack", false);
+                                animator.SetBool("MagicStandby", false);
+                            }
+
+                            break;
+                        case 1:
+                            if (!isSkillInstantiated)
+                            {
+                                isSkillInstantiated = true;
+                                aquaBomb = Instantiate(AquaBombPrefab,
+                                    GameManager.instance.SkillEnemyPositions[GameManager.instance.EnemyPositionNumber], Quaternion.identity);
+                            }
+
+                            if (aquaBomb.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                            {
+                                Destroy(aquaBomb);
+                                isSkillInstantiated = false;
+
+                                GameManager.instance.isAliceTurn = false;
+                                GameManager.instance.isAction = false;
+
+                                animator.SetBool("MagicAttack", false);
+                                animator.SetBool("MagicStandby", false);
+                            }
+
+                            break;
+                        case 2:
+                            if (!isSkillInstantiated)
+                            {
+                                isSkillInstantiated = true;
+                                blizzardBomb = Instantiate(BlizzardBombPrefab,
+                                    GameManager.instance.SkillEnemyPositions[GameManager.instance.EnemyPositionNumber], Quaternion.identity);
+                            }
+
+                            if (blizzardBomb.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                            {
+                                Destroy(blizzardBomb);
+                                isSkillInstantiated = false;
+
+                                GameManager.instance.isAliceTurn = false;
+                                GameManager.instance.isAction = false;
+
+                                animator.SetBool("MagicAttack", false);
+                                animator.SetBool("MagicStandby", false);
+                            }
+
+                            break;
+                        case 3:
+                            if (!isSkillInstantiated)
+                            {
+                                isSkillInstantiated = true;
+                                tidalWave = Instantiate(TidalWavePrefab);
+                            }
+
+                            if (tidalWave.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                            {
+                                Destroy(tidalWave);
+                                isSkillInstantiated = false;
+
+                                GameManager.instance.isAliceTurn = false;
+                                GameManager.instance.isAction = false;
+
+                                animator.SetBool("MagicAttack", false);
+                                animator.SetBool("MagicStandby", false);
+                            }
+
+                            break;
+                        case 4:
+                            if (!isSkillInstantiated)
+                            {
+                                isSkillInstantiated = true;
+                                healingWind = Instantiate(HealingWindPrefab,
+                                    GameManager.instance.CharacterPositions[GameManager.instance.AlicePositionNumber], Quaternion.identity);
+                            }
+
+                            if (healingWind.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                            {
+                                Destroy(healingWind);
+                                isSkillInstantiated = false;
+
+                                GameManager.instance.isAliceTurn = false;
+                                GameManager.instance.isAction = false;
+
+                                animator.SetBool("MagicAttack", false);
+                                animator.SetBool("MagicStandby", false);
+                            }
+
+                            break;
+                    }
+                }
             }
             else if (GameManager.instance.isItemButtonActive)
             {
                 Debug.Log("ITEM");
+
+                uiManager.ActionPanel.SetActive(false);
+
                 animator.SetBool("Standby", false);
                 animator.SetBool("MagicStandby", false);
                 GameManager.instance.isAliceTurn = false;
@@ -118,7 +251,7 @@ public class Alice : CharacterStats
             {
                 animator.SetBool("Attack", false);
                 transform.position = aliceStartPosition;
-            }
+            }            
         }
     }
 

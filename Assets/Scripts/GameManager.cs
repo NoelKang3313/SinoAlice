@@ -15,13 +15,18 @@ public class GameManager : MonoBehaviour
     public bool isSkillButtonActive;
     public bool isItemButtonActive;
 
-    public Vector2[] EnemyPositions = new Vector2[4];
+    public Vector2[] CharacterPositions = new Vector2[3];
+
+    public Vector2[] AttackEnemyPositions = new Vector2[4];
+    public Vector2[] SkillEnemyPositions = new Vector2[4];
     public int EnemyPositionNumber;
 
     public GameObject[] Characters = new GameObject[3];
     public int AlicePositionNumber;
     public int GretelPositionNumber;
     public int SWPositionNumber;
+
+    public int SkillButtonNumber;     //Check Skill Button Number and Instantiate Skill Prefab
 
     public bool isAction = false;
 
@@ -41,6 +46,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         CharacterPosition();
+        
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            isAliceTurn = true;
+        }
     }
 
     void CharacterPosition()
