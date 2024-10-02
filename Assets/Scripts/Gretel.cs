@@ -4,21 +4,14 @@ using UnityEngine;
 
 public class Gretel : CharacterStats
 {
-    //Animation Related
-    private string currentAnimation;
-
-    const string GRETEL_IDLE = "Idle";
-    const string GRETEL_STANDBY = "Standby";
-    const string GRETEL_ATTACK = "Attack";
-    const string GRETEL_MAGICSTANDBY = "MagicStandby";
-    const string GRETEL_MAGICATTACK = "MagicAttack";
-    const string GRETEL_MOVE = "Move";
-    const string GRETEL_DYING = "Dying";
-    const string GRETEL_DEAD = "Dead";
-    const string GRETEL_VICTORYBEFORE = "VictoryBefore";
-    const string GRETEL_VICTORY = "Victory";
+    private Vector3 gretelStartPosition;
+    private float moveSpeed = 15.0f;
 
     private Animator animator;
+    private UIManager uiManager;
+
+    public GameObject ShieldPrefab;
+    private GameObject shield;
 
     void Awake()
     {
@@ -34,32 +27,118 @@ public class Gretel : CharacterStats
 
     void Start()
     {
-        animator = GetComponent<Animator>();
+        gretelStartPosition = transform.position;
+
+        animator = GetComponent<Animator>();        
     }
 
     void Update()
     {
         GretelAction();
+
+        if (GameObject.Find("UIManager") == null)
+            return;
+        else
+            uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
     }
 
     void GretelAction()
     {
         if (GameManager.instance.isGretelTurn)
         {
-            ChangeAnimationState(GRETEL_STANDBY);
+            Destroy(shield);
+
+            uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", true);
+            animator.SetBool("Standby", true);
+
+            if (GameManager.instance.isAttackButtonActive)
+            {
+                animator.SetBool("MagicStandby", false);
+
+                if (GameManager.instance.isAction)
+                {
+                    uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
+
+                    animator.SetTrigger("Move");
+                    transform.position = Vector2.MoveTowards(transform.position,
+                        GameManager.instance.AttackEnemyPositions[GameManager.instance.EnemyPositionNumber], moveSpeed * Time.deltaTime);
+
+                    if (transform.position == new Vector3(GameManager.instance.AttackEnemyPositions[GameManager.instance.EnemyPositionNumber].x,
+                        GameManager.instance.AttackEnemyPositions[GameManager.instance.EnemyPositionNumber].y, 0))
+                    {
+                        GameManager.instance.isGretelTurn = false;
+                        GameManager.instance.isAction = false;
+
+                        animator.SetBool("Standby", false);
+
+                        ResetAnimationTrigger("Move");
+                        animator.SetBool("Attack", true);
+                    }
+                }
+            }
+            else if (GameManager.instance.isGuardButtonActive)
+            {
+                animator.SetBool("MagicStandby", false);
+                animator.SetBool("Standby", true);
+
+                if (GameManager.instance.isAction)
+                {
+                    animator.SetBool("Standby", false);
+
+                    uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
+
+                    GameManager.instance.isGretelTurn = false;
+                    GameManager.instance.isAction = false;
+
+                    shield = Instantiate(ShieldPrefab, transform.position - new Vector3(1.2f, -1.2f, 0), Quaternion.identity);
+                }
+            }
+            else if (GameManager.instance.isSkillButtonActive)
+            {
+                Debug.Log("SKILL");
+            }
+            else if (GameManager.instance.isItemButtonActive)
+            {
+                Debug.Log("ITEM");
+
+                //uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
+
+                //animator.SetBool("Standby", false);
+                //animator.SetBool("MagicStandby", false);
+                //GameManager.instance.isAliceTurn = false;
+            }
         }
         else
         {
-            ChangeAnimationState(GRETEL_IDLE);
+            //ResetButtonActive();
+        }
+
+        CheckCurrentAnimationEnd("Attack");
+    }
+
+    void CheckCurrentAnimationEnd(string animation)
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName(animation) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        {
+            if (animation == "Attack")
+            {
+                animator.SetBool("Attack", false);
+                transform.position = gretelStartPosition;
+            }
         }
     }
 
-    void ChangeAnimationState(string newAnimation)
+    void ResetAnimationTrigger(string animation)
     {
-        if (currentAnimation == newAnimation)
-            return;
-
-        animator.Play(newAnimation);
-        currentAnimation = newAnimation;
+        animator.ResetTrigger(animation);
     }
+
+    //void ResetButtonActive()
+    //{
+    //    GameManager.instance.isAttackButtonActive = false;
+    //    GameManager.instance.isGuardButtonActive = false;
+    //    GameManager.instance.isSkillButtonActive = false;
+    //    GameManager.instance.isItemButtonActive = false;
+    //}
+
 }

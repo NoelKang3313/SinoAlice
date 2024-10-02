@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4685368908331586087}
   - component: {fileID: 1213454675840571107}
   - component: {fileID: 6294048310822441457}
+  - component: {fileID: 6672129585874086822}
   m_Layer: 0
   m_Name: Snow White
   m_TagString: Untagged
@@ -106,3 +107,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6672129585874086822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4535137217601394310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e6b25c1faec849feb7ac1adfa03bea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: 
+  _level: 0
+  _exp: 0
+  _hp: 0
+  _mp: 0
+  _attack: 0
+  _defense: 0
+  _speed: 0
