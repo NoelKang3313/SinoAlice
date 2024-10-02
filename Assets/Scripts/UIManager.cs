@@ -6,7 +6,7 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    public GameObject ActionPanel;
+    public GameObject ActionButtons;
 
     public Button AttackButton;
     public Button GuardButton;
@@ -33,6 +33,10 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI SkillDescription;
     public Image SkillUserIcon;
 
+    public GameObject ItemButtonArrow;
+    public GameObject ItemButtonViewport;
+    public GameObject ItemViewportContent;
+
 
     void Start()
     {
@@ -45,22 +49,27 @@ public class UIManager : MonoBehaviour
         {
             int number = i;
             EnemySelectButton[i].onClick.AddListener(() => EnemySelectButtonClicked(number));
-        }
+        }        
 
-        CharacterSelectButton[GameManager.instance.AlicePositionNumber].onClick.AddListener(AliceSelectButtonClicked);
-
-        for(int i = 0; i < SkillButtons.Length; i++)
+        for(int i = 0; i < CharacterSelectButton.Length; i++)
         {
             int number = i;
 
-            SkillButtons[i].onClick.AddListener(() => SkillButtonClicked(number));
+            CharacterSelectButton[i].onClick.AddListener(() => OnCharacterSelectButtonClicked(number));
+        }
+
+        for (int i = 0; i < SkillButtons.Length; i++)
+        {
+            int number = i;            
+
+            SkillButtons[i].onClick.AddListener(() => OnSkillButtonClicked(number));
         }
     }
     
     void Update()
     {
         ChangeSkillButtonSprites();
-    }    
+    }
 
     void AttackButtonClicked()
     {
@@ -74,22 +83,17 @@ public class UIManager : MonoBehaviour
         SkillButtonArrow.GetComponent<Animator>().SetBool("isActive", false);
         SkillButtonViewport.GetComponent<Animator>().SetBool("isActive", false);
 
-        if (GameManager.instance.isAliceTurn)
+        ItemButtonArrow.GetComponent<Animator>().SetBool("isActive", false);
+        ItemButtonViewport.GetComponent<Animator>().SetBool("isActive", false);
+
+        for(int i = 0; i < CharacterSelectButton.Length; i++)
         {
-            CharacterSelectButton[GameManager.instance.AlicePositionNumber].gameObject.SetActive(false);
-        }
-        else if (GameManager.instance.isGretelTurn)
-        {
-            CharacterSelectButton[GameManager.instance.GretelPositionNumber].gameObject.SetActive(false);
-        }
-        else if (GameManager.instance.isSWTurn)
-        {
-            CharacterSelectButton[GameManager.instance.SWPositionNumber].gameObject.SetActive(false);
+            CharacterSelectButton[i].gameObject.SetActive(false);
         }
 
         SkillInformationPanel.GetComponent<Animator>().SetBool("isActive", false);
 
-        ResetSkillViewportPosition();
+        ResetViewportPosition();
     }
 
     void GuardButtonClicked()
@@ -101,14 +105,20 @@ public class UIManager : MonoBehaviour
 
         if(GameManager.instance.isAliceTurn)
         {
-            CharacterSelectButton[GameManager.instance.AlicePositionNumber].gameObject.SetActive(true);            
+            CharacterSelectButton[GameManager.instance.AlicePositionNumber].gameObject.SetActive(true);
+            CharacterSelectButton[GameManager.instance.GretelPositionNumber].gameObject.SetActive(false);
+            CharacterSelectButton[GameManager.instance.SWPositionNumber].gameObject.SetActive(false);
         }
         else if(GameManager.instance.isGretelTurn)
         {
+            CharacterSelectButton[GameManager.instance.AlicePositionNumber].gameObject.SetActive(false);
             CharacterSelectButton[GameManager.instance.GretelPositionNumber].gameObject.SetActive(true);
+            CharacterSelectButton[GameManager.instance.SWPositionNumber].gameObject.SetActive(false);
         }
         else if(GameManager.instance.isSWTurn)
         {
+            CharacterSelectButton[GameManager.instance.AlicePositionNumber].gameObject.SetActive(false);
+            CharacterSelectButton[GameManager.instance.GretelPositionNumber].gameObject.SetActive(false);
             CharacterSelectButton[GameManager.instance.SWPositionNumber].gameObject.SetActive(true);
         }
 
@@ -119,27 +129,10 @@ public class UIManager : MonoBehaviour
 
         SkillInformationPanel.GetComponent<Animator>().SetBool("isActive", false);
 
-        ResetSkillViewportPosition();
-    }
+        ItemButtonArrow.GetComponent<Animator>().SetBool("isActive", false);
+        ItemButtonViewport.GetComponent<Animator>().SetBool("isActive", false);
 
-    void AliceSelectButtonClicked()
-    {
-        if (GameManager.instance.isGuardButtonActive)
-        {
-            GameManager.instance.isAction = true;
-            CharacterSelectButton[GameManager.instance.AlicePositionNumber].gameObject.SetActive(false);
-        }
-        else if(GameManager.instance.isSkillButtonActive)
-        {
-            GameManager.instance.isAction = true;
-
-            for (int i = 0; i < CharacterSelectButton.Length; i++)
-            {
-                CharacterSelectButton[i].gameObject.SetActive(false);
-            }
-        }
-
-        ResetSkillViewportPosition();
+        ResetViewportPosition();
     }
 
     void SkillButtonClicked()
@@ -154,23 +147,18 @@ public class UIManager : MonoBehaviour
         SkillButtonArrow.GetComponent<Animator>().SetBool("isActive", true);
         SkillButtonViewport.GetComponent<Animator>().SetBool("isActive", true);
 
-        if (GameManager.instance.isAliceTurn)
+        ItemButtonArrow.GetComponent<Animator>().SetBool("isActive", false);
+        ItemButtonViewport.GetComponent<Animator>().SetBool("isActive", false);
+
+        for (int i = 0; i < CharacterSelectButton.Length; i++)
         {
-            CharacterSelectButton[GameManager.instance.AlicePositionNumber].gameObject.SetActive(false);
-        }
-        else if (GameManager.instance.isGretelTurn)
-        {
-            CharacterSelectButton[GameManager.instance.GretelPositionNumber].gameObject.SetActive(false);
-        }
-        else if (GameManager.instance.isSWTurn)
-        {
-            CharacterSelectButton[GameManager.instance.SWPositionNumber].gameObject.SetActive(false);
+            CharacterSelectButton[i].gameObject.SetActive(false);
         }
 
-        ResetSkillViewportPosition();
+        ResetViewportPosition();
     }
 
-    void SkillButtonClicked(int number)
+    void OnSkillButtonClicked(int number)
     {
         GameManager.instance.SkillButtonNumber = number;
 
@@ -240,23 +228,17 @@ public class UIManager : MonoBehaviour
         SkillButtonArrow.GetComponent<Animator>().SetBool("isActive", false);
         SkillButtonViewport.GetComponent<Animator>().SetBool("isActive", false);
 
-        if (GameManager.instance.isAliceTurn)
+        ItemButtonArrow.GetComponent<Animator>().SetBool("isActive", true);
+        ItemButtonViewport.GetComponent<Animator>().SetBool("isActive", true);
+
+        for (int i = 0; i < CharacterSelectButton.Length; i++)
         {
-            CharacterSelectButton[GameManager.instance.AlicePositionNumber].gameObject.SetActive(false);
-        }
-        else if (GameManager.instance.isGretelTurn)
-        {
-            CharacterSelectButton[GameManager.instance.GretelPositionNumber].gameObject.SetActive(false);
-        }
-        else if (GameManager.instance.isSWTurn)
-        {
-            CharacterSelectButton[GameManager.instance.SWPositionNumber].gameObject.SetActive(false);
+            CharacterSelectButton[i].gameObject.SetActive(false);
         }
 
         SkillInformationPanel.GetComponent<Animator>().SetBool("isActive", false);
-        SkillViewportContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 
-        ResetSkillViewportPosition();
+        ResetViewportPosition();
     }
 
     void EnemySelectButtonClicked(int number)
@@ -265,15 +247,77 @@ public class UIManager : MonoBehaviour
         GameManager.instance.isAction = true;
         EnemySelectButtons.SetActive(false);
 
-        ResetSkillViewportPosition();
+        SkillInformationPanel.GetComponent<Animator>().SetBool("isActive", false);
+        SkillButtonViewport.GetComponent<Animator>().SetBool("isActive", false);
+        SkillButtonArrow.GetComponent<Animator>().SetBool("isActive", false);        
+
+        ResetViewportPosition();
     }
 
-    void ResetSkillViewportPosition()
+    void OnCharacterSelectButtonClicked(int number)
     {
-        if(SkillButtonViewport.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Skill Buttons Viewport Idle") ||
-            SkillButtonViewport.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("-Skill Buttons Viewport"))
+        if (GameManager.instance.AlicePositionNumber == number)
+        {
+            GameManager.instance.SelectedCharacterPosition = GameManager.instance.Characters[number].transform.position;
+
+            if (GameManager.instance.isGuardButtonActive)
+            {
+                GameManager.instance.isAction = true;
+                CharacterSelectButton[number].gameObject.SetActive(false);
+            }
+            else if (GameManager.instance.isSkillButtonActive)
+            {
+                GameManager.instance.isAction = true;
+
+                for (int i = 0; i < CharacterSelectButton.Length; i++)
+                {
+                    CharacterSelectButton[i].gameObject.SetActive(false);
+                }
+            }
+        }
+        else if (GameManager.instance.GretelPositionNumber == number)
+        {
+            GameManager.instance.SelectedCharacterPosition = GameManager.instance.Characters[number].transform.position;
+
+            if (GameManager.instance.isSkillButtonActive)
+            {
+                GameManager.instance.isAction = true;
+
+                for (int i = 0; i < CharacterSelectButton.Length; i++)
+                {
+                    CharacterSelectButton[i].gameObject.SetActive(false);
+                }
+            }
+        }
+        else if (GameManager.instance.SWPositionNumber == number)
+        {
+            GameManager.instance.SelectedCharacterPosition = GameManager.instance.Characters[number].transform.position;
+
+            if (GameManager.instance.isSkillButtonActive)
+            {
+                GameManager.instance.isAction = true;
+
+                for (int i = 0; i < CharacterSelectButton.Length; i++)
+                {
+                    CharacterSelectButton[i].gameObject.SetActive(false);
+                }
+            }
+        }
+
+        ResetViewportPosition();
+    }
+
+    void ResetViewportPosition()
+    {
+        if(SkillButtonViewport.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Viewport Idle") ||
+            SkillButtonViewport.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("-Viewport"))
         {
             SkillViewportContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+        }
+        else if (ItemButtonViewport.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Viewport Idle") ||
+            ItemButtonViewport.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("-Viewport"))
+        {
+            ItemViewportContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
         }
     }
 }
