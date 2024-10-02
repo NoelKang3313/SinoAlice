@@ -76,10 +76,10 @@ public class Alice : CharacterStats
 
                     animator.SetTrigger("Move");
                     transform.position = Vector2.MoveTowards(transform.position,
-                        GameManager.instance.AttackEnemyPositions[GameManager.instance.EnemyPositionNumber], moveSpeed * Time.deltaTime);
+                        GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(3.0f, -0.8f), moveSpeed * Time.deltaTime);
 
-                    if (transform.position == new Vector3(GameManager.instance.AttackEnemyPositions[GameManager.instance.EnemyPositionNumber].x,
-                        GameManager.instance.AttackEnemyPositions[GameManager.instance.EnemyPositionNumber].y, 0))
+                    if (transform.position == new Vector3((GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].x + 3.0f),
+                        (GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].y - 0.8f), 0))
                     {
                         GameManager.instance.isAliceTurn = false;
                         GameManager.instance.isAction = false;
@@ -126,14 +126,14 @@ public class Alice : CharacterStats
                             {
                                 isSkillInstantiated = true;
                                 glacialArrow = Instantiate(GlacialArrowPrefab,
-                                    GameManager.instance.SkillEnemyPositions[GameManager.instance.EnemyPositionNumber] +
+                                    GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] +
                                     new Vector2(2,2), Quaternion.identity);
                             }
 
                             if(glacialArrow.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.33f)
                             {
                                 glacialArrow.transform.position = Vector2.MoveTowards(glacialArrow.transform.position,
-                                    GameManager.instance.SkillEnemyPositions[GameManager.instance.EnemyPositionNumber], 0.3f);
+                                    GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber], 0.3f);
                             }
 
                             if (glacialArrow.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
@@ -154,7 +154,7 @@ public class Alice : CharacterStats
                             {
                                 isSkillInstantiated = true;
                                 aquaBomb = Instantiate(AquaBombPrefab,
-                                    GameManager.instance.SkillEnemyPositions[GameManager.instance.EnemyPositionNumber], Quaternion.identity);
+                                    GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber], Quaternion.identity);
                             }
 
                             if (aquaBomb.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
@@ -175,14 +175,14 @@ public class Alice : CharacterStats
                             {
                                 isSkillInstantiated = true;
                                 blizzardBomb = Instantiate(BlizzardBombPrefab,
-                                    GameManager.instance.SkillEnemyPositions[GameManager.instance.EnemyPositionNumber] +
+                                    GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] +
                                     new Vector2(0, -0.5f), Quaternion.identity);
                             }
 
                             if(blizzardBomb.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.05f)
                             {
                                 blizzardBomb.transform.position = Vector2.MoveTowards(blizzardBomb.transform.position,
-                                    GameManager.instance.SkillEnemyPositions[GameManager.instance.EnemyPositionNumber], 0.01f);
+                                    GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber], 0.01f);
                             }
 
                             if (blizzardBomb.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
