@@ -16,12 +16,13 @@ public class GameManager : MonoBehaviour
     public bool isItemButtonActive;
 
     public Vector2[] CharacterPositions = new Vector2[3];
+    public Vector2 SelectedCharacterPosition;     //To Instantiate Skill to Selceted Character Position (Ex. Heal)
 
     public Vector2[] AttackEnemyPositions = new Vector2[4];
     public Vector2[] SkillEnemyPositions = new Vector2[4];
     public int EnemyPositionNumber;
 
-    public GameObject[] Characters = new GameObject[3];
+    public GameObject[] Characters = new GameObject[3];    
     public int AlicePositionNumber;
     public int GretelPositionNumber;
     public int SWPositionNumber;
@@ -50,6 +51,10 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
             isAliceTurn = true;
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            isGretelTurn = true;
         }
     }
 

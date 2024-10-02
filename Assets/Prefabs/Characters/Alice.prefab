@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3406657072398800853}
   - component: {fileID: 4180021222721002171}
   - component: {fileID: 6718192078075280852}
+  - component: {fileID: 4859526740719212564}
   m_Layer: 0
   m_Name: Alice
   m_TagString: Untagged
@@ -106,3 +107,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4859526740719212564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801351791532427814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 996203da179e04e4bb270fe1d1936b41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: 
+  _level: 0
+  _exp: 0
+  _hp: 0
+  _mp: 0
+  _attack: 0
+  _defense: 0
+  _speed: 0
+  ShieldPrefab: {fileID: 8752544847113877612, guid: 2d155d6c4e1e5483fbd984a70183a0d9, type: 3}
+  GlacialArrowPrefab: {fileID: 7038079596473993328, guid: 074e14fa7287a4a84aa955fac3f91a24, type: 3}
+  AquaBombPrefab: {fileID: 6899200699949279395, guid: d703f28f150aa48549d4745ae3c4fc41, type: 3}
+  BlizzardBombPrefab: {fileID: 3021411508436728832, guid: d1107a0f41060455ca1aeee76da85cf0, type: 3}
+  TidalWavePrefab: {fileID: 2577669372820881184, guid: fcb5aaa608e6d4edfbe574d1b38f2586, type: 3}
+  HealingWindPrefab: {fileID: 4051440241925775377, guid: 030cdb9e1c8af46d1b09e0dbc7a6c966, type: 3}

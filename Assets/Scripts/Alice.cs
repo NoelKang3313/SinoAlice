@@ -26,7 +26,7 @@ public class Alice : CharacterStats
     public GameObject HealingWindPrefab;
     private GameObject healingWind;
 
-    private bool isSkillInstantiated;
+    private bool isSkillInstantiated;    
 
     void Awake()
     {
@@ -44,13 +44,17 @@ public class Alice : CharacterStats
     {        
         aliceStartPosition = transform.position;
 
-        animator = GetComponent<Animator>();        
-        uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
-    {        
+    {
         AliceAction();
+
+        if (GameObject.Find("UIManager") == null)
+            return;
+        else
+            uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
     }
 
     void AliceAction()
@@ -59,7 +63,7 @@ public class Alice : CharacterStats
         {
             Destroy(shield);
 
-            uiManager.ActionPanel.SetActive(true);
+            uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", true);
             animator.SetBool("Standby", true);
 
             if (GameManager.instance.isAttackButtonActive)
@@ -68,7 +72,7 @@ public class Alice : CharacterStats
 
                 if (GameManager.instance.isAction)
                 {
-                    uiManager.ActionPanel.SetActive(false);
+                    uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
 
                     animator.SetTrigger("Move");
                     transform.position = Vector2.MoveTowards(transform.position,
@@ -96,7 +100,7 @@ public class Alice : CharacterStats
                 {
                     animator.SetBool("Standby", false);
 
-                    uiManager.ActionPanel.SetActive(false);
+                    uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
 
                     GameManager.instance.isAliceTurn = false;
                     GameManager.instance.isAction = false;
@@ -113,16 +117,23 @@ public class Alice : CharacterStats
                 {                    
                     animator.SetBool("MagicAttack", true);
 
-                    uiManager.ActionPanel.SetActive(false);
+                    uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
 
-                    switch(GameManager.instance.SkillButtonNumber)
+                    switch (GameManager.instance.SkillButtonNumber)
                     {
                         case 0:
                             if (!isSkillInstantiated)
                             {
                                 isSkillInstantiated = true;
                                 glacialArrow = Instantiate(GlacialArrowPrefab,
-                                    GameManager.instance.SkillEnemyPositions[GameManager.instance.EnemyPositionNumber], Quaternion.identity);
+                                    GameManager.instance.SkillEnemyPositions[GameManager.instance.EnemyPositionNumber] +
+                                    new Vector2(2,2), Quaternion.identity);
+                            }
+
+                            if(glacialArrow.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.33f)
+                            {
+                                glacialArrow.transform.position = Vector2.MoveTowards(glacialArrow.transform.position,
+                                    GameManager.instance.SkillEnemyPositions[GameManager.instance.EnemyPositionNumber], 0.3f);
                             }
 
                             if (glacialArrow.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
@@ -164,7 +175,14 @@ public class Alice : CharacterStats
                             {
                                 isSkillInstantiated = true;
                                 blizzardBomb = Instantiate(BlizzardBombPrefab,
-                                    GameManager.instance.SkillEnemyPositions[GameManager.instance.EnemyPositionNumber], Quaternion.identity);
+                                    GameManager.instance.SkillEnemyPositions[GameManager.instance.EnemyPositionNumber] +
+                                    new Vector2(0, -0.5f), Quaternion.identity);
+                            }
+
+                            if(blizzardBomb.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.05f)
+                            {
+                                blizzardBomb.transform.position = Vector2.MoveTowards(blizzardBomb.transform.position,
+                                    GameManager.instance.SkillEnemyPositions[GameManager.instance.EnemyPositionNumber], 0.01f);
                             }
 
                             if (blizzardBomb.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
@@ -205,7 +223,7 @@ public class Alice : CharacterStats
                             {
                                 isSkillInstantiated = true;
                                 healingWind = Instantiate(HealingWindPrefab,
-                                    GameManager.instance.CharacterPositions[GameManager.instance.AlicePositionNumber], Quaternion.identity);
+                                    GameManager.instance.SelectedCharacterPosition - new Vector2(1.2f, -1.2f), Quaternion.identity);
                             }
 
                             if (healingWind.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
@@ -228,16 +246,16 @@ public class Alice : CharacterStats
             {
                 Debug.Log("ITEM");
 
-                uiManager.ActionPanel.SetActive(false);
+                //uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
 
-                animator.SetBool("Standby", false);
-                animator.SetBool("MagicStandby", false);
-                GameManager.instance.isAliceTurn = false;
+                //animator.SetBool("Standby", false);
+                //animator.SetBool("MagicStandby", false);
+                //GameManager.instance.isAliceTurn = false;
             }
         }
         else
         {
-            ResetButtonActive();
+            //ResetButtonActive();
         }
 
         CheckCurrentAnimationEnd("Attack");
@@ -260,11 +278,11 @@ public class Alice : CharacterStats
         animator.ResetTrigger(animation);
     }
 
-    void ResetButtonActive()
-    {
-        GameManager.instance.isAttackButtonActive = false;
-        GameManager.instance.isGuardButtonActive = false;
-        GameManager.instance.isSkillButtonActive = false;
-        GameManager.instance.isItemButtonActive = false;
-    }
+    //void ResetButtonActive()
+    //{
+    //    GameManager.instance.isAttackButtonActive = false;
+    //    GameManager.instance.isGuardButtonActive = false;
+    //    GameManager.instance.isSkillButtonActive = false;
+    //    GameManager.instance.isItemButtonActive = false;
+    //}
 }
