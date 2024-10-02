@@ -18,8 +18,7 @@ public class GameManager : MonoBehaviour
     public Vector2[] CharacterPositions = new Vector2[3];
     public Vector2 SelectedCharacterPosition;     //To Instantiate Skill to Selceted Character Position (Ex. Heal)
 
-    public Vector2[] AttackEnemyPositions = new Vector2[4];
-    public Vector2[] SkillEnemyPositions = new Vector2[4];
+    public Vector2[] EnemyPositions = new Vector2[4];
     public int EnemyPositionNumber;
 
     public GameObject[] Characters = new GameObject[3];    
