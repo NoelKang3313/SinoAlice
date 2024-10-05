@@ -13,6 +13,20 @@ public class Gretel : CharacterStats
     public GameObject ShieldPrefab;
     private GameObject shield;
 
+    [Header("Skills")]
+    public GameObject BlazeArrowPrefab;
+    private GameObject blazeArrow;
+    public GameObject GravelBombPrefab;
+    private GameObject gravelBomb;
+    public GameObject ShadowBombPrefab;
+    private GameObject shadowBomb;
+    public GameObject ExplosionPrefab;
+    private GameObject explosion;
+    public GameObject SinOfDarknessPrefab;
+    private GameObject sinOfDarkness;
+
+    private bool isSkillInstantiated;
+
     void Awake()
     {
         _name = "Gretel";
@@ -68,6 +82,7 @@ public class Gretel : CharacterStats
                     {
                         GameManager.instance.isGretelTurn = false;
                         GameManager.instance.isAction = false;
+                        GameManager.instance.isAttackButtonActive = false;
 
                         animator.SetBool("Standby", false);
 
@@ -89,13 +104,154 @@ public class Gretel : CharacterStats
 
                     GameManager.instance.isGretelTurn = false;
                     GameManager.instance.isAction = false;
+                    GameManager.instance.isGuardButtonActive = false;
 
                     shield = Instantiate(ShieldPrefab, transform.position - new Vector3(1.2f, -1.2f, 0), Quaternion.identity);
                 }
             }
             else if (GameManager.instance.isSkillButtonActive)
-            {
-                Debug.Log("SKILL");
+            {                
+                animator.SetBool("MagicStandby", true);
+
+                if(GameManager.instance.isAction)
+                {
+                    animator.SetBool("MagicAttack", true);
+
+                    uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
+
+                    switch(GameManager.instance.SkillButtonNumber)
+                    {
+                        case 0:
+                            if(!isSkillInstantiated)
+                            {
+                                isSkillInstantiated = true;
+                                blazeArrow = Instantiate(BlazeArrowPrefab,
+                                    GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] +
+                                    new Vector2(2, 2), Quaternion.identity);
+                            }
+
+                            if (blazeArrow.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.33f)
+                            {
+                                blazeArrow.transform.position = Vector2.MoveTowards(blazeArrow.transform.position,
+                                    GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber], 0.3f);
+                            }
+
+                                if (blazeArrow.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                            {
+                                Destroy(blazeArrow);
+                                isSkillInstantiated = false;
+
+                                GameManager.instance.isGretelTurn = false;
+                                GameManager.instance.isAction = false;
+                                GameManager.instance.isSkillButtonActive = false;
+
+                                animator.SetBool("MagicAttack", false);
+                                animator.SetBool("MagicStandby", false);
+                                animator.SetBool("Standby", false);
+                            }
+
+                            break;
+
+                        case 1:
+                            if (!isSkillInstantiated)
+                            {
+                                isSkillInstantiated = true;
+                                gravelBomb = Instantiate(GravelBombPrefab,
+                                    GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber],
+                                    Quaternion.identity);
+                            }
+
+                            if (gravelBomb.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                            {
+                                Destroy(gravelBomb);
+                                isSkillInstantiated = false;
+
+                                GameManager.instance.isGretelTurn = false;
+                                GameManager.instance.isAction = false;
+                                GameManager.instance.isSkillButtonActive = false;
+
+                                animator.SetBool("MagicAttack", false);
+                                animator.SetBool("MagicStandby", false);
+                                animator.SetBool("Standby", false);
+                            }
+
+                            break;
+
+                        case 2:
+                            if (!isSkillInstantiated)
+                            {
+                                isSkillInstantiated = true;
+                                shadowBomb = Instantiate(ShadowBombPrefab,
+                                    GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber],
+                                    Quaternion.identity);
+                            }
+
+                            if (shadowBomb.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                            {
+                                Destroy(shadowBomb);
+                                isSkillInstantiated = false;
+
+                                GameManager.instance.isGretelTurn = false;
+                                GameManager.instance.isAction = false;
+                                GameManager.instance.isSkillButtonActive = false;
+
+                                animator.SetBool("MagicAttack", false);
+                                animator.SetBool("MagicStandby", false);
+                                animator.SetBool("Standby", false);
+                            }
+
+                            break;
+
+                        case 3:
+                            if (!isSkillInstantiated)
+                            {
+                                isSkillInstantiated = true;
+                                explosion = Instantiate(ExplosionPrefab, new Vector3(-5.35f, -2.0f, 0), Quaternion.identity);
+                            }
+
+                            if (explosion.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                            {
+                                Destroy(explosion);
+                                isSkillInstantiated = false;
+
+                                GameManager.instance.isGretelTurn = false;
+                                GameManager.instance.isAction = false;
+                                GameManager.instance.isSkillButtonActive = false;
+
+                                animator.SetBool("MagicAttack", false);
+                                animator.SetBool("MagicStandby", false);
+                                animator.SetBool("Standby", false);
+                            }
+
+                            break;
+
+                        case 4:
+                            if (!isSkillInstantiated)
+                            {
+                                isSkillInstantiated = true;
+                                sinOfDarkness = Instantiate(SinOfDarknessPrefab,
+                                    GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber],
+                                    Quaternion.identity);
+                            }
+
+                            if (sinOfDarkness.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                            {
+                                Destroy(sinOfDarkness);
+                                isSkillInstantiated = false;
+
+                                GameManager.instance.isGretelTurn = false;
+                                GameManager.instance.isAction = false;
+                                GameManager.instance.isSkillButtonActive = false;
+
+                                animator.SetBool("MagicAttack", false);
+                                animator.SetBool("MagicStandby", false);
+                                animator.SetBool("Standby", false);
+                            }
+
+                            break;
+
+                    }
+                }
             }
             else if (GameManager.instance.isItemButtonActive)
             {
@@ -107,11 +263,7 @@ public class Gretel : CharacterStats
                 //animator.SetBool("MagicStandby", false);
                 //GameManager.instance.isAliceTurn = false;
             }
-        }
-        else
-        {
-            //ResetButtonActive();
-        }
+        }        
 
         CheckCurrentAnimationEnd("Attack");
     }
@@ -132,13 +284,4 @@ public class Gretel : CharacterStats
     {
         animator.ResetTrigger(animation);
     }
-
-    //void ResetButtonActive()
-    //{
-    //    GameManager.instance.isAttackButtonActive = false;
-    //    GameManager.instance.isGuardButtonActive = false;
-    //    GameManager.instance.isSkillButtonActive = false;
-    //    GameManager.instance.isItemButtonActive = false;
-    //}
-
 }

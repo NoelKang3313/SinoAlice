@@ -83,6 +83,7 @@ public class Alice : CharacterStats
                     {
                         GameManager.instance.isAliceTurn = false;
                         GameManager.instance.isAction = false;
+                        GameManager.instance.isAttackButtonActive = false;
 
                         animator.SetBool("Standby", false);
 
@@ -104,6 +105,7 @@ public class Alice : CharacterStats
 
                     GameManager.instance.isAliceTurn = false;
                     GameManager.instance.isAction = false;
+                    GameManager.instance.isGuardButtonActive = false;
 
                     shield = Instantiate(ShieldPrefab, transform.position - new Vector3(1.2f, -1.2f, 0), Quaternion.identity);
                 }
@@ -143,12 +145,15 @@ public class Alice : CharacterStats
 
                                 GameManager.instance.isAliceTurn = false;
                                 GameManager.instance.isAction = false;
+                                GameManager.instance.isSkillButtonActive = false;
 
                                 animator.SetBool("MagicAttack", false);
                                 animator.SetBool("MagicStandby", false);
+                                animator.SetBool("Standby", false);
                             }
 
                             break;
+
                         case 1:
                             if (!isSkillInstantiated)
                             {
@@ -164,12 +169,15 @@ public class Alice : CharacterStats
 
                                 GameManager.instance.isAliceTurn = false;
                                 GameManager.instance.isAction = false;
+                                GameManager.instance.isSkillButtonActive = false;
 
                                 animator.SetBool("MagicAttack", false);
                                 animator.SetBool("MagicStandby", false);
+                                animator.SetBool("Standby", false);
                             }
 
                             break;
+
                         case 2:
                             if (!isSkillInstantiated)
                             {
@@ -192,12 +200,15 @@ public class Alice : CharacterStats
 
                                 GameManager.instance.isAliceTurn = false;
                                 GameManager.instance.isAction = false;
+                                GameManager.instance.isSkillButtonActive = false;
 
                                 animator.SetBool("MagicAttack", false);
                                 animator.SetBool("MagicStandby", false);
+                                animator.SetBool("Standby", false);
                             }
 
                             break;
+
                         case 3:
                             if (!isSkillInstantiated)
                             {
@@ -212,12 +223,15 @@ public class Alice : CharacterStats
 
                                 GameManager.instance.isAliceTurn = false;
                                 GameManager.instance.isAction = false;
+                                GameManager.instance.isSkillButtonActive = false;
 
                                 animator.SetBool("MagicAttack", false);
                                 animator.SetBool("MagicStandby", false);
+                                animator.SetBool("Standby", false);
                             }
 
                             break;
+
                         case 4:
                             if (!isSkillInstantiated)
                             {
@@ -233,9 +247,11 @@ public class Alice : CharacterStats
 
                                 GameManager.instance.isAliceTurn = false;
                                 GameManager.instance.isAction = false;
+                                GameManager.instance.isSkillButtonActive = false;   
 
                                 animator.SetBool("MagicAttack", false);
                                 animator.SetBool("MagicStandby", false);
+                                animator.SetBool("Standby", false);
                             }
 
                             break;
@@ -252,10 +268,6 @@ public class Alice : CharacterStats
                 //animator.SetBool("MagicStandby", false);
                 //GameManager.instance.isAliceTurn = false;
             }
-        }
-        else
-        {
-            //ResetButtonActive();
         }
 
         CheckCurrentAnimationEnd("Attack");
@@ -277,12 +289,4 @@ public class Alice : CharacterStats
     {
         animator.ResetTrigger(animation);
     }
-
-    //void ResetButtonActive()
-    //{
-    //    GameManager.instance.isAttackButtonActive = false;
-    //    GameManager.instance.isGuardButtonActive = false;
-    //    GameManager.instance.isSkillButtonActive = false;
-    //    GameManager.instance.isItemButtonActive = false;
-    //}
 }
