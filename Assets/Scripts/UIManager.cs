@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
     public GameObject SkillViewportContent;
 
     public Button[] SkillButtons = new Button[5];
-    public SkillData[] SkillInfo = new SkillData[5];
+    public SkillData[] SkillInfo = new SkillData[10];
     [SerializeField]private SkillData[] CurrentSkillData = new SkillData[5];
 
     [Header("Skill Information Panel")]
@@ -68,7 +68,17 @@ public class UIManager : MonoBehaviour
     
     void Update()
     {
-        ChangeSkillButtonSprites();
+        if (GameManager.instance.isAliceTurn || GameManager.instance.isGretelTurn || GameManager.instance.isSWTurn)
+        {
+            ChangeSkillButtonSprites();
+        }
+        else if (!GameManager.instance.isAliceTurn || !GameManager.instance.isGretelTurn || !GameManager.instance.isSWTurn)
+        {
+            for(int i = 0; i < CurrentSkillData.Length; i++)
+            {
+                CurrentSkillData[i] = null;
+            }
+        }
     }
 
     void AttackButtonClicked()
@@ -171,9 +181,16 @@ public class UIManager : MonoBehaviour
 
         if (number == 4)
         {
-            for (int i = 0; i < CharacterSelectButton.Length; i++)
+            if(GameManager.instance.isAliceTurn)
             {
-                CharacterSelectButton[i].gameObject.SetActive(true);
+                for (int i = 0; i < CharacterSelectButton.Length; i++)
+                {
+                    CharacterSelectButton[i].gameObject.SetActive(true);
+                }
+            }
+            else if (GameManager.instance.isGretelTurn)
+            {
+                EnemySelectButtons.SetActive(true);                
             }
         }
         else
@@ -184,36 +201,36 @@ public class UIManager : MonoBehaviour
 
     void ChangeSkillButtonSprites()
     {
-        for(int i = 0; i < SkillButtons.Length; i++)
+        for(int i = 0; i < SkillInfo.Length; i++)
         {
-            for(int j = 0; j < SkillInfo.Length; j++)
+            for(int j = 0; j < SkillButtons.Length; j++)
             {
-                if (GameManager.instance.isAliceTurn && SkillInfo[j].SkillUserName == "Alice")
+                if (CurrentSkillData[j] == null)
                 {
-                    if (CurrentSkillData[j] == SkillInfo[j])
-                        continue;
+                    if (GameManager.instance.isAliceTurn && SkillInfo[i].SkillUserName == "Alice")
+                    {
+                        CurrentSkillData[j] = SkillInfo[i];
+                        SkillButtons[j].GetComponent<Image>().sprite = SkillInfo[i].SkillIcon;
 
-                    CurrentSkillData[i] = SkillInfo[j];
-                    SkillButtons[i].GetComponent<Image>().sprite = SkillInfo[j].SkillIcon;
-                }
-                else if(GameManager.instance.isGretelTurn && SkillInfo[j].SkillUserName == "Gretel")
-                {
-                    if (CurrentSkillData[j] == SkillInfo[j])
-                        continue;
+                        break;
+                    }
+                    else if (GameManager.instance.isGretelTurn && SkillInfo[i].SkillUserName == "Gretel")
+                    {
+                        CurrentSkillData[j] = SkillInfo[i];
+                        SkillButtons[j].GetComponent<Image>().sprite = SkillInfo[i].SkillIcon;
 
-                    CurrentSkillData[i] = SkillInfo[j];
-                    SkillButtons[i].GetComponent<Image>().sprite = SkillInfo[j].SkillIcon;
-                }
-                else if (GameManager.instance.isSWTurn && SkillInfo[j].SkillUserName == "Snow White")
-                {
-                    if (CurrentSkillData[j] == SkillInfo[j])
-                        continue;
+                        break;
+                    }
+                    else if (GameManager.instance.isSWTurn && SkillInfo[i].SkillUserName == "Snow White")
+                    {
+                        CurrentSkillData[j] = SkillInfo[i];
+                        SkillButtons[j].GetComponent<Image>().sprite = SkillInfo[i].SkillIcon;
 
-                    CurrentSkillData[i] = SkillInfo[j];
-                    SkillButtons[i].GetComponent<Image>().sprite = SkillInfo[j].SkillIcon;
-                }
-            }         
-        }
+                        break;
+                    }
+                }                
+            }
+        }     
     }
 
     void ItemButtonClicked()
@@ -249,7 +266,7 @@ public class UIManager : MonoBehaviour
 
         SkillInformationPanel.GetComponent<Animator>().SetBool("isActive", false);
         SkillButtonViewport.GetComponent<Animator>().SetBool("isActive", false);
-        SkillButtonArrow.GetComponent<Animator>().SetBool("isActive", false);        
+        SkillButtonArrow.GetComponent<Animator>().SetBool("isActive", false);
 
         ResetViewportPosition();
     }
@@ -279,7 +296,12 @@ public class UIManager : MonoBehaviour
         {
             GameManager.instance.SelectedCharacterPosition = GameManager.instance.Characters[number].transform.position;
 
-            if (GameManager.instance.isSkillButtonActive)
+            if (GameManager.instance.isGuardButtonActive)
+            {
+                GameManager.instance.isAction = true;
+                CharacterSelectButton[number].gameObject.SetActive(false);
+            }
+            else if (GameManager.instance.isSkillButtonActive)
             {
                 GameManager.instance.isAction = true;
 
@@ -303,6 +325,10 @@ public class UIManager : MonoBehaviour
                 }
             }
         }
+
+        SkillInformationPanel.GetComponent<Animator>().SetBool("isActive", false);
+        SkillButtonViewport.GetComponent<Animator>().SetBool("isActive", false);
+        SkillButtonArrow.GetComponent<Animator>().SetBool("isActive", false);
 
         ResetViewportPosition();
     }
