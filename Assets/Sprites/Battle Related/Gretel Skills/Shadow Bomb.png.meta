@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 66ef76e78fbc249f2b73a2b5890824a5
+guid: 3689353f79bc54afca1620b31980ceac
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -139,19 +139,19 @@ TextureImporter:
       name: Shadow Bomb_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 163
-        width: 95
-        height: 89
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 214e40adef48346878db8fbeb2167692
-      internalID: -624147700
+      spriteID: ce1fb26c6b25e4989ae036e538815848
+      internalID: 784286060
       vertices: []
       indices: 
       edges: []
@@ -160,19 +160,19 @@ TextureImporter:
       name: Shadow Bomb_1
       rect:
         serializedVersion: 2
-        x: 110
-        y: 144
-        width: 102
-        height: 100
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4f5481d176404219b1a7bcab570d748
-      internalID: -858360692
+      spriteID: 3d237cff20c314e7d8357fd2cda8d556
+      internalID: -1635155632
       vertices: []
       indices: 
       edges: []
@@ -181,19 +181,19 @@ TextureImporter:
       name: Shadow Bomb_2
       rect:
         serializedVersion: 2
-        x: 218
-        y: 147
-        width: 93
-        height: 97
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 159236cf44389489eb34d8004f8c1b39
-      internalID: 906639755
+      spriteID: 10f8f74baddfb441f97768621de6466d
+      internalID: -1182011083
       vertices: []
       indices: 
       edges: []
@@ -202,19 +202,19 @@ TextureImporter:
       name: Shadow Bomb_3
       rect:
         serializedVersion: 2
-        x: 320
-        y: 144
-        width: 100
-        height: 100
+        x: 576
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e4aac9cf82a1420787f6076f1b1060a
-      internalID: -268970905
+      spriteID: c2dc09f8072814f3a8093e85fad4dd47
+      internalID: 15753457
       vertices: []
       indices: 
       edges: []
@@ -223,19 +223,19 @@ TextureImporter:
       name: Shadow Bomb_4
       rect:
         serializedVersion: 2
-        x: 2
-        y: 42
-        width: 94
-        height: 84
+        x: 768
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd20489b4002647b893aa8ffe41c8457
-      internalID: -1342167083
+      spriteID: 96955c476490d451c9872865767d333e
+      internalID: 1786914184
       vertices: []
       indices: 
       edges: []
@@ -244,19 +244,19 @@ TextureImporter:
       name: Shadow Bomb_5
       rect:
         serializedVersion: 2
-        x: 102
-        y: 51
-        width: 77
-        height: 76
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1dc2fb21c663b4694ba972de8b537f28
-      internalID: -182424883
+      spriteID: 5396131b305f349e197680a8d5013cab
+      internalID: 1133537666
       vertices: []
       indices: 
       edges: []
@@ -265,19 +265,19 @@ TextureImporter:
       name: Shadow Bomb_6
       rect:
         serializedVersion: 2
-        x: 187
-        y: 16
-        width: 116
-        height: 116
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1d123386e54e4031802eb6dd071752a
-      internalID: 69748071
+      spriteID: 3cefe4c4c287d430db3d9c58dd58d6a9
+      internalID: 1377057687
       vertices: []
       indices: 
       edges: []
@@ -286,19 +286,61 @@ TextureImporter:
       name: Shadow Bomb_7
       rect:
         serializedVersion: 2
-        x: 312
-        y: 18
-        width: 114
-        height: 114
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc13eefa8f8404e73ace89118788a347
-      internalID: 2058957744
+      spriteID: 87ced9d659ba548f789c6e34fbe926f2
+      internalID: 341247977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadow Bomb_8
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f6d607546baf4751a6ab240ef6861b2
+      internalID: 879951168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadow Bomb_9
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f8796cf8c18c4d038c8dd91e203fbf8
+      internalID: -907089280
       vertices: []
       indices: 
       edges: []
@@ -314,15 +356,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Shadow Bomb_0: -624147700
-      Shadow Bomb_1: -858360692
-      Shadow Bomb_10: 1655528293
-      Shadow Bomb_2: 906639755
-      Shadow Bomb_3: -268970905
-      Shadow Bomb_4: -1342167083
-      Shadow Bomb_5: -182424883
-      Shadow Bomb_6: 69748071
-      Shadow Bomb_7: 2058957744
+      Shadow Bomb_0: 784286060
+      Shadow Bomb_1: -1635155632
+      Shadow Bomb_2: -1182011083
+      Shadow Bomb_3: 15753457
+      Shadow Bomb_4: 1786914184
+      Shadow Bomb_5: 1133537666
+      Shadow Bomb_6: 1377057687
+      Shadow Bomb_7: 341247977
+      Shadow Bomb_8: 879951168
+      Shadow Bomb_9: -907089280
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

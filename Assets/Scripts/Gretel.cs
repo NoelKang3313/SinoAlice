@@ -20,12 +20,22 @@ public class Gretel : CharacterStats
     private GameObject gravelBomb;
     public GameObject ShadowBombPrefab;
     private GameObject shadowBomb;
-    public GameObject ExplosionPrefab;
-    private GameObject explosion;
-    public GameObject SinOfDarknessPrefab;
-    private GameObject sinOfDarkness;
+    public GameObject MeteorPrefab;
+    private GameObject meteor;
+    public GameObject ShadowExplosionPrefab;
+    private GameObject shadowExplosion;
 
     private bool isSkillInstantiated;
+
+    [Header("Audio")]
+    private AudioSource audioSource;
+    public AudioClip[] BattleStart = new AudioClip[2];
+    public AudioClip[] AttackSelect = new AudioClip[2];
+    private int battleStartRandom;
+    private int attackSelectRandom;
+
+    private bool isBattleStartAudioPlaying;
+    private bool isAttackSelectAudioPlaying;
 
     void Awake()
     {
@@ -43,14 +53,15 @@ public class Gretel : CharacterStats
     {
         gretelStartPosition = transform.position;
 
-        animator = GetComponent<Animator>();        
+        animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
         GretelAction();
 
-        if (GameObject.Find("UIManager") == null)
+        if (!GameObject.Find("UIManager").activeSelf)
             return;
         else
             uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
@@ -60,6 +71,13 @@ public class Gretel : CharacterStats
     {
         if (GameManager.instance.isGretelTurn)
         {
+            if (!isBattleStartAudioPlaying)
+            {
+                isBattleStartAudioPlaying = true;
+                battleStartRandom = Random.Range(0, 2);
+                audioSource.PlayOneShot(BattleStart[battleStartRandom]);
+            }
+
             Destroy(shield);
 
             uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", true);
@@ -71,6 +89,13 @@ public class Gretel : CharacterStats
 
                 if (GameManager.instance.isAction)
                 {
+                    if (!isAttackSelectAudioPlaying)
+                    {
+                        isAttackSelectAudioPlaying = true;
+                        attackSelectRandom = Random.Range(0, 2);
+                        audioSource.PlayOneShot(AttackSelect[attackSelectRandom]);
+                    }
+
                     uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
 
                     animator.SetTrigger("Move");
@@ -98,6 +123,13 @@ public class Gretel : CharacterStats
 
                 if (GameManager.instance.isAction)
                 {
+                    if (!isAttackSelectAudioPlaying)
+                    {
+                        isAttackSelectAudioPlaying = true;
+                        attackSelectRandom = Random.Range(0, 2);
+                        audioSource.PlayOneShot(AttackSelect[attackSelectRandom]);
+                    }
+
                     animator.SetBool("Standby", false);
 
                     uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
@@ -115,6 +147,13 @@ public class Gretel : CharacterStats
 
                 if(GameManager.instance.isAction)
                 {
+                    if (!isAttackSelectAudioPlaying)
+                    {
+                        isAttackSelectAudioPlaying = true;
+                        attackSelectRandom = Random.Range(0, 2);
+                        audioSource.PlayOneShot(AttackSelect[attackSelectRandom]);
+                    }
+
                     animator.SetBool("MagicAttack", true);
 
                     uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
@@ -126,17 +165,10 @@ public class Gretel : CharacterStats
                             {
                                 isSkillInstantiated = true;
                                 blazeArrow = Instantiate(BlazeArrowPrefab,
-                                    GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] +
-                                    new Vector2(2, 2), Quaternion.identity);
+                                    GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(0.5f, 0.5f), Quaternion.identity);
                             }
 
-                            if (blazeArrow.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.33f)
-                            {
-                                blazeArrow.transform.position = Vector2.MoveTowards(blazeArrow.transform.position,
-                                    GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber], 0.3f);
-                            }
-
-                                if (blazeArrow.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                            if (blazeArrow.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
                             {
                                 Destroy(blazeArrow);
                                 isSkillInstantiated = false;
@@ -206,12 +238,12 @@ public class Gretel : CharacterStats
                             if (!isSkillInstantiated)
                             {
                                 isSkillInstantiated = true;
-                                explosion = Instantiate(ExplosionPrefab, new Vector3(-5.35f, -2.0f, 0), Quaternion.identity);
+                                meteor = Instantiate(MeteorPrefab, new Vector3(-5.25f, -1.0f, 0), Quaternion.identity);
                             }
 
-                            if (explosion.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                            if (meteor.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
                             {
-                                Destroy(explosion);
+                                Destroy(meteor);
                                 isSkillInstantiated = false;
 
                                 GameManager.instance.isGretelTurn = false;
@@ -229,14 +261,12 @@ public class Gretel : CharacterStats
                             if (!isSkillInstantiated)
                             {
                                 isSkillInstantiated = true;
-                                sinOfDarkness = Instantiate(SinOfDarknessPrefab,
-                                    GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber],
-                                    Quaternion.identity);
+                                shadowExplosion = Instantiate(ShadowExplosionPrefab, new Vector3(-5.25f, -1.0f, 0), Quaternion.identity);
                             }
 
-                            if (sinOfDarkness.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                            if (shadowExplosion.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
                             {
-                                Destroy(sinOfDarkness);
+                                Destroy(shadowExplosion);
                                 isSkillInstantiated = false;
 
                                 GameManager.instance.isGretelTurn = false;
@@ -263,7 +293,12 @@ public class Gretel : CharacterStats
                 //animator.SetBool("MagicStandby", false);
                 //GameManager.instance.isAliceTurn = false;
             }
-        }        
+        }
+        else
+        {
+            isBattleStartAudioPlaying = false;
+            isAttackSelectAudioPlaying = false;
+        }
 
         CheckCurrentAnimationEnd("Attack");
     }

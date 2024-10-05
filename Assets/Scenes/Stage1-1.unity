@@ -1472,6 +1472,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e748251f4adcf4b558a9cc8d8c7d538c, type: 2}
   - {fileID: 11400000, guid: 691cf31e436bb4166a7c486d4523e30e, type: 2}
   - {fileID: 11400000, guid: ca0b7f8509a714e3cbddce8d7c784439, type: 2}
+  - {fileID: 11400000, guid: d09cf492b7e84fc4aa78dab16cf71a70, type: 2}
+  - {fileID: 11400000, guid: dec259bd51440224e9f925e1706117bf, type: 2}
+  - {fileID: 11400000, guid: 84ebb53b4da84bf47b6c7a167facc8aa, type: 2}
+  - {fileID: 11400000, guid: 919e8ae65a45a6544a90bd0f5ec532dd, type: 2}
+  - {fileID: 11400000, guid: 73ec86a7994f91f4fa622ddcb2613d23, type: 2}
   CurrentSkillData:
   - {fileID: 0}
   - {fileID: 0}
@@ -4540,6 +4545,90 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!1 &1698190369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1698190371}
+  - component: {fileID: 1698190370}
+  m_Layer: 0
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1698190370
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698190369}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 268bad2f004d9a341862c7d3d69846a1, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1698190371
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698190369}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.9, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1748225842
 GameObject:
   m_ObjectHideFlags: 0
@@ -5477,30 +5566,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3748776051992005954, guid: c090b0d36020e46e7a4bbb56a0d813a6, type: 3}
-      propertyPath: ExplosionPrefab
-      value: 
-      objectReference: {fileID: 6698546469743232642, guid: eb3269dee9933415bbd2336a767d60c9, type: 3}
-    - target: {fileID: 3748776051992005954, guid: c090b0d36020e46e7a4bbb56a0d813a6, type: 3}
-      propertyPath: BlazeArrowPrefab
-      value: 
-      objectReference: {fileID: 5138938425534255903, guid: c9c883c517c8f461f8ae1c8d5f5d460b, type: 3}
-    - target: {fileID: 3748776051992005954, guid: c090b0d36020e46e7a4bbb56a0d813a6, type: 3}
-      propertyPath: GravelBombPrefab
-      value: 
-      objectReference: {fileID: 4334986767978879061, guid: cc1ea9d428380466b97c27a5f42ff22b, type: 3}
-    - target: {fileID: 3748776051992005954, guid: c090b0d36020e46e7a4bbb56a0d813a6, type: 3}
-      propertyPath: GrevelBombPrefab
-      value: 
-      objectReference: {fileID: 4334986767978879061, guid: cc1ea9d428380466b97c27a5f42ff22b, type: 3}
-    - target: {fileID: 3748776051992005954, guid: c090b0d36020e46e7a4bbb56a0d813a6, type: 3}
-      propertyPath: ShadowBombPrefab
-      value: 
-      objectReference: {fileID: 4016453330502293736, guid: 5c38b34c468ac4df1b82793b86f9229c, type: 3}
-    - target: {fileID: 3748776051992005954, guid: c090b0d36020e46e7a4bbb56a0d813a6, type: 3}
-      propertyPath: SinOfDarknessPrefab
-      value: 
-      objectReference: {fileID: 5720899629905403593, guid: 21c39132ddef948c9b8dbcf9cee2b832, type: 3}
     - target: {fileID: 6752705877252150216, guid: c090b0d36020e46e7a4bbb56a0d813a6, type: 3}
       propertyPath: m_Name
       value: Gretel
@@ -5679,6 +5744,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
+  - {fileID: 1698190371}
   - {fileID: 1834799417}
   - {fileID: 1402628226870597351}
   - {fileID: 8654492495952438736}

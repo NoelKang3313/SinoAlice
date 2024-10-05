@@ -26,7 +26,17 @@ public class Alice : CharacterStats
     public GameObject HealingWindPrefab;
     private GameObject healingWind;
 
-    private bool isSkillInstantiated;    
+    private bool isSkillInstantiated;
+
+    [Header("Audio")]
+    private AudioSource audioSource;
+    public AudioClip[] BattleStart = new AudioClip[2];
+    public AudioClip[] AttackSelect = new AudioClip[2];
+    private int battleStartRandom;
+    private int attackSelectRandom;
+
+    private bool isBattleStartAudioPlaying;
+    private bool isAttackSelectAudioPlaying;
 
     void Awake()
     {
@@ -45,13 +55,14 @@ public class Alice : CharacterStats
         aliceStartPosition = transform.position;
 
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
         AliceAction();
 
-        if (GameObject.Find("UIManager") == null)
+        if (!GameObject.Find("UIManager").activeSelf)
             return;
         else
             uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
@@ -61,6 +72,13 @@ public class Alice : CharacterStats
     {
         if (GameManager.instance.isAliceTurn)
         {
+            if (!isBattleStartAudioPlaying)
+            {
+                isBattleStartAudioPlaying = true;
+                battleStartRandom = Random.Range(0, 2);
+                audioSource.PlayOneShot(BattleStart[battleStartRandom]);
+            }
+
             Destroy(shield);
 
             uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", true);
@@ -72,13 +90,20 @@ public class Alice : CharacterStats
 
                 if (GameManager.instance.isAction)
                 {
+                    if(!isAttackSelectAudioPlaying)
+                    {
+                        isAttackSelectAudioPlaying = true;
+                        attackSelectRandom = Random.Range(0, 2);
+                        audioSource.PlayOneShot(AttackSelect[attackSelectRandom]);
+                    }
+
                     uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
 
                     animator.SetTrigger("Move");
                     transform.position = Vector2.MoveTowards(transform.position,
-                        GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(3.0f, -0.8f), moveSpeed * Time.deltaTime);
+                        GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(3.5f, -0.8f), moveSpeed * Time.deltaTime);
 
-                    if (transform.position == new Vector3((GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].x + 3.0f),
+                    if (transform.position == new Vector3((GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].x + 3.5f),
                         (GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].y - 0.8f), 0))
                     {
                         GameManager.instance.isAliceTurn = false;
@@ -99,6 +124,13 @@ public class Alice : CharacterStats
 
                 if (GameManager.instance.isAction)
                 {
+                    if (!isAttackSelectAudioPlaying)
+                    {
+                        isAttackSelectAudioPlaying = true;
+                        attackSelectRandom = Random.Range(0, 2);
+                        audioSource.PlayOneShot(AttackSelect[attackSelectRandom]);
+                    }
+
                     animator.SetBool("Standby", false);
 
                     uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
@@ -116,7 +148,14 @@ public class Alice : CharacterStats
                 animator.SetBool("MagicStandby", true);                
 
                 if(GameManager.instance.isAction)
-                {                    
+                {
+                    if (!isAttackSelectAudioPlaying)
+                    {
+                        isAttackSelectAudioPlaying = true;
+                        attackSelectRandom = Random.Range(0, 2);
+                        audioSource.PlayOneShot(AttackSelect[attackSelectRandom]);
+                    }
+
                     animator.SetBool("MagicAttack", true);
 
                     uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
@@ -128,14 +167,7 @@ public class Alice : CharacterStats
                             {
                                 isSkillInstantiated = true;
                                 glacialArrow = Instantiate(GlacialArrowPrefab,
-                                    GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] +
-                                    new Vector2(2,2), Quaternion.identity);
-                            }
-
-                            if(glacialArrow.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.33f)
-                            {
-                                glacialArrow.transform.position = Vector2.MoveTowards(glacialArrow.transform.position,
-                                    GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber], 0.3f);
+                                    GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(1,1), Quaternion.identity);
                             }
 
                             if (glacialArrow.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
@@ -183,14 +215,7 @@ public class Alice : CharacterStats
                             {
                                 isSkillInstantiated = true;
                                 blizzardBomb = Instantiate(BlizzardBombPrefab,
-                                    GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] +
-                                    new Vector2(0, -0.5f), Quaternion.identity);
-                            }
-
-                            if(blizzardBomb.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.05f)
-                            {
-                                blizzardBomb.transform.position = Vector2.MoveTowards(blizzardBomb.transform.position,
-                                    GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber], 0.01f);
+                                    GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber], Quaternion.identity);
                             }
 
                             if (blizzardBomb.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
@@ -237,7 +262,7 @@ public class Alice : CharacterStats
                             {
                                 isSkillInstantiated = true;
                                 healingWind = Instantiate(HealingWindPrefab,
-                                    GameManager.instance.SelectedCharacterPosition - new Vector2(1.2f, -1.2f), Quaternion.identity);
+                                    GameManager.instance.SelectedCharacterPosition - new Vector2(1.2f, -1.65f), Quaternion.identity);
                             }
 
                             if (healingWind.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
@@ -268,6 +293,11 @@ public class Alice : CharacterStats
                 //animator.SetBool("MagicStandby", false);
                 //GameManager.instance.isAliceTurn = false;
             }
+        }
+        else
+        {
+            isBattleStartAudioPlaying = false;
+            isAttackSelectAudioPlaying = false;
         }
 
         CheckCurrentAnimationEnd("Attack");

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1213454675840571107}
   - component: {fileID: 6294048310822441457}
   - component: {fileID: 6672129585874086822}
+  - component: {fileID: 3781496070621557262}
   m_Layer: 0
   m_Name: Snow White
   m_TagString: Untagged
@@ -127,3 +128,111 @@ MonoBehaviour:
   _attack: 0
   _defense: 0
   _speed: 0
+  ShieldPrefab: {fileID: 8752544847113877612, guid: 2d155d6c4e1e5483fbd984a70183a0d9, type: 3}
+  DoubleSlashPrefab: {fileID: 7633486706821536145, guid: 4e5caf2b3e31b4e469bdba14583a9532, type: 3}
+  TripleSlashPrefab: {fileID: 5956762256418609346, guid: e5501b6b869ff7444b914f8629ada4aa, type: 3}
+  AerialSlashPrefab: {fileID: 1337473162761908171, guid: fe056e25e7956824a8d031d5f545c546, type: 3}
+  ThunderThornPrefab: {fileID: 6920212643834073071, guid: 25df37604a42c1049b529b775d5b587d, type: 3}
+  StormBladePrefab: {fileID: 3371497577832720639, guid: b92971206177bd145af0c4a90c3f8ab8, type: 3}
+  BattleStart:
+  - {fileID: 8300000, guid: ff64921dee03b4b47baa6c5633fe1ad2, type: 3}
+  - {fileID: 8300000, guid: 99879ebcd0c58754ab54a1cd56949d07, type: 3}
+  AttackSelect:
+  - {fileID: 8300000, guid: 7c6d1d6fb70fee740b444fa1eecf89a0, type: 3}
+  - {fileID: 8300000, guid: 57788cd516f40e247987ee69bb6375f6, type: 3}
+--- !u!82 &3781496070621557262
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4535137217601394310}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

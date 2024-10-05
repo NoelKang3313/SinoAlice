@@ -55,6 +55,10 @@ public class GameManager : MonoBehaviour
         {
             isGretelTurn = true;
         }
+        else if(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            isSWTurn = true;
+        }
     }
 
     void CharacterPosition()

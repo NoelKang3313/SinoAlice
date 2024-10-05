@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4180021222721002171}
   - component: {fileID: 6718192078075280852}
   - component: {fileID: 4859526740719212564}
+  - component: {fileID: 2418044966636143363}
   m_Layer: 0
   m_Name: Alice
   m_TagString: Untagged
@@ -128,8 +129,110 @@ MonoBehaviour:
   _defense: 0
   _speed: 0
   ShieldPrefab: {fileID: 8752544847113877612, guid: 2d155d6c4e1e5483fbd984a70183a0d9, type: 3}
-  GlacialArrowPrefab: {fileID: 7038079596473993328, guid: 074e14fa7287a4a84aa955fac3f91a24, type: 3}
-  AquaBombPrefab: {fileID: 6899200699949279395, guid: d703f28f150aa48549d4745ae3c4fc41, type: 3}
-  BlizzardBombPrefab: {fileID: 3021411508436728832, guid: d1107a0f41060455ca1aeee76da85cf0, type: 3}
-  TidalWavePrefab: {fileID: 2577669372820881184, guid: fcb5aaa608e6d4edfbe574d1b38f2586, type: 3}
-  HealingWindPrefab: {fileID: 4051440241925775377, guid: 030cdb9e1c8af46d1b09e0dbc7a6c966, type: 3}
+  GlacialArrowPrefab: {fileID: 1879472217350180096, guid: 074e14fa7287a4a84aa955fac3f91a24, type: 3}
+  AquaBombPrefab: {fileID: 5088565897292877142, guid: d703f28f150aa48549d4745ae3c4fc41, type: 3}
+  BlizzardBombPrefab: {fileID: 2559745690904343874, guid: d1107a0f41060455ca1aeee76da85cf0, type: 3}
+  TidalWavePrefab: {fileID: 1930930478688550999, guid: fcb5aaa608e6d4edfbe574d1b38f2586, type: 3}
+  HealingWindPrefab: {fileID: 6928394746618661461, guid: 030cdb9e1c8af46d1b09e0dbc7a6c966, type: 3}
+  BattleStart:
+  - {fileID: 8300000, guid: e79df957639310f47a64014c7a232971, type: 3}
+  - {fileID: 8300000, guid: 4b63c2af29f2eab499512b96d4fee356, type: 3}
+  AttackSelect:
+  - {fileID: 8300000, guid: 33270c27e5a27db41bb6b7de6c5f3389, type: 3}
+  - {fileID: 8300000, guid: e1956aa7f04f6c041ae61dfb2a93585f, type: 3}
+--- !u!82 &2418044966636143363
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801351791532427814}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
