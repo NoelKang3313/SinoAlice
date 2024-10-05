@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c5e6638e885164525814f0a894fb7413
+guid: 07d47e21ab111419aa3db812cea24590
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -139,10 +139,10 @@ TextureImporter:
       name: Aqua Bomb_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 192
-        width: 61
-        height: 60
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,8 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 132a235ccefa94401880bcc8944373a2
-      internalID: -895955611
+      spriteID: 4cde57b1b42b24ae685c277df61a2625
+      internalID: -1964205346
       vertices: []
       indices: 
       edges: []
@@ -160,10 +160,10 @@ TextureImporter:
       name: Aqua Bomb_1
       rect:
         serializedVersion: 2
-        x: 72
-        y: 195
-        width: 56
-        height: 61
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,8 +171,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1c25ce0108c44fdd8ad94054d508697
-      internalID: 1491954954
+      spriteID: 55b3ef9e0c9524fbf9fc1d1334353f83
+      internalID: -1780876903
       vertices: []
       indices: 
       edges: []
@@ -181,10 +181,10 @@ TextureImporter:
       name: Aqua Bomb_2
       rect:
         serializedVersion: 2
-        x: 145
-        y: 196
-        width: 53
-        height: 54
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,8 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26d30e31a69de43ab99c3728196f1c03
-      internalID: 1896637790
+      spriteID: e9aca9c905b404df5a2f56a3d90621c5
+      internalID: -1689342814
       vertices: []
       indices: 
       edges: []
@@ -202,10 +202,10 @@ TextureImporter:
       name: Aqua Bomb_3
       rect:
         serializedVersion: 2
-        x: 9
-        y: 96
-        width: 84
-        height: 90
+        x: 576
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,8 +213,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c87b4098e3fc4db69465486226e5fb8
-      internalID: 2137387461
+      spriteID: 28ee8134549e24736bd9d53a532ceb25
+      internalID: 363158676
       vertices: []
       indices: 
       edges: []
@@ -223,10 +223,10 @@ TextureImporter:
       name: Aqua Bomb_4
       rect:
         serializedVersion: 2
-        x: 102
-        y: 88
-        width: 98
-        height: 98
+        x: 768
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,8 +234,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d5659e3fa88a4aa4b7fbe14ca6c9312
-      internalID: -1877359753
+      spriteID: f4e8a1ee883414d6a826c723dfe399aa
+      internalID: 579399356
       vertices: []
       indices: 
       edges: []
@@ -244,10 +244,10 @@ TextureImporter:
       name: Aqua Bomb_5
       rect:
         serializedVersion: 2
-        x: 8
-        y: 12
-        width: 62
-        height: 71
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,8 +255,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e519ca0eb53f48b7b3196f41288bd48
-      internalID: 1272575071
+      spriteID: 818a543752d98454f8d46ca06e82d5ae
+      internalID: -739706088
       vertices: []
       indices: 
       edges: []
@@ -265,10 +265,10 @@ TextureImporter:
       name: Aqua Bomb_6
       rect:
         serializedVersion: 2
-        x: 111
-        y: 6
-        width: 81
-        height: 78
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -276,8 +276,176 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd369f9604c9e49db9a394306e74c1c9
-      internalID: 611352474
+      spriteID: 2c0ef6ea10b3e4c19b870977443f7a0c
+      internalID: -1056466006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aqua Bomb_7
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7d3d52065bec4f64b3f8a8cb623efbe
+      internalID: 1626599327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aqua Bomb_8
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 192
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1752bc5d95a9f4fa3a9d7e3b34fc47ff
+      internalID: 1508196488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aqua Bomb_9
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 192
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90678f40504c4497c9ece46fbe560f40
+      internalID: -306017705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aqua Bomb_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 871784b258bdb4885a1e6467e72d3f68
+      internalID: -1497884334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aqua Bomb_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7a0a17f6ed524026bda694f63bc6210
+      internalID: 902562551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aqua Bomb_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f1a3d8e12b19459c828804025b9070d
+      internalID: -2064625413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aqua Bomb_13
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bdc74b6237104fa5a300dc338e40d0e
+      internalID: 1254948888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aqua Bomb_14
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33d06069010af4b2097f5c78e1daf25c
+      internalID: 689621073
       vertices: []
       indices: 
       edges: []
@@ -293,13 +461,21 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Aqua Bomb_0: -895955611
-      Aqua Bomb_1: 1491954954
-      Aqua Bomb_2: 1896637790
-      Aqua Bomb_3: 2137387461
-      Aqua Bomb_4: -1877359753
-      Aqua Bomb_5: 1272575071
-      Aqua Bomb_6: 611352474
+      Aqua Bomb_0: -1964205346
+      Aqua Bomb_1: -1780876903
+      Aqua Bomb_10: -1497884334
+      Aqua Bomb_11: 902562551
+      Aqua Bomb_12: -2064625413
+      Aqua Bomb_13: 1254948888
+      Aqua Bomb_14: 689621073
+      Aqua Bomb_2: -1689342814
+      Aqua Bomb_3: 363158676
+      Aqua Bomb_4: 579399356
+      Aqua Bomb_5: -739706088
+      Aqua Bomb_6: -1056466006
+      Aqua Bomb_7: 1626599327
+      Aqua Bomb_8: 1508196488
+      Aqua Bomb_9: -306017705
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

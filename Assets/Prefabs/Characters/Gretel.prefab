@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2467017848599780597}
   - component: {fileID: 6833818245628021423}
   - component: {fileID: 3748776051992005954}
+  - component: {fileID: 5116855645156259782}
   m_Layer: 0
   m_Name: Gretel
   m_TagString: Untagged
@@ -128,3 +129,110 @@ MonoBehaviour:
   _defense: 0
   _speed: 0
   ShieldPrefab: {fileID: 8752544847113877612, guid: 2d155d6c4e1e5483fbd984a70183a0d9, type: 3}
+  BlazeArrowPrefab: {fileID: 1310103297946559148, guid: c9c883c517c8f461f8ae1c8d5f5d460b, type: 3}
+  GravelBombPrefab: {fileID: 8595332672606786826, guid: cc1ea9d428380466b97c27a5f42ff22b, type: 3}
+  ShadowBombPrefab: {fileID: 3943491023998497285, guid: 5c38b34c468ac4df1b82793b86f9229c, type: 3}
+  MeteorPrefab: {fileID: 6864869584132421680, guid: 36f338fb6b8dd2b46948e784ca172339, type: 3}
+  ShadowExplosionPrefab: {fileID: 9087343946804476464, guid: b31449f45d2b4b44c8cbf2d2e8337565, type: 3}
+  BattleStart:
+  - {fileID: 8300000, guid: 929e665cec77cbb4cbae59f65988e040, type: 3}
+  - {fileID: 8300000, guid: a7dc451fb9b014941b90c5a11a4d9bd1, type: 3}
+  AttackSelect:
+  - {fileID: 8300000, guid: f90c12cf084bae24a960bd3e09048c1e, type: 3}
+  - {fileID: 8300000, guid: 7c11b9553c3048b43b7df0c7e989eb42, type: 3}
+--- !u!82 &5116855645156259782
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6752705877252150216}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

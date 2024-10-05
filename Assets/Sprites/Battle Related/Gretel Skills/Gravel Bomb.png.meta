@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ac8fada336ffe43cf923bfdd49e51824
+guid: 08ea669e60b024f3db781038bc483ffd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -140,18 +140,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 122
-        width: 120
-        height: 133
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd7d8e2582ec54724ae879c59c9cb032
-      internalID: 107389081
+      spriteID: 6588f224529334b179a65c20f2b6d563
+      internalID: -951849689
       vertices: []
       indices: 
       edges: []
@@ -160,19 +160,19 @@ TextureImporter:
       name: Gravel Bomb_1
       rect:
         serializedVersion: 2
-        x: 142
-        y: 144
-        width: 90
-        height: 91
-      alignment: 9
-      pivot: {x: 0.45, y: 0.5}
+        x: 192
+        y: 192
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 468276dcff5a846009055e02583e950e
-      internalID: 20942582
+      spriteID: de5b7a2a53ff048be9b862f4087819ca
+      internalID: 746287978
       vertices: []
       indices: 
       edges: []
@@ -181,19 +181,19 @@ TextureImporter:
       name: Gravel Bomb_2
       rect:
         serializedVersion: 2
-        x: 254
-        y: 138
-        width: 96
-        height: 100
-      alignment: 9
-      pivot: {x: 0.5, y: 0.525}
+        x: 384
+        y: 192
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68821c124f21843aabda3d0db9140470
-      internalID: 474463027
+      spriteID: 2e50abd60d29c44a394bf69bfa6ffe65
+      internalID: -1445689006
       vertices: []
       indices: 
       edges: []
@@ -202,40 +202,19 @@ TextureImporter:
       name: Gravel Bomb_3
       rect:
         serializedVersion: 2
-        x: 389
-        y: 150
-        width: 61
-        height: 72
-      alignment: 9
-      pivot: {x: 0.55, y: 0.5}
+        x: 576
+        y: 192
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f23ca2dd555d49b1a89b9215bee4282
-      internalID: -978081219
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Gravel Bomb_6
-      rect:
-        serializedVersion: 2
-        x: 222
-        y: 3
-        width: 138
-        height: 115
-      alignment: 9
-      pivot: {x: 0.575, y: 0.525}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3cf215716a6894679abeb349cf645806
-      internalID: -1537393560
+      spriteID: 44cd2a1ffb7484401838f74020c1fc9d
+      internalID: 1852387316
       vertices: []
       indices: 
       edges: []
@@ -244,19 +223,19 @@ TextureImporter:
       name: Gravel Bomb_4
       rect:
         serializedVersion: 2
-        x: 30
-        y: 22
-        width: 60
-        height: 74
-      alignment: 9
-      pivot: {x: 0.525, y: 0.475}
+        x: 768
+        y: 192
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd739528edd9b4b24ad000f1dcf1acb2
-      internalID: -1785663720
+      spriteID: f93762b206f7a4094a4ad39aeba0f552
+      internalID: 846605033
       vertices: []
       indices: 
       edges: []
@@ -265,19 +244,40 @@ TextureImporter:
       name: Gravel Bomb_5
       rect:
         serializedVersion: 2
-        x: 154
-        y: 3
-        width: 56
-        height: 70
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b081b3be891a4a558d384d4c6dc7f88
-      internalID: -889013178
+      spriteID: 8e51ab5bff8c040f0a48dc031300de09
+      internalID: 2058303838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gravel Bomb_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bd5381f51bf94ae7a22bfedf0d9b50b
+      internalID: -1812117212
       vertices: []
       indices: 
       edges: []
@@ -286,19 +286,40 @@ TextureImporter:
       name: Gravel Bomb_7
       rect:
         serializedVersion: 2
-        x: 366
-        y: 10
-        width: 103
-        height: 110
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d31341b61b9df4e738e698d8e16117a9
-      internalID: 396166033
+      spriteID: 4eff96fa3d0a147b5ba3e846380d05ae
+      internalID: 182748501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gravel Bomb_8
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 057b694c8c14b4dbdb7e9d010fc5d448
+      internalID: -1274513679
       vertices: []
       indices: 
       edges: []
@@ -314,39 +335,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Gravel Bomb_0: 107389081
-      Gravel Bomb_1: 20942582
-      Gravel Bomb_10: -533819310
-      Gravel Bomb_11: 2052314137
-      Gravel Bomb_12: -1110681387
-      Gravel Bomb_13: -1407371293
-      Gravel Bomb_15: -1596143254
-      Gravel Bomb_16: 616419550
-      Gravel Bomb_17: 1025013154
-      Gravel Bomb_18: -1698708158
-      Gravel Bomb_19: 1015829625
-      Gravel Bomb_2: 474463027
-      Gravel Bomb_21: 365303470
-      Gravel Bomb_22: 2106953611
-      Gravel Bomb_24: -934874311
-      Gravel Bomb_26: 673591198
-      Gravel Bomb_27: 202479708
-      Gravel Bomb_28: 1065396185
-      Gravel Bomb_29: -1701135285
-      Gravel Bomb_3: -978081219
-      Gravel Bomb_30: 546719917
-      Gravel Bomb_31: 1564395919
-      Gravel Bomb_32: -904767733
-      Gravel Bomb_33: 163780279
-      Gravel Bomb_34: -380063969
-      Gravel Bomb_35: 1701195878
-      Gravel Bomb_36: 418046577
-      Gravel Bomb_4: -1785663720
-      Gravel Bomb_5: -889013178
-      Gravel Bomb_6: -1537393560
-      Gravel Bomb_7: 396166033
-      Gravel Bomb_8: 424244550
-      Gravel Bomb_9: -1165643583
+      Gravel Bomb_0: -951849689
+      Gravel Bomb_1: 746287978
+      Gravel Bomb_2: -1445689006
+      Gravel Bomb_3: 1852387316
+      Gravel Bomb_4: 846605033
+      Gravel Bomb_5: 2058303838
+      Gravel Bomb_6: -1812117212
+      Gravel Bomb_7: 182748501
+      Gravel Bomb_8: -1274513679
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

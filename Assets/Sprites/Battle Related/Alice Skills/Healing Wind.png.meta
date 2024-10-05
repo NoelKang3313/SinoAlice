@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 96b51d3906edc4d5e8659ed6cac8ef14
+guid: 01cd4c83f54414dcca1ceeb11ff9a629
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -139,19 +139,19 @@ TextureImporter:
       name: Healing Wind_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 178
-        width: 65
-        height: 78
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 960
+        width: 192
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.8}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11066c40ffdb24cba8377eef6462adad
-      internalID: -1468033098
+      spriteID: ac0c995ab53284c3caa2df144c4ed857
+      internalID: 1845585937
       vertices: []
       indices: 
       edges: []
@@ -160,19 +160,19 @@ TextureImporter:
       name: Healing Wind_1
       rect:
         serializedVersion: 2
-        x: 78
-        y: 182
-        width: 71
-        height: 68
+        x: 192
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cf2fee8df56a49848dda826b915dd94
-      internalID: 624508031
+      spriteID: e7b10c10473d74e538b651749eee5595
+      internalID: 1066227516
       vertices: []
       indices: 
       edges: []
@@ -181,19 +181,19 @@ TextureImporter:
       name: Healing Wind_2
       rect:
         serializedVersion: 2
-        x: 156
-        y: 184
-        width: 65
-        height: 71
+        x: 384
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29ac976cb266d4be0945073c6ac50778
-      internalID: -755290465
+      spriteID: ca89bd98ad5794e91ae09cb7b3d3c7bf
+      internalID: 305112568
       vertices: []
       indices: 
       edges: []
@@ -202,19 +202,19 @@ TextureImporter:
       name: Healing Wind_3
       rect:
         serializedVersion: 2
-        x: 2
-        y: 102
-        width: 84
-        height: 68
+        x: 576
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4a0362c8087443148f4ce31e9e0fc76
-      internalID: 2032278884
+      spriteID: 0d8dae29fa9c14299addd534bec30964
+      internalID: -1231260231
       vertices: []
       indices: 
       edges: []
@@ -223,19 +223,19 @@ TextureImporter:
       name: Healing Wind_4
       rect:
         serializedVersion: 2
-        x: 90
-        y: 100
-        width: 80
-        height: 74
+        x: 768
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a68440666dba7463cbff183d62e5378b
-      internalID: 1136880286
+      spriteID: 53c517d2100164a55b968f542da29c03
+      internalID: -1522529197
       vertices: []
       indices: 
       edges: []
@@ -244,19 +244,19 @@ TextureImporter:
       name: Healing Wind_5
       rect:
         serializedVersion: 2
-        x: 180
-        y: 106
-        width: 74
-        height: 68
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95bed6a35728c402c89dcb43df3bc1b9
-      internalID: -1832010255
+      spriteID: e2325fac3c4ad448e8b29f53dc53a727
+      internalID: 622101854
       vertices: []
       indices: 
       edges: []
@@ -265,19 +265,19 @@ TextureImporter:
       name: Healing Wind_6
       rect:
         serializedVersion: 2
-        x: 6
-        y: 38
-        width: 65
-        height: 51
+        x: 192
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: adf81673e11a74ec2b4a88b45335050f
-      internalID: 1072226915
+      spriteID: 84f0fd66b132d4b03994ddc840c6113a
+      internalID: 1522428208
       vertices: []
       indices: 
       edges: []
@@ -286,19 +286,19 @@ TextureImporter:
       name: Healing Wind_7
       rect:
         serializedVersion: 2
-        x: 80
-        y: 37
-        width: 64
-        height: 59
+        x: 384
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd252b7b21ab64734972f8aa52811145
-      internalID: 1696465824
+      spriteID: 0154016bf34fa4f57b0f11e27dea8cba
+      internalID: 1247117523
       vertices: []
       indices: 
       edges: []
@@ -307,19 +307,460 @@ TextureImporter:
       name: Healing Wind_8
       rect:
         serializedVersion: 2
-        x: 150
-        y: 42
-        width: 60
-        height: 46
+        x: 576
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf0e4c54c7eb04aaf82b0a34765f3745
-      internalID: -1495683025
+      spriteID: 6c94f7fa511e24c5e9a9ad62ed9956ec
+      internalID: 208797971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healing Wind_9
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 768
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0b8d908ab9414baa859091116c966b1
+      internalID: -703439029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healing Wind_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 576
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0233aff419a784268b0fb8b546feebef
+      internalID: -1114627227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healing Wind_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 576
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d910c66c2925f42e38734cea5aae19de
+      internalID: -1994035111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healing Wind_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 576
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad58c966a84c04dc6845b3668a448432
+      internalID: -227885426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healing Wind_13
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 576
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbf58fd6ebc9b4e6896629716505c83b
+      internalID: 2138838407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healing Wind_14
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 576
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8822ced5b02b4c95ad68b4f01bd68de
+      internalID: -221731675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healing Wind_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1836073cf27e24c4dbb3044139f08fe7
+      internalID: -302683576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healing Wind_16
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 384
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 841d81bf2058741ba874018df6786aa1
+      internalID: -1791116697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healing Wind_17
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39b2951ecc4ea453c93e65753e67ed2e
+      internalID: -1230854940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healing Wind_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 384
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23f10f15f24c646babd4c859a69688a0
+      internalID: 1460959861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healing Wind_19
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 384
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 452c68d3bcf1545edbe125ecab030c4c
+      internalID: -62986788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healing Wind_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c1b565b7f8b24550b765a93e56445d2
+      internalID: 765426427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healing Wind_21
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab2d28e51b90f4c8fb3e863c4b509617
+      internalID: -972863156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healing Wind_22
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7be4acc083c5942ac8ef59aa66fe2974
+      internalID: -2006036615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healing Wind_23
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 192
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b96611fc856144e43a40e2f25a9f8d06
+      internalID: -761183811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healing Wind_24
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 192
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75633e9dc462142a69a518184e5f0ccc
+      internalID: 1278337773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healing Wind_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96d594ecbafa34231b9697087ad93af9
+      internalID: -1394843956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healing Wind_26
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48a409fbd582542269d158e73a761c0d
+      internalID: 2076841924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healing Wind_27
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a417100691194177b77d5e6bc3b3f71
+      internalID: -246800953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healing Wind_28
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6602355654c544de084dc3082f677ead
+      internalID: -976581167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healing Wind_29
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b03125a3a46454cd490439ba8fd628ee
+      internalID: 113179113
       vertices: []
       indices: 
       edges: []
@@ -335,28 +776,36 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Healing Wind_0: -1468033098
-      Healing Wind_1: 624508031
-      Healing Wind_10: 1822082446
-      Healing Wind_11: -660370834
-      Healing Wind_12: -381192117
-      Healing Wind_14: -2096368219
-      Healing Wind_15: -1407843072
-      Healing Wind_16: 1758762233
-      Healing Wind_17: -891703506
-      Healing Wind_18: -1366920191
-      Healing Wind_19: -1268494817
-      Healing Wind_2: -755290465
-      Healing Wind_20: 286827230
-      Healing Wind_21: 843666919
-      Healing Wind_25: 807476785
-      Healing Wind_3: 2032278884
-      Healing Wind_4: 1136880286
-      Healing Wind_5: -1832010255
-      Healing Wind_6: 1072226915
-      Healing Wind_7: 1696465824
-      Healing Wind_8: -1495683025
-      Healing Wind_9: 2032198528
+      Healing Wind_0: 1845585937
+      Healing Wind_1: 1066227516
+      Healing Wind_10: -1114627227
+      Healing Wind_11: -1994035111
+      Healing Wind_12: -227885426
+      Healing Wind_13: 2138838407
+      Healing Wind_14: -221731675
+      Healing Wind_15: -302683576
+      Healing Wind_16: -1791116697
+      Healing Wind_17: -1230854940
+      Healing Wind_18: 1460959861
+      Healing Wind_19: -62986788
+      Healing Wind_2: 305112568
+      Healing Wind_20: 765426427
+      Healing Wind_21: -972863156
+      Healing Wind_22: -2006036615
+      Healing Wind_23: -761183811
+      Healing Wind_24: 1278337773
+      Healing Wind_25: -1394843956
+      Healing Wind_26: 2076841924
+      Healing Wind_27: -246800953
+      Healing Wind_28: -976581167
+      Healing Wind_29: 113179113
+      Healing Wind_3: -1231260231
+      Healing Wind_4: -1522529197
+      Healing Wind_5: 622101854
+      Healing Wind_6: 1522428208
+      Healing Wind_7: 1247117523
+      Healing Wind_8: 208797971
+      Healing Wind_9: -703439029
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

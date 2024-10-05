@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a7e75532ed5e54d29b7af529a7b9bb50
+guid: 56c6c26767af0424598f1b48ca4f3e37
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -139,10 +139,10 @@ TextureImporter:
       name: Glacial Arrow_0
       rect:
         serializedVersion: 2
-        x: 71
-        y: 212
-        width: 25
-        height: 24
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,8 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4beebcae3df044085831bec400a15677
-      internalID: -1882659786
+      spriteID: d82d87ded48aa4759be5cb3a7f3887aa
+      internalID: 73871166
       vertices: []
       indices: 
       edges: []
@@ -160,10 +160,10 @@ TextureImporter:
       name: Glacial Arrow_1
       rect:
         serializedVersion: 2
-        x: 152
-        y: 181
-        width: 52
-        height: 53
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,8 +171,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea8121049246a4b67af60c068e8cf997
-      internalID: 822311724
+      spriteID: 3730569bfd74341168c2186cd0a4d9ce
+      internalID: 1498203291
       vertices: []
       indices: 
       edges: []
@@ -181,10 +181,10 @@ TextureImporter:
       name: Glacial Arrow_2
       rect:
         serializedVersion: 2
-        x: 231
-        y: 144
-        width: 99
-        height: 108
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,8 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d196e1651a7f4607a0fad822349d21f
-      internalID: 1979114809
+      spriteID: cec52952292ad4281ae6a5774cd7a9e1
+      internalID: -1134195313
       vertices: []
       indices: 
       edges: []
@@ -202,10 +202,10 @@ TextureImporter:
       name: Glacial Arrow_3
       rect:
         serializedVersion: 2
-        x: 342
-        y: 145
-        width: 102
-        height: 103
+        x: 576
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,8 +213,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc8fb403782c34072b3c88ae9ab4470d
-      internalID: -800407557
+      spriteID: 89954968c63eb4f07868670393fa1bc7
+      internalID: 1234985950
       vertices: []
       indices: 
       edges: []
@@ -223,10 +223,10 @@ TextureImporter:
       name: Glacial Arrow_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 28
-        width: 108
-        height: 110
+        x: 768
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,8 +234,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1dead0be21a94230806f876a15f8f07
-      internalID: 1151505266
+      spriteID: a348d22fbf4d944cb8fe089cac1335cb
+      internalID: -405099092
       vertices: []
       indices: 
       edges: []
@@ -244,10 +244,10 @@ TextureImporter:
       name: Glacial Arrow_5
       rect:
         serializedVersion: 2
-        x: 117
-        y: 24
-        width: 91
-        height: 99
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,8 +255,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da810b38429a4451397a9dc4aa26b7aa
-      internalID: -2085249672
+      spriteID: 845b7ccd6f6b4406591234372561a9df
+      internalID: 892477669
       vertices: []
       indices: 
       edges: []
@@ -265,10 +265,10 @@ TextureImporter:
       name: Glacial Arrow_6
       rect:
         serializedVersion: 2
-        x: 228
-        y: 32
-        width: 102
-        height: 100
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -276,8 +276,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ec02f4eebf8a43b8ab331760c1e82da
-      internalID: -6474305
+      spriteID: f8e0c87c2fdad4272a40e0c12200d8a3
+      internalID: -379452303
       vertices: []
       indices: 
       edges: []
@@ -286,10 +286,10 @@ TextureImporter:
       name: Glacial Arrow_7
       rect:
         serializedVersion: 2
-        x: 336
-        y: 40
-        width: 105
-        height: 94
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -297,8 +297,155 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c1155c9cc3f14cc6816789c9ba46613
-      internalID: -1058153296
+      spriteID: a87ae328b25854e61b47c680c5169596
+      internalID: -1162861688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacial Arrow_8
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 192
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc285ea4c2e3845f387a360e4a4744a9
+      internalID: -1842250172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacial Arrow_9
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 192
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96a7c48a1f0d842589a44802e1190c93
+      internalID: -1695665214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacial Arrow_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8249f1bcadf484eab8810468d4dd030b
+      internalID: 1362914400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacial Arrow_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebc7474bcc69c4bf795799092814b2b3
+      internalID: 1340450163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacial Arrow_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8444abe130ada48dba3cd37673b9b26e
+      internalID: 1412927107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacial Arrow_13
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f94a4678866084a599531bd5daac40fb
+      internalID: 1962577859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glacial Arrow_14
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb41ad685c0034b2d83b9e8b9c832ca8
+      internalID: -1490663279
       vertices: []
       indices: 
       edges: []
@@ -314,25 +461,21 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Glacial Arrow_0: -1882659786
-      Glacial Arrow_1: 822311724
-      Glacial Arrow_10: -1201793425
-      Glacial Arrow_11: -150347916
-      Glacial Arrow_12: -542234706
-      Glacial Arrow_13: -833326565
-      Glacial Arrow_14: 1371801170
-      Glacial Arrow_16: -630290785
-      Glacial Arrow_17: 1200979810
-      Glacial Arrow_18: -1674030359
-      Glacial Arrow_19: 164704721
-      Glacial Arrow_2: 1979114809
-      Glacial Arrow_3: -800407557
-      Glacial Arrow_4: 1151505266
-      Glacial Arrow_5: -2085249672
-      Glacial Arrow_6: -6474305
-      Glacial Arrow_7: -1058153296
-      Glacial Arrow_8: -1445368744
-      Glacial Arrow_9: 1424376546
+      Glacial Arrow_0: 73871166
+      Glacial Arrow_1: 1498203291
+      Glacial Arrow_10: 1362914400
+      Glacial Arrow_11: 1340450163
+      Glacial Arrow_12: 1412927107
+      Glacial Arrow_13: 1962577859
+      Glacial Arrow_14: -1490663279
+      Glacial Arrow_2: -1134195313
+      Glacial Arrow_3: 1234985950
+      Glacial Arrow_4: -405099092
+      Glacial Arrow_5: 892477669
+      Glacial Arrow_6: -379452303
+      Glacial Arrow_7: -1162861688
+      Glacial Arrow_8: -1842250172
+      Glacial Arrow_9: -1695665214
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

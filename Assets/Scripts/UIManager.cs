@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
     public GameObject SkillViewportContent;
 
     public Button[] SkillButtons = new Button[5];
-    public SkillData[] SkillInfo = new SkillData[10];
+    public SkillData[] SkillInfo = new SkillData[15];
     [SerializeField]private SkillData[] CurrentSkillData = new SkillData[5];
 
     [Header("Skill Information Panel")]
@@ -183,12 +183,14 @@ public class UIManager : MonoBehaviour
         {
             if(GameManager.instance.isAliceTurn)
             {
+                EnemySelectButtons.SetActive(false);
+
                 for (int i = 0; i < CharacterSelectButton.Length; i++)
                 {
                     CharacterSelectButton[i].gameObject.SetActive(true);
                 }
             }
-            else if (GameManager.instance.isGretelTurn)
+            else if (GameManager.instance.isGretelTurn || GameManager.instance.isSWTurn)
             {
                 EnemySelectButtons.SetActive(true);                
             }
@@ -196,6 +198,11 @@ public class UIManager : MonoBehaviour
         else
         {
             EnemySelectButtons.SetActive(true);
+
+            for (int i = 0; i < CharacterSelectButton.Length; i++)
+            {
+                CharacterSelectButton[i].gameObject.SetActive(false);
+            }
         }
     }
 
@@ -315,7 +322,12 @@ public class UIManager : MonoBehaviour
         {
             GameManager.instance.SelectedCharacterPosition = GameManager.instance.Characters[number].transform.position;
 
-            if (GameManager.instance.isSkillButtonActive)
+            if(GameManager.instance.isGuardButtonActive)
+            {
+                GameManager.instance.isAction = true;
+                CharacterSelectButton[number].gameObject.SetActive(false);
+            }
+            else if (GameManager.instance.isSkillButtonActive)
             {
                 GameManager.instance.isAction = true;
 
