@@ -7,8 +7,7 @@ public class SnowWhite : CharacterStats
     private Vector3 swStartPosition;
     private float moveSpeed = 15.0f;
 
-    private Animator animator;
-    private UIManager uiManager;
+    private Animator animator;    
 
     public GameObject ShieldPrefab;
     private GameObject shield;
@@ -60,11 +59,6 @@ public class SnowWhite : CharacterStats
     void Update()
     {
         SWAction();
-
-        if (!GameObject.Find("UIManager").activeSelf)
-            return;
-        else
-            uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
     }
 
     void SWAction()
@@ -80,7 +74,6 @@ public class SnowWhite : CharacterStats
 
             Destroy(shield);
 
-            uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", true);
             animator.SetBool("Standby", true);
 
             if (GameManager.instance.isAttackButtonActive)
@@ -94,9 +87,7 @@ public class SnowWhite : CharacterStats
                         isAttackSelectAudioPlaying = true;
                         attackSelectRandom = Random.Range(0, 2);
                         audioSource.PlayOneShot(AttackSelect[attackSelectRandom]);
-                    }
-
-                    uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
+                    }                    
 
                     animator.SetTrigger("Move");
                     transform.position = Vector2.MoveTowards(transform.position,
@@ -130,9 +121,7 @@ public class SnowWhite : CharacterStats
                         audioSource.PlayOneShot(AttackSelect[attackSelectRandom]);
                     }
 
-                    animator.SetBool("Standby", false);
-
-                    uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
+                    animator.SetBool("Standby", false);                    
 
                     GameManager.instance.isSWTurn = false;
                     GameManager.instance.isAction = false;
@@ -156,8 +145,6 @@ public class SnowWhite : CharacterStats
                     }
 
                     animator.SetBool("MagicAttack", true);
-
-                    uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
 
                     switch (GameManager.instance.SkillButtonNumber)
                     {

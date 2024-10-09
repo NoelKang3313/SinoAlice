@@ -4,12 +4,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class Alice : CharacterStats
-{
+{    
     private Vector3 aliceStartPosition;
     private float moveSpeed = 15.0f;
 
-    private Animator animator;
-    private UIManager uiManager;
+    private Animator animator;    
 
     public GameObject ShieldPrefab;
     private GameObject shield;
@@ -60,12 +59,106 @@ public class Alice : CharacterStats
 
     void Update()
     {
+        AliceLobbyAction();
         AliceAction();
+    }
 
-        if (!GameObject.Find("UIManager").activeSelf)
-            return;
-        else
-            uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
+    void AliceLobbyAction()
+    {
+        if (GameManager.instance.isCharlotteButtonActive && GameManager.instance.isAction)
+        {
+            animator.SetBool("LobbyMove", true);
+
+            transform.GetComponent<SpriteRenderer>().flipX = true;
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(5.5f, -0.5f), 0.1f);
+
+            if (transform.position == new Vector3(5.5f, -0.5f, 0))
+            {
+                GameManager.instance.isAction = false;
+
+                animator.SetBool("LobbyMove", false);
+            }
+        }
+        else if (GameManager.instance.isWinryButtonActive && GameManager.instance.isAction)
+        {
+            animator.SetBool("LobbyMove", true);
+
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(-2, -0.2f), 0.1f);
+
+            if (transform.position == new Vector3(-2, -0.2f, 0))
+            {
+                GameManager.instance.isAction = false;
+
+                animator.SetBool("LobbyMove", false);
+            }
+        }
+        else if(GameManager.instance.isLidButtonActive && GameManager.instance.isAction)
+        {
+            animator.SetBool("LobbyMove", true);
+
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(-5.5f, -0.2f), 0.1f);
+
+            if(transform.position == new Vector3(-5.5f,-0.2f,0))
+            {
+                GameManager.instance.isAction = false;
+
+                animator.SetBool("LobbyMove", false);
+            }
+        }
+
+        if(GameManager.instance.isExitButtonActive)
+        {
+            if (GameManager.instance.isCharlotteButtonActive)
+            {
+                animator.SetBool("LobbyMove", true);
+
+                transform.GetComponent<SpriteRenderer>().flipX = false;
+                transform.position = Vector2.MoveTowards(transform.position, new Vector2(0, -1), 0.1f);
+
+                if (transform.position == new Vector3(0, -1, 0))
+                {
+                    GameManager.instance.isCharlotteButtonActive = false;
+                    GameManager.instance.isExitButtonActive = false;
+
+                    animator.SetBool("LobbyMove", false);
+                }
+            }
+            else if(GameManager.instance.isWinryButtonActive)
+            {
+                animator.SetBool("LobbyMove", true);
+
+                transform.GetComponent<SpriteRenderer>().flipX = true;
+                transform.position = Vector2.MoveTowards(transform.position, new Vector2(0, -1), 0.1f);
+
+                if (transform.position == new Vector3(0, -1, 0))
+                {
+                    GameManager.instance.isWinryButtonActive = false;
+                    GameManager.instance.isExitButtonActive = false;
+
+                    animator.SetBool("LobbyMove", false);
+
+                    transform.GetComponent<SpriteRenderer>().flipX = false;
+                }
+            }
+
+            else if (GameManager.instance.isLidButtonActive)
+            {
+                animator.SetBool("LobbyMove", true);
+
+                transform.GetComponent<SpriteRenderer>().flipX = true;
+                transform.position = Vector2.MoveTowards(transform.position, new Vector2(0, -1), 0.1f);
+
+                if (transform.position == new Vector3(0, -1, 0))
+                {
+                    GameManager.instance.isLidButtonActive = false;
+                    GameManager.instance.isExitButtonActive = false;
+
+                    animator.SetBool("LobbyMove", false);
+
+                    transform.GetComponent<SpriteRenderer>().flipX = false;
+                }
+            }
+        }
     }
 
     void AliceAction()
@@ -80,8 +173,7 @@ public class Alice : CharacterStats
             }
 
             Destroy(shield);
-
-            uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", true);
+            
             animator.SetBool("Standby", true);
 
             if (GameManager.instance.isAttackButtonActive)
@@ -95,9 +187,7 @@ public class Alice : CharacterStats
                         isAttackSelectAudioPlaying = true;
                         attackSelectRandom = Random.Range(0, 2);
                         audioSource.PlayOneShot(AttackSelect[attackSelectRandom]);
-                    }
-
-                    uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
+                    }                    
 
                     animator.SetTrigger("Move");
                     transform.position = Vector2.MoveTowards(transform.position,
@@ -131,9 +221,7 @@ public class Alice : CharacterStats
                         audioSource.PlayOneShot(AttackSelect[attackSelectRandom]);
                     }
 
-                    animator.SetBool("Standby", false);
-
-                    uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
+                    animator.SetBool("Standby", false);                    
 
                     GameManager.instance.isAliceTurn = false;
                     GameManager.instance.isAction = false;
@@ -156,9 +244,7 @@ public class Alice : CharacterStats
                         audioSource.PlayOneShot(AttackSelect[attackSelectRandom]);
                     }
 
-                    animator.SetBool("MagicAttack", true);
-
-                    uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
+                    animator.SetBool("MagicAttack", true);                    
 
                     switch (GameManager.instance.SkillButtonNumber)
                     {

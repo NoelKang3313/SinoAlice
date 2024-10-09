@@ -7,6 +7,7 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     public GameObject ActionButtons;
+    private Animator actionButtonsAnimator;
 
     public Button AttackButton;
     public Button GuardButton;
@@ -40,6 +41,8 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
+        actionButtonsAnimator = ActionButtons.GetComponent<Animator>();
+
         AttackButton.onClick.AddListener(AttackButtonClicked);
         GuardButton.onClick.AddListener(GuardButtonClicked);
         SkillButton.onClick.AddListener(SkillButtonClicked);
@@ -78,6 +81,25 @@ public class UIManager : MonoBehaviour
             {
                 CurrentSkillData[i] = null;
             }
+        }
+
+        ActionButtonsActivate();
+    }
+
+    void ActionButtonsActivate()
+    {
+        if(GameManager.instance.isAliceTurn || GameManager.instance.isGretelTurn || GameManager.instance.isSWTurn)
+        {
+            actionButtonsAnimator.SetBool("isActive", true);
+        }
+        else if(!GameManager.instance.isAliceTurn || !GameManager.instance.isGretelTurn || !GameManager.instance.isSWTurn)
+        {
+            actionButtonsAnimator.SetBool("isActive", false);
+        }
+
+        if(GameManager.instance.isAction)
+        {
+            actionButtonsAnimator.SetBool("isActive", false);
         }
     }
 
@@ -337,6 +359,8 @@ public class UIManager : MonoBehaviour
                 }
             }
         }
+
+        actionButtonsAnimator.SetBool("isActive", false);
 
         SkillInformationPanel.GetComponent<Animator>().SetBool("isActive", false);
         SkillButtonViewport.GetComponent<Animator>().SetBool("isActive", false);
