@@ -7,8 +7,7 @@ public class Gretel : CharacterStats
     private Vector3 gretelStartPosition;
     private float moveSpeed = 15.0f;
 
-    private Animator animator;
-    private UIManager uiManager;
+    private Animator animator;    
 
     public GameObject ShieldPrefab;
     private GameObject shield;
@@ -59,12 +58,7 @@ public class Gretel : CharacterStats
 
     void Update()
     {
-        GretelAction();
-
-        if (!GameObject.Find("UIManager").activeSelf)
-            return;
-        else
-            uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
+        GretelAction();        
     }
 
     void GretelAction()
@@ -79,8 +73,7 @@ public class Gretel : CharacterStats
             }
 
             Destroy(shield);
-
-            uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", true);
+            
             animator.SetBool("Standby", true);
 
             if (GameManager.instance.isAttackButtonActive)
@@ -94,9 +87,7 @@ public class Gretel : CharacterStats
                         isAttackSelectAudioPlaying = true;
                         attackSelectRandom = Random.Range(0, 2);
                         audioSource.PlayOneShot(AttackSelect[attackSelectRandom]);
-                    }
-
-                    uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
+                    }                    
 
                     animator.SetTrigger("Move");
                     transform.position = Vector2.MoveTowards(transform.position,
@@ -132,8 +123,6 @@ public class Gretel : CharacterStats
 
                     animator.SetBool("Standby", false);
 
-                    uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
-
                     GameManager.instance.isGretelTurn = false;
                     GameManager.instance.isAction = false;
                     GameManager.instance.isGuardButtonActive = false;
@@ -154,9 +143,7 @@ public class Gretel : CharacterStats
                         audioSource.PlayOneShot(AttackSelect[attackSelectRandom]);
                     }
 
-                    animator.SetBool("MagicAttack", true);
-
-                    uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
+                    animator.SetBool("MagicAttack", true);                    
 
                     switch(GameManager.instance.SkillButtonNumber)
                     {
