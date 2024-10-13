@@ -264,6 +264,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 364985872}
     m_Modifications:
+    - target: {fileID: 4264955105148646073, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4817061552027593439, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
       propertyPath: m_Name
       value: Rat (2)
@@ -2196,8 +2200,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a8511878aaf41a39085beaac2d280e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Transition: {fileID: 0}
-  charlottePosition: {x: 0, y: 0}
+  isTransition: 0
+  isExitButtonActive: 0
+  isCharlotteButtonActive: 0
+  isWinryButtonActive: 0
+  isLidButtonActive: 0
   isAliceTurn: 0
   isGretelTurn: 0
   isSWTurn: 0
@@ -2488,6 +2495,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 364985872}
     m_Modifications:
+    - target: {fileID: 4264955105148646073, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4817061552027593439, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
       propertyPath: m_Name
       value: Rat (3)
@@ -2692,6 +2703,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 364985872}
     m_Modifications:
+    - target: {fileID: 4264955105148646073, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4817061552027593439, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
       propertyPath: m_Name
       value: Rat (1)
@@ -5630,6 +5645,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 364985872}
     m_Modifications:
+    - target: {fileID: 4264955105148646073, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4817061552027593439, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
       propertyPath: m_Name
       value: Rat
