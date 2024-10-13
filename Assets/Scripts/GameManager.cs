@@ -7,12 +7,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public GameObject Transition;
     public bool isTransition;
-    private Animator transitionAnimator;
 
     [Header("Lobby NPCs Buttons Active")]
-    public bool isExitButtonActive;
+    public bool isReturnButtonActive;
     public bool isCharlotteButtonActive;
     public bool isWinryButtonActive;
     public bool isLidButtonActive;
@@ -53,14 +51,7 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(this.gameObject);
-        }
-
-        DontDestroyOnLoad(Transition);
-    }
-
-    void Start()
-    {
-        transitionAnimator = Transition.GetComponent<Animator>();
+        }        
     }
 
     void Update()
@@ -79,38 +70,9 @@ public class GameManager : MonoBehaviour
         {
             isSWTurn = true;
         }
-
-        TransitionActivate();
     }
 
-    void TransitionActivate()
-    {
-        if(isTransition)
-        {
-            transitionAnimator.SetBool("isActive", true);
-
-            if(transitionAnimator.GetCurrentAnimatorStateInfo(0).IsName("Transition") &&
-                transitionAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
-            {
-                LoadScene("Worldmap");
-            }
-        }
-
-        if (SceneManager.GetActiveScene().name == "Lobby")
-            return;
-        else
-        {
-            transitionAnimator.SetBool("isActive", false);
-
-            if (transitionAnimator.GetCurrentAnimatorStateInfo(0).IsName("-Transition") &&
-                transitionAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
-            {
-                isTransition = false;
-            }
-        }
-    }
-
-    void LoadScene(string sceneName)
+    public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
