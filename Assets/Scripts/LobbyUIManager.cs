@@ -19,15 +19,21 @@ public class LobbyUIManager : MonoBehaviour
     public GameObject AliceInteractImage;
 
     public Button LidShopButton;
+    public GameObject LidShopContent;
     public Button LidReturnButton;
 
     public Button WinryShopButton;
+    public GameObject WinryShopContent;
     public Button WinryReturnButton;
 
     public Button CharlotteWorldmapButton;
     public Button CharlotteReturnButton;
 
-    public Button ExitButton;    
+    public Button ExitButton;
+
+    public Button InventoryButton;
+    public GameObject InventoryPanel;
+    public Button ExitInventoryButton;
 
     void Start()
     {
@@ -44,7 +50,10 @@ public class LobbyUIManager : MonoBehaviour
         CharlotteWorldmapButton.onClick.AddListener(CharlotteWorldmapButtonClicked);
         CharlotteReturnButton.onClick.AddListener(CharlotteReturnButtonClicked);
 
-        ExitButton.onClick.AddListener(ExitButtonClicked);        
+        ExitButton.onClick.AddListener(ExitButtonClicked);
+
+        InventoryButton.onClick.AddListener(InventoryButtonClicked);
+        ExitInventoryButton.onClick.AddListener(ExitInventoryButtonClicked);
     }
 
     void Update()
@@ -107,6 +116,8 @@ public class LobbyUIManager : MonoBehaviour
         NPCPanel.SetActive(true);
         AliceInteractImage.SetActive(true);
         LidInteractImage.SetActive(true);
+        LidShopContent.SetActive(true);
+        WinryShopContent.SetActive(false);
     }
 
     void LidReturnButtonClicked()
@@ -126,6 +137,8 @@ public class LobbyUIManager : MonoBehaviour
         NPCPanel.SetActive(true);
         AliceInteractImage.SetActive(true);
         WinryInteractImage.SetActive(true);
+        LidShopContent.SetActive(false);
+        WinryShopContent.SetActive(true);
     }
 
     void WinryReturnButtonClicked()
@@ -160,13 +173,23 @@ public class LobbyUIManager : MonoBehaviour
         AliceInteractImage.SetActive(false);
         LidInteractImage.SetActive(false);
         WinryInteractImage.SetActive(false);
-    }    
+    }
+
+    void InventoryButtonClicked()
+    {
+        InventoryPanel.SetActive(true);
+    }
+
+    void ExitInventoryButtonClicked()
+    {
+        InventoryPanel.SetActive(false);
+    }
 
     IEnumerator DelaySceneChange()
     {
         if(TransitionImage.fillAmount == 1.0f)
         {
-            yield return new WaitForSeconds(3.0f);
+            yield return new WaitForSeconds(2.0f);
 
             GameManager.instance.isTransition = false;
             GameManager.instance.LoadScene("Worldmap");
