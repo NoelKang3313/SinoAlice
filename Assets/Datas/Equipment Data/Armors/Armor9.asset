@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 061d8d14b073c43e7a03e7f4834a0e5d, type: 3}
+  m_Name: Armor9
+  m_EditorClassIdentifier: 
+  EquipmentID: 3009
+  EquipmentName: Armor9
+  EquipmentSprite: {fileID: 21300000, guid: e70245f45511341e187b1411085b05cd, type: 3}
+  EquipmentDescription: Armor9
+  EquipmentAmount: 0
+  EquipmentCategory: Armor
+  Attack: 0
+  Magic: 0
+  Defense: 0
+  Health: 0
+  Speed: 0

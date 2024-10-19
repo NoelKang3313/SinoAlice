@@ -49,7 +49,7 @@ public class Alice_Lobby : MonoBehaviour
 
                 animator.SetBool("Move", false);
 
-                UIManager.WinryShopButton.gameObject.SetActive(true);
+                UIManager.WinryCharacterButton.gameObject.SetActive(true);
                 UIManager.WinryReturnButton.gameObject.SetActive(true);
             }
         }

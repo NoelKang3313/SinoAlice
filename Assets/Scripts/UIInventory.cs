@@ -2,18 +2,65 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIInventory : MonoBehaviour
 { 
     public Button UIItem;
-    public GameObject InventoryContent;
+    public GameObject InventoryItemContent;
+    public GameObject InventoryEquipmentContent;
     public GameObject ItemInfoPanel;
+    public TextMeshProUGUI ItemNameText;
+    public TextMeshProUGUI ItemDescriptionText;
 
+    public ScrollRect InventoryScrollRect;
+    public Button InventoryItemButton;
+    public Button InventoryEquipmentButton;
+    
     public List<Button> UIItems = new List<Button>();
+
+    public Button InventoryExitButton;
+
+    void Start()
+    {
+        InventoryItemButton.onClick.AddListener(InventoryItemButtonClicked);
+        InventoryEquipmentButton.onClick.AddListener(InventoryEquipmentButtonClicked);
+
+        InventoryExitButton.onClick.AddListener(InventoryExitButtonClicked);
+    }
 
     void Update()
     {
+        for(int i = 0; i < UIItems.Count; i++)
+        {
+            int number = i;
+
+            UIItems[i].onClick.AddListener(() => UIItemSlotClicked(number));
+        }
+
         SortUIItem();
+    }
+
+    void InventoryItemButtonClicked()
+    {
+        InventoryItemContent.SetActive(true);
+        InventoryEquipmentContent.SetActive(false);
+
+        InventoryScrollRect.content = InventoryItemContent.GetComponent<RectTransform>();
+    }
+
+    void InventoryEquipmentButtonClicked()
+    {
+        InventoryItemContent.SetActive(false);
+        InventoryEquipmentContent.SetActive(true);
+
+        InventoryScrollRect.content = InventoryEquipmentContent.GetComponent<RectTransform>();
+    }
+
+    void UIItemSlotClicked(int number)
+    {
+        ItemNameText.text = UIItems[number].GetComponent<UIItem>().ItemData.ItemName;
+        ItemDescriptionText.text = UIItems[number].GetComponent<UIItem>().ItemData.ItemDescription;
     }
 
     void SortUIItem()
@@ -28,5 +75,18 @@ public class UIInventory : MonoBehaviour
                 }
             }
         }
+    }
+
+    void InventoryExitButtonClicked()
+    {
+        InventoryItemContent.SetActive(true);
+        InventoryEquipmentContent.SetActive(false);
+
+        InventoryScrollRect.content = InventoryItemContent.GetComponent<RectTransform>();
+
+        gameObject.SetActive(false);
+
+        ItemNameText.text = "";
+        ItemDescriptionText.text = "";
     }
 }
