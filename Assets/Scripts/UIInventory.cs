@@ -7,6 +7,7 @@ using TMPro;
 public class UIInventory : MonoBehaviour
 { 
     public Button UIItem;
+    public Button UIEquipment;
     public GameObject InventoryItemContent;
     public GameObject InventoryEquipmentContent;
     public GameObject ItemInfoPanel;
@@ -18,6 +19,7 @@ public class UIInventory : MonoBehaviour
     public Button InventoryEquipmentButton;
     
     public List<Button> UIItems = new List<Button>();
+    public List<Button> UIEquipments = new List<Button>();
 
     public Button InventoryExitButton;
 
@@ -38,7 +40,8 @@ public class UIInventory : MonoBehaviour
             UIItems[i].onClick.AddListener(() => UIItemSlotClicked(number));
         }
 
-        SortUIItem();
+        SortUIItems();
+        SortUIEquipments();
     }
 
     void InventoryItemButtonClicked()
@@ -63,7 +66,7 @@ public class UIInventory : MonoBehaviour
         ItemDescriptionText.text = UIItems[number].GetComponent<UIItem>().ItemData.ItemDescription;
     }
 
-    void SortUIItem()
+    void SortUIItems()
     {
         for(int i = 0; i < UIItems.Count; i++)
         {
@@ -72,6 +75,21 @@ public class UIInventory : MonoBehaviour
                 if(UIItems[i].GetComponent<UIItem>().ItemData.ItemID > UIItems[j].GetComponent<UIItem>().ItemData.ItemID)
                 {
                     UIItems[i].transform.SetSiblingIndex(j);
+                }
+            }
+        }
+    }
+
+    void SortUIEquipments()
+    {
+        for (int i = 0; i < UIEquipments.Count; i++)
+        {
+            for (int j = i + 1; j < UIEquipments.Count; j++)
+            {
+                if (UIEquipments[i].GetComponent<UIEquipment>().EquipmentData.EquipmentID
+                    > UIEquipments[j].GetComponent<UIEquipment>().EquipmentData.EquipmentID)
+                {
+                    UIEquipments[i].transform.SetSiblingIndex(j);
                 }
             }
         }
