@@ -7,6 +7,7 @@ public class LobbyUIManager : MonoBehaviour
 {
     public Inventory Inventory;
     public UIInventory UIInventory;
+    public UICharacterInfo UICharacterInfo;
 
     public Image TransitionImage;
 
@@ -18,7 +19,7 @@ public class LobbyUIManager : MonoBehaviour
     public Button LidButton;
 
     public GameObject NPCPanel;
-    public GameObject LidInteractImage;    
+    public GameObject LidInteractImage;
     public GameObject AliceInteractImage;
 
     [Header("Lid's")]
@@ -50,11 +51,19 @@ public class LobbyUIManager : MonoBehaviour
 
     [Header("Inventory")]
     public Button InventoryButton;
-    public GameObject InventoryPanel;    
+    public GameObject InventoryPanel;
 
     [Header("Lid Shop")]
     public Button[] LidShopItemPurchaseButtons = new Button[7];
     public ItemData[] ItemDatas = new ItemData[7];
+    public Button[] LidShopWeaponPurchaseButtons = new Button[10];
+    public EquipmentData[] WeaponDatas = new EquipmentData[10];
+    public Button[] LidShopHelmetPurchaseButtons = new Button[10];
+    public EquipmentData[] HelmetDatas = new EquipmentData[10];
+    public Button[] LidShopArmorPurchaseButtons = new Button[10];
+    public EquipmentData[] ArmorDatas = new EquipmentData[10];
+    public Button[] LidShopShoePurchaseButtons = new Button[10];
+    public EquipmentData[] ShoeDatas = new EquipmentData[10];
 
     void Start()
     {
@@ -90,6 +99,16 @@ public class LobbyUIManager : MonoBehaviour
             int number = i;
 
             LidShopItemPurchaseButtons[i].onClick.AddListener(() => LidShopItemPurchaseButtonClicked(number));
+        }
+
+        for(int i = 0; i < 10; i++)
+        {
+            int number = i;
+
+            LidShopWeaponPurchaseButtons[i].onClick.AddListener(() => LidShopWeaponPurchaseButtonClicked(number));
+            LidShopHelmetPurchaseButtons[i].onClick.AddListener(() => LidShopHelmetPurchaseButtonClicked(number));
+            LidShopArmorPurchaseButtons[i].onClick.AddListener(() => LidShopArmorPurchaseButtonClicked(number));
+            LidShopShoePurchaseButtons[i].onClick.AddListener(() => LidShopShoePurchaseButtonClicked(number));
         }
 
         for (int i = 0; i < ItemDatas.Length; i++)
@@ -292,6 +311,122 @@ public class LobbyUIManager : MonoBehaviour
         CheckUIItem();
     }
 
+    // Purchase Weapon
+    void LidShopWeaponPurchaseButtonClicked(int number)
+    {
+        EquipmentData purchasedEquipment = WeaponDatas[number];
+        Inventory.Weapons.Add(purchasedEquipment);
+        purchasedEquipment.EquipmentAmount++;
+
+        CheckEquipment();
+
+        Button EquipmentSlot = Instantiate(UIInventory.UIEquipment, UIInventory.InventoryEquipmentContent.transform.position, Quaternion.identity);
+        EquipmentSlot.transform.SetParent(UIInventory.InventoryEquipmentContent.transform);
+
+        EquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchasedEquipment.EquipmentSprite;
+        EquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchasedEquipment.EquipmentAmount.ToString();
+        EquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchasedEquipment;
+
+        Button CEquipmentSlot = Instantiate(UIInventory.UIEquipment, UICharacterInfo.WeaponsContent.transform.position, Quaternion.identity);
+        CEquipmentSlot.transform.SetParent(UICharacterInfo.WeaponsContent.transform);
+
+        CEquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchasedEquipment.EquipmentSprite;
+        CEquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchasedEquipment.EquipmentAmount.ToString();
+        CEquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchasedEquipment;
+
+        UIInventory.UIEquipments.Add(EquipmentSlot);
+        UICharacterInfo.UIWeapons.Add(CEquipmentSlot);
+
+        CheckUIEquipment();
+    }
+
+    // Purchase Helmet
+    void LidShopHelmetPurchaseButtonClicked(int number)
+    {
+        EquipmentData purchasedEquipment = HelmetDatas[number];
+        Inventory.Helmets.Add(purchasedEquipment);
+        purchasedEquipment.EquipmentAmount++;
+
+        CheckEquipment();
+
+        Button EquipmentSlot = Instantiate(UIInventory.UIEquipment, UIInventory.InventoryEquipmentContent.transform.position, Quaternion.identity);
+        EquipmentSlot.transform.SetParent(UIInventory.InventoryEquipmentContent.transform);
+
+        EquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchasedEquipment.EquipmentSprite;
+        EquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchasedEquipment.EquipmentAmount.ToString();
+        EquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchasedEquipment;
+
+        Button CEquipmentSlot = Instantiate(UIInventory.UIEquipment, UICharacterInfo.HelmetsContent.transform.position, Quaternion.identity);
+        CEquipmentSlot.transform.SetParent(UICharacterInfo.HelmetsContent.transform);
+
+        CEquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchasedEquipment.EquipmentSprite;        
+        CEquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchasedEquipment.EquipmentAmount.ToString();
+        CEquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchasedEquipment;
+
+        UIInventory.UIEquipments.Add(EquipmentSlot);
+        UICharacterInfo.UIHelmets.Add(CEquipmentSlot);
+
+        CheckUIEquipment();
+    }
+
+    // Purchase Armor
+    void LidShopArmorPurchaseButtonClicked(int number)
+    {
+        EquipmentData purchasedEquipment = ArmorDatas[number];
+        Inventory.Armors.Add(purchasedEquipment);
+        purchasedEquipment.EquipmentAmount++;
+
+        CheckEquipment();
+
+        Button EquipmentSlot = Instantiate(UIInventory.UIEquipment, UIInventory.InventoryEquipmentContent.transform.position, Quaternion.identity);
+        EquipmentSlot.transform.SetParent(UIInventory.InventoryEquipmentContent.transform);
+
+        EquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchasedEquipment.EquipmentSprite;
+        EquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchasedEquipment.EquipmentAmount.ToString();
+        EquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchasedEquipment;
+
+        Button CEquipmentSlot = Instantiate(UIInventory.UIEquipment, UICharacterInfo.ArmorsContent.transform.position, Quaternion.identity);
+        CEquipmentSlot.transform.SetParent(UICharacterInfo.ArmorsContent.transform);
+
+        CEquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchasedEquipment.EquipmentSprite;        
+        CEquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchasedEquipment.EquipmentAmount.ToString();
+        CEquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchasedEquipment;
+
+        UIInventory.UIEquipments.Add(EquipmentSlot);
+        UICharacterInfo.UIArmors.Add(CEquipmentSlot);
+
+        CheckUIEquipment();
+    }
+
+    // Purchase Shoe
+    void LidShopShoePurchaseButtonClicked(int number)
+    {
+        EquipmentData purchasedEquipment = ShoeDatas[number];
+        Inventory.Shoes.Add(purchasedEquipment);
+        purchasedEquipment.EquipmentAmount++;
+
+        CheckEquipment();
+
+        Button EquipmentSlot = Instantiate(UIInventory.UIEquipment, UIInventory.InventoryEquipmentContent.transform.position, Quaternion.identity);
+        EquipmentSlot.transform.SetParent(UIInventory.InventoryEquipmentContent.transform);
+
+        EquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchasedEquipment.EquipmentSprite;
+        EquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchasedEquipment.EquipmentAmount.ToString();
+        EquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchasedEquipment;
+
+        Button CEquipmentSlot = Instantiate(UIInventory.UIEquipment, UICharacterInfo.ShoesContent.transform.position, Quaternion.identity);
+        CEquipmentSlot.transform.SetParent(UICharacterInfo.ShoesContent.transform);
+
+        CEquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchasedEquipment.EquipmentSprite;        
+        CEquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchasedEquipment.EquipmentAmount.ToString();
+        CEquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchasedEquipment;
+
+        UIInventory.UIEquipments.Add(EquipmentSlot);
+        UICharacterInfo.UIShoes.Add(CEquipmentSlot);
+
+        CheckUIEquipment();
+    }
+
     void CheckItem()
     {
         for (int i = 0; i < Inventory.Items.Count; i++)
@@ -321,9 +456,116 @@ public class LobbyUIManager : MonoBehaviour
         }
     }
 
+    void CheckEquipment()
+    {
+        for (int i = 0; i < Inventory.Weapons.Count; i++)
+        {
+            for (int j = i + 1; j < Inventory.Weapons.Count; j++)
+            {
+                if (Inventory.Weapons[i] == Inventory.Weapons[j])
+                {
+                    Inventory.Weapons.Remove(Inventory.Weapons[j]);
+                }
+            }
+        }
+
+        for (int i = 0; i < Inventory.Helmets.Count; i++)
+        {
+            for (int j = i + 1; j < Inventory.Helmets.Count; j++)
+            {
+                if (Inventory.Helmets[i] == Inventory.Helmets[j])
+                {
+                    Inventory.Helmets.Remove(Inventory.Helmets[j]);
+                }
+            }
+        }
+
+        for (int i = 0; i < Inventory.Armors.Count; i++)
+        {
+            for (int j = i + 1; j < Inventory.Armors.Count; j++)
+            {
+                if (Inventory.Armors[i] == Inventory.Armors[j])
+                {
+                    Inventory.Armors.Remove(Inventory.Armors[j]);
+                }
+            }
+        }
+    }
+
+    void CheckUIEquipment()
+    {
+        for (int i = 0; i < UIInventory.UIEquipments.Count; i++)
+        {
+            for (int j = i + 1; j < UIInventory.UIEquipments.Count; j++)
+            {
+                if (UIInventory.UIEquipments[i].GetComponent<UIEquipment>().EquipmentData.EquipmentID
+                    == UIInventory.UIEquipments[j].GetComponent<UIEquipment>().EquipmentData.EquipmentID)
+                {
+                    Destroy(UIInventory.UIEquipments[i].gameObject);
+                    UIInventory.UIEquipments.Remove(UIInventory.UIEquipments[i]);
+                }
+            }
+        }
+
+        for (int i = 0; i < UICharacterInfo.UIWeapons.Count; i++)
+        {
+            for (int j = i + 1; j < UICharacterInfo.UIWeapons.Count; j++)
+            {
+                if (UICharacterInfo.UIWeapons[i].GetComponent<UIEquipment>().EquipmentData.EquipmentID
+                    == UICharacterInfo.UIWeapons[j].GetComponent<UIEquipment>().EquipmentData.EquipmentID)
+                {
+                    Destroy(UICharacterInfo.UIWeapons[i].gameObject);
+                    UICharacterInfo.UIWeapons.Remove(UICharacterInfo.UIWeapons[i]);
+                }
+            }
+        }
+
+        for (int i = 0; i < UICharacterInfo.UIHelmets.Count; i++)
+        {
+            for (int j = i + 1; j < UICharacterInfo.UIHelmets.Count; j++)
+            {
+                if (UICharacterInfo.UIHelmets[i].GetComponent<UIEquipment>().EquipmentData.EquipmentID
+                    == UICharacterInfo.UIHelmets[j].GetComponent<UIEquipment>().EquipmentData.EquipmentID)
+                {
+                    Destroy(UICharacterInfo.UIHelmets[i].gameObject);
+                    UICharacterInfo.UIHelmets.Remove(UICharacterInfo.UIHelmets[i]);
+                }
+            }
+        }
+
+        for (int i = 0; i < UICharacterInfo.UIArmors.Count; i++)
+        {
+            for (int j = i + 1; j < UICharacterInfo.UIArmors.Count; j++)
+            {
+                if (UICharacterInfo.UIArmors[i].GetComponent<UIEquipment>().EquipmentData.EquipmentID
+                    == UICharacterInfo.UIArmors[j].GetComponent<UIEquipment>().EquipmentData.EquipmentID)
+                {
+                    Destroy(UICharacterInfo.UIArmors[i].gameObject);
+                    UICharacterInfo.UIArmors.Remove(UICharacterInfo.UIArmors[i]);
+                }
+            }
+        }
+
+        for (int i = 0; i < UICharacterInfo.UIShoes.Count; i++)
+        {
+            for (int j = i + 1; j < UICharacterInfo.UIShoes.Count; j++)
+            {
+                if (UICharacterInfo.UIShoes[i].GetComponent<UIEquipment>().EquipmentData.EquipmentID
+                    == UICharacterInfo.UIShoes[j].GetComponent<UIEquipment>().EquipmentData.EquipmentID)
+                {
+                    Destroy(UICharacterInfo.UIShoes[i].gameObject);
+                    UICharacterInfo.UIShoes.Remove(UICharacterInfo.UIShoes[i]);
+                }
+            }
+        }
+    }
+
+    // Enter Inventory
     void InventoryButtonClicked()
     {
         InventoryPanel.SetActive(true);
+        UIInventory.InventoryItemContent.SetActive(true);
+        UIInventory.InventoryEquipmentContent.SetActive(false);
     }
 
     // Enter Character Info
