@@ -9,6 +9,14 @@ public class GameManager : MonoBehaviour
 
     public bool isTransition;
 
+    [Header("Character Selection")]
+    public GameObject[] CharacterSelected = new GameObject[3];
+
+    [Header("Characters Equipment Data")]
+    public EquipmentData[] AliceEquipments = new EquipmentData[4];
+    public EquipmentData[] GretelEquipments = new EquipmentData[4];
+    public EquipmentData[] SWEquipments = new EquipmentData[4];
+
     [Header("Lobby NPCs Buttons Active")]
     public bool isReturnButtonActive;
     public bool isCharlotteButtonActive;

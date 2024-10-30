@@ -11,6 +11,8 @@ public class UICharacterInfo : MonoBehaviour
     public Animator CharacterAnimator;
     public TextMeshProUGUI CharacterNameText;
 
+    public Button UICEquipment;
+
     [Header("Character Image")]    
     public Sprite[] CharacterImages = new Sprite[3];
 
@@ -24,6 +26,7 @@ public class UICharacterInfo : MonoBehaviour
     public Button CharacterInfoExitButton;
 
     public Button[] EquipmentButtons = new Button[4];
+    public Button[] RemoveEquipmentButtons = new Button[4];
     public Button SelectedEquipmentButton;
     public ScrollRect EquipmentListScroll;
     public GameObject WeaponsContent;
@@ -37,13 +40,10 @@ public class UICharacterInfo : MonoBehaviour
     public List<Button> UIShoes = new List<Button>();
 
     public GameObject EquipmentSelectionButtons;
+    public Button SelectedButton;
     public EquipmentData SelectedEquipmentData;
     public Button EquipmentConfirmButton;
     public Button EquipmentCancelButton;
-
-    public EquipmentData[] AliceEquipments = new EquipmentData[4];
-    public EquipmentData[] GretelEquipments = new EquipmentData[4];
-    public EquipmentData[] SWEquipments = new EquipmentData[4];
 
     void Start()
     {
@@ -58,10 +58,11 @@ public class UICharacterInfo : MonoBehaviour
             ChangeCharacterButtons[i].onClick.AddListener(() => ChangeCharacterButtonClicked(number));
         }
 
-        for (int i = 0; i < EquipmentButtons.Length; i++)
+        for (int i = 0; i < 4; i++)
         {
             int number = i;
             EquipmentButtons[i].onClick.AddListener(() => EquipmentButtonClicked(number));
+            RemoveEquipmentButtons[i].onClick.AddListener(() => RemoveEquipmentButtonClicked(number));
         }
 
         for(int i = 0; i < UIWeapons.Count; i++)
@@ -95,11 +96,16 @@ public class UICharacterInfo : MonoBehaviour
 
     void Update()
     {
-        SortUIEquipments();
+        SortUIEquipments();        
     }
 
     void ChangeCharacterButtonClicked(int number)
     {
+        for(int i = 0; i < RemoveEquipmentButtons.Length; i++)
+        {
+            RemoveEquipmentButtons[i].gameObject.SetActive(false);
+        }
+
         EquipmentListScroll.gameObject.SetActive(false);
         EquipmentSelectionButtons.SetActive(false);
 
@@ -122,10 +128,10 @@ public class UICharacterInfo : MonoBehaviour
 
                 for(int i = 0; i < 4; i++)
                 {
-                    if (AliceEquipments[i] == null)
+                    if (GameManager.instance.AliceEquipments[i] == null)
                         EquipmentButtons[i].GetComponent<Image>().sprite = null;
                     else
-                        EquipmentButtons[i].GetComponent<Image>().sprite = AliceEquipments[i].EquipmentSprite;
+                        EquipmentButtons[i].GetComponent<Image>().sprite = GameManager.instance.AliceEquipments[i].EquipmentSprite;
                 }
 
                 break;
@@ -138,10 +144,10 @@ public class UICharacterInfo : MonoBehaviour
 
                 for (int i = 0; i < 4; i++)
                 {
-                    if (GretelEquipments[i] == null)
+                    if (GameManager.instance.GretelEquipments[i] == null)
                         EquipmentButtons[i].GetComponent<Image>().sprite = null;
                     else
-                        EquipmentButtons[i].GetComponent<Image>().sprite = GretelEquipments[i].EquipmentSprite;
+                        EquipmentButtons[i].GetComponent<Image>().sprite = GameManager.instance.GretelEquipments[i].EquipmentSprite;
                 }
 
                 break;
@@ -153,10 +159,10 @@ public class UICharacterInfo : MonoBehaviour
 
                 for (int i = 0; i < 4; i++)
                 {
-                    if (SWEquipments[i] == null)
+                    if (GameManager.instance.SWEquipments[i] == null)
                         EquipmentButtons[i].GetComponent<Image>().sprite = null;
                     else
-                        EquipmentButtons[i].GetComponent<Image>().sprite = SWEquipments[i].EquipmentSprite;
+                        EquipmentButtons[i].GetComponent<Image>().sprite = GameManager.instance.SWEquipments[i].EquipmentSprite;
                 }
 
                 break;
@@ -165,6 +171,11 @@ public class UICharacterInfo : MonoBehaviour
 
     void EquipmentButtonClicked(int number)
     {
+        for(int i = 0; i < RemoveEquipmentButtons.Length; i++)
+        {
+            RemoveEquipmentButtons[i].gameObject.SetActive(false);
+        }
+
         EquipmentListScroll.gameObject.SetActive(true);
         EquipmentSelectionButtons.SetActive(false);
         SelectedEquipmentButton = EquipmentButtons[number];
@@ -179,6 +190,8 @@ public class UICharacterInfo : MonoBehaviour
                 ArmorsContent.SetActive(false);
                 ShoesContent.SetActive(false);
 
+                CheckEquipmentEquipped(number);
+
                 break;
 
             case 1:
@@ -188,6 +201,8 @@ public class UICharacterInfo : MonoBehaviour
                 HelmetsContent.SetActive(true);
                 ArmorsContent.SetActive(false);
                 ShoesContent.SetActive(false);
+
+                CheckEquipmentEquipped(number);
 
                 break;
 
@@ -199,6 +214,8 @@ public class UICharacterInfo : MonoBehaviour
                 ArmorsContent.SetActive(true);
                 ShoesContent.SetActive(false);
 
+                CheckEquipmentEquipped(number);
+
                 break;
 
             case 3:
@@ -209,32 +226,166 @@ public class UICharacterInfo : MonoBehaviour
                 ArmorsContent.SetActive(false);
                 ShoesContent.SetActive(true);
 
+                CheckEquipmentEquipped(number);
+
                 break;
         }
+    }
+
+    void RemoveEquipmentButtonClicked(int number)
+    {
+        switch(number)
+        {
+            case 0:
+                if(UIWeapons.Count == 0)
+                {
+                    Button CEquipmentSlot = Instantiate(UICEquipment, WeaponsContent.transform.position, Quaternion.identity);
+                    CEquipmentSlot.transform.SetParent(WeaponsContent.transform);
+
+                    if (changeID == 0)
+                    {
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = GameManager.instance.AliceEquipments[number].EquipmentSprite;
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = GameManager.instance.AliceEquipments[number];
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = 1;
+                    }
+
+                    UIWeapons.Add(CEquipmentSlot);
+                }
+                else
+                {
+                    for(int i = 0; i < UIWeapons.Count; i++)
+                    {
+                        if(changeID == 0 &&
+                            UIWeapons[i].GetComponent<UICEquipment>().EquipmentData == GameManager.instance.AliceEquipments[number])
+                        {
+                            UIWeapons[i].GetComponent<UICEquipment>().EquipmentAmount++;
+                        }
+                    }
+                }
+
+                break;
+
+            case 1:
+                if (UIHelmets.Count == 0)
+                {
+                    Button CEquipmentSlot = Instantiate(UICEquipment, HelmetsContent.transform.position, Quaternion.identity);
+                    CEquipmentSlot.transform.SetParent(HelmetsContent.transform);
+
+                    if (changeID == 0)
+                    {
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = GameManager.instance.AliceEquipments[number].EquipmentSprite;
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = GameManager.instance.AliceEquipments[number];
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = 1;
+                    }
+
+                    UIHelmets.Add(CEquipmentSlot);
+                }
+                else
+                {
+                    for (int i = 0; i < UIHelmets.Count; i++)
+                    {
+                        if (changeID == 0 &&
+                            UIHelmets[i].GetComponent<UICEquipment>().EquipmentData == GameManager.instance.AliceEquipments[number])
+                        {
+                            UIHelmets[i].GetComponent<UICEquipment>().EquipmentAmount++;
+                        }
+                    }
+                }
+
+                break;
+
+            case 2:
+                if (UIArmors.Count == 0)
+                {
+                    Button CEquipmentSlot = Instantiate(UICEquipment, ArmorsContent.transform.position, Quaternion.identity);
+                    CEquipmentSlot.transform.SetParent(ArmorsContent.transform);
+
+                    if (changeID == 0)
+                    {
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = GameManager.instance.AliceEquipments[number].EquipmentSprite;
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = GameManager.instance.AliceEquipments[number];
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = 1;
+                    }
+
+                    UIArmors.Add(CEquipmentSlot);
+                }
+                else
+                {
+                    for (int i = 0; i < UIArmors.Count; i++)
+                    {
+                        if (changeID == 0 &&
+                            UIArmors[i].GetComponent<UICEquipment>().EquipmentData == GameManager.instance.AliceEquipments[number])
+                        {
+                            UIArmors[i].GetComponent<UICEquipment>().EquipmentAmount++;
+                        }
+                    }
+                }
+
+                break;
+
+            case 3:
+                if (UIShoes.Count == 0)
+                {
+                    Button CEquipmentSlot = Instantiate(UICEquipment, ShoesContent.transform.position, Quaternion.identity);
+                    CEquipmentSlot.transform.SetParent(ShoesContent.transform);
+
+                    if (changeID == 0)
+                    {
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = GameManager.instance.AliceEquipments[number].EquipmentSprite;
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = GameManager.instance.AliceEquipments[number];
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = 1;
+                    }
+
+                    UIShoes.Add(CEquipmentSlot);
+                }
+                else
+                {
+                    for (int i = 0; i < UIShoes.Count; i++)
+                    {
+                        if (changeID == 0 &&
+                            UIShoes[i].GetComponent<UICEquipment>().EquipmentData == GameManager.instance.AliceEquipments[number])
+                        {
+                            UIShoes[i].GetComponent<UICEquipment>().EquipmentAmount++;
+                        }
+                    }
+                }
+
+                break;
+        }
+
+        EquipmentButtons[number].GetComponent<Image>().sprite = null;
+        GameManager.instance.AliceEquipments[number] = null;
+        RemoveEquipmentButtons[number].gameObject.SetActive(false);
+
+        ResetEquipmentButtons();
     }
 
     void UIWeaponButtonClicked(int number)
     {
         EquipmentSelectionButtons.SetActive(true);
-        SelectedEquipmentData = UIWeapons[number].GetComponent<UIEquipment>().EquipmentData;
+        SelectedEquipmentData = UIWeapons[number].GetComponent<UICEquipment>().EquipmentData;
+        SelectedButton = UIWeapons[number];
     }
 
     void UIHelmetButtonClicked(int number)
     {
         EquipmentSelectionButtons.SetActive(true);
-        SelectedEquipmentData = UIHelmets[number].GetComponent<UIEquipment>().EquipmentData;
+        SelectedEquipmentData = UIHelmets[number].GetComponent<UICEquipment>().EquipmentData;
+        SelectedButton = UIHelmets[number];
     }
 
     void UIArmorButtonClicked(int number)
     {
         EquipmentSelectionButtons.SetActive(true);
-        SelectedEquipmentData = UIArmors[number].GetComponent<UIEquipment>().EquipmentData;
+        SelectedEquipmentData = UIArmors[number].GetComponent<UICEquipment>().EquipmentData;
+        SelectedButton = UIArmors[number];
     }
 
     void UIShoeButtonClicked(int number)
     {
         EquipmentSelectionButtons.SetActive(true);
-        SelectedEquipmentData = UIShoes[number].GetComponent<UIEquipment>().EquipmentData;
+        SelectedEquipmentData = UIShoes[number].GetComponent<UICEquipment>().EquipmentData;
+        SelectedButton = UIShoes[number];
     }
 
     void EquipmentConfirmButtonClicked()
@@ -242,74 +393,87 @@ public class UICharacterInfo : MonoBehaviour
         if(changeID == 0)
         {
             if (SelectedEquipmentData.EquipmentCategory == "Weapon")
-            {
-                AliceEquipments[0] = SelectedEquipmentData;
-                EquipmentButtons[0].GetComponent<Image>().sprite = AliceEquipments[0].EquipmentSprite;
+            {                
+                GameManager.instance.AliceEquipments[0] = SelectedEquipmentData;
+                EquipmentButtons[0].GetComponent<Image>().sprite = GameManager.instance.AliceEquipments[0].EquipmentSprite;
+                SelectedButton.GetComponent<UICEquipment>().EquipmentAmount--;
             }
             else if (SelectedEquipmentData.EquipmentCategory == "Helmet")
-            {
-                AliceEquipments[1] = SelectedEquipmentData;
-                EquipmentButtons[1].GetComponent<Image>().sprite = AliceEquipments[1].EquipmentSprite;
+            {                
+                GameManager.instance.AliceEquipments[1] = SelectedEquipmentData;
+                EquipmentButtons[1].GetComponent<Image>().sprite = GameManager.instance.AliceEquipments[1].EquipmentSprite;
+                SelectedButton.GetComponent<UICEquipment>().EquipmentAmount--;
             }
             else if (SelectedEquipmentData.EquipmentCategory == "Armor")
-            {
-                AliceEquipments[2] = SelectedEquipmentData;
-                EquipmentButtons[2].GetComponent<Image>().sprite = AliceEquipments[2].EquipmentSprite;
+            {                
+                GameManager.instance.AliceEquipments[2] = SelectedEquipmentData;
+                EquipmentButtons[2].GetComponent<Image>().sprite = GameManager.instance.AliceEquipments[2].EquipmentSprite;
+                SelectedButton.GetComponent<UICEquipment>().EquipmentAmount--;
             }
             else if (SelectedEquipmentData.EquipmentCategory == "Shoe")
-            {
-                AliceEquipments[3] = SelectedEquipmentData;
-                EquipmentButtons[3].GetComponent<Image>().sprite = AliceEquipments[3].EquipmentSprite;
+            {                
+                GameManager.instance.AliceEquipments[3] = SelectedEquipmentData;
+                EquipmentButtons[3].GetComponent<Image>().sprite = GameManager.instance.AliceEquipments[3].EquipmentSprite;
+                SelectedButton.GetComponent<UICEquipment>().EquipmentAmount--;
             }
         }
         else if(changeID == 1)
         {
             if (SelectedEquipmentData.EquipmentCategory == "Weapon")
             {
-                GretelEquipments[0] = SelectedEquipmentData;
-                EquipmentButtons[0].GetComponent<Image>().sprite = GretelEquipments[0].EquipmentSprite;
+                GameManager.instance.GretelEquipments[0] = SelectedEquipmentData;
+                EquipmentButtons[0].GetComponent<Image>().sprite = GameManager.instance.GretelEquipments[0].EquipmentSprite;
+                SelectedButton.GetComponent<UICEquipment>().EquipmentAmount--;
             }
             else if (SelectedEquipmentData.EquipmentCategory == "Helmet")
             {
-                GretelEquipments[1] = SelectedEquipmentData;
-                EquipmentButtons[1].GetComponent<Image>().sprite = GretelEquipments[1].EquipmentSprite;
+                GameManager.instance.GretelEquipments[1] = SelectedEquipmentData;
+                EquipmentButtons[1].GetComponent<Image>().sprite = GameManager.instance.GretelEquipments[1].EquipmentSprite;
+                SelectedButton.GetComponent<UICEquipment>().EquipmentAmount--;
             }
             else if (SelectedEquipmentData.EquipmentCategory == "Armor")
             {
-                GretelEquipments[2] = SelectedEquipmentData;
-                EquipmentButtons[2].GetComponent<Image>().sprite = GretelEquipments[2].EquipmentSprite;
+                GameManager.instance.GretelEquipments[2] = SelectedEquipmentData;
+                EquipmentButtons[2].GetComponent<Image>().sprite = GameManager.instance.GretelEquipments[2].EquipmentSprite;
+                SelectedButton.GetComponent<UICEquipment>().EquipmentAmount--;
             }
             else if (SelectedEquipmentData.EquipmentCategory == "Shoe")
             {
-                GretelEquipments[3] = SelectedEquipmentData;
-                EquipmentButtons[3].GetComponent<Image>().sprite = GretelEquipments[3].EquipmentSprite;
+                GameManager.instance.GretelEquipments[3] = SelectedEquipmentData;
+                EquipmentButtons[3].GetComponent<Image>().sprite = GameManager.instance.GretelEquipments[3].EquipmentSprite;
+                SelectedButton.GetComponent<UICEquipment>().EquipmentAmount--;
             }
         }
         else if (changeID == 2)
         {
             if (SelectedEquipmentData.EquipmentCategory == "Weapon")
             {
-                SWEquipments[0] = SelectedEquipmentData;
-                EquipmentButtons[0].GetComponent<Image>().sprite = SWEquipments[0].EquipmentSprite;
+                GameManager.instance.SWEquipments[0] = SelectedEquipmentData;
+                EquipmentButtons[0].GetComponent<Image>().sprite = GameManager.instance.SWEquipments[0].EquipmentSprite;
+                SelectedButton.GetComponent<UICEquipment>().EquipmentAmount--;
             }
             else if (SelectedEquipmentData.EquipmentCategory == "Helmet")
             {
-                SWEquipments[1] = SelectedEquipmentData;
-                EquipmentButtons[1].GetComponent<Image>().sprite = SWEquipments[1].EquipmentSprite;
+                GameManager.instance.SWEquipments[1] = SelectedEquipmentData;
+                EquipmentButtons[1].GetComponent<Image>().sprite = GameManager.instance.SWEquipments[1].EquipmentSprite;
+                SelectedButton.GetComponent<UICEquipment>().EquipmentAmount--;
             }
             else if (SelectedEquipmentData.EquipmentCategory == "Armor")
             {
-                SWEquipments[2] = SelectedEquipmentData;
-                EquipmentButtons[2].GetComponent<Image>().sprite = SWEquipments[2].EquipmentSprite;
+                GameManager.instance.SWEquipments[2] = SelectedEquipmentData;
+                EquipmentButtons[2].GetComponent<Image>().sprite = GameManager.instance.SWEquipments[2].EquipmentSprite;
+                SelectedButton.GetComponent<UICEquipment>().EquipmentAmount--;
             }
             else if (SelectedEquipmentData.EquipmentCategory == "Shoe")
             {
-                SWEquipments[3] = SelectedEquipmentData;
-                EquipmentButtons[3].GetComponent<Image>().sprite = SWEquipments[3].EquipmentSprite;
+                GameManager.instance.SWEquipments[3] = SelectedEquipmentData;
+                EquipmentButtons[3].GetComponent<Image>().sprite = GameManager.instance.SWEquipments[3].EquipmentSprite;
+                SelectedButton.GetComponent<UICEquipment>().EquipmentAmount--;
             }
         }
 
         EquipmentSelectionButtons.SetActive(false);
+        CheckEquipmentAmount();
     }
 
     void EquipmentCancelButtonClicked()
@@ -323,8 +487,8 @@ public class UICharacterInfo : MonoBehaviour
         {
             for (int j = i + 1; j < UIWeapons.Count; j++)
             {
-                if (UIWeapons[i].GetComponent<UIEquipment>().EquipmentData.EquipmentID
-                    > UIWeapons[j].GetComponent<UIEquipment>().EquipmentData.EquipmentID)
+                if (UIWeapons[i].GetComponent<UICEquipment>().EquipmentData.EquipmentID
+                    > UIWeapons[j].GetComponent<UICEquipment>().EquipmentData.EquipmentID)
                 {
                     UIWeapons[i].transform.SetSiblingIndex(j);
                 }
@@ -335,8 +499,8 @@ public class UICharacterInfo : MonoBehaviour
         {
             for (int j = i + 1; j < UIHelmets.Count; j++)
             {
-                if (UIHelmets[i].GetComponent<UIEquipment>().EquipmentData.EquipmentID
-                    > UIHelmets[j].GetComponent<UIEquipment>().EquipmentData.EquipmentID)
+                if (UIHelmets[i].GetComponent<UICEquipment>().EquipmentData.EquipmentID
+                    > UIHelmets[j].GetComponent<UICEquipment>().EquipmentData.EquipmentID)
                 {
                     UIHelmets[i].transform.SetSiblingIndex(j);
                 }
@@ -347,8 +511,8 @@ public class UICharacterInfo : MonoBehaviour
         {
             for (int j = i + 1; j < UIArmors.Count; j++)
             {
-                if (UIArmors[i].GetComponent<UIEquipment>().EquipmentData.EquipmentID
-                    > UIArmors[j].GetComponent<UIEquipment>().EquipmentData.EquipmentID)
+                if (UIArmors[i].GetComponent<UICEquipment>().EquipmentData.EquipmentID
+                    > UIArmors[j].GetComponent<UICEquipment>().EquipmentData.EquipmentID)
                 {
                     UIArmors[i].transform.SetSiblingIndex(j);
                 }
@@ -359,12 +523,103 @@ public class UICharacterInfo : MonoBehaviour
         {
             for (int j = i + 1; j < UIShoes.Count; j++)
             {
-                if (UIShoes[i].GetComponent<UIEquipment>().EquipmentData.EquipmentID
-                    > UIShoes[j].GetComponent<UIEquipment>().EquipmentData.EquipmentID)
+                if (UIShoes[i].GetComponent<UICEquipment>().EquipmentData.EquipmentID
+                    > UIShoes[j].GetComponent<UICEquipment>().EquipmentData.EquipmentID)
                 {
                     UIShoes[i].transform.SetSiblingIndex(j);
                 }
             }
+        }
+    }
+
+    void CheckEquipmentAmount()
+    {
+        for(int i = 0; i < UIWeapons.Count; i++)
+        {
+            if (UIWeapons[i].GetComponent<UICEquipment>().EquipmentAmount == 0)
+            {
+                Destroy(UIWeapons[i].gameObject);
+                UIWeapons.RemoveAt(i);
+            }
+        }
+
+        for (int i = 0; i < UIHelmets.Count; i++)
+        {
+            if (UIHelmets[i].GetComponent<UICEquipment>().EquipmentAmount == 0)
+            {
+                Destroy(UIHelmets[i].gameObject);
+                UIHelmets.RemoveAt(i);
+            }
+        }
+
+        for (int i = 0; i < UIArmors.Count; i++)
+        {
+            if (UIArmors[i].GetComponent<UICEquipment>().EquipmentAmount == 0)
+            {
+                Destroy(UIArmors[i].gameObject);
+                UIArmors.RemoveAt(i);
+            }
+        }
+
+        for (int i = 0; i < UIShoes.Count; i++)
+        {
+            if (UIShoes[i].GetComponent<UICEquipment>().EquipmentAmount == 0)
+            {
+                Destroy(UIShoes[i].gameObject);
+                UIShoes.RemoveAt(i);
+            }
+        }
+    }
+
+    void CheckEquipmentEquipped(int number)
+    {
+        if (changeID == 0)
+        {
+            if (GameManager.instance.AliceEquipments[number] != null)
+            {
+                RemoveEquipmentButtons[number].gameObject.SetActive(true);
+            }
+        }
+        else if (changeID == 1)
+        {
+            if (GameManager.instance.GretelEquipments[number] != null)
+            {
+                RemoveEquipmentButtons[number].gameObject.SetActive(true);
+            }
+        }
+        else if (changeID == 2)
+        {
+            if (GameManager.instance.SWEquipments[number] != null)
+            {
+                RemoveEquipmentButtons[number].gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void ResetEquipmentButtons()
+    {
+        for (int i = 0; i < UIWeapons.Count; i++)
+        {
+            int number = i;
+            UIWeapons[i].onClick.AddListener(() => UIWeaponButtonClicked(number));
+        }
+
+        for (int i = 0; i < UIHelmets.Count; i++)
+        {
+            int number = i;
+            UIHelmets[i].onClick.AddListener(() => UIHelmetButtonClicked(number));
+        }
+
+        for (int i = 0; i < UIArmors.Count; i++)
+        {
+            int number = i;
+            UIArmors[i].onClick.AddListener(() => UIArmorButtonClicked(number));
+        }
+
+        for (int i = 0; i < UIShoes.Count; i++)
+        {
+            int number = i;
+            UIShoes[i].onClick.AddListener(() => UIShoeButtonClicked(number));
         }
     }
 
