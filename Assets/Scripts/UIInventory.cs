@@ -8,8 +8,14 @@ public class UIInventory : MonoBehaviour
 { 
     public Button UIItem;
     public Button UIEquipment;
+
+    public GameObject InventoryViewport;
     public GameObject InventoryItemContent;
     public GameObject InventoryEquipmentContent;
+    public GameObject InventoryWeaponContent;
+    public GameObject InventoryHelmetContent;
+    public GameObject InventoryArmorContent;
+    public GameObject InventoryShoeContent;
     public GameObject ItemInfoPanel;
     public TextMeshProUGUI ItemNameText;
     public TextMeshProUGUI ItemDescriptionText;
@@ -17,7 +23,12 @@ public class UIInventory : MonoBehaviour
     public ScrollRect InventoryScrollRect;
     public Button InventoryItemButton;
     public Button InventoryEquipmentButton;
-    
+    public GameObject EquipmentCategories;
+    public Button InventoryWeaponButton;
+    public Button InventoryHelmetButton;
+    public Button InventoryArmorButton;
+    public Button InventoryShoeButton;
+
     public List<Button> UIItems = new List<Button>();
     public List<Button> UIEquipments = new List<Button>();
 
@@ -27,6 +38,10 @@ public class UIInventory : MonoBehaviour
     {
         InventoryItemButton.onClick.AddListener(InventoryItemButtonClicked);
         InventoryEquipmentButton.onClick.AddListener(InventoryEquipmentButtonClicked);
+        InventoryWeaponButton.onClick.AddListener(InventoryWeaponButtonClicked);
+        InventoryHelmetButton.onClick.AddListener(InventoryHelmetButtonClicked);
+        InventoryArmorButton.onClick.AddListener(InventoryArmorButtonClicked);
+        InventoryShoeButton.onClick.AddListener(InventoryShoeButtonClicked);
 
         InventoryExitButton.onClick.AddListener(InventoryExitButtonClicked);
     }
@@ -46,18 +61,69 @@ public class UIInventory : MonoBehaviour
 
     void InventoryItemButtonClicked()
     {
+        InventoryViewport.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+
         InventoryItemContent.SetActive(true);
-        InventoryEquipmentContent.SetActive(false);
+        InventoryWeaponContent.SetActive(false);
+        InventoryHelmetContent.SetActive(false);
+        InventoryArmorContent.SetActive(false);
+        InventoryShoeContent.SetActive(false);
+
+        EquipmentCategories.SetActive(false);
 
         InventoryScrollRect.content = InventoryItemContent.GetComponent<RectTransform>();
     }
 
     void InventoryEquipmentButtonClicked()
     {
-        InventoryItemContent.SetActive(false);
-        InventoryEquipmentContent.SetActive(true);
+        InventoryViewport.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -45);
 
-        InventoryScrollRect.content = InventoryEquipmentContent.GetComponent<RectTransform>();
+        InventoryItemContent.SetActive(false);
+        InventoryWeaponContent.SetActive(true);
+
+        EquipmentCategories.SetActive(true);
+
+        InventoryScrollRect.content = InventoryWeaponContent.GetComponent<RectTransform>();
+    }
+
+    void InventoryWeaponButtonClicked()
+    {        
+        InventoryWeaponContent.SetActive(true);
+        InventoryHelmetContent.SetActive(false);
+        InventoryArmorContent.SetActive(false);
+        InventoryShoeContent.SetActive(false);
+
+        InventoryScrollRect.content = InventoryWeaponContent.GetComponent<RectTransform>();
+    }
+
+    void InventoryHelmetButtonClicked()
+    {
+        InventoryWeaponContent.SetActive(false);
+        InventoryHelmetContent.SetActive(true);
+        InventoryArmorContent.SetActive(false);
+        InventoryShoeContent.SetActive(false);
+
+        InventoryScrollRect.content = InventoryHelmetContent.GetComponent<RectTransform>();
+    }
+
+    void InventoryArmorButtonClicked()
+    {
+        InventoryWeaponContent.SetActive(false);
+        InventoryHelmetContent.SetActive(false);
+        InventoryArmorContent.SetActive(true);
+        InventoryShoeContent.SetActive(false);
+
+        InventoryScrollRect.content = InventoryArmorContent.GetComponent<RectTransform>();
+    }
+
+    void InventoryShoeButtonClicked()
+    {
+        InventoryWeaponContent.SetActive(false);
+        InventoryHelmetContent.SetActive(false);
+        InventoryArmorContent.SetActive(false);
+        InventoryShoeContent.SetActive(true);
+
+        InventoryScrollRect.content = InventoryShoeContent.GetComponent<RectTransform>();
     }
 
     void UIItemSlotClicked(int number)
@@ -98,7 +164,10 @@ public class UIInventory : MonoBehaviour
     void InventoryExitButtonClicked()
     {
         InventoryItemContent.SetActive(true);
-        InventoryEquipmentContent.SetActive(false);
+        InventoryWeaponContent.SetActive(false);
+        InventoryHelmetContent.SetActive(false);
+        InventoryArmorContent.SetActive(false);
+        InventoryShoeContent.SetActive(false);
 
         InventoryScrollRect.content = InventoryItemContent.GetComponent<RectTransform>();
 
