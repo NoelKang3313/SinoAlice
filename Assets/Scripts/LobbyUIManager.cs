@@ -570,6 +570,7 @@ public class LobbyUIManager : MonoBehaviour
     {
         InventoryPanel.SetActive(true);
         UIInventory.InventoryItemContent.SetActive(true);
+        UIInventory.EquipmentCategories.SetActive(false);
         UIInventory.InventoryWeaponContent.SetActive(false);
         UIInventory.InventoryHelmetContent.SetActive(false);
         UIInventory.InventoryArmorContent.SetActive(false);
