@@ -14,6 +14,16 @@ public class WorldmapUIManager : MonoBehaviour
     public GameObject StagePanel;
     public Button StagePanelExitButton;
 
+    public Button[] CharacterLocationButtons = new Button[3];
+    public Button SelectedButton;
+    public GameObject CharacterSelectionScroll;
+    public Button[] CharacterSelectionButtons = new Button[3];
+
+    public GameObject SelectedCharacter;
+    public GameObject[] CharacterPrefabs = new GameObject[3];
+    public GameObject AnimatedCharacterImage;
+    public GameObject CharacterLocations;
+
     public Image TransitionImage;
 
     void Start()
@@ -22,6 +32,18 @@ public class WorldmapUIManager : MonoBehaviour
         Stage1_1Button.onClick.AddListener(Stage1_1ButtonClicked);
 
         StagePanelExitButton.onClick.AddListener(StagePanelExitButtonClicked);
+
+        for(int i = 0; i < CharacterLocationButtons.Length; i++)
+        {
+            int number = i;
+            CharacterLocationButtons[i].onClick.AddListener(() => CharacterLocationButtonClicked(number));
+        }
+
+        for(int i = 0; i < CharacterSelectionButtons.Length; i++)
+        {
+            int number = i;
+            CharacterSelectionButtons[i].onClick.AddListener(() => CharacterSelectionButtonClicked(number));
+        }
     }
 
     void Update()
@@ -30,15 +52,18 @@ public class WorldmapUIManager : MonoBehaviour
 
         if(TransitionImage.fillAmount == 0)
         {
-            Stage1Button.gameObject.SetActive(true);
+            TransitionImage.gameObject.SetActive(false);
         }
+
     }
 
     void Stage1ButtonClicked()
     {
+        Stage1Button.gameObject.SetActive(false);
+
         BackgroundGameObject.GetComponent<SpriteRenderer>().sprite = StageBG;
         BackgroundGameObject.transform.localScale = new Vector3(1, 0.53f, 0);
-
+        
         Stage1_1Button.gameObject.SetActive(true);
     }
 
@@ -49,7 +74,38 @@ public class WorldmapUIManager : MonoBehaviour
 
     void StagePanelExitButtonClicked()
     {
-        StagePanel.SetActive(false);
+        StagePanel.SetActive(false);        
+    }
+
+    void CharacterLocationButtonClicked(int number)
+    {
+        CharacterSelectionScroll.SetActive(true);
+        SelectedButton = CharacterLocationButtons[number];
+    }
+
+    void CharacterSelectionButtonClicked(int number)
+    {
+        SelectedCharacter = CharacterPrefabs[number];
+
+        GameManager.instance.CharacterSelected[number] = CharacterPrefabs[number];
+        GameObject AnimatedCharacter = Instantiate(AnimatedCharacterImage);
+        AnimatedCharacter.transform.SetParent(CharacterLocations.transform);
+        AnimatedCharacter.GetComponent<RectTransform>().anchoredPosition = SelectedButton.GetComponent<RectTransform>().anchoredPosition;
+
+        if (SelectedCharacter.name == "Alice")
+        {
+            AnimatedCharacter.GetComponent<Animator>().Play("Alice_Idle");
+        }
+        else if (SelectedCharacter.name == "Gretel")
+        {
+            AnimatedCharacter.GetComponent<Animator>().Play("Gretel_Idle");
+        }
+        else if (SelectedCharacter.name == "Snow White")
+        {
+            AnimatedCharacter.GetComponent<Animator>().Play("SnowWhite_Idle");
+        }
+
+        CharacterSelectionScroll.SetActive(false);
     }
 
     void ActivateTransition(float transitionSpeed)
