@@ -78,6 +78,8 @@ public class GameManager : MonoBehaviour
         {
             isSWTurn = true;
         }
+
+        Debug.Log(SceneManager.GetActiveScene().name);
     }
 
     public void LoadScene(string sceneName)
