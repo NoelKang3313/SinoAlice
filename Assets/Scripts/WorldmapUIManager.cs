@@ -15,14 +15,20 @@ public class WorldmapUIManager : MonoBehaviour
     public Button StagePanelExitButton;
 
     public Button[] CharacterLocationButtons = new Button[3];
-    public Button SelectedButton;
+    [SerializeField] private int CharacterLocationIndex;    
     public GameObject CharacterSelectionScroll;
     public Button[] CharacterSelectionButtons = new Button[3];
 
     public GameObject SelectedCharacter;
     public GameObject[] CharacterPrefabs = new GameObject[3];
-    public GameObject AnimatedCharacterImage;
-    public GameObject CharacterLocations;
+    public Sprite[] CharactersIdle = new Sprite[3];
+    [SerializeField] private int changeIndex;
+
+    public Image[] EnemyImages = new Image[4];
+    public Sprite RatSprite;
+
+    private int characterCount;
+    public Button BattleStartButton;
 
     public Image TransitionImage;
 
@@ -44,6 +50,8 @@ public class WorldmapUIManager : MonoBehaviour
             int number = i;
             CharacterSelectionButtons[i].onClick.AddListener(() => CharacterSelectionButtonClicked(number));
         }
+
+        BattleStartButton.onClick.AddListener(BattleStartButtonClicked);
     }
 
     void Update()
@@ -55,6 +63,7 @@ public class WorldmapUIManager : MonoBehaviour
             TransitionImage.gameObject.SetActive(false);
         }
 
+        StartCoroutine(DelaySceneChange());
     }
 
     void Stage1ButtonClicked()
@@ -70,6 +79,11 @@ public class WorldmapUIManager : MonoBehaviour
     void Stage1_1ButtonClicked()
     {
         StagePanel.SetActive(true);
+
+        for(int i = 0; i < EnemyImages.Length; i++)
+        {
+            EnemyImages[i].sprite = RatSprite;
+        }
     }
 
     void StagePanelExitButtonClicked()
@@ -80,32 +94,78 @@ public class WorldmapUIManager : MonoBehaviour
     void CharacterLocationButtonClicked(int number)
     {
         CharacterSelectionScroll.SetActive(true);
-        SelectedButton = CharacterLocationButtons[number];
+        CharacterLocationIndex = number;        
     }
 
     void CharacterSelectionButtonClicked(int number)
     {
         SelectedCharacter = CharacterPrefabs[number];
 
-        GameManager.instance.CharacterSelected[number] = CharacterPrefabs[number];
-        GameObject AnimatedCharacter = Instantiate(AnimatedCharacterImage);
-        AnimatedCharacter.transform.SetParent(CharacterLocations.transform);
-        AnimatedCharacter.GetComponent<RectTransform>().anchoredPosition = SelectedButton.GetComponent<RectTransform>().anchoredPosition;
+        if (GameManager.instance.CharacterSelected[CharacterLocationIndex] == null)
+        {
+            for(int i = 0; i < GameManager.instance.CharacterSelected.Length; i++)
+            {
+                if (GameManager.instance.CharacterSelected[i] == SelectedCharacter)
+                    break;
+                else
+                {
+                    GameManager.instance.CharacterSelected[CharacterLocationIndex] = SelectedCharacter;
+                    CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                    CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Image>().sprite = CharactersIdle[number];
+                    CharacterLocationButtons[CharacterLocationIndex].GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                }
+            }
+        }
+        else
+        {
+            for(int i = 0; i < GameManager.instance.CharacterSelected.Length; i++)
+            {
+                if (GameManager.instance.CharacterSelected[i] == SelectedCharacter)
+                {
+                    GameObject GO = GameManager.instance.CharacterSelected[CharacterLocationIndex];
+                    Sprite GOS = CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Image>().sprite;
 
-        if (SelectedCharacter.name == "Alice")
-        {
-            AnimatedCharacter.GetComponent<Animator>().Play("Alice_Idle");
-        }
-        else if (SelectedCharacter.name == "Gretel")
-        {
-            AnimatedCharacter.GetComponent<Animator>().Play("Gretel_Idle");
-        }
-        else if (SelectedCharacter.name == "Snow White")
-        {
-            AnimatedCharacter.GetComponent<Animator>().Play("SnowWhite_Idle");
+                    GameManager.instance.CharacterSelected[CharacterLocationIndex] = SelectedCharacter;
+                    CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Image>().sprite = CharactersIdle[number];
+
+                    GameManager.instance.CharacterSelected[i] = GO;
+                    CharacterLocationButtons[i].transform.parent.GetComponent<Image>().sprite = GOS;
+
+                    break;
+                }
+                else
+                    continue;
+            }
         }
 
         CharacterSelectionScroll.SetActive(false);
+    }
+
+    void BattleStartButtonClicked()
+    {
+        characterCount = 0;
+
+        for(int i = 0; i < GameManager.instance.CharacterSelected.Length; i++)
+        {
+            if(GameManager.instance.CharacterSelected[i] != null)
+            {
+                characterCount++;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        if(characterCount == 3)
+        {            
+            TransitionImage.gameObject.SetActive(true);
+            GameManager.instance.isTransition = true;
+        }
+        else
+        {
+            Debug.Log("Cannot Enter");
+        }
     }
 
     void ActivateTransition(float transitionSpeed)
@@ -117,6 +177,17 @@ public class WorldmapUIManager : MonoBehaviour
         else
         {
             TransitionImage.fillAmount -= transitionSpeed / 1.0f * Time.deltaTime;
+        }
+    }
+
+    IEnumerator DelaySceneChange()
+    {
+        if (TransitionImage.fillAmount == 1.0f)
+        {
+            yield return new WaitForSeconds(2.0f);
+
+            GameManager.instance.isTransition = false;
+            GameManager.instance.LoadScene("Stage1-1");            
         }
     }
 }
