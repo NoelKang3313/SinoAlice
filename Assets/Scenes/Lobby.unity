@@ -24622,6 +24622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTransition: 0
+  isBattleStart: 0
   CharacterSelected:
   - {fileID: 0}
   - {fileID: 0}
@@ -24653,9 +24654,9 @@ MonoBehaviour:
   isSkillButtonActive: 0
   isItemButtonActive: 0
   CharacterPositions:
-  - {x: 5.5, y: -2.5}
-  - {x: 7, y: -1}
-  - {x: 8, y: -3.5}
+  - {x: 4, y: -1.5}
+  - {x: 6, y: 0}
+  - {x: 6.5, y: -2.5}
   SelectedCharacterPosition: {x: 0, y: 0}
   EnemyPositions:
   - {x: -3, y: -1.5}
@@ -48949,10 +48950,10 @@ SceneRoots:
   - {fileID: 726736881}
   - {fileID: 1665480481}
   - {fileID: 427947856}
-  - {fileID: 1056684986}
   - {fileID: 43154687}
   - {fileID: 2054466100}
   - {fileID: 999531749}
   - {fileID: 1453798802}
   - {fileID: 4795622511861208132}
+  - {fileID: 1056684986}
   - {fileID: 1148223434}

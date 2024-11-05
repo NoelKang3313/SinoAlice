@@ -39,12 +39,11 @@ public class SnowWhite : CharacterStats
     void Awake()
     {
         _name = "Snow White";
-        _level = 1;
-        _exp = 0;
         _hp = 100;
         _mp = 100;
         _attack = 10;
         _defense = 10;
+        _intell = 10;
         _speed = 90;
     }
 
@@ -127,7 +126,7 @@ public class SnowWhite : CharacterStats
                     GameManager.instance.isAction = false;
                     GameManager.instance.isGuardButtonActive = false;
 
-                    shield = Instantiate(ShieldPrefab, transform.position - new Vector3(1.2f, -1.2f, 0), Quaternion.identity);
+                    shield = Instantiate(ShieldPrefab, transform.position + new Vector3(0.5f, 0, 0), Quaternion.identity);
                 }
             }
             else if (GameManager.instance.isSkillButtonActive)

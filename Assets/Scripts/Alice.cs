@@ -39,13 +39,12 @@ public class Alice : CharacterStats
 
     void Awake()
     {
-        _name = "Alice";
-        _level = 1;
-        _exp = 0;
+        _name = "Alice";        
         _hp = 100;
         _mp = 100;
         _attack = 10;
         _defense = 10;
+        _intell = 10;
         _speed = 90;
     }
 
@@ -92,10 +91,10 @@ public class Alice : CharacterStats
 
                     animator.SetTrigger("Move");
                     transform.position = Vector2.MoveTowards(transform.position,
-                        GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(3.5f, -0.8f), moveSpeed * Time.deltaTime);
+                        GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(1.8f, 0.5f), moveSpeed * Time.deltaTime);
 
-                    if (transform.position == new Vector3((GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].x + 3.5f),
-                        (GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].y - 0.8f), 0))
+                    if (transform.position == new Vector3((GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].x + 1.8f),
+                        (GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].y + 0.5f), 0))
                     {
                         GameManager.instance.isAliceTurn = false;
                         GameManager.instance.isAction = false;
@@ -128,7 +127,7 @@ public class Alice : CharacterStats
                     GameManager.instance.isAction = false;
                     GameManager.instance.isGuardButtonActive = false;
 
-                    shield = Instantiate(ShieldPrefab, transform.position - new Vector3(1.2f, -1.2f, 0), Quaternion.identity);
+                    shield = Instantiate(ShieldPrefab, transform.position, Quaternion.identity);
                 }
             }
             else if (GameManager.instance.isSkillButtonActive)
@@ -249,7 +248,7 @@ public class Alice : CharacterStats
                             {
                                 isSkillInstantiated = true;
                                 healingWind = Instantiate(HealingWindPrefab,
-                                    GameManager.instance.SelectedCharacterPosition - new Vector2(1.2f, -1.65f), Quaternion.identity);
+                                    GameManager.instance.SelectedCharacterPosition + new Vector2(0, 0.25f), Quaternion.identity);
                             }
 
                             if (healingWind.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)

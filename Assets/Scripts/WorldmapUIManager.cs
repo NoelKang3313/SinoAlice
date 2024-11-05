@@ -97,23 +97,44 @@ public class WorldmapUIManager : MonoBehaviour
         CharacterLocationIndex = number;        
     }
 
+    void SwitchCharacterLocation(int oldNum, int newNum)
+    {
+        GameManager.instance.CharacterSelected[CharacterLocationIndex] = GameManager.instance.CharacterSelected[oldNum];
+        GameManager.instance.CharacterSelected[oldNum] = null;
+
+        CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Image>().sprite = CharactersIdle[newNum];
+        CharacterLocationButtons[CharacterLocationIndex].GetComponent<Image>().color = new Color(0, 0, 0, 0);
+
+        CharacterLocationButtons[oldNum].transform.parent.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+        CharacterLocationButtons[oldNum].transform.parent.GetComponent<Image>().sprite = null;
+        CharacterLocationButtons[oldNum].GetComponent<Image>().color = new Color(1, 1, 1, 1);
+    }
+
     void CharacterSelectionButtonClicked(int number)
     {
         SelectedCharacter = CharacterPrefabs[number];
 
         if (GameManager.instance.CharacterSelected[CharacterLocationIndex] == null)
         {
-            for(int i = 0; i < GameManager.instance.CharacterSelected.Length; i++)
+            if(GameManager.instance.CharacterSelected[0] == SelectedCharacter)
             {
-                if (GameManager.instance.CharacterSelected[i] == SelectedCharacter)
-                    break;
-                else
-                {
-                    GameManager.instance.CharacterSelected[CharacterLocationIndex] = SelectedCharacter;
-                    CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                    CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Image>().sprite = CharactersIdle[number];
-                    CharacterLocationButtons[CharacterLocationIndex].GetComponent<Image>().color = new Color(0, 0, 0, 0);
-                }
+                SwitchCharacterLocation(0, number);
+            }
+            else if(GameManager.instance.CharacterSelected[1] == SelectedCharacter)
+            {
+                SwitchCharacterLocation(1, number);
+            }
+            else if(GameManager.instance.CharacterSelected[2] == SelectedCharacter)
+            {
+                SwitchCharacterLocation(2, number);
+            }
+            else
+            {
+                GameManager.instance.CharacterSelected[CharacterLocationIndex] = SelectedCharacter;
+                CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Image>().sprite = CharactersIdle[number];
+                CharacterLocationButtons[CharacterLocationIndex].GetComponent<Image>().color = new Color(0, 0, 0, 0);
             }
         }
         else
@@ -160,7 +181,7 @@ public class WorldmapUIManager : MonoBehaviour
         if(characterCount == 3)
         {            
             TransitionImage.gameObject.SetActive(true);
-            GameManager.instance.isTransition = true;
+            GameManager.instance.isTransition = true;            
         }
         else
         {
@@ -186,6 +207,7 @@ public class WorldmapUIManager : MonoBehaviour
         {
             yield return new WaitForSeconds(2.0f);
 
+            GameManager.instance.isBattleStart = true;
             GameManager.instance.isTransition = false;
             GameManager.instance.LoadScene("Stage1-1");            
         }
