@@ -4,13 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
-{
+{    
     public static GameManager instance;
 
     public bool isTransition;
+    public bool isBattleStart;
 
     [Header("Character Selection")]
-    public GameObject[] CharacterSelected = new GameObject[3];
+    public GameObject[] CharacterSelected = new GameObject[3];    
 
     [Header("Characters Equipment Data")]
     public EquipmentData[] AliceEquipments = new EquipmentData[4];
@@ -60,12 +61,13 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }        
-    }
+    }    
 
     void Update()
     {
         CharacterPosition();
-        
+        StageEnterInstantiateCharacter();
+
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
             isAliceTurn = true;
@@ -78,8 +80,6 @@ public class GameManager : MonoBehaviour
         {
             isSWTurn = true;
         }
-
-        Debug.Log(SceneManager.GetActiveScene().name);
     }
 
     public void LoadScene(string sceneName)
@@ -89,25 +89,38 @@ public class GameManager : MonoBehaviour
 
     void CharacterPosition()
     {        
-        for(int i = 0; i < Characters.Length; i++)
-        {
-            if (Characters[i] != null)
+        for(int i = 0; i < CharacterSelected.Length; i++)
+        {            
+            if (CharacterSelected[i] != null)
             {
-                if (Characters[i].name == "Alice")
+                if (CharacterSelected[i].name == "Alice")
                 {
                     AlicePositionNumber = i;
                 }
-                else if (Characters[i].name == "Gretel")
+                else if (CharacterSelected[i].name == "Gretel")
                 {
                     GretelPositionNumber = i;
                 }
-                else if (Characters[i].name == "Snow White")
+                else if (CharacterSelected[i].name == "Snow White")
                 {
                     SWPositionNumber = i;
                 }
             }
             else
                 break;
+        }
+    }    
+
+    void StageEnterInstantiateCharacter()
+    {
+        if(isBattleStart)
+        {
+            for(int i = 0; i < CharacterSelected.Length; i++)
+            {
+                Characters[i] = Instantiate(CharacterSelected[i], CharacterPositions[i], Quaternion.identity);
+            }
+
+            isBattleStart = false;
         }
     }
 }
