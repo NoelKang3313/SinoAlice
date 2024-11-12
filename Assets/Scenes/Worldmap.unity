@@ -3632,7 +3632,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Stage1Button: {fileID: 1244721594}
   BackgroundGameObject: {fileID: 505479987}
+  WorldBG: {fileID: 21300000, guid: 4e971065cb0874583b16b2de8a9801ad, type: 3}
   StageBG: {fileID: 21300000, guid: 0988202238b4c45289547ad5853e0077, type: 3}
+  ReturnButton: {fileID: 1276047558}
   Stage1_1Button: {fileID: 468560460}
   StagePanel: {fileID: 1638914583}
   StagePanelExitButton: {fileID: 1124707124}

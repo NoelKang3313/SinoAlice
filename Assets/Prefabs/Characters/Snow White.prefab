@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3781496070621557262}
   m_Layer: 0
   m_Name: Snow White
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,12 +121,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: 
-  _level: 0
-  _exp: 0
   _hp: 0
   _mp: 0
   _attack: 0
   _defense: 0
+  _intell: 0
   _speed: 0
   ShieldPrefab: {fileID: 8752544847113877612, guid: 2d155d6c4e1e5483fbd984a70183a0d9, type: 3}
   DoubleSlashPrefab: {fileID: 7633486706821536145, guid: 4e5caf2b3e31b4e469bdba14583a9532, type: 3}

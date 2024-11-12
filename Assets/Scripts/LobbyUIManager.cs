@@ -206,6 +206,7 @@ public class LobbyUIManager : MonoBehaviour
         EquipmentCategories.SetActive(false);
 
         LidShopViewport.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+        LidItemShopContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
     }
 
     // Click Equipment Tab
@@ -218,6 +219,7 @@ public class LobbyUIManager : MonoBehaviour
         LidWeaponShopContent.SetActive(true);
 
         LidShopViewport.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -45);
+        LidWeaponShopContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
     }
 
     // Click Equipment Category Buttons
@@ -233,6 +235,7 @@ public class LobbyUIManager : MonoBehaviour
 
                 LidShopScrollRect.content = LidWeaponShopContent.GetComponent<RectTransform>();
                 LidShopViewport.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -45);
+                LidWeaponShopContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 
                 break;
 
@@ -244,6 +247,7 @@ public class LobbyUIManager : MonoBehaviour
 
                 LidShopScrollRect.content = LidHelmetShopContent.GetComponent<RectTransform>();
                 LidShopViewport.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -45);
+                LidHelmetShopContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 
                 break;
                 
@@ -255,6 +259,7 @@ public class LobbyUIManager : MonoBehaviour
 
                 LidShopScrollRect.content = LidArmorShopContent.GetComponent<RectTransform>();
                 LidShopViewport.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -45);
+                LidArmorShopContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 
                 break;
 
@@ -266,6 +271,7 @@ public class LobbyUIManager : MonoBehaviour
 
                 LidShopScrollRect.content = LidShoeShopContent.GetComponent<RectTransform>();
                 LidShopViewport.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -45);
+                LidShoeShopContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 
                 break;
         }

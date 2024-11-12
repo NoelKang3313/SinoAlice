@@ -7,8 +7,11 @@ public class WorldmapUIManager : MonoBehaviour
 {
     public Button Stage1Button;
     public GameObject BackgroundGameObject;
+    public Sprite WorldBG;
     public Sprite StageBG;
 
+    public Button ReturnButton;
+    private bool isWorldmap;      // Check if current map is worldmap or stage map
     public Button Stage1_1Button;
 
     public GameObject StagePanel;
@@ -34,7 +37,15 @@ public class WorldmapUIManager : MonoBehaviour
 
     void Start()
     {
+        for(int i = 0; i < GameManager.instance.CharacterSelected.Length; i++)
+        {
+            GameManager.instance.CharacterSelected[i] = null;
+        }
+
+        isWorldmap = true;
+
         Stage1Button.onClick.AddListener(Stage1ButtonClicked);
+        ReturnButton.onClick.AddListener(ReturnButtonClicked);
         Stage1_1Button.onClick.AddListener(Stage1_1ButtonClicked);
 
         StagePanelExitButton.onClick.AddListener(StagePanelExitButtonClicked);
@@ -69,6 +80,7 @@ public class WorldmapUIManager : MonoBehaviour
     void Stage1ButtonClicked()
     {
         Stage1Button.gameObject.SetActive(false);
+        isWorldmap = false;
 
         BackgroundGameObject.GetComponent<SpriteRenderer>().sprite = StageBG;
         BackgroundGameObject.transform.localScale = new Vector3(1, 0.53f, 0);
@@ -76,9 +88,28 @@ public class WorldmapUIManager : MonoBehaviour
         Stage1_1Button.gameObject.SetActive(true);
     }
 
+    void ReturnButtonClicked()
+    {
+        if(isWorldmap)
+        {
+            //Return Lobby
+            TransitionImage.gameObject.SetActive(true);
+            GameManager.instance.isTransition = true;   
+        }
+        else
+        {
+            //Return Worldmap
+            BackgroundGameObject.GetComponent<SpriteRenderer>().sprite = WorldBG;
+            BackgroundGameObject.transform.localScale = new Vector3(1.3f, 1, 1);
+
+            isWorldmap = true;
+        }
+    }
+
     void Stage1_1ButtonClicked()
     {
         StagePanel.SetActive(true);
+        ReturnButton.gameObject.SetActive(false);
 
         for(int i = 0; i < EnemyImages.Length; i++)
         {
@@ -88,7 +119,8 @@ public class WorldmapUIManager : MonoBehaviour
 
     void StagePanelExitButtonClicked()
     {
-        StagePanel.SetActive(false);        
+        StagePanel.SetActive(false);
+        ReturnButton.gameObject.SetActive(true);
     }
 
     void CharacterLocationButtonClicked(int number)
@@ -207,9 +239,17 @@ public class WorldmapUIManager : MonoBehaviour
         {
             yield return new WaitForSeconds(2.0f);
 
-            GameManager.instance.isBattleStart = true;
             GameManager.instance.isTransition = false;
-            GameManager.instance.LoadScene("Stage1-1");            
+
+            if(isWorldmap)
+            {
+                GameManager.instance.LoadScene("Lobby");
+            }
+            else
+            {
+                GameManager.instance.isBattleStart = true;
+                GameManager.instance.LoadScene("Stage1-1");
+            }
         }
     }
 }
