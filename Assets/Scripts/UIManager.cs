@@ -6,6 +6,14 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    public GameObject HeavenOrHell;
+    private Animator heavenOrHellAnimator;
+    public GameObject LetsRock;
+    private Animator letsRockAnimator;
+
+    public AudioSource AudioSource;
+    public AudioClip LetsRockAudioClip;
+
     public GameObject ActionButtons;
     private Animator actionButtonsAnimator;
 
@@ -41,6 +49,9 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
+        heavenOrHellAnimator = HeavenOrHell.GetComponent<Animator>();
+        letsRockAnimator = LetsRock.GetComponent<Animator>();
+
         actionButtonsAnimator = ActionButtons.GetComponent<Animator>();
 
         AttackButton.onClick.AddListener(AttackButtonClicked);
@@ -83,7 +94,23 @@ public class UIManager : MonoBehaviour
             }
         }
 
+        BattleIntro();
         ActionButtonsActivate();
+    }
+
+    void BattleIntro()
+    {
+        if(heavenOrHellAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        {
+            HeavenOrHell.SetActive(false);
+            LetsRock.SetActive(true);
+            AudioSource.PlayOneShot(LetsRockAudioClip);
+        }
+
+        if (LetsRock.activeSelf && letsRockAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        {
+            LetsRock.SetActive(false);
+        }
     }
 
     void ActionButtonsActivate()
