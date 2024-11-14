@@ -11,8 +11,12 @@ public class UIManager : MonoBehaviour
     public GameObject LetsRock;
     private Animator letsRockAnimator;
 
+    public GameObject Transition;
+    public Animator TransitionAnimator;
+
     public AudioSource AudioSource;
     public AudioClip LetsRockAudioClip;
+    public AudioClip BattleBGM;
 
     public GameObject ActionButtons;
     private Animator actionButtonsAnimator;
@@ -46,6 +50,16 @@ public class UIManager : MonoBehaviour
     public GameObject ItemButtonViewport;
     public GameObject ItemViewportContent;
 
+    public Button PauseButton;
+    public GameObject PausePanel;
+    public Button RestartButton;
+    public GameObject RestartPanel;
+    public Button RestartConfirmButton;
+    public Button RestartCancelButton;
+    public Button SettingButton;
+    public Button SettingReturnButton;
+    public GameObject SettingPanel;
+    public Button ReturnButton;
 
     void Start()
     {
@@ -78,6 +92,14 @@ public class UIManager : MonoBehaviour
 
             SkillButtons[i].onClick.AddListener(() => OnSkillButtonClicked(number));
         }
+
+        PauseButton.onClick.AddListener(PauseButtonClicked);
+        RestartButton.onClick.AddListener(RestartButtonClicked);
+        RestartConfirmButton.onClick.AddListener(RestartConfirmButtonClicked);
+        RestartCancelButton.onClick.AddListener(RestartCancelButtonClicked);
+        SettingButton.onClick.AddListener(SettingButtonClicked);
+        SettingReturnButton.onClick.AddListener(SettingReturnButtonClicked);
+        ReturnButton.onClick.AddListener(ReturnButtonClicked);
     }
     
     void Update()
@@ -96,6 +118,7 @@ public class UIManager : MonoBehaviour
 
         BattleIntro();
         ActionButtonsActivate();
+        StartCoroutine(RestartStage());
     }
 
     void BattleIntro()
@@ -110,6 +133,12 @@ public class UIManager : MonoBehaviour
         if (LetsRock.activeSelf && letsRockAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
             LetsRock.SetActive(false);
+            Transition.SetActive(false);
+            PauseButton.gameObject.SetActive(true);
+
+            AudioSource.PlayOneShot(BattleBGM);
+            AudioSource.loop = true;
+            AudioSource.volume = 0.5f;
         }
     }
 
@@ -396,6 +425,46 @@ public class UIManager : MonoBehaviour
         ResetViewportPosition();
     }
 
+    void PauseButtonClicked()
+    {
+        PausePanel.SetActive(true);
+        PauseButton.gameObject.SetActive(false);
+        Time.timeScale = 0;
+    }
+
+    void RestartButtonClicked()
+    {
+        RestartPanel.SetActive(true);
+    }
+
+    void RestartConfirmButtonClicked()
+    {
+        Transition.SetActive(true);
+        TransitionAnimator.SetBool("isTransition", true);
+    }
+
+    void RestartCancelButtonClicked()
+    {
+        RestartPanel.SetActive(false);
+    }
+
+    void SettingButtonClicked()
+    {
+        SettingPanel.SetActive(true);
+    }
+
+    void SettingReturnButtonClicked()
+    {
+        SettingPanel.SetActive(false);
+    }
+
+    void ReturnButtonClicked()
+    {
+        PausePanel.SetActive(false);
+        PauseButton.gameObject.SetActive(true);
+        Time.timeScale = 1;
+    }
+
     void ResetViewportPosition()
     {
         if(SkillButtonViewport.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Viewport Idle") ||
@@ -407,6 +476,18 @@ public class UIManager : MonoBehaviour
             ItemButtonViewport.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("-Viewport"))
         {
             ItemViewportContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+        }
+    }
+
+    IEnumerator RestartStage()
+    {
+        if (TransitionAnimator.GetCurrentAnimatorStateInfo(0).IsName("-Stage Transition") &&
+            TransitionAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        {
+            yield return new WaitForSeconds(2.0f);
+
+            GameManager.instance.isBattleStart = true;
+            GameManager.instance.LoadScene("Stage1-1");
         }
     }
 }

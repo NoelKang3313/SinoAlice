@@ -90,10 +90,10 @@ public class SnowWhite : CharacterStats
 
                     animator.SetTrigger("Move");
                     transform.position = Vector2.MoveTowards(transform.position,
-                        GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(4.0f, -0.8f), moveSpeed * Time.deltaTime);
+                        GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(2.5f, 0.5f), moveSpeed * Time.deltaTime);
 
-                    if (transform.position == new Vector3((GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].x + 4.0f),
-                        (GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].y - 0.8f), 0))
+                    if (transform.position == new Vector3((GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].x + 2.5f),
+                        (GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].y + 0.5f), 0))
                     {
                         GameManager.instance.isSWTurn = false;
                         GameManager.instance.isAction = false;

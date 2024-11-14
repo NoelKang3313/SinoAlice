@@ -90,10 +90,10 @@ public class Gretel : CharacterStats
 
                     animator.SetTrigger("Move");
                     transform.position = Vector2.MoveTowards(transform.position,
-                        GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(3.8f, -1.0f), moveSpeed * Time.deltaTime);
+                        GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(2.5f, 0.5f), moveSpeed * Time.deltaTime);
 
-                    if (transform.position == new Vector3((GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].x + 3.8f),
-                        (GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].y - 1.0f), 0))
+                    if (transform.position == new Vector3((GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].x + 2.5f),
+                        (GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].y + 0.5f), 0))
                     {
                         GameManager.instance.isGretelTurn = false;
                         GameManager.instance.isAction = false;
