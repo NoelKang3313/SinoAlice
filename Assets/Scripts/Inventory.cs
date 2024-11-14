@@ -8,10 +8,5 @@ public class Inventory : MonoBehaviour
     public List<EquipmentData> Weapons = new List<EquipmentData>();
     public List<EquipmentData> Helmets = new List<EquipmentData>();
     public List<EquipmentData> Armors = new List<EquipmentData>();
-    public List<EquipmentData> Shoes = new List<EquipmentData>();
-
-    void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
+    public List<EquipmentData> Shoes = new List<EquipmentData>();    
 }

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {    
     public static GameManager instance;
+    public Inventory Inventory;
 
     public bool isTransition;
     public bool isBattleStart;
@@ -56,11 +57,13 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(Inventory.gameObject);
         }
         else
         {
             Destroy(this.gameObject);
-        }        
+            Destroy(Inventory.gameObject);
+        }
     }    
 
     void Update()

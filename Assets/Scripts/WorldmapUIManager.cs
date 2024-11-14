@@ -30,6 +30,7 @@ public class WorldmapUIManager : MonoBehaviour
     public Image[] EnemyImages = new Image[4];
     public Sprite RatSprite;
 
+    [SerializeField]
     private int characterCount;
     public Button BattleStartButton;
 
@@ -37,10 +38,10 @@ public class WorldmapUIManager : MonoBehaviour
 
     void Start()
     {
-        for(int i = 0; i < GameManager.instance.CharacterSelected.Length; i++)
-        {
-            GameManager.instance.CharacterSelected[i] = null;
-        }
+        //for(int i = 0; i < GameManager.instance.CharacterSelected.Length; i++)
+        //{
+        //    GameManager.instance.CharacterSelected[i] = null;
+        //}
 
         isWorldmap = true;
 
@@ -63,6 +64,35 @@ public class WorldmapUIManager : MonoBehaviour
         }
 
         BattleStartButton.onClick.AddListener(BattleStartButtonClicked);
+
+        for (int i = 0; i < GameManager.instance.CharacterSelected.Length; i++)
+        {
+            if (GameManager.instance.CharacterSelected[i] == null)
+            {
+                break;
+            }
+            else
+            {
+                if (GameManager.instance.CharacterSelected[i].name == "Alice")
+                {
+                    CharacterLocationButtons[i].transform.parent.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                    CharacterLocationButtons[i].transform.parent.GetComponent<Image>().sprite = CharactersIdle[0];
+                    CharacterLocationButtons[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                }
+                else if (GameManager.instance.CharacterSelected[i].name == "Gretel")
+                {
+                    CharacterLocationButtons[i].transform.parent.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                    CharacterLocationButtons[i].transform.parent.GetComponent<Image>().sprite = CharactersIdle[1];
+                    CharacterLocationButtons[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                }
+                else if (GameManager.instance.CharacterSelected[i].name == "Snow White")
+                {
+                    CharacterLocationButtons[i].transform.parent.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                    CharacterLocationButtons[i].transform.parent.GetComponent<Image>().sprite = CharactersIdle[2];
+                    CharacterLocationButtons[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                }
+            }
+        }
     }
 
     void Update()
