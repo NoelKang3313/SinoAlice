@@ -9,6 +9,11 @@ public class LobbyUIManager : MonoBehaviour
     public UIInventory UIInventory;
     public UICharacterInfo UICharacterInfo;
 
+    public AudioSource SystemAudioSource;
+    public AudioClip ButtonAudioClip;
+    public AudioClip ConfirmAudioClip;
+    public AudioClip CancelAudioClip;
+
     public Image TransitionImage;
 
     public GameObject LobbyPanel;
@@ -67,6 +72,13 @@ public class LobbyUIManager : MonoBehaviour
     public EquipmentData[] ArmorDatas = new EquipmentData[10];
     public Button[] LidShopShoePurchaseButtons = new Button[10];
     public EquipmentData[] ShoeDatas = new EquipmentData[10];
+    private bool isItemPurchaseButtonPressed;
+    private bool isEquipmentPurchaseButtonPresed;
+    [SerializeField] private ItemData purchaseItemData;
+    [SerializeField] private EquipmentData purchaseEquipmentData;
+    public GameObject PurchasePanel;
+    public Button PurchaseConfirmButton;
+    public Button PurchaseCancelButton;
 
     void Start()
     {
@@ -120,6 +132,9 @@ public class LobbyUIManager : MonoBehaviour
         {
             ItemDatas[i].ItemAmount = 0;
         }
+
+        PurchaseConfirmButton.onClick.AddListener(PurchaseConfirmButtonClicked);
+        PurchaseCancelButton.onClick.AddListener(PurchaseCancelButtonClicked);
     }
 
     void Update()
@@ -207,6 +222,8 @@ public class LobbyUIManager : MonoBehaviour
 
         LidShopViewport.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
         LidItemShopContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+
+        SystemAudioSource.PlayOneShot(ButtonAudioClip);
     }
 
     // Click Equipment Tab
@@ -220,6 +237,8 @@ public class LobbyUIManager : MonoBehaviour
 
         LidShopViewport.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -45);
         LidWeaponShopContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+
+        SystemAudioSource.PlayOneShot(ButtonAudioClip);
     }
 
     // Click Equipment Category Buttons
@@ -237,6 +256,8 @@ public class LobbyUIManager : MonoBehaviour
                 LidShopViewport.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -45);
                 LidWeaponShopContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 
+                SystemAudioSource.PlayOneShot(ButtonAudioClip);
+
                 break;
 
             case 1:
@@ -248,6 +269,8 @@ public class LobbyUIManager : MonoBehaviour
                 LidShopScrollRect.content = LidHelmetShopContent.GetComponent<RectTransform>();
                 LidShopViewport.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -45);
                 LidHelmetShopContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+
+                SystemAudioSource.PlayOneShot(ButtonAudioClip);
 
                 break;
                 
@@ -261,6 +284,8 @@ public class LobbyUIManager : MonoBehaviour
                 LidShopViewport.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -45);
                 LidArmorShopContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 
+                SystemAudioSource.PlayOneShot(ButtonAudioClip);
+
                 break;
 
             case 3:
@@ -272,6 +297,8 @@ public class LobbyUIManager : MonoBehaviour
                 LidShopScrollRect.content = LidShoeShopContent.GetComponent<RectTransform>();
                 LidShopViewport.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -45);
                 LidShoeShopContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+
+                SystemAudioSource.PlayOneShot(ButtonAudioClip);
 
                 break;
         }
@@ -304,140 +331,219 @@ public class LobbyUIManager : MonoBehaviour
     // Purchase Item
     void LidShopItemPurchaseButtonClicked(int number)
     {
-        ItemData purchasedItem = ItemDatas[number];
-        Inventory.Items.Add(purchasedItem);
-        purchasedItem.ItemAmount++;
+        isItemPurchaseButtonPressed = true;
+        isEquipmentPurchaseButtonPresed = false;
 
-        CheckItem();
+        PurchasePanel.SetActive(true);
 
-        Button ItemSlot = Instantiate(UIInventory.UIItem, UIInventory.InventoryItemContent.transform.position, Quaternion.identity);
-        ItemSlot.transform.SetParent(UIInventory.InventoryItemContent.transform);
+        purchaseItemData = ItemDatas[number];
 
-        ItemSlot.GetComponent<UIItem>().ItemImage.sprite = purchasedItem.ItemSprite;
-        ItemSlot.GetComponent<UIItem>().ItemAmount.text = purchasedItem.ItemAmount.ToString();
-        ItemSlot.GetComponent<UIItem>().ItemData = purchasedItem;
-
-        UIInventory.UIItems.Add(ItemSlot);
-
-        CheckUIItem();
-    }
+        SystemAudioSource.PlayOneShot(ButtonAudioClip);
+    }    
 
     // Purchase Weapon
     void LidShopWeaponPurchaseButtonClicked(int number)
     {
-        EquipmentData purchasedEquipment = WeaponDatas[number];
-        Inventory.Weapons.Add(purchasedEquipment);
-        purchasedEquipment.EquipmentAmount++;
+        isItemPurchaseButtonPressed = false;
+        isEquipmentPurchaseButtonPresed = true;
 
-        CheckEquipment();
+        PurchasePanel.SetActive(true);
 
-        Button EquipmentSlot = Instantiate(UIInventory.UIEquipment, UIInventory.InventoryWeaponContent.transform.position, Quaternion.identity);
-        EquipmentSlot.transform.SetParent(UIInventory.InventoryWeaponContent.transform);
+        purchaseEquipmentData = WeaponDatas[number];
 
-        EquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchasedEquipment.EquipmentSprite;
-        EquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchasedEquipment.EquipmentAmount.ToString();
-        EquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchasedEquipment;
-
-        Button CEquipmentSlot = Instantiate(UICharacterInfo.UICEquipment, UICharacterInfo.WeaponsContent.transform.position, Quaternion.identity);
-        CEquipmentSlot.transform.SetParent(UICharacterInfo.WeaponsContent.transform);
-
-        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = purchasedEquipment.EquipmentSprite;        
-        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = purchasedEquipment;
-        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = purchasedEquipment.EquipmentAmount;
-
-        UIInventory.UIEquipments.Add(EquipmentSlot);
-        UICharacterInfo.UIWeapons.Add(CEquipmentSlot);
-
-        CheckUIEquipment();
+        SystemAudioSource.PlayOneShot(ButtonAudioClip);
     }
 
     // Purchase Helmet
     void LidShopHelmetPurchaseButtonClicked(int number)
     {
-        EquipmentData purchasedEquipment = HelmetDatas[number];
-        Inventory.Helmets.Add(purchasedEquipment);
-        purchasedEquipment.EquipmentAmount++;
+        isItemPurchaseButtonPressed = false;
+        isEquipmentPurchaseButtonPresed = true;
 
-        CheckEquipment();
+        PurchasePanel.SetActive(true);
 
-        Button EquipmentSlot = Instantiate(UIInventory.UIEquipment, UIInventory.InventoryHelmetContent.transform.position, Quaternion.identity);
-        EquipmentSlot.transform.SetParent(UIInventory.InventoryHelmetContent.transform);
+        purchaseEquipmentData = HelmetDatas[number];
 
-        EquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchasedEquipment.EquipmentSprite;
-        EquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchasedEquipment.EquipmentAmount.ToString();
-        EquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchasedEquipment;
-
-        Button CEquipmentSlot = Instantiate(UICharacterInfo.UICEquipment, UICharacterInfo.HelmetsContent.transform.position, Quaternion.identity);
-        CEquipmentSlot.transform.SetParent(UICharacterInfo.HelmetsContent.transform);
-
-        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = purchasedEquipment.EquipmentSprite;                
-        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = purchasedEquipment;
-        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = purchasedEquipment.EquipmentAmount;
-
-        UIInventory.UIEquipments.Add(EquipmentSlot);
-        UICharacterInfo.UIHelmets.Add(CEquipmentSlot);
-
-        CheckUIEquipment();
+        SystemAudioSource.PlayOneShot(ButtonAudioClip);
     }
 
     // Purchase Armor
     void LidShopArmorPurchaseButtonClicked(int number)
     {
-        EquipmentData purchasedEquipment = ArmorDatas[number];
-        Inventory.Armors.Add(purchasedEquipment);
-        purchasedEquipment.EquipmentAmount++;
+        isItemPurchaseButtonPressed = false;
+        isEquipmentPurchaseButtonPresed = true;
 
-        CheckEquipment();
+        PurchasePanel.SetActive(true);
 
-        Button EquipmentSlot = Instantiate(UIInventory.UIEquipment, UIInventory.InventoryArmorContent.transform.position, Quaternion.identity);
-        EquipmentSlot.transform.SetParent(UIInventory.InventoryArmorContent.transform);
+        purchaseEquipmentData = ArmorDatas[number];
 
-        EquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchasedEquipment.EquipmentSprite;
-        EquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchasedEquipment.EquipmentAmount.ToString();
-        EquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchasedEquipment;
-
-        Button CEquipmentSlot = Instantiate(UICharacterInfo.UICEquipment, UICharacterInfo.ArmorsContent.transform.position, Quaternion.identity);
-        CEquipmentSlot.transform.SetParent(UICharacterInfo.ArmorsContent.transform);
-
-        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = purchasedEquipment.EquipmentSprite;        
-        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = purchasedEquipment;
-        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = purchasedEquipment.EquipmentAmount;
-
-        UIInventory.UIEquipments.Add(EquipmentSlot);
-        UICharacterInfo.UIArmors.Add(CEquipmentSlot);
-
-        CheckUIEquipment();
+        SystemAudioSource.PlayOneShot(ButtonAudioClip);
     }
 
     // Purchase Shoe
     void LidShopShoePurchaseButtonClicked(int number)
     {
-        EquipmentData purchasedEquipment = ShoeDatas[number];
-        Inventory.Shoes.Add(purchasedEquipment);
-        purchasedEquipment.EquipmentAmount++;
+        isItemPurchaseButtonPressed = false;
+        isEquipmentPurchaseButtonPresed = true;
 
-        CheckEquipment();
+        PurchasePanel.SetActive(true);
 
-        Button EquipmentSlot = Instantiate(UIInventory.UIEquipment, UIInventory.InventoryShoeContent.transform.position, Quaternion.identity);
-        EquipmentSlot.transform.SetParent(UIInventory.InventoryShoeContent.transform);
+        purchaseEquipmentData = ShoeDatas[number];
 
-        EquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchasedEquipment.EquipmentSprite;
-        EquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchasedEquipment.EquipmentAmount.ToString();
-        EquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchasedEquipment;
-
-        Button CEquipmentSlot = Instantiate(UICharacterInfo.UICEquipment, UICharacterInfo.ShoesContent.transform.position, Quaternion.identity);
-        CEquipmentSlot.transform.SetParent(UICharacterInfo.ShoesContent.transform);
-
-        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = purchasedEquipment.EquipmentSprite;                
-        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = purchasedEquipment;
-        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = purchasedEquipment.EquipmentAmount;
-
-        UIInventory.UIEquipments.Add(EquipmentSlot);
-        UICharacterInfo.UIShoes.Add(CEquipmentSlot);
-
-        CheckUIEquipment();
+        SystemAudioSource.PlayOneShot(ButtonAudioClip);
     }
 
+    // Confirm purchasing
+    void PurchaseConfirmButtonClicked()
+    {
+        if (isItemPurchaseButtonPressed && !isEquipmentPurchaseButtonPresed)
+        {
+            Inventory.Items.Add(purchaseItemData);
+            purchaseItemData.ItemAmount++;
+
+            CheckItem();
+
+            Button ItemSlot = Instantiate(UIInventory.UIItem, UIInventory.InventoryItemContent.transform.position, Quaternion.identity);
+            ItemSlot.transform.SetParent(UIInventory.InventoryItemContent.transform);
+
+            ItemSlot.GetComponent<UIItem>().ItemImage.sprite = purchaseItemData.ItemSprite;
+            ItemSlot.GetComponent<UIItem>().ItemAmount.text = purchaseItemData.ItemAmount.ToString();
+            ItemSlot.GetComponent<UIItem>().ItemData = purchaseItemData;
+
+            UIInventory.UIItems.Add(ItemSlot);
+
+            CheckUIItem();
+
+            PurchasePanel.SetActive(false);
+        }
+        else if (!isItemPurchaseButtonPressed && isEquipmentPurchaseButtonPresed)
+        {
+            if(purchaseEquipmentData.EquipmentCategory == "Weapon")
+            {
+                Inventory.Weapons.Add(purchaseEquipmentData);
+                purchaseEquipmentData.EquipmentAmount++;
+
+                CheckEquipment();
+
+                Button EquipmentSlot = Instantiate(UIInventory.UIEquipment, UIInventory.InventoryWeaponContent.transform.position, Quaternion.identity);
+                EquipmentSlot.transform.SetParent(UIInventory.InventoryWeaponContent.transform);
+
+                EquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
+                EquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchaseEquipmentData.EquipmentAmount.ToString();
+                EquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchaseEquipmentData;
+
+                Button CEquipmentSlot = Instantiate(UICharacterInfo.UICEquipment, UICharacterInfo.WeaponsContent.transform.position, Quaternion.identity);
+                CEquipmentSlot.transform.SetParent(UICharacterInfo.WeaponsContent.transform);
+
+                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
+                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = purchaseEquipmentData;
+                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = purchaseEquipmentData.EquipmentAmount;
+
+                UIInventory.UIEquipments.Add(EquipmentSlot);
+                UICharacterInfo.UIWeapons.Add(CEquipmentSlot);
+
+                CheckUIEquipment();
+
+                PurchasePanel.SetActive(false);
+            }
+            else if(purchaseEquipmentData.EquipmentCategory == "Helmet")
+            {
+                Inventory.Helmets.Add(purchaseEquipmentData);
+                purchaseEquipmentData.EquipmentAmount++;
+
+                CheckEquipment();
+
+                Button EquipmentSlot = Instantiate(UIInventory.UIEquipment, UIInventory.InventoryHelmetContent.transform.position, Quaternion.identity);
+                EquipmentSlot.transform.SetParent(UIInventory.InventoryHelmetContent.transform);
+
+                EquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
+                EquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchaseEquipmentData.EquipmentAmount.ToString();
+                EquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchaseEquipmentData;
+
+                Button CEquipmentSlot = Instantiate(UICharacterInfo.UICEquipment, UICharacterInfo.HelmetsContent.transform.position, Quaternion.identity);
+                CEquipmentSlot.transform.SetParent(UICharacterInfo.HelmetsContent.transform);
+
+                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
+                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = purchaseEquipmentData;
+                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = purchaseEquipmentData.EquipmentAmount;
+
+                UIInventory.UIEquipments.Add(EquipmentSlot);
+                UICharacterInfo.UIHelmets.Add(CEquipmentSlot);
+
+                CheckUIEquipment();
+
+                PurchasePanel.SetActive(false);
+            }
+            else if(purchaseEquipmentData.EquipmentCategory == "Armor")
+            {
+                Inventory.Armors.Add(purchaseEquipmentData);
+                purchaseEquipmentData.EquipmentAmount++;
+
+                CheckEquipment();
+
+                Button EquipmentSlot = Instantiate(UIInventory.UIEquipment, UIInventory.InventoryArmorContent.transform.position, Quaternion.identity);
+                EquipmentSlot.transform.SetParent(UIInventory.InventoryArmorContent.transform);
+
+                EquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
+                EquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchaseEquipmentData.EquipmentAmount.ToString();
+                EquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchaseEquipmentData;
+
+                Button CEquipmentSlot = Instantiate(UICharacterInfo.UICEquipment, UICharacterInfo.ArmorsContent.transform.position, Quaternion.identity);
+                CEquipmentSlot.transform.SetParent(UICharacterInfo.ArmorsContent.transform);
+
+                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
+                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = purchaseEquipmentData;
+                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = purchaseEquipmentData.EquipmentAmount;
+
+                UIInventory.UIEquipments.Add(EquipmentSlot);
+                UICharacterInfo.UIArmors.Add(CEquipmentSlot);
+
+                CheckUIEquipment();
+
+                PurchasePanel.SetActive(false);
+            }
+            else if(purchaseEquipmentData.EquipmentCategory == "Shoe")
+            {
+                Inventory.Shoes.Add(purchaseEquipmentData);
+                purchaseEquipmentData.EquipmentAmount++;
+
+                CheckEquipment();
+
+                Button EquipmentSlot = Instantiate(UIInventory.UIEquipment, UIInventory.InventoryShoeContent.transform.position, Quaternion.identity);
+                EquipmentSlot.transform.SetParent(UIInventory.InventoryShoeContent.transform);
+
+                EquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
+                EquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchaseEquipmentData.EquipmentAmount.ToString();
+                EquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchaseEquipmentData;
+
+                Button CEquipmentSlot = Instantiate(UICharacterInfo.UICEquipment, UICharacterInfo.ShoesContent.transform.position, Quaternion.identity);
+                CEquipmentSlot.transform.SetParent(UICharacterInfo.ShoesContent.transform);
+
+                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
+                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = purchaseEquipmentData;
+                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = purchaseEquipmentData.EquipmentAmount;
+
+                UIInventory.UIEquipments.Add(EquipmentSlot);
+                UICharacterInfo.UIShoes.Add(CEquipmentSlot);
+
+                CheckUIEquipment();
+
+                PurchasePanel.SetActive(false);
+            }
+        }
+
+        SystemAudioSource.PlayOneShot(ConfirmAudioClip);
+    }
+
+    // Cancel purchasing
+    void PurchaseCancelButtonClicked()
+    {
+        PurchasePanel.SetActive(false);
+
+        SystemAudioSource.PlayOneShot(CancelAudioClip);
+    }
+
+    // Check if current item is already purchased, if so, remove item
     void CheckItem()
     {
         for (int i = 0; i < Inventory.Items.Count; i++)
@@ -452,6 +558,7 @@ public class LobbyUIManager : MonoBehaviour
         }
     }
 
+    // Check if current item is already purchased, if so, remove item UI
     void CheckUIItem()
     {
         for (int i = 0; i < UIInventory.UIItems.Count; i++)
@@ -467,6 +574,7 @@ public class LobbyUIManager : MonoBehaviour
         }
     }
 
+    // Check if current equipment is already purchased, if so, remove equipment
     void CheckEquipment()
     {
         for (int i = 0; i < Inventory.Weapons.Count; i++)
@@ -503,6 +611,7 @@ public class LobbyUIManager : MonoBehaviour
         }
     }
 
+    // Check if current equipment is already purchased, if so, remove equipment UI
     void CheckUIEquipment()
     {
         for (int i = 0; i < UIInventory.UIEquipments.Count; i++)
