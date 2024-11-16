@@ -18,6 +18,18 @@ public class UIManager : MonoBehaviour
     public AudioClip LetsRockAudioClip;
     public AudioClip BattleBGM;
 
+    public GameObject GaugePanel;
+    public Image CharacterImage;
+    public TextMeshProUGUI CharacterName;
+    public Image CharacterHPGauge;
+    public Image CharacterMPGauge;
+    public TextMeshProUGUI CurrentHPText;
+    public TextMeshProUGUI CurrentMPText;
+
+    public Sprite AliceSprite;
+    public Sprite GretelSprite;
+    public Sprite SnowWhiteSprite;
+
     public GameObject ActionButtons;
     private Animator actionButtonsAnimator;
 
@@ -117,6 +129,7 @@ public class UIManager : MonoBehaviour
         }
 
         BattleIntro();
+        SetGauge();
         ActionButtonsActivate();
         StartCoroutine(RestartStage());
     }
@@ -139,6 +152,8 @@ public class UIManager : MonoBehaviour
             AudioSource.PlayOneShot(BattleBGM);
             AudioSource.loop = true;
             AudioSource.volume = 0.5f;
+
+            GaugePanel.SetActive(true);
         }
     }
 
@@ -428,8 +443,7 @@ public class UIManager : MonoBehaviour
     void PauseButtonClicked()
     {
         PausePanel.SetActive(true);
-        PauseButton.gameObject.SetActive(false);
-        Time.timeScale = 0;
+        PauseButton.gameObject.SetActive(false);       
     }
 
     void RestartButtonClicked()
@@ -461,8 +475,7 @@ public class UIManager : MonoBehaviour
     void ReturnButtonClicked()
     {
         PausePanel.SetActive(false);
-        PauseButton.gameObject.SetActive(true);
-        Time.timeScale = 1;
+        PauseButton.gameObject.SetActive(true);        
     }
 
     void ResetViewportPosition()
@@ -479,6 +492,37 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    void SetGauge()
+    {
+        if(GameManager.instance.isAliceTurn)
+        {
+            CharacterImage.sprite = AliceSprite;
+            CharacterName.text = GameManager.instance.AlicePrefab.GetComponent<Alice>().Name;
+            CharacterHPGauge.fillAmount = GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentHP / GameManager.instance.AlicePrefab.GetComponent<Alice>().HP;
+            CharacterMPGauge.fillAmount = GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP / GameManager.instance.AlicePrefab.GetComponent<Alice>().MP;
+            CurrentHPText.text = GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentHP.ToString() + "/" + GameManager.instance.AlicePrefab.GetComponent<Alice>().HP.ToString();
+            CurrentMPText.text = GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP.ToString() + "/" + GameManager.instance.AlicePrefab.GetComponent<Alice>().MP.ToString();
+        }
+        else if(GameManager.instance.isGretelTurn)
+        {
+            CharacterImage.sprite = GretelSprite;
+            CharacterName.text = GameManager.instance.GretelPrefab.GetComponent<Gretel>().Name;
+            CharacterHPGauge.fillAmount = GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentHP / GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP;
+            CharacterMPGauge.fillAmount = GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP / GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP;
+            CurrentHPText.text = GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentHP.ToString() + "/" + GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP.ToString();
+            CurrentMPText.text = GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP.ToString() + "/" + GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP.ToString();
+        }
+        else if(GameManager.instance.isSWTurn)
+        {
+            CharacterImage.sprite = SnowWhiteSprite;
+            CharacterName.text = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().Name;
+            CharacterHPGauge.fillAmount = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP / GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP;
+            CharacterMPGauge.fillAmount = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP / GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP;
+            CurrentHPText.text = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP.ToString() + "/" + GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP.ToString();
+            CurrentMPText.text = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP.ToString() + "/" + GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP.ToString();
+        }
+    }
+
     IEnumerator RestartStage()
     {
         if (TransitionAnimator.GetCurrentAnimatorStateInfo(0).IsName("-Stage Transition") &&
@@ -486,8 +530,10 @@ public class UIManager : MonoBehaviour
         {
             yield return new WaitForSeconds(2.0f);
 
-            GameManager.instance.isBattleStart = true;
-            GameManager.instance.LoadScene("Stage1-1");
+            //GameManager.instance.isBattleStart = true;
+            //GameManager.instance.LoadScene("Stage1-1");
+            GameManager.instance.isBattleStart = false;
+            GameManager.instance.LoadScene("Lobby");
         }
     }
 }

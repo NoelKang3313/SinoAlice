@@ -120,13 +120,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 996203da179e04e4bb270fe1d1936b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 
-  _hp: 0
-  _mp: 0
-  _attack: 0
-  _defense: 0
-  _intell: 0
-  _speed: 0
+  Name: Alice
+  HP: 100
+  CurrentHP: 100
+  MP: 100
+  CurrentMP: 100
+  Attack: 10
+  Defense: 10
+  Intell: 10
+  Speed: 90
   ShieldPrefab: {fileID: 8752544847113877612, guid: 2d155d6c4e1e5483fbd984a70183a0d9, type: 3}
   GlacialArrowPrefab: {fileID: 1879472217350180096, guid: 074e14fa7287a4a84aa955fac3f91a24, type: 3}
   AquaBombPrefab: {fileID: 5088565897292877142, guid: d703f28f150aa48549d4745ae3c4fc41, type: 3}

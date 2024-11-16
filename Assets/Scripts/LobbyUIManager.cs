@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class LobbyUIManager : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class LobbyUIManager : MonoBehaviour
     public AudioClip ButtonAudioClip;
     public AudioClip ConfirmAudioClip;
     public AudioClip CancelAudioClip;
+
+    [Header("Character Prefab")]
+    public GameObject AlicePrefab;
+    public GameObject GretelPrefab;
+    public GameObject SnowWhitePrefab;
 
     public Image TransitionImage;
 
@@ -80,6 +86,24 @@ public class LobbyUIManager : MonoBehaviour
     public Button PurchaseConfirmButton;
     public Button PurchaseCancelButton;
 
+    [Header("Alice Gauge")]
+    public Image AliceHPGauge;
+    public Image AliceMPGauge;
+    public TextMeshProUGUI AliceHPText;
+    public TextMeshProUGUI AliceMPText;
+
+    [Header("Gretel Gauge")]
+    public Image GretelHPGauge;
+    public Image GretelMPGauge;
+    public TextMeshProUGUI GretelHPText;
+    public TextMeshProUGUI GretelMPText;
+
+    [Header("Snow White Gauge")]
+    public Image SWHPGauge;
+    public Image SWMPGauge;
+    public TextMeshProUGUI SWHPText;
+    public TextMeshProUGUI SWMPText;
+
     void Start()
     {
         CharlotteButton.onClick.AddListener(CharlotteButtonClicked);
@@ -135,6 +159,8 @@ public class LobbyUIManager : MonoBehaviour
 
         PurchaseConfirmButton.onClick.AddListener(PurchaseConfirmButtonClicked);
         PurchaseCancelButton.onClick.AddListener(PurchaseCancelButtonClicked);
+
+        SetGaugeUI();
     }
 
     void Update()
@@ -146,7 +172,7 @@ public class LobbyUIManager : MonoBehaviour
         else
         {
             LobbyPanel.SetActive(false);
-        }
+        }        
 
         ActivateTransition(1.0f);
 
@@ -739,6 +765,18 @@ public class LobbyUIManager : MonoBehaviour
     {
         CharlotteConfirmButton.gameObject.SetActive(false);
         CharlotteCancelButton.gameObject.SetActive(false);
+    }
+
+    void SetGaugeUI()
+    {
+        AliceHPText.text = AlicePrefab.GetComponent<Alice>().CurrentHP.ToString() + "/" + AlicePrefab.GetComponent<Alice>().HP.ToString();
+        AliceMPText.text = AlicePrefab.GetComponent<Alice>().CurrentMP.ToString() + "/" + AlicePrefab.GetComponent<Alice>().MP.ToString();
+
+        GretelHPText.text = GretelPrefab.GetComponent<Gretel>().CurrentHP.ToString() + "/" + GretelPrefab.GetComponent<Gretel>().HP.ToString();
+        GretelMPText.text = GretelPrefab.GetComponent<Gretel>().CurrentMP.ToString() + "/" + GretelPrefab.GetComponent<Gretel>().MP.ToString();
+
+        SWHPText.text = SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP.ToString() + "/" + SnowWhitePrefab.GetComponent<SnowWhite>().HP.ToString();
+        SWMPText.text = SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP.ToString() + "/" + SnowWhitePrefab.GetComponent<SnowWhite>().MP.ToString();
     }
 
     IEnumerator DelaySceneChange()
