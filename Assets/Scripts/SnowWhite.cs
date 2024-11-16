@@ -2,8 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SnowWhite : CharacterStats
+public class SnowWhite : MonoBehaviour
 {
+    [Header("Snow White Stats")]
+    public string Name;
+    public float HP;
+    public float CurrentHP;
+    public float MP;
+    public float CurrentMP;
+    public float Attack;
+    public float Defense;
+    public float Intell;
+    public float Speed;
+
     private Vector3 swStartPosition;
     private float moveSpeed = 15.0f;
 
@@ -38,13 +49,15 @@ public class SnowWhite : CharacterStats
 
     void Awake()
     {
-        _name = "Snow White";
-        _hp = 100;
-        _mp = 100;
-        _attack = 10;
-        _defense = 10;
-        _intell = 10;
-        _speed = 90;
+        Name = "Snow White";
+        HP = 100;
+        CurrentHP = HP;
+        MP = 100;
+        CurrentMP = MP;
+        Attack = 10;
+        Defense = 10;
+        Intell = 10;
+        Speed = 90;
     }
 
     void Start()

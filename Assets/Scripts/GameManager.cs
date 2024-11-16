@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
-{    
+{
     public static GameManager instance;
     public Inventory Inventory;
 
@@ -12,7 +12,10 @@ public class GameManager : MonoBehaviour
     public bool isBattleStart;
 
     [Header("Character Selection")]
-    public GameObject[] CharacterSelected = new GameObject[3];    
+    public GameObject[] CharacterSelected = new GameObject[3];
+    public GameObject AlicePrefab;
+    public GameObject GretelPrefab;
+    public GameObject SnowWhitePrefab;
 
     [Header("Characters Equipment Data")]
     public EquipmentData[] AliceEquipments = new EquipmentData[4];
@@ -64,6 +67,14 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
             Destroy(Inventory.gameObject);
         }
+
+        AlicePrefab.GetComponent<Alice>().CurrentHP = 100;
+        GretelPrefab.GetComponent<Gretel>().CurrentHP = 100;
+        SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP = 100;
+
+        AlicePrefab.GetComponent<Alice>().CurrentMP = 100;
+        GretelPrefab.GetComponent<Gretel>().CurrentMP = 100;
+        SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP = 100;
     }    
 
     void Update()
@@ -83,6 +94,8 @@ public class GameManager : MonoBehaviour
         {
             isSWTurn = true;
         }
+
+        GetDamage(10);
     }
 
     public void LoadScene(string sceneName)
@@ -98,15 +111,15 @@ public class GameManager : MonoBehaviour
             {
                 if (CharacterSelected[i].name == "Alice")
                 {
-                    AlicePositionNumber = i;
+                    AlicePositionNumber = i;                    
                 }
                 else if (CharacterSelected[i].name == "Gretel")
                 {
-                    GretelPositionNumber = i;
+                    GretelPositionNumber = i;                    
                 }
                 else if (CharacterSelected[i].name == "Snow White")
                 {
-                    SWPositionNumber = i;
+                    SWPositionNumber = i;                    
                 }
             }
             else
@@ -124,6 +137,14 @@ public class GameManager : MonoBehaviour
             }
 
             isBattleStart = false;
+        }
+    }    
+
+    void GetDamage(int damage)
+    {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            CharacterSelected[0].GetComponent<Alice>().CurrentHP -= damage;
         }
     }
 }

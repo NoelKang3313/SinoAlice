@@ -120,13 +120,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e6b25c1faec849feb7ac1adfa03bea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 
-  _hp: 0
-  _mp: 0
-  _attack: 0
-  _defense: 0
-  _intell: 0
-  _speed: 0
+  Name: Snow White
+  HP: 100
+  CurrentHP: 100
+  MP: 100
+  CurrentMP: 100
+  Attack: 10
+  Defense: 10
+  Intell: 10
+  Speed: 90
   ShieldPrefab: {fileID: 8752544847113877612, guid: 2d155d6c4e1e5483fbd984a70183a0d9, type: 3}
   DoubleSlashPrefab: {fileID: 7633486706821536145, guid: 4e5caf2b3e31b4e469bdba14583a9532, type: 3}
   TripleSlashPrefab: {fileID: 5956762256418609346, guid: e5501b6b869ff7444b914f8629ada4aa, type: 3}
