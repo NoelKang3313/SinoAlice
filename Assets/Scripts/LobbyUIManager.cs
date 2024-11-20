@@ -772,11 +772,20 @@ public class LobbyUIManager : MonoBehaviour
         AliceHPText.text = AlicePrefab.GetComponent<Alice>().CurrentHP.ToString() + "/" + AlicePrefab.GetComponent<Alice>().HP.ToString();
         AliceMPText.text = AlicePrefab.GetComponent<Alice>().CurrentMP.ToString() + "/" + AlicePrefab.GetComponent<Alice>().MP.ToString();
 
+        AliceHPGauge.fillAmount  = GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentHP / GameManager.instance.AlicePrefab.GetComponent<Alice>().HP;
+        AliceMPGauge.fillAmount = GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP / GameManager.instance.AlicePrefab.GetComponent<Alice>().MP;
+
         GretelHPText.text = GretelPrefab.GetComponent<Gretel>().CurrentHP.ToString() + "/" + GretelPrefab.GetComponent<Gretel>().HP.ToString();
         GretelMPText.text = GretelPrefab.GetComponent<Gretel>().CurrentMP.ToString() + "/" + GretelPrefab.GetComponent<Gretel>().MP.ToString();
 
+        GretelHPGauge.fillAmount = GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentHP / GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP;
+        GretelMPGauge.fillAmount = GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP / GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP;
+
         SWHPText.text = SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP.ToString() + "/" + SnowWhitePrefab.GetComponent<SnowWhite>().HP.ToString();
         SWMPText.text = SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP.ToString() + "/" + SnowWhitePrefab.GetComponent<SnowWhite>().MP.ToString();
+
+        SWHPGauge.fillAmount = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP / GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP;
+        SWMPGauge.fillAmount = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP / GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP;
     }
 
     IEnumerator DelaySceneChange()

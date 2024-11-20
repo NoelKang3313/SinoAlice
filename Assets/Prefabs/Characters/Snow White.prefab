@@ -128,7 +128,7 @@ MonoBehaviour:
   Attack: 10
   Defense: 10
   Intell: 10
-  Speed: 90
+  Speed: 100
   ShieldPrefab: {fileID: 8752544847113877612, guid: 2d155d6c4e1e5483fbd984a70183a0d9, type: 3}
   DoubleSlashPrefab: {fileID: 7633486706821536145, guid: 4e5caf2b3e31b4e469bdba14583a9532, type: 3}
   TripleSlashPrefab: {fileID: 5956762256418609346, guid: e5501b6b869ff7444b914f8629ada4aa, type: 3}

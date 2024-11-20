@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public bool isAliceTurn;
     public bool isGretelTurn;
     public bool isSWTurn;
+    public bool isEnemyTurn;
 
     [Header("Action Buttons Active")]
     public bool isAttackButtonActive;
@@ -67,7 +68,10 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
             Destroy(Inventory.gameObject);
         }
+    }    
 
+    void Start()
+    {
         AlicePrefab.GetComponent<Alice>().CurrentHP = 100;
         GretelPrefab.GetComponent<Gretel>().CurrentHP = 100;
         SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP = 100;
@@ -75,7 +79,7 @@ public class GameManager : MonoBehaviour
         AlicePrefab.GetComponent<Alice>().CurrentMP = 100;
         GretelPrefab.GetComponent<Gretel>().CurrentMP = 100;
         SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP = 100;
-    }    
+    }
 
     void Update()
     {
@@ -144,7 +148,7 @@ public class GameManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.P))
         {
-            CharacterSelected[0].GetComponent<Alice>().CurrentHP -= damage;
+            AlicePrefab.GetComponent<Alice>().CurrentHP -= damage;
         }
     }
 }
