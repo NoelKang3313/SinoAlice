@@ -57,7 +57,7 @@ public class Gretel : MonoBehaviour
         Attack = 10;
         Defense = 10;
         Intell = 10;
-        Speed = 90;
+        Speed = 70;
     }
 
     void Start()

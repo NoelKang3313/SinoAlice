@@ -65,13 +65,18 @@ public class UIManager : MonoBehaviour
     public Button PauseButton;
     public GameObject PausePanel;
     public Button RestartButton;
-    public GameObject RestartPanel;
-    public Button RestartConfirmButton;
-    public Button RestartCancelButton;
+    public GameObject ConfirmPanel;
+    public TextMeshProUGUI ConfirmPanelText;
+    public Button ConfirmButton;
+    public Button CancelButton;
     public Button SettingButton;
     public Button SettingReturnButton;
     public GameObject SettingPanel;
-    public Button ReturnButton;
+    public Button ReturnLobbyButton;
+    public Button ResumeButton;
+
+    private bool isRestart;
+    private bool isLobby;
 
     void Start()
     {
@@ -107,11 +112,12 @@ public class UIManager : MonoBehaviour
 
         PauseButton.onClick.AddListener(PauseButtonClicked);
         RestartButton.onClick.AddListener(RestartButtonClicked);
-        RestartConfirmButton.onClick.AddListener(RestartConfirmButtonClicked);
-        RestartCancelButton.onClick.AddListener(RestartCancelButtonClicked);
+        ConfirmButton.onClick.AddListener(ConfirmButtonClicked);
+        CancelButton.onClick.AddListener(CancelButtonClicked);
         SettingButton.onClick.AddListener(SettingButtonClicked);
         SettingReturnButton.onClick.AddListener(SettingReturnButtonClicked);
-        ReturnButton.onClick.AddListener(ReturnButtonClicked);
+        ReturnLobbyButton.onClick.AddListener(ReturnLobbyButtonClicked);
+        ResumeButton.onClick.AddListener(ResumeButtonClicked);
     }
     
     void Update()
@@ -131,7 +137,7 @@ public class UIManager : MonoBehaviour
         BattleIntro();
         SetGauge();
         ActionButtonsActivate();
-        StartCoroutine(RestartStage());
+        StartCoroutine(ConfirmButtonPressed());
     }
 
     void BattleIntro()
@@ -448,18 +454,20 @@ public class UIManager : MonoBehaviour
 
     void RestartButtonClicked()
     {
-        RestartPanel.SetActive(true);
+        isRestart = true;
+        ConfirmPanel.SetActive(true);
+        ConfirmPanelText.text = "RESTART?";
     }
 
-    void RestartConfirmButtonClicked()
+    void ConfirmButtonClicked()
     {
         Transition.SetActive(true);
         TransitionAnimator.SetBool("isTransition", true);
     }
 
-    void RestartCancelButtonClicked()
+    void CancelButtonClicked()
     {
-        RestartPanel.SetActive(false);
+        ConfirmPanel.SetActive(false);
     }
 
     void SettingButtonClicked()
@@ -472,7 +480,14 @@ public class UIManager : MonoBehaviour
         SettingPanel.SetActive(false);
     }
 
-    void ReturnButtonClicked()
+    void ReturnLobbyButtonClicked()
+    {
+        isLobby = true;
+        ConfirmPanel.SetActive(true);
+        ConfirmPanelText.text = "RETURN LOBBY?";
+    }
+
+    void ResumeButtonClicked()
     {
         PausePanel.SetActive(false);
         PauseButton.gameObject.SetActive(true);        
@@ -523,17 +538,45 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    IEnumerator RestartStage()
+    IEnumerator ConfirmButtonPressed()
     {
         if (TransitionAnimator.GetCurrentAnimatorStateInfo(0).IsName("-Stage Transition") &&
             TransitionAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
             yield return new WaitForSeconds(2.0f);
 
-            //GameManager.instance.isBattleStart = true;
-            //GameManager.instance.LoadScene("Stage1-1");
-            GameManager.instance.isBattleStart = false;
-            GameManager.instance.LoadScene("Lobby");
+            if(isRestart)
+            {
+                isRestart = false;
+
+                GameManager.instance.isAliceTurn = false;
+                GameManager.instance.isGretelTurn = false;
+                GameManager.instance.isSWTurn = false;
+
+                GameManager.instance.isAttackButtonActive = false;
+                GameManager.instance.isGuardButtonActive = false;
+                GameManager.instance.isSkillButtonActive = false;
+                GameManager.instance.isItemButtonActive = false;
+
+                GameManager.instance.isBattleStart = true;
+                GameManager.instance.LoadScene("Stage1-1");
+            }
+            else if(isLobby)
+            {
+                isLobby = false;
+
+                GameManager.instance.isAliceTurn = false;
+                GameManager.instance.isGretelTurn = false;
+                GameManager.instance.isSWTurn = false;
+
+                GameManager.instance.isAttackButtonActive = false;
+                GameManager.instance.isGuardButtonActive = false;
+                GameManager.instance.isSkillButtonActive = false;
+                GameManager.instance.isItemButtonActive = false;
+
+                GameManager.instance.isBattleStart = false;
+                GameManager.instance.LoadScene("Lobby");
+            }
         }
     }
 }

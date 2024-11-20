@@ -23,7 +23,7 @@ public class WorldmapUIManager : MonoBehaviour
     public Button[] CharacterSelectionButtons = new Button[3];
 
     public GameObject SelectedCharacter;
-    public GameObject[] CharacterPrefabs = new GameObject[3];
+    //public GameObject[] CharacterPrefabs = new GameObject[3];
     public Sprite[] CharactersIdle = new Sprite[3];
     [SerializeField] private int changeIndex;
 
@@ -175,7 +175,20 @@ public class WorldmapUIManager : MonoBehaviour
 
     void CharacterSelectionButtonClicked(int number)
     {
-        SelectedCharacter = CharacterPrefabs[number];
+        switch(number)
+        {
+            case 0:
+                SelectedCharacter = GameManager.instance.AlicePrefab;
+                break;
+
+            case 1:
+                SelectedCharacter = GameManager.instance.GretelPrefab;
+                break;
+
+            case 2:
+                SelectedCharacter = GameManager.instance.SnowWhitePrefab;
+                break;
+        }
 
         if (GameManager.instance.CharacterSelected[CharacterLocationIndex] == null)
         {

@@ -57,7 +57,7 @@ public class SnowWhite : MonoBehaviour
         Attack = 10;
         Defense = 10;
         Intell = 10;
-        Speed = 90;
+        Speed = 100;
     }
 
     void Start()

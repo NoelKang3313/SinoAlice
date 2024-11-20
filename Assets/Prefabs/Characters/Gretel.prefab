@@ -128,7 +128,7 @@ MonoBehaviour:
   Attack: 10
   Defense: 10
   Intell: 10
-  Speed: 90
+  Speed: 70
   ShieldPrefab: {fileID: 8752544847113877612, guid: 2d155d6c4e1e5483fbd984a70183a0d9, type: 3}
   BlazeArrowPrefab: {fileID: 1310103297946559148, guid: c9c883c517c8f461f8ae1c8d5f5d460b, type: 3}
   GravelBombPrefab: {fileID: 8595332672606786826, guid: cc1ea9d428380466b97c27a5f42ff22b, type: 3}
