@@ -6,6 +6,8 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    public Stage1_1Manager StageManager;
+
     public GameObject HeavenOrHell;
     private Animator heavenOrHellAnimator;
     public GameObject LetsRock;
@@ -29,6 +31,7 @@ public class UIManager : MonoBehaviour
     public Sprite AliceSprite;
     public Sprite GretelSprite;
     public Sprite SnowWhiteSprite;
+    public Sprite RatSprite;
 
     public GameObject ActionButtons;
     private Animator actionButtonsAnimator;
@@ -122,22 +125,27 @@ public class UIManager : MonoBehaviour
     
     void Update()
     {
-        if (GameManager.instance.isAliceTurn || GameManager.instance.isGretelTurn || GameManager.instance.isSWTurn)
-        {
-            ChangeSkillButtonSprites();
-        }
-        else if (!GameManager.instance.isAliceTurn || !GameManager.instance.isGretelTurn || !GameManager.instance.isSWTurn)
-        {
-            for(int i = 0; i < CurrentSkillData.Length; i++)
-            {
-                CurrentSkillData[i] = null;
-            }
-        }
-
         BattleIntro();
         SetGauge();
         ActionButtonsActivate();
+        CheckCharacterTurnChangeSkillIcon();
         StartCoroutine(ConfirmButtonPressed());
+    }
+
+    void CheckCharacterTurnChangeSkillIcon()
+    {
+        if (GameManager.instance.isAliceTurn)
+        {
+            ChangeSkillButtonSprites(0, 4);
+        }
+        else if (GameManager.instance.isGretelTurn)
+        {
+            ChangeSkillButtonSprites(5, 9);
+        }
+        else if (GameManager.instance.isSWTurn)
+        {
+            ChangeSkillButtonSprites(10, 14);
+        }
     }
 
     void BattleIntro()
@@ -160,6 +168,8 @@ public class UIManager : MonoBehaviour
             AudioSource.volume = 0.5f;
 
             GaugePanel.SetActive(true);
+
+            GameManager.instance.isTurn = true;
         }
     }
 
@@ -305,38 +315,16 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void ChangeSkillButtonSprites()
+    void ChangeSkillButtonSprites(int firstIndex, int lastIndex)
     {
-        for(int i = 0; i < SkillInfo.Length; i++)
+        int index = 0;
+
+        for (int i = firstIndex; i <= lastIndex; i++)
         {
-            for(int j = 0; j < SkillButtons.Length; j++)
-            {
-                if (CurrentSkillData[j] == null)
-                {
-                    if (GameManager.instance.isAliceTurn && SkillInfo[i].SkillUserName == "Alice")
-                    {
-                        CurrentSkillData[j] = SkillInfo[i];
-                        SkillButtons[j].GetComponent<Image>().sprite = SkillInfo[i].SkillIcon;
-
-                        break;
-                    }
-                    else if (GameManager.instance.isGretelTurn && SkillInfo[i].SkillUserName == "Gretel")
-                    {
-                        CurrentSkillData[j] = SkillInfo[i];
-                        SkillButtons[j].GetComponent<Image>().sprite = SkillInfo[i].SkillIcon;
-
-                        break;
-                    }
-                    else if (GameManager.instance.isSWTurn && SkillInfo[i].SkillUserName == "Snow White")
-                    {
-                        CurrentSkillData[j] = SkillInfo[i];
-                        SkillButtons[j].GetComponent<Image>().sprite = SkillInfo[i].SkillIcon;
-
-                        break;
-                    }
-                }                
-            }
-        }     
+            CurrentSkillData[index] = SkillInfo[i];
+            SkillButtons[index].GetComponent<Image>().sprite = SkillInfo[i].SkillIcon;
+            index++;
+        }
     }
 
     void ItemButtonClicked()
@@ -535,6 +523,15 @@ public class UIManager : MonoBehaviour
             CharacterMPGauge.fillAmount = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP / GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP;
             CurrentHPText.text = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP.ToString() + "/" + GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP.ToString();
             CurrentMPText.text = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP.ToString() + "/" + GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP.ToString();
+        }
+        else if(GameManager.instance.isEnemyTurn)
+        {
+            CharacterImage.sprite = RatSprite;
+            CharacterName.text = StageManager.CharacterTurn[GameManager.instance.TurnNumber].name;
+            CharacterHPGauge.fillAmount = StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().CurrentHP / StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().HP;
+            CharacterMPGauge.fillAmount = StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().CurrentMP / StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().MP;
+            CurrentHPText.text = StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().CurrentHP.ToString() + "/" + StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().HP.ToString();
+            CurrentMPText.text = StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().CurrentMP.ToString() + "/" + StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().MP.ToString();
         }
     }
 

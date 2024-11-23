@@ -121,10 +121,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Snow White
-  HP: 100
-  CurrentHP: 100
-  MP: 100
-  CurrentMP: 100
+  HP: 500
+  CurrentHP: 500
+  MP: 300
+  CurrentMP: 300
   Attack: 10
   Defense: 10
   Intell: 10

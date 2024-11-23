@@ -141,6 +141,9 @@ public class Alice : MonoBehaviour
                     GameManager.instance.isGuardButtonActive = false;
 
                     shield = Instantiate(ShieldPrefab, transform.position, Quaternion.identity);
+
+                    GameManager.instance.isTurn = true;
+                    GameManager.instance.TurnNumber++;
                 }
             }
             else if (GameManager.instance.isSkillButtonActive)
@@ -181,6 +184,9 @@ public class Alice : MonoBehaviour
                                 animator.SetBool("MagicAttack", false);
                                 animator.SetBool("MagicStandby", false);
                                 animator.SetBool("Standby", false);
+
+                                GameManager.instance.isTurn = true;
+                                GameManager.instance.TurnNumber++;
                             }
 
                             break;
@@ -205,6 +211,9 @@ public class Alice : MonoBehaviour
                                 animator.SetBool("MagicAttack", false);
                                 animator.SetBool("MagicStandby", false);
                                 animator.SetBool("Standby", false);
+
+                                GameManager.instance.isTurn = true;
+                                GameManager.instance.TurnNumber++;
                             }
 
                             break;
@@ -229,6 +238,9 @@ public class Alice : MonoBehaviour
                                 animator.SetBool("MagicAttack", false);
                                 animator.SetBool("MagicStandby", false);
                                 animator.SetBool("Standby", false);
+
+                                GameManager.instance.isTurn = true;
+                                GameManager.instance.TurnNumber++;
                             }
 
                             break;
@@ -252,6 +264,9 @@ public class Alice : MonoBehaviour
                                 animator.SetBool("MagicAttack", false);
                                 animator.SetBool("MagicStandby", false);
                                 animator.SetBool("Standby", false);
+
+                                GameManager.instance.isTurn = true;
+                                GameManager.instance.TurnNumber++;
                             }
 
                             break;
@@ -276,6 +291,9 @@ public class Alice : MonoBehaviour
                                 animator.SetBool("MagicAttack", false);
                                 animator.SetBool("MagicStandby", false);
                                 animator.SetBool("Standby", false);
+
+                                GameManager.instance.isTurn = true;
+                                GameManager.instance.TurnNumber++;
                             }
 
                             break;
@@ -310,6 +328,9 @@ public class Alice : MonoBehaviour
             {
                 animator.SetBool("Attack", false);
                 transform.position = aliceStartPosition;
+
+                GameManager.instance.isTurn = true;
+                GameManager.instance.TurnNumber++;
             }            
         }
     }

@@ -121,10 +121,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Gretel
-  HP: 100
-  CurrentHP: 100
-  MP: 100
-  CurrentMP: 100
+  HP: 300
+  CurrentHP: 300
+  MP: 500
+  CurrentMP: 500
   Attack: 10
   Defense: 10
   Intell: 10

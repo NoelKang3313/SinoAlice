@@ -140,6 +140,9 @@ public class SnowWhite : MonoBehaviour
                     GameManager.instance.isGuardButtonActive = false;
 
                     shield = Instantiate(ShieldPrefab, transform.position + new Vector3(0.5f, 0, 0), Quaternion.identity);
+
+                    GameManager.instance.isTurn = true;
+                    GameManager.instance.TurnNumber++;
                 }
             }
             else if (GameManager.instance.isSkillButtonActive)
@@ -180,6 +183,9 @@ public class SnowWhite : MonoBehaviour
                                 animator.SetBool("MagicAttack", false);
                                 animator.SetBool("MagicStandby", false);
                                 animator.SetBool("Standby", false);
+
+                                GameManager.instance.isTurn = true;
+                                GameManager.instance.TurnNumber++;
                             }
 
                             break;
@@ -204,6 +210,9 @@ public class SnowWhite : MonoBehaviour
                                 animator.SetBool("MagicAttack", false);
                                 animator.SetBool("MagicStandby", false);
                                 animator.SetBool("Standby", false);
+
+                                GameManager.instance.isTurn = true;
+                                GameManager.instance.TurnNumber++;
                             }
 
                             break;
@@ -228,6 +237,9 @@ public class SnowWhite : MonoBehaviour
                                 animator.SetBool("MagicAttack", false);
                                 animator.SetBool("MagicStandby", false);
                                 animator.SetBool("Standby", false);
+
+                                GameManager.instance.isTurn = true;
+                                GameManager.instance.TurnNumber++;
                             }
 
                             break;
@@ -252,6 +264,9 @@ public class SnowWhite : MonoBehaviour
                                 animator.SetBool("MagicAttack", false);
                                 animator.SetBool("MagicStandby", false);
                                 animator.SetBool("Standby", false);
+
+                                GameManager.instance.isTurn = true;
+                                GameManager.instance.TurnNumber++;
                             }
 
                             break;
@@ -275,6 +290,9 @@ public class SnowWhite : MonoBehaviour
                                 animator.SetBool("MagicAttack", false);
                                 animator.SetBool("MagicStandby", false);
                                 animator.SetBool("Standby", false);
+
+                                GameManager.instance.isTurn = true;
+                                GameManager.instance.TurnNumber++;
                             }
 
                             break;
@@ -309,6 +327,9 @@ public class SnowWhite : MonoBehaviour
             {
                 animator.SetBool("Attack", false);
                 transform.position = swStartPosition;
+
+                GameManager.instance.isTurn = true;
+                GameManager.instance.TurnNumber++;
             }
         }
     }
