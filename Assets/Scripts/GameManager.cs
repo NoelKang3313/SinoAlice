@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     public bool isTransition;
     public bool isBattleStart;
+    public bool isTurn;
+    public int TurnNumber = 0;
 
     [Header("Character Selection")]
     public GameObject[] CharacterSelected = new GameObject[3];
@@ -100,6 +102,11 @@ public class GameManager : MonoBehaviour
         }
 
         GetDamage(10);
+
+        if(TurnNumber > 6)
+        {
+            TurnNumber = 0;
+        }
     }
 
     public void LoadScene(string sceneName)

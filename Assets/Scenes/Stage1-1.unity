@@ -264,6 +264,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 364985872}
     m_Modifications:
+    - target: {fileID: -3216042309959773631, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
+      propertyPath: MP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -3216042309959773631, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
+      propertyPath: CurrentMP
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4264955105148646073, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -324,11 +332,6 @@ PrefabInstance:
 --- !u!4 &28836209 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8173005105092223331, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
-  m_PrefabInstance: {fileID: 28836208}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &28836210 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4817061552027593439, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
   m_PrefabInstance: {fileID: 28836208}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &31236829 stripped
@@ -1585,7 +1588,7 @@ GameObject:
   - component: {fileID: 318657503}
   - component: {fileID: 318657504}
   m_Layer: 0
-  m_Name: Stage1-1Manager
+  m_Name: StageManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1618,11 +1621,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba59fd7e5479a40729bfa00da4d8093c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemies:
-  - {fileID: 4421467129869436911}
-  - {fileID: 942325694}
-  - {fileID: 28836210}
-  - {fileID: 844912928}
   CharacterTurn:
   - {fileID: 0}
   - {fileID: 0}
@@ -2835,6 +2833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2bdc04ad00674624bf45e78f7cce575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StageManager: {fileID: 318657504}
   HeavenOrHell: {fileID: 61081543}
   LetsRock: {fileID: 1873358760}
   Transition: {fileID: 2516715484921807484}
@@ -2852,6 +2851,7 @@ MonoBehaviour:
   AliceSprite: {fileID: 21300000, guid: f22d0646fe2ba462d89679e20f85e1d6, type: 3}
   GretelSprite: {fileID: 21300000, guid: f2bcb705fe8f94726891ca9c66f3cf98, type: 3}
   SnowWhiteSprite: {fileID: 21300000, guid: ff57471dcd1e14c05820bc9ca9830e1f, type: 3}
+  RatSprite: {fileID: 21300000, guid: fd2fc4d8d641a4a8e8ba7ce6a0d12460, type: 3}
   ActionButtons: {fileID: 1272092172}
   AttackButton: {fileID: 614614976}
   GuardButton: {fileID: 1227374745}
@@ -4044,6 +4044,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 364985872}
     m_Modifications:
+    - target: {fileID: -3216042309959773631, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
+      propertyPath: MP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -3216042309959773631, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
+      propertyPath: CurrentMP
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4264955105148646073, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -4104,11 +4112,6 @@ PrefabInstance:
 --- !u!4 &844912927 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8173005105092223331, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
-  m_PrefabInstance: {fileID: 844912926}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &844912928 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4817061552027593439, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
   m_PrefabInstance: {fileID: 844912926}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &860030718
@@ -4395,6 +4398,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 364985872}
     m_Modifications:
+    - target: {fileID: -3216042309959773631, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
+      propertyPath: MP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -3216042309959773631, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
+      propertyPath: CurrentMP
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4264955105148646073, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -4455,11 +4466,6 @@ PrefabInstance:
 --- !u!4 &942325693 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8173005105092223331, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
-  m_PrefabInstance: {fileID: 942325692}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &942325694 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4817061552027593439, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
   m_PrefabInstance: {fileID: 942325692}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &978005084
@@ -9753,6 +9759,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 364985872}
     m_Modifications:
+    - target: {fileID: -3216042309959773631, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
+      propertyPath: HP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -3216042309959773631, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
+      propertyPath: MP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -3216042309959773631, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
+      propertyPath: CurrentMP
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4264955105148646073, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -9810,11 +9828,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
---- !u!1 &4421467129869436911 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4817061552027593439, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
-  m_PrefabInstance: {fileID: 4421467129869436910}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8156797319374357407
 PrefabInstance:
   m_ObjectHideFlags: 0

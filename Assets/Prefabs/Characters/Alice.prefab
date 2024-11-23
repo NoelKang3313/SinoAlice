@@ -121,10 +121,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Alice
-  HP: 100
-  CurrentHP: 100
-  MP: 100
-  CurrentMP: 100
+  HP: 400
+  CurrentHP: 400
+  MP: 400
+  CurrentMP: 400
   Attack: 10
   Defense: 10
   Intell: 10
