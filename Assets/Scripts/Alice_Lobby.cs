@@ -25,7 +25,7 @@ public class Alice_Lobby : MonoBehaviour
             animator.SetBool("Move", true);
 
             transform.GetComponent<SpriteRenderer>().flipX = true;
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(5.5f, -0.5f), 0.1f);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(5.5f, -0.5f), 0.15f);
 
             if (transform.position == new Vector3(5.5f, -0.5f, 0))
             {
@@ -41,7 +41,7 @@ public class Alice_Lobby : MonoBehaviour
         {
             animator.SetBool("Move", true);
 
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(-2, -0.2f), 0.1f);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(-2, -0.2f), 0.15f);
 
             if (transform.position == new Vector3(-2, -0.2f, 0))
             {
@@ -57,7 +57,7 @@ public class Alice_Lobby : MonoBehaviour
         {
             animator.SetBool("Move", true);
 
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(-5.5f, -0.2f), 0.1f);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(-5.5f, -0.2f), 0.15f);
 
             if (transform.position == new Vector3(-5.5f, -0.2f, 0))
             {
@@ -77,7 +77,7 @@ public class Alice_Lobby : MonoBehaviour
                 animator.SetBool("Move", true);
 
                 transform.GetComponent<SpriteRenderer>().flipX = false;
-                transform.position = Vector2.MoveTowards(transform.position, new Vector2(0, -1), 0.1f);
+                transform.position = Vector2.MoveTowards(transform.position, new Vector2(0, -1), 0.15f);
 
                 if (transform.position == new Vector3(0, -1, 0))
                 {
@@ -96,7 +96,7 @@ public class Alice_Lobby : MonoBehaviour
                 animator.SetBool("Move", true);
 
                 transform.GetComponent<SpriteRenderer>().flipX = true;
-                transform.position = Vector2.MoveTowards(transform.position, new Vector2(0, -1), 0.1f);
+                transform.position = Vector2.MoveTowards(transform.position, new Vector2(0, -1), 0.15f);
 
                 if (transform.position == new Vector3(0, -1, 0))
                 {
@@ -118,7 +118,7 @@ public class Alice_Lobby : MonoBehaviour
                 animator.SetBool("Move", true);
 
                 transform.GetComponent<SpriteRenderer>().flipX = true;
-                transform.position = Vector2.MoveTowards(transform.position, new Vector2(0, -1), 0.1f);
+                transform.position = Vector2.MoveTowards(transform.position, new Vector2(0, -1), 0.15f);
 
                 if (transform.position == new Vector3(0, -1, 0))
                 {

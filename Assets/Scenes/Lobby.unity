@@ -179,7 +179,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Helmet 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -753,7 +753,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Armor 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -887,7 +887,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Helmet 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -1142,7 +1142,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Helmet 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -1452,9 +1452,9 @@ MonoBehaviour:
   ButtonAudioClip: {fileID: 8300000, guid: ad4d6daa2243d404888233ce23f096db, type: 3}
   ConfirmAudioClip: {fileID: 8300000, guid: a884ce747ef33472faee59295e733368, type: 3}
   CancelAudioClip: {fileID: 8300000, guid: 74c358271a66d4947aab37b3f1a5b78a, type: 3}
-  AlicePrefab: {fileID: 1801351791532427814, guid: b07b6eae834a640a3b9adaa8da69e152, type: 3}
-  GretelPrefab: {fileID: 6752705877252150216, guid: c090b0d36020e46e7a4bbb56a0d813a6, type: 3}
-  SnowWhitePrefab: {fileID: 4535137217601394310, guid: ac1421e02b7444e74ade6ae471a5f0b5, type: 3}
+  AlicePrefab: {fileID: 119765422866117814, guid: 2d46a300455ae452abbd6fb4ac0fe8d5, type: 3}
+  GretelPrefab: {fileID: 5393587730986905872, guid: 740bdb33857d34ab7b6758830d6602d1, type: 3}
+  SnowWhitePrefab: {fileID: 8177801638161185331, guid: 1657b3bd308b6497184b58542c266541, type: 3}
   TransitionImage: {fileID: 1406896495}
   LobbyPanel: {fileID: 1278875330}
   CharlotteButton: {fileID: 1483039327}
@@ -1912,7 +1912,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Helmet 9
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -2409,7 +2409,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Shoe 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -2919,7 +2919,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Weapon 6
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -3326,7 +3326,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Weapon 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -3901,7 +3901,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Shoe 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -4035,7 +4035,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Shoe 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -4400,7 +4400,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Shoe 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -5618,7 +5618,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Shoe 9
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -6325,7 +6325,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Helmet 9
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -6980,7 +6980,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Weapon 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -7114,7 +7114,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Armor 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -7927,7 +7927,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Helmet 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -8468,7 +8468,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Shoe 7
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -8757,7 +8757,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Armor 6
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -9458,7 +9458,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Helmet 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -10366,7 +10366,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Shoe 6
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -10710,7 +10710,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Helmet 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -10991,7 +10991,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Helmet 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -11501,7 +11501,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Shoe 7
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -12574,7 +12574,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Weapon 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -13243,7 +13243,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Armor 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -13495,7 +13495,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Armor 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -13629,7 +13629,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Armor 6
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -15296,7 +15296,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Helmet 6
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -15640,7 +15640,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Weapon 7
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -17281,7 +17281,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Armor 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -18003,7 +18003,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Helmet 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -18346,7 +18346,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Weapon 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -19295,7 +19295,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 30, y: -50}
+  m_AnchoredPosition: {x: 10, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &757329673
@@ -20077,7 +20077,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Shoe 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -20481,7 +20481,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Shoe 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -21130,7 +21130,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Armor 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -21819,7 +21819,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Armor 9
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -21953,7 +21953,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Weapon 7
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -22563,7 +22563,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Helmet 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -22697,7 +22697,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Shoe 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -22952,7 +22952,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Weapon 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -23086,7 +23086,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Weapon 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -23354,7 +23354,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Weapon 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -23719,7 +23719,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Weapon 6
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -24108,7 +24108,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Helmet 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -26172,7 +26172,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Armor 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -26819,13 +26819,15 @@ MonoBehaviour:
   Inventory: {fileID: 1148223433}
   isTransition: 0
   isBattleStart: 0
+  isTurn: 0
+  TurnNumber: 0
   CharacterSelected:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  AlicePrefab: {fileID: 1801351791532427814, guid: b07b6eae834a640a3b9adaa8da69e152, type: 3}
-  GretelPrefab: {fileID: 6752705877252150216, guid: c090b0d36020e46e7a4bbb56a0d813a6, type: 3}
-  SnowWhitePrefab: {fileID: 4535137217601394310, guid: ac1421e02b7444e74ade6ae471a5f0b5, type: 3}
+  AlicePrefab: {fileID: 119765422866117814, guid: 2d46a300455ae452abbd6fb4ac0fe8d5, type: 3}
+  GretelPrefab: {fileID: 5393587730986905872, guid: 740bdb33857d34ab7b6758830d6602d1, type: 3}
+  SnowWhitePrefab: {fileID: 8177801638161185331, guid: 1657b3bd308b6497184b58542c266541, type: 3}
   AliceEquipments:
   - {fileID: 0}
   - {fileID: 0}
@@ -26848,6 +26850,7 @@ MonoBehaviour:
   isAliceTurn: 0
   isGretelTurn: 0
   isSWTurn: 0
+  isEnemyTurn: 0
   isAttackButtonActive: 0
   isGuardButtonActive: 0
   isSkillButtonActive: 0
@@ -27809,7 +27812,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Shoe 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -28228,7 +28231,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Shoe 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -29432,7 +29435,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Weapon 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -29702,7 +29705,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Helmet 7
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -30285,7 +30288,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Armor 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -31299,7 +31302,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Armor 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -31806,7 +31809,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Weapon 9
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -32187,7 +32190,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Shoe 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -32768,7 +32771,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Helmet 6
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -33169,7 +33172,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Shoe 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -33699,7 +33702,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Weapon 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -34101,7 +34104,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Shoe 9
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -34235,7 +34238,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Weapon 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -34369,7 +34372,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Weapon 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -35120,7 +35123,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Shoe 6
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -35926,7 +35929,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Armor 9
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -36194,7 +36197,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Armor 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -36328,7 +36331,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Armor 7
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -36462,7 +36465,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Shoe 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -37064,7 +37067,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Weapon 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -37198,7 +37201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Helmet 7
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -37411,7 +37414,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Armor 7
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -37624,7 +37627,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Armor 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -38563,7 +38566,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Armor 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -39274,7 +39277,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Armor 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -40170,7 +40173,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Weapon 9
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -40530,7 +40533,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Shoe 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -41738,7 +41741,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Weapon 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -42494,7 +42497,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Helmet 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -44037,7 +44040,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Weapon 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -44657,7 +44660,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Shoe 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -45109,7 +45112,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Armor 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -46279,7 +46282,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive and recover 30% of ally's HP
+  m_text: Helmet 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -46668,7 +46671,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Helmet 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
@@ -49053,7 +49056,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revival Potion
+  m_text: Helmet 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
   m_sharedMaterial: {fileID: -8458155341886034225, guid: f58d4231f8d0f4daeafbe7bf106a99cc, type: 2}
