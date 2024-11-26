@@ -47,21 +47,18 @@ public class SnowWhite : MonoBehaviour
     private bool isBattleStartAudioPlaying;
     private bool isAttackSelectAudioPlaying;
 
-    void Awake()
+    void Start()
     {
         Name = "Snow White";
-        HP = 100;
+        HP = 500;
         CurrentHP = HP;
-        MP = 100;
+        MP = 300;
         CurrentMP = MP;
         Attack = 10;
         Defense = 10;
         Intell = 10;
         Speed = 100;
-    }
 
-    void Start()
-    {
         swStartPosition = transform.position;
 
         animator = GetComponent<Animator>();

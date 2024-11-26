@@ -55,6 +55,12 @@ public class UIInventory : MonoBehaviour
             UIItems[i].onClick.AddListener(() => UIItemSlotClicked(number));
         }
 
+        for(int i = 0; i < UIEquipments.Count; i++)
+        {
+            int number = i;
+            UIEquipments[i].onClick.AddListener(() => UIEquipmentSlotClicked(number));
+        }
+
         SortUIItems();
         SortUIEquipments();
     }
@@ -130,6 +136,12 @@ public class UIInventory : MonoBehaviour
     {
         ItemNameText.text = UIItems[number].GetComponent<UIItem>().ItemData.ItemName;
         ItemDescriptionText.text = UIItems[number].GetComponent<UIItem>().ItemData.ItemDescription;
+    }
+
+    void UIEquipmentSlotClicked(int number)
+    {
+        ItemNameText.text = UIEquipments[number].GetComponent<UIEquipment>().EquipmentData.EquipmentName;
+        ItemDescriptionText.text = UIEquipments[number].GetComponent<UIEquipment>().EquipmentData.EquipmentDescription;
     }
 
     void SortUIItems()

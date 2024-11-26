@@ -47,21 +47,18 @@ public class Gretel : MonoBehaviour
     private bool isBattleStartAudioPlaying;
     private bool isAttackSelectAudioPlaying;
 
-    void Awake()
+    void Start()
     {
         Name = "Gretel";
-        HP = 100;
+        HP = 300;
         CurrentHP = HP;
-        MP = 100;
+        MP = 500;
         CurrentMP = MP;
         Attack = 10;
         Defense = 10;
         Intell = 10;
         Speed = 70;
-    }
 
-    void Start()
-    {
         gretelStartPosition = transform.position;
 
         animator = GetComponent<Animator>();

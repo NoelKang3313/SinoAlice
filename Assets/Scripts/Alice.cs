@@ -46,23 +46,20 @@ public class Alice : MonoBehaviour
     private int attackSelectRandom;
 
     private bool isBattleStartAudioPlaying;
-    private bool isAttackSelectAudioPlaying;
+    private bool isAttackSelectAudioPlaying;    
 
-    void Awake()
+    void Start()
     {
         Name = "Alice";
-        HP = 100;
+        HP = 400;
         CurrentHP = HP;
-        MP = 100;
+        MP = 400;
         CurrentMP = MP;
         Attack = 10;
         Defense = 10;
         Intell = 10;
         Speed = 90;
-    }
 
-    void Start()
-    {        
         aliceStartPosition = transform.position;
 
         animator = GetComponent<Animator>();
