@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
         {
             for(int i = 0; i < CharacterSelected.Length; i++)
             {
-                Characters[i] = Instantiate(CharacterSelected[i], CharacterPositions[i], Quaternion.identity);
+                Characters[i] = Instantiate(CharacterSelected[i], CharacterPositions[i], Quaternion.identity);                
             }
 
             isBattleStart = false;

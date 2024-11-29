@@ -286,7 +286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8173005105092223331, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6
+      value: -5.4
       objectReference: {fileID: 0}
     - target: {fileID: 8173005105092223331, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4066,7 +4066,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8173005105092223331, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.7
+      value: -6.9
       objectReference: {fileID: 0}
     - target: {fileID: 8173005105092223331, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4150,7 +4150,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 630, y: 170}
+  m_AnchoredPosition: {x: 670, y: 170}
   m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &860030720
@@ -4420,7 +4420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8173005105092223331, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.75
+      value: -4.3
       objectReference: {fileID: 0}
     - target: {fileID: 8173005105092223331, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5394,7 +5394,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ReferenceResolution: {x: 1920, y: 1200}
   m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -7432,10 +7432,10 @@ RectTransform:
   - {fileID: 320974117}
   - {fileID: 1272092173}
   - {fileID: 820552092}
-  - {fileID: 230727102}
   - {fileID: 2112297134}
   - {fileID: 126610377}
   - {fileID: 2041326903}
+  - {fileID: 230727102}
   m_Father: {fileID: 1078347642}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -9789,7 +9789,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8173005105092223331, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: -2.7
       objectReference: {fileID: 0}
     - target: {fileID: 8173005105092223331, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9843,6 +9843,10 @@ PrefabInstance:
     - target: {fileID: 2282920368146810889, guid: 69d54304a714c45b4975ef839b0b7d9c, type: 3}
       propertyPath: m_Name
       value: Let's Rock (Let's)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2282920368146810889, guid: 69d54304a714c45b4975ef839b0b7d9c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6786750451993372661, guid: 69d54304a714c45b4975ef839b0b7d9c, type: 3}
       propertyPath: m_LocalPosition.x
