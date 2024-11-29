@@ -18,7 +18,7 @@ public class Gretel : MonoBehaviour
     private Vector3 gretelStartPosition;
     private float moveSpeed = 15.0f;
 
-    private Animator animator;    
+    private Animator animator;
 
     public GameObject ShieldPrefab;
     private GameObject shield;
@@ -100,10 +100,10 @@ public class Gretel : MonoBehaviour
 
                     animator.SetTrigger("Move");
                     transform.position = Vector2.MoveTowards(transform.position,
-                        GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(2.5f, 0.5f), moveSpeed * Time.deltaTime);
+                        GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(2.6f, 0.25f), moveSpeed * Time.deltaTime);
 
-                    if (transform.position == new Vector3((GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].x + 2.5f),
-                        (GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].y + 0.5f), 0))
+                    if (transform.position == new Vector3((GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].x + 2.6f),
+                        (GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].y + 0.25f), 0))
                     {
                         GameManager.instance.isGretelTurn = false;
                         GameManager.instance.isAction = false;
@@ -122,14 +122,7 @@ public class Gretel : MonoBehaviour
                 animator.SetBool("Standby", true);
 
                 if (GameManager.instance.isAction)
-                {
-                    if (!isAttackSelectAudioPlaying)
-                    {
-                        isAttackSelectAudioPlaying = true;
-                        attackSelectRandom = Random.Range(0, 2);
-                        audioSource.PlayOneShot(AttackSelect[attackSelectRandom]);
-                    }
-
+                {                    
                     animator.SetBool("Standby", false);
 
                     GameManager.instance.isGretelTurn = false;

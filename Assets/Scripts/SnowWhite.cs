@@ -18,7 +18,12 @@ public class SnowWhite : MonoBehaviour
     private Vector3 swStartPosition;
     private float moveSpeed = 15.0f;
 
-    private Animator animator;    
+    private Animator animator;
+
+    public GameObject AttackEffectPrefab;
+    private GameObject attackEffect;    
+    private bool isAttacking;
+    public Gradient AttackGradient;
 
     public GameObject ShieldPrefab;
     private GameObject shield;
@@ -113,6 +118,16 @@ public class SnowWhite : MonoBehaviour
 
                         ResetAnimationTrigger("Move");
                         animator.SetBool("Attack", true);
+
+                        if (!isAttacking)
+                        {
+                            isAttacking = true;
+                            attackEffect = Instantiate(AttackEffectPrefab, GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber], Quaternion.identity);
+                            attackEffect.GetComponent<Animator>().Play("SnowWhite_Attack");
+
+                            var colorOverLifeTime = attackEffect.GetComponentInChildren<ParticleSystem>().colorOverLifetime;
+                            colorOverLifeTime.color = new ParticleSystem.MinMaxGradient(AttackGradient);
+                        }
                     }
                 }
             }
@@ -122,14 +137,7 @@ public class SnowWhite : MonoBehaviour
                 animator.SetBool("Standby", true);
 
                 if (GameManager.instance.isAction)
-                {
-                    if (!isAttackSelectAudioPlaying)
-                    {
-                        isAttackSelectAudioPlaying = true;
-                        attackSelectRandom = Random.Range(0, 2);
-                        audioSource.PlayOneShot(AttackSelect[attackSelectRandom]);
-                    }
-
+                {                    
                     animator.SetBool("Standby", false);                    
 
                     GameManager.instance.isSWTurn = false;
@@ -327,6 +335,9 @@ public class SnowWhite : MonoBehaviour
 
                 GameManager.instance.isTurn = true;
                 GameManager.instance.TurnNumber++;
+
+                isAttacking = false;
+                Destroy(attackEffect);
             }
         }
     }

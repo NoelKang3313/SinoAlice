@@ -77,19 +77,6 @@ public class GameManager : MonoBehaviour
         CharacterPosition();
         StageEnterInstantiateCharacter();
 
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            isAliceTurn = true;
-        }
-        else if(Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            isGretelTurn = true;
-        }
-        else if(Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            isSWTurn = true;
-        }
-
         GetDamage(10);
 
         if(TurnNumber > 6)

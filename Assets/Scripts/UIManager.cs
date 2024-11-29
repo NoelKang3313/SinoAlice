@@ -556,6 +556,7 @@ public class UIManager : MonoBehaviour
                 GameManager.instance.isItemButtonActive = false;
 
                 GameManager.instance.isBattleStart = true;
+                GameManager.instance.TurnNumber = 0;
                 GameManager.instance.LoadScene("Stage1-1");
             }
             else if(isLobby)
@@ -572,6 +573,7 @@ public class UIManager : MonoBehaviour
                 GameManager.instance.isItemButtonActive = false;
 
                 GameManager.instance.isBattleStart = false;
+                GameManager.instance.TurnNumber = 0;
                 GameManager.instance.LoadScene("Lobby");
             }
         }

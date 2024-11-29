@@ -18,6 +18,11 @@ public class Rat : MonoBehaviour
 
     public bool isCurrentEnemyTurn;
 
+    public GameObject AttackEffectPrefab;
+    private GameObject attackEffect;
+    private bool isAttacking;
+    public Gradient AttackGradient;
+
     void Awake()
     {
         Name = "Rat";
@@ -37,28 +42,49 @@ public class Rat : MonoBehaviour
 
     void Update()
     {
-        RatTurn();
-        ResetAnimation();
+        RatTurn();        
+        EndTurn();
     }
 
     void RatTurn()
     {
         if(isCurrentEnemyTurn)
-        {
+        {            
             animator.SetBool("isAttack", true);
+
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            {
+                isCurrentEnemyTurn = false;
+                animator.SetBool("isAttack", false);
+
+                if (!isAttacking && !animator.GetBool("isAttack"))
+                {
+                    isAttacking = true;
+
+                    int random = Random.Range(0, 3);
+                    attackEffect = Instantiate(AttackEffectPrefab, GameManager.instance.Characters[random].transform.position, Quaternion.identity);
+                    attackEffect.GetComponent<Animator>().Play("Enemy_Attack");
+
+                    var colorOverLifeTime = attackEffect.GetComponentInChildren<ParticleSystem>().colorOverLifetime;
+                    colorOverLifeTime.color = new ParticleSystem.MinMaxGradient(AttackGradient);
+                }
+            }
         }
     }
 
-    void ResetAnimation()
+    void EndTurn()
     {
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        if (attackEffect != null)
         {
-            animator.SetBool("isAttack", false);
+            if (attackEffect.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Enemy_Attack") && attackEffect.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            {
+                Destroy(attackEffect);
 
-            isCurrentEnemyTurn = false;
-            GameManager.instance.isEnemyTurn = false;
-            GameManager.instance.isTurn = true;
-            GameManager.instance.TurnNumber++;
+                isAttacking = false;
+                GameManager.instance.isEnemyTurn = false;
+                GameManager.instance.isTurn = true;
+                GameManager.instance.TurnNumber++;
+            }
         }
     }
 }
