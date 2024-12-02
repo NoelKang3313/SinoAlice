@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e6b25c1faec849feb7ac1adfa03bea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StageManager: {fileID: 0}
   Name: Snow White
   HP: 500
   CurrentHP: 500

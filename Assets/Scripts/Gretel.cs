@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Gretel : MonoBehaviour
 {
+    [SerializeField]
+    StageManager StageManager;
+
     [Header("Gretel Stats")]
     public string Name;
     public float HP;
@@ -50,10 +53,8 @@ public class Gretel : MonoBehaviour
     void Start()
     {
         Name = "Gretel";
-        HP = 300;
-        CurrentHP = HP;
-        MP = 500;
-        CurrentMP = MP;
+        HP = 300;        
+        MP = 500;        
         Attack = 10;
         Defense = 10;
         Intell = 10;
@@ -63,6 +64,11 @@ public class Gretel : MonoBehaviour
 
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+
+        if (GameObject.Find("StageManager") != null)
+        {
+            StageManager = GameObject.Find("StageManager").GetComponent<StageManager>();
+        }
     }
 
     void Update()
@@ -175,6 +181,8 @@ public class Gretel : MonoBehaviour
 
                                 GameManager.instance.isTurn = true;
                                 GameManager.instance.TurnNumber++;
+
+                                DamageEnemy(10);
                             }
 
                             break;
@@ -203,6 +211,8 @@ public class Gretel : MonoBehaviour
 
                                 GameManager.instance.isTurn = true;
                                 GameManager.instance.TurnNumber++;
+
+                                DamageEnemy(10);
                             }
 
                             break;
@@ -231,6 +241,8 @@ public class Gretel : MonoBehaviour
 
                                 GameManager.instance.isTurn = true;
                                 GameManager.instance.TurnNumber++;
+
+                                DamageEnemy(10);
                             }
 
                             break;
@@ -257,6 +269,8 @@ public class Gretel : MonoBehaviour
 
                                 GameManager.instance.isTurn = true;
                                 GameManager.instance.TurnNumber++;
+
+                                DamageEnemy(10);
                             }
 
                             break;
@@ -283,6 +297,8 @@ public class Gretel : MonoBehaviour
 
                                 GameManager.instance.isTurn = true;
                                 GameManager.instance.TurnNumber++;
+
+                                DamageEnemy(10);
                             }
 
                             break;
@@ -321,6 +337,8 @@ public class Gretel : MonoBehaviour
 
                 GameManager.instance.isTurn = true;
                 GameManager.instance.TurnNumber++;
+
+                DamageEnemy(10);
             }
         }
     }
@@ -328,5 +346,13 @@ public class Gretel : MonoBehaviour
     void ResetAnimationTrigger(string animation)
     {
         animator.ResetTrigger(animation);
+    }
+
+    void DamageEnemy(int damage)
+    {
+        if (StageManager.EnemyGameObject[GameManager.instance.EnemyPositionNumber].name.StartsWith("Rat"))
+        {
+            StageManager.EnemyGameObject[GameManager.instance.EnemyPositionNumber].GetComponent<Rat>().CurrentHP -= damage;
+        }
     }
 }

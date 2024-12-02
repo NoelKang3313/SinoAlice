@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class Alice : MonoBehaviour
 {
+    [SerializeField]
+    UIManager UIManager;
+
+    [SerializeField]
+    StageManager StageManager;
+
     [Header("Alice Stats")]
     public string Name;
     public float HP;
@@ -56,10 +62,8 @@ public class Alice : MonoBehaviour
     void Start()
     {
         Name = "Alice";
-        HP = 400;
-        CurrentHP = HP;
-        MP = 400;
-        CurrentMP = MP;
+        HP = 400;        
+        MP = 400;        
         Attack = 10;
         Defense = 10;
         Intell = 10;
@@ -69,6 +73,16 @@ public class Alice : MonoBehaviour
 
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+
+        if(GameObject.Find("UIManager") != null)
+        {
+            UIManager = GameObject.Find("UIManager").GetComponent<UIManager>();
+        }
+
+        if(GameObject.Find("StageManager") != null)
+        {
+            StageManager = GameObject.Find("StageManager").GetComponent<StageManager>();
+        }
     }
 
     void Update()
@@ -192,6 +206,8 @@ public class Alice : MonoBehaviour
 
                                 GameManager.instance.isTurn = true;
                                 GameManager.instance.TurnNumber++;
+
+                                DamageEnemy(10);
                             }
 
                             break;
@@ -219,6 +235,8 @@ public class Alice : MonoBehaviour
 
                                 GameManager.instance.isTurn = true;
                                 GameManager.instance.TurnNumber++;
+
+                                DamageEnemy(10);
                             }
 
                             break;
@@ -246,6 +264,8 @@ public class Alice : MonoBehaviour
 
                                 GameManager.instance.isTurn = true;
                                 GameManager.instance.TurnNumber++;
+
+                                DamageEnemy(10);
                             }
 
                             break;
@@ -272,6 +292,8 @@ public class Alice : MonoBehaviour
 
                                 GameManager.instance.isTurn = true;
                                 GameManager.instance.TurnNumber++;
+
+                                DamageEnemy(10);
                             }
 
                             break;
@@ -299,6 +321,8 @@ public class Alice : MonoBehaviour
 
                                 GameManager.instance.isTurn = true;
                                 GameManager.instance.TurnNumber++;
+
+                                HealPlayer(10);
                             }
 
                             break;
@@ -339,6 +363,8 @@ public class Alice : MonoBehaviour
 
                 isAttacking = false;
                 Destroy(attackEffect);
+
+                DamageEnemy(10);
             }            
         }
     }
@@ -346,5 +372,53 @@ public class Alice : MonoBehaviour
     void ResetAnimationTrigger(string animation)
     {
         animator.ResetTrigger(animation);
+    }
+
+    void DamageEnemy(int damage)
+    {
+        if (StageManager.EnemyGameObject[GameManager.instance.EnemyPositionNumber].name.StartsWith("Rat"))
+        {
+            StageManager.EnemyGameObject[GameManager.instance.EnemyPositionNumber].GetComponent<Rat>().CurrentHP -= damage;
+        }
+    }
+
+    void HealPlayer(int heal)
+    {
+        for(int i = 0; i < GameManager.instance.CharacterSelected.Length; i++)
+        {
+            if(GameManager.instance.AlicePositionNumber == i)
+            {
+                if(GameManager.instance.CharacterSelected[i].GetComponent<Alice>().CurrentHP >= GameManager.instance.CharacterSelected[i].GetComponent<Alice>().HP)
+                {
+                    GameManager.instance.CharacterSelected[i].GetComponent<Alice>().CurrentHP += 0;
+                }
+                else
+                {
+                    GameManager.instance.CharacterSelected[i].GetComponent<Alice>().CurrentHP += 10;
+                }
+            }
+            else if(GameManager.instance.GretelPositionNumber == i)
+            {
+                if (GameManager.instance.CharacterSelected[i].GetComponent<Gretel>().CurrentHP >= GameManager.instance.CharacterSelected[i].GetComponent<Gretel>().HP)
+                {
+                    GameManager.instance.CharacterSelected[i].GetComponent<Gretel>().CurrentHP += 0;
+                }
+                else
+                {
+                    GameManager.instance.CharacterSelected[i].GetComponent<Gretel>().CurrentHP += 10;
+                }
+            }
+            else if(GameManager.instance.SWPositionNumber == i)
+            {
+                if (GameManager.instance.CharacterSelected[i].GetComponent<SnowWhite>().CurrentHP >= GameManager.instance.CharacterSelected[i].GetComponent<SnowWhite>().HP)
+                {
+                    GameManager.instance.CharacterSelected[i].GetComponent<SnowWhite>().CurrentHP += 0;
+                }
+                else
+                {
+                    GameManager.instance.CharacterSelected[i].GetComponent<SnowWhite>().CurrentHP += 10;
+                }
+            }
+        }
     }
 }

@@ -6,7 +6,7 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    public Stage1_1Manager StageManager;
+    public StageManager StageManager;
 
     public GameObject HeavenOrHell;
     private Animator heavenOrHellAnimator;
@@ -27,6 +27,13 @@ public class UIManager : MonoBehaviour
     public Image CharacterMPGauge;
     public TextMeshProUGUI CurrentHPText;
     public TextMeshProUGUI CurrentMPText;
+
+    [Header("Character Mini HP Gauge")]
+    public GameObject CharacterMiniGauge;
+    public Image Player1HPGauge;
+    public Image Player2HPGauge;
+    public Image Player3HPGauge;
+    public Image[] EnemyHPGauge = new Image[4];
 
     public Sprite AliceSprite;
     public Sprite GretelSprite;
@@ -127,9 +134,10 @@ public class UIManager : MonoBehaviour
     {
         BattleIntro();
         SetGauge();
+        SetMiniGauge();
         ActionButtonsActivate();
         CheckCharacterTurnChangeSkillIcon();
-        StartCoroutine(ConfirmButtonPressed());
+        StartCoroutine(ConfirmButtonPressed());        
     }
 
     void CheckCharacterTurnChangeSkillIcon()
@@ -168,6 +176,7 @@ public class UIManager : MonoBehaviour
             AudioSource.volume = 0.5f;
 
             GaugePanel.SetActive(true);
+            CharacterMiniGauge.SetActive(true);
 
             GameManager.instance.isTurn = true;
         }
@@ -495,6 +504,51 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    void SetMiniGauge()
+    {
+        for(int i = 0; i < GameManager.instance.CharacterSelected.Length; i++)
+        {
+            switch(i)
+            {
+                case 0:
+                    Player1HPGauge.fillAmount = GetPlayerHP(i);
+                    break;
+                case 1:
+                    Player2HPGauge.fillAmount = GetPlayerHP(i);
+                    break;
+                case 2:
+                    Player3HPGauge.fillAmount = GetPlayerHP(i);
+                    break;
+            }
+        }
+
+        for(int i = 0; i < EnemyHPGauge.Length; i++)
+        {
+            if (StageManager.EnemyGameObject[i] != null && StageManager.EnemyGameObject[i].name.StartsWith("Rat"))
+            {
+                EnemyHPGauge[i].fillAmount = StageManager.EnemyGameObject[i].GetComponent<Rat>().CurrentHP / StageManager.EnemyGameObject[i].GetComponent<Rat>().HP;
+            }
+        }        
+    }    
+
+    float GetPlayerHP(int number)
+    {
+        if (GameManager.instance.CharacterSelected[number].name == "Alice")
+        {
+            return GameManager.instance.CharacterSelected[number].GetComponent<Alice>().CurrentHP / GameManager.instance.CharacterSelected[number].GetComponent<Alice>().HP;
+        }
+        else if (GameManager.instance.CharacterSelected[number].name == "Gretel")
+        {
+            return GameManager.instance.CharacterSelected[number].GetComponent<Gretel>().CurrentHP / GameManager.instance.CharacterSelected[number].GetComponent<Gretel>().HP;
+        }
+        else if (GameManager.instance.CharacterSelected[number].name == "Snow White")
+        {
+            return GameManager.instance.CharacterSelected[number].GetComponent<SnowWhite>().CurrentHP / GameManager.instance.CharacterSelected[number].GetComponent<SnowWhite>().HP;
+        }
+
+        return 0;
+    }
+
     void SetGauge()
     {
         if(GameManager.instance.isAliceTurn)
@@ -526,12 +580,22 @@ public class UIManager : MonoBehaviour
         }
         else if(GameManager.instance.isEnemyTurn)
         {
+            //// Array
+            //CharacterImage.sprite = RatSprite;
+            //CharacterName.text = StageManager.CharacterTurn[GameManager.instance.TurnNumber].name;
+            //CharacterHPGauge.fillAmount = StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().CurrentHP / StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().HP;
+            //CharacterMPGauge.fillAmount = StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().CurrentMP / StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().MP;
+            //CurrentHPText.text = StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().CurrentHP.ToString() + "/" + StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().HP.ToString();
+            //CurrentMPText.text = StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().CurrentMP.ToString() + "/" + StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().MP.ToString();
+
+            // List
             CharacterImage.sprite = RatSprite;
-            CharacterName.text = StageManager.CharacterTurn[GameManager.instance.TurnNumber].name;
-            CharacterHPGauge.fillAmount = StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().CurrentHP / StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().HP;
-            CharacterMPGauge.fillAmount = StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().CurrentMP / StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().MP;
-            CurrentHPText.text = StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().CurrentHP.ToString() + "/" + StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().HP.ToString();
-            CurrentMPText.text = StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().CurrentMP.ToString() + "/" + StageManager.CharacterTurn[GameManager.instance.TurnNumber].GetComponent<Rat>().MP.ToString();
+            CharacterName.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].name;
+            CharacterHPGauge.fillAmount = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Rat>().CurrentHP / StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Rat>().HP;
+            CharacterMPGauge.fillAmount = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Rat>().CurrentMP / StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Rat>().MP;
+            CurrentHPText.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Rat>().CurrentHP.ToString() + "/" + StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Rat>().HP.ToString();
+            CurrentMPText.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Rat>().CurrentMP.ToString() + "/" + StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Rat>().MP.ToString();
+
         }
     }
 

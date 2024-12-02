@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
     public Inventory Inventory;
+    private StageManager StageManager;
 
     public bool isTransition;
     public bool isBattleStart;
     public bool isTurn;
-    public int TurnNumber = 0;
+    public int TurnNumber;
 
     [Header("Character Selection")]
     public GameObject[] CharacterSelected = new GameObject[3];
@@ -72,6 +74,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        if(GameObject.Find("StageManager") != null)
+        {
+            StageManager = GameObject.Find("StageManager").GetComponent<StageManager>();
+        }
+
+        AlicePrefab.GetComponent<Alice>().CurrentHP = AlicePrefab.GetComponent<Alice>().HP;
+        AlicePrefab.GetComponent<Alice>().CurrentMP = AlicePrefab.GetComponent<Alice>().MP;
+
+        GretelPrefab.GetComponent<Gretel>().CurrentHP = GretelPrefab.GetComponent<Gretel>().HP;
+        GretelPrefab.GetComponent<Gretel>().CurrentMP = GretelPrefab.GetComponent<Gretel>().MP;
+
+        SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP = SnowWhitePrefab.GetComponent<SnowWhite>().HP;
+        SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP = SnowWhitePrefab.GetComponent<SnowWhite>().MP;
+    }
+
     void Update()
     {
         CharacterPosition();
@@ -79,7 +98,7 @@ public class GameManager : MonoBehaviour
 
         GetDamage(10);
 
-        if(TurnNumber > 6)
+        if(StageManager != null && TurnNumber == StageManager.CharacterTurns.Count)
         {
             TurnNumber = 0;
         }
