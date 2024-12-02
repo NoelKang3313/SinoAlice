@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SnowWhite : MonoBehaviour
 {
+    [SerializeField]
+    StageManager StageManager;
+
     [Header("Snow White Stats")]
     public string Name;
     public float HP;
@@ -56,9 +59,7 @@ public class SnowWhite : MonoBehaviour
     {
         Name = "Snow White";
         HP = 500;
-        CurrentHP = HP;
-        MP = 300;
-        CurrentMP = MP;
+        MP = 300;        
         Attack = 10;
         Defense = 10;
         Intell = 10;
@@ -68,6 +69,11 @@ public class SnowWhite : MonoBehaviour
 
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+
+        if (GameObject.Find("StageManager") != null)
+        {
+            StageManager = GameObject.Find("StageManager").GetComponent<StageManager>();
+        }
     }
 
     void Update()
@@ -191,6 +197,8 @@ public class SnowWhite : MonoBehaviour
 
                                 GameManager.instance.isTurn = true;
                                 GameManager.instance.TurnNumber++;
+
+                                DamageEnemy(10);
                             }
 
                             break;
@@ -218,6 +226,8 @@ public class SnowWhite : MonoBehaviour
 
                                 GameManager.instance.isTurn = true;
                                 GameManager.instance.TurnNumber++;
+
+                                DamageEnemy(10);
                             }
 
                             break;
@@ -245,6 +255,8 @@ public class SnowWhite : MonoBehaviour
 
                                 GameManager.instance.isTurn = true;
                                 GameManager.instance.TurnNumber++;
+
+                                DamageEnemy(10);
                             }
 
                             break;
@@ -272,6 +284,8 @@ public class SnowWhite : MonoBehaviour
 
                                 GameManager.instance.isTurn = true;
                                 GameManager.instance.TurnNumber++;
+
+                                DamageEnemy(10);
                             }
 
                             break;
@@ -298,6 +312,8 @@ public class SnowWhite : MonoBehaviour
 
                                 GameManager.instance.isTurn = true;
                                 GameManager.instance.TurnNumber++;
+
+                                DamageEnemy(10);
                             }
 
                             break;
@@ -338,6 +354,8 @@ public class SnowWhite : MonoBehaviour
 
                 isAttacking = false;
                 Destroy(attackEffect);
+
+                DamageEnemy(100);
             }
         }
     }
@@ -345,5 +363,13 @@ public class SnowWhite : MonoBehaviour
     void ResetAnimationTrigger(string animation)
     {
         animator.ResetTrigger(animation);
+    }
+
+    void DamageEnemy(int damage)
+    {
+        if (StageManager.EnemyGameObject[GameManager.instance.EnemyPositionNumber].name.StartsWith("Rat"))
+        {
+            StageManager.EnemyGameObject[GameManager.instance.EnemyPositionNumber].GetComponent<Rat>().CurrentHP -= damage;
+        }
     }
 }

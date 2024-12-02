@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 996203da179e04e4bb270fe1d1936b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StageManager: {fileID: 0}
   Name: Alice
   HP: 400
   CurrentHP: 400

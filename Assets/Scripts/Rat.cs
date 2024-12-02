@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Rat : MonoBehaviour
 {
+    [SerializeField]
+    StageManager StageManager;
+
     Animator animator;
 
     [Header("Rat Stats")]
@@ -23,6 +26,8 @@ public class Rat : MonoBehaviour
     private bool isAttacking;
     public Gradient AttackGradient;
 
+    int playerRandom;
+
     void Awake()
     {
         Name = "Rat";
@@ -37,6 +42,11 @@ public class Rat : MonoBehaviour
 
     void Start()
     {
+        if (GameObject.Find("StageManager") != null)
+        {
+            StageManager = GameObject.Find("StageManager").GetComponent<StageManager>();
+        }
+
         animator = GetComponent<Animator>();
     }
 
@@ -44,6 +54,7 @@ public class Rat : MonoBehaviour
     {
         RatTurn();        
         EndTurn();
+        EnemyDead();
     }
 
     void RatTurn()
@@ -61,8 +72,8 @@ public class Rat : MonoBehaviour
                 {
                     isAttacking = true;
 
-                    int random = Random.Range(0, 3);
-                    attackEffect = Instantiate(AttackEffectPrefab, GameManager.instance.Characters[random].transform.position, Quaternion.identity);
+                    playerRandom = Random.Range(0, 3);
+                    attackEffect = Instantiate(AttackEffectPrefab, GameManager.instance.Characters[playerRandom].transform.position, Quaternion.identity);
                     attackEffect.GetComponent<Animator>().Play("Enemy_Attack");
 
                     var colorOverLifeTime = attackEffect.GetComponentInChildren<ParticleSystem>().colorOverLifetime;
@@ -84,7 +95,34 @@ public class Rat : MonoBehaviour
                 GameManager.instance.isEnemyTurn = false;
                 GameManager.instance.isTurn = true;
                 GameManager.instance.TurnNumber++;
+
+                DamagePlayer(10, playerRandom);
             }
+        }
+    }
+
+    void DamagePlayer(int damage, int random)
+    {
+        if(GameManager.instance.CharacterSelected[random].name == "Alice")
+        {
+            GameManager.instance.CharacterSelected[random].GetComponent<Alice>().CurrentHP -= damage;
+        }
+        else if(GameManager.instance.CharacterSelected[random].name == "Gretel")
+        {
+            GameManager.instance.CharacterSelected[random].GetComponent<Gretel>().CurrentHP -= damage;
+        }
+        else if(GameManager.instance.CharacterSelected[random].name == "Snow White")
+        {
+            GameManager.instance.CharacterSelected[random].GetComponent<SnowWhite>().CurrentHP -= damage;
+        }
+    }
+
+    void EnemyDead()
+    {
+        if(gameObject != null && CurrentHP <= 0)
+        {
+            Destroy(gameObject);
+            StageManager.CharacterTurns.Remove(gameObject);
         }
     }
 }

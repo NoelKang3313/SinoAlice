@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e6cfb0b3616647a0b65668fe3c1d0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StageManager: {fileID: 0}
   Name: Gretel
   HP: 300
   CurrentHP: 300
