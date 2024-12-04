@@ -60,7 +60,7 @@ public class Rat : MonoBehaviour
     void RatTurn()
     {
         if(isCurrentEnemyTurn)
-        {            
+        {
             animator.SetBool("isAttack", true);
 
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
@@ -123,6 +123,8 @@ public class Rat : MonoBehaviour
         {
             Destroy(gameObject);
             StageManager.CharacterTurns.Remove(gameObject);
+            StageManager.CharacterSpeeds.Remove(gameObject.GetComponent<Rat>().Speed);
+            StageManager.EnemyCount--;
         }
     }
 }
