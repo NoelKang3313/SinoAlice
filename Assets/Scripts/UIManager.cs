@@ -19,7 +19,8 @@ public class UIManager : MonoBehaviour
     public AudioSource AudioSource;
     public AudioClip LetsRockAudioClip;
     public AudioClip BattleBGM;
-
+    public AudioClip VictoryBGM;
+    
     public GameObject GaugePanel;
     public Image CharacterImage;
     public TextMeshProUGUI CharacterName;
@@ -137,7 +138,13 @@ public class UIManager : MonoBehaviour
         SetMiniGauge();
         ActionButtonsActivate();
         CheckCharacterTurnChangeSkillIcon();
-        StartCoroutine(ConfirmButtonPressed());        
+        StartCoroutine(ConfirmButtonPressed());
+        BattleOver();
+
+        if(GameManager.instance.isEnemyTurn)
+        {
+            CharacterMiniGauge.SetActive(true);
+        }
     }
 
     void CheckCharacterTurnChangeSkillIcon()
@@ -158,7 +165,7 @@ public class UIManager : MonoBehaviour
 
     void BattleIntro()
     {
-        if(heavenOrHellAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        if (heavenOrHellAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
             HeavenOrHell.SetActive(false);
             LetsRock.SetActive(true);
@@ -524,9 +531,17 @@ public class UIManager : MonoBehaviour
 
         for(int i = 0; i < EnemyHPGauge.Length; i++)
         {
-            if (StageManager.EnemyGameObject[i] != null && StageManager.EnemyGameObject[i].name.StartsWith("Rat"))
+            if(StageManager.EnemyGameObject[i] == null)
             {
-                EnemyHPGauge[i].fillAmount = StageManager.EnemyGameObject[i].GetComponent<Rat>().CurrentHP / StageManager.EnemyGameObject[i].GetComponent<Rat>().HP;
+                EnemyHPGauge[i].gameObject.SetActive(false);
+                EnemySelectButton[i].gameObject.SetActive(false);
+            }
+            else
+            {
+                if (StageManager.EnemyGameObject[i].name.StartsWith("Rat"))
+                {
+                    EnemyHPGauge[i].fillAmount = StageManager.EnemyGameObject[i].GetComponent<Rat>().CurrentHP / StageManager.EnemyGameObject[i].GetComponent<Rat>().HP;
+                }
             }
         }        
     }    
@@ -599,6 +614,16 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    void BattleOver()
+    {
+        if(GameManager.instance.isBattleOver)
+        {
+            ActionButtons.SetActive(false);
+            PauseButton.gameObject.SetActive(false);
+            GaugePanel.SetActive(false);            
+        }
+    }
+
     IEnumerator ConfirmButtonPressed()
     {
         if (TransitionAnimator.GetCurrentAnimatorStateInfo(0).IsName("-Stage Transition") &&
@@ -621,6 +646,7 @@ public class UIManager : MonoBehaviour
 
                 GameManager.instance.isBattleStart = true;
                 GameManager.instance.TurnNumber = 0;
+                GameManager.instance.isBattleOver = false;
                 GameManager.instance.LoadScene("Stage1-1");
             }
             else if(isLobby)
@@ -638,6 +664,7 @@ public class UIManager : MonoBehaviour
 
                 GameManager.instance.isBattleStart = false;
                 GameManager.instance.TurnNumber = 0;
+                GameManager.instance.isBattleOver = false;
                 GameManager.instance.LoadScene("Lobby");
             }
         }

@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public bool isBattleStart;
     public bool isTurn;
     public int TurnNumber;
+    public bool isBattleOver;
 
     [Header("Character Selection")]
     public GameObject[] CharacterSelected = new GameObject[3];
@@ -97,11 +98,6 @@ public class GameManager : MonoBehaviour
         StageEnterInstantiateCharacter();
 
         GetDamage(10);
-
-        if(StageManager != null && TurnNumber == StageManager.CharacterTurns.Count)
-        {
-            TurnNumber = 0;
-        }
     }
 
     public void LoadScene(string sceneName)

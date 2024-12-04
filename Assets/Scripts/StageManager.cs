@@ -13,8 +13,9 @@ public class StageManager : MonoBehaviour
     //[SerializeField]
     //private float[] CharacterSpeed = new float[7];
 
-    [SerializeField]
-    private List<float> CharacterSpeeds;
+    public List<float> CharacterSpeeds;
+
+    public int EnemyCount = 0;  // Check All Enemies are Eliminated
 
     void Start()
     {
@@ -55,6 +56,7 @@ public class StageManager : MonoBehaviour
         {
             CharacterTurns.Add(obj);
             CharacterSpeeds.Add(obj.GetComponent<Rat>().Speed);
+            EnemyCount++;
         }
 
         SetCharactersTurn();
@@ -62,7 +64,17 @@ public class StageManager : MonoBehaviour
     
     void Update()
     {
-        StartCharacterTurn(GameManager.instance.TurnNumber);     
+        StartCharacterTurn(GameManager.instance.TurnNumber);
+
+        if(EnemyCount == 0)
+        {
+            GameManager.instance.isBattleOver = true;
+        }        
+
+        if(GameManager.instance.TurnNumber == CharacterTurns.Count)
+        {
+            GameManager.instance.TurnNumber = 0;
+        }
     }
 
     void SetCharactersTurn()
@@ -101,7 +113,7 @@ public class StageManager : MonoBehaviour
                     CharacterSpeeds[j] = speed;
                 }
             }
-        }
+        }        
     }
 
     void StartCharacterTurn(int number)
@@ -127,10 +139,6 @@ public class StageManager : MonoBehaviour
             }            
 
             GameManager.instance.isTurn = false;
-        }
-        else if(GameManager.instance.isTurn && GameManager.instance.TurnNumber >= CharacterTurns.Count)
-        {
-            GameManager.instance.isTurn = false;
-        }
+        }        
     }
 }
