@@ -344,7 +344,7 @@ public class Alice : MonoBehaviour
                 }
                 else if (GameManager.instance.isItemButtonActive)
                 {
-                    Debug.Log("ITEM");
+                    //Debug.Log("ITEM");
 
                     //uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
 

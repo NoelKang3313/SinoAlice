@@ -6,21 +6,22 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("Managers")]
     public StageManager StageManager;
+    public StageAudioManager StageAudioManager;
 
-    public GameObject HeavenOrHell;
-    private Animator heavenOrHellAnimator;
-    public GameObject LetsRock;
-    private Animator letsRockAnimator;
+    [Header("Inventory Items")]
+    [SerializeField]
+    private Inventory Inventory;
+    public Button ItemSlot;
+    private List<Button> ItemButtons = new List<Button>();
 
+    [Header("Battle Start")]
+    public GameObject BattleIntro;
     public GameObject Transition;
     public Animator TransitionAnimator;
 
-    public AudioSource AudioSource;
-    public AudioClip LetsRockAudioClip;
-    public AudioClip BattleBGM;
-    public AudioClip VictoryBGM;
-    
+    [Header("Gauge Panel")]
     public GameObject GaugePanel;
     public Image CharacterImage;
     public TextMeshProUGUI CharacterName;
@@ -36,11 +37,13 @@ public class UIManager : MonoBehaviour
     public Image Player3HPGauge;
     public Image[] EnemyHPGauge = new Image[4];
 
+    [Header("Character Sprites")]
     public Sprite AliceSprite;
     public Sprite GretelSprite;
     public Sprite SnowWhiteSprite;
     public Sprite RatSprite;
 
+    [Header("Action Buttons")]
     public GameObject ActionButtons;
     private Animator actionButtonsAnimator;
 
@@ -73,6 +76,7 @@ public class UIManager : MonoBehaviour
     public GameObject ItemButtonViewport;
     public GameObject ItemViewportContent;
 
+    [Header("Pause Panel")]
     public Button PauseButton;
     public GameObject PausePanel;
     public Button RestartButton;
@@ -88,11 +92,16 @@ public class UIManager : MonoBehaviour
 
     private bool isRestart;
     private bool isLobby;
+    private bool isWorldmap;
+
+    [Header("Battle Over Related")]
+    public GameObject GameCompleteButtons;
+    public Button GameCompleteReturnWorldmapButton;
+    public Button GameCompleteReturnLobbyButton;
 
     void Start()
     {
-        heavenOrHellAnimator = HeavenOrHell.GetComponent<Animator>();
-        letsRockAnimator = LetsRock.GetComponent<Animator>();
+        Inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
 
         actionButtonsAnimator = ActionButtons.GetComponent<Animator>();
 
@@ -129,11 +138,23 @@ public class UIManager : MonoBehaviour
         SettingReturnButton.onClick.AddListener(SettingReturnButtonClicked);
         ReturnLobbyButton.onClick.AddListener(ReturnLobbyButtonClicked);
         ResumeButton.onClick.AddListener(ResumeButtonClicked);
+
+        GameCompleteReturnWorldmapButton.onClick.AddListener(GameCompleteReturnWorldmapButtonClicked);
+        GameCompleteReturnLobbyButton.onClick.AddListener(GameCompleteReturnLobbyButtonClicked);
+
+        GetItemFromInventory();
+
+        for(int i = 0; i < ItemButtons.Count; i++)
+        {
+            int number = i;
+
+            ItemButtons[i].onClick.AddListener(() => ItemButtonsClicked(number));
+        }
     }
     
     void Update()
     {
-        BattleIntro();
+        BattleStart();
         SetGauge();
         SetMiniGauge();
         ActionButtonsActivate();
@@ -144,6 +165,50 @@ public class UIManager : MonoBehaviour
         if(GameManager.instance.isEnemyTurn)
         {
             CharacterMiniGauge.SetActive(true);
+        }
+    }
+
+    void GetItemFromInventory()
+    {
+        for(int i = 0; i < Inventory.Items.Count; i++)
+        {
+            if (Inventory.Items != null)
+            {
+                Button Item = Instantiate(ItemSlot, ItemViewportContent.transform.position, Quaternion.identity);
+                Item.transform.SetParent(ItemViewportContent.transform);
+
+                Item.GetComponent<UIItem>().ItemImage.sprite = Inventory.Items[i].ItemSprite;                
+                Item.GetComponent<UIItem>().ItemAmount.text = Inventory.Items[i].ItemAmount.ToString();
+                Item.GetComponent<UIItem>().ItemData = Inventory.Items[i];
+
+                ItemButtons.Add(Item);
+            }
+            else
+                break;
+        }
+
+        SortItemButtons();
+    }
+
+    void SortItemButtons()
+    {
+        for(int i = 0; i < ItemButtons.Count; i++)
+        {
+            for(int j = i + 1; j < ItemButtons.Count; j++)
+            {
+                if(ItemButtons[i].GetComponent<UIItem>().ItemData.ItemID < ItemButtons[j].GetComponent<UIItem>().ItemData.ItemID)
+                {                    
+                    ItemButtons[i].transform.SetAsLastSibling();
+                }
+            }
+        }
+    }
+
+    void ItemButtonsClicked(int number)
+    {
+        for (int i = 0; i < CharacterSelectButton.Length; i++)
+        {
+            CharacterSelectButton[i].gameObject.SetActive(true);
         }
     }
 
@@ -163,24 +228,25 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void BattleIntro()
+    void BattleStart()
     {
-        if (heavenOrHellAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        if(!StageAudioManager.AudioSource.isPlaying && StageAudioManager.AudioSource.clip.name == "HeavenORHell")
         {
-            HeavenOrHell.SetActive(false);
-            LetsRock.SetActive(true);
-            AudioSource.PlayOneShot(LetsRockAudioClip);
+            StageAudioManager.AudioSource.Stop();
+            StageAudioManager.AudioSource.clip = StageAudioManager.LetsRockClip;
+            StageAudioManager.AudioSource.Play();
         }
 
-        if (LetsRock.activeSelf && letsRockAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        if(!StageAudioManager.AudioSource.isPlaying && StageAudioManager.AudioSource.clip.name == "Let's Rock")
         {
-            LetsRock.SetActive(false);
+            StageAudioManager.AudioSource.Stop();
+            StageAudioManager.AudioSource.clip = StageAudioManager.BattleBGM;
+            StageAudioManager.AudioSource.Play();
+
             Transition.SetActive(false);
             PauseButton.gameObject.SetActive(true);
 
-            AudioSource.PlayOneShot(BattleBGM);
-            AudioSource.loop = true;
-            AudioSource.volume = 0.5f;
+            StageAudioManager.AudioSource.loop = true;
 
             GaugePanel.SetActive(true);
             CharacterMiniGauge.SetActive(true);
@@ -620,8 +686,32 @@ public class UIManager : MonoBehaviour
         {
             ActionButtons.SetActive(false);
             PauseButton.gameObject.SetActive(false);
-            GaugePanel.SetActive(false);            
+            GaugePanel.SetActive(false);
+            GameCompleteButtons.SetActive(true);
+
+            if(StageAudioManager.AudioSource.clip.name == "Battle BGM")
+            {
+                StageAudioManager.AudioSource.Stop();
+                StageAudioManager.AudioSource.clip = StageAudioManager.VictoryBGM;
+                StageAudioManager.AudioSource.Play();
+            }
         }
+    }
+
+    void GameCompleteReturnWorldmapButtonClicked()
+    {
+        isWorldmap = true;
+
+        Transition.SetActive(true);
+        TransitionAnimator.SetBool("isTransition", true);
+    }
+
+    void GameCompleteReturnLobbyButtonClicked()
+    {
+        isLobby = true;
+
+        Transition.SetActive(true);
+        TransitionAnimator.SetBool("isTransition", true);
     }
 
     IEnumerator ConfirmButtonPressed()
@@ -666,6 +756,24 @@ public class UIManager : MonoBehaviour
                 GameManager.instance.TurnNumber = 0;
                 GameManager.instance.isBattleOver = false;
                 GameManager.instance.LoadScene("Lobby");
+            }
+            else if(isWorldmap)
+            {
+                isWorldmap = false;
+
+                GameManager.instance.isAliceTurn = false;
+                GameManager.instance.isGretelTurn = false;
+                GameManager.instance.isSWTurn = false;
+
+                GameManager.instance.isAttackButtonActive = false;
+                GameManager.instance.isGuardButtonActive = false;
+                GameManager.instance.isSkillButtonActive = false;
+                GameManager.instance.isItemButtonActive = false;
+
+                GameManager.instance.isBattleStart = false;
+                GameManager.instance.TurnNumber = 0;
+                GameManager.instance.isBattleOver = false;
+                GameManager.instance.LoadScene("Worldmap");
             }
         }
     }
