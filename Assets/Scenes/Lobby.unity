@@ -26821,6 +26821,7 @@ MonoBehaviour:
   isBattleStart: 0
   isTurn: 0
   TurnNumber: 0
+  isBattleOver: 0
   CharacterSelected:
   - {fileID: 0}
   - {fileID: 0}
