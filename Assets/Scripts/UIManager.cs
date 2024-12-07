@@ -10,12 +10,6 @@ public class UIManager : MonoBehaviour
     public StageManager StageManager;
     public StageAudioManager StageAudioManager;
 
-    [Header("Inventory Items")]
-    [SerializeField]
-    private Inventory Inventory;
-    public Button ItemSlot;
-    private List<Button> ItemButtons = new List<Button>();
-
     [Header("Battle Start")]
     public GameObject BattleIntro;
     public GameObject Transition;
@@ -75,6 +69,19 @@ public class UIManager : MonoBehaviour
     public GameObject ItemButtonArrow;
     public GameObject ItemButtonViewport;
     public GameObject ItemViewportContent;
+
+    [Header("Inventory Items")]
+    [SerializeField]
+    private Inventory Inventory;
+    public Button ItemSlot;
+    [SerializeField]
+    private List<Button> ItemButtons = new List<Button>();
+    private int selectedItemID;
+
+    public GameObject ItemInformationPanel;
+    public Image ItemImage;
+    public TextMeshProUGUI ItemName;
+    public TextMeshProUGUI ItemDescription;
 
     [Header("Pause Panel")]
     public Button PauseButton;
@@ -168,50 +175,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void GetItemFromInventory()
-    {
-        for(int i = 0; i < Inventory.Items.Count; i++)
-        {
-            if (Inventory.Items != null)
-            {
-                Button Item = Instantiate(ItemSlot, ItemViewportContent.transform.position, Quaternion.identity);
-                Item.transform.SetParent(ItemViewportContent.transform);
-
-                Item.GetComponent<UIItem>().ItemImage.sprite = Inventory.Items[i].ItemSprite;                
-                Item.GetComponent<UIItem>().ItemAmount.text = Inventory.Items[i].ItemAmount.ToString();
-                Item.GetComponent<UIItem>().ItemData = Inventory.Items[i];
-
-                ItemButtons.Add(Item);
-            }
-            else
-                break;
-        }
-
-        SortItemButtons();
-    }
-
-    void SortItemButtons()
-    {
-        for(int i = 0; i < ItemButtons.Count; i++)
-        {
-            for(int j = i + 1; j < ItemButtons.Count; j++)
-            {
-                if(ItemButtons[i].GetComponent<UIItem>().ItemData.ItemID < ItemButtons[j].GetComponent<UIItem>().ItemData.ItemID)
-                {                    
-                    ItemButtons[i].transform.SetAsLastSibling();
-                }
-            }
-        }
-    }
-
-    void ItemButtonsClicked(int number)
-    {
-        for (int i = 0; i < CharacterSelectButton.Length; i++)
-        {
-            CharacterSelectButton[i].gameObject.SetActive(true);
-        }
-    }
-
     void CheckCharacterTurnChangeSkillIcon()
     {
         if (GameManager.instance.isAliceTurn)
@@ -293,6 +256,7 @@ public class UIManager : MonoBehaviour
         }
 
         SkillInformationPanel.GetComponent<Animator>().SetBool("isActive", false);
+        ItemInformationPanel.GetComponent<Animator>().SetBool("isActive", false);
 
         ResetViewportPosition();
     }
@@ -333,6 +297,8 @@ public class UIManager : MonoBehaviour
         ItemButtonArrow.GetComponent<Animator>().SetBool("isActive", false);
         ItemButtonViewport.GetComponent<Animator>().SetBool("isActive", false);
 
+        ItemInformationPanel.GetComponent<Animator>().SetBool("isActive", false);
+
         ResetViewportPosition();
     }
 
@@ -350,6 +316,8 @@ public class UIManager : MonoBehaviour
 
         ItemButtonArrow.GetComponent<Animator>().SetBool("isActive", false);
         ItemButtonViewport.GetComponent<Animator>().SetBool("isActive", false);
+
+        ItemInformationPanel.GetComponent<Animator>().SetBool("isActive", false);
 
         for (int i = 0; i < CharacterSelectButton.Length; i++)
         {
@@ -434,6 +402,56 @@ public class UIManager : MonoBehaviour
         ResetViewportPosition();
     }
 
+    void GetItemFromInventory()
+    {
+        for (int i = 0; i < Inventory.Items.Count; i++)
+        {
+            if (Inventory.Items.Count != 0)
+            {
+                Button Item = Instantiate(ItemSlot, ItemViewportContent.transform.position, Quaternion.identity);
+                Item.transform.SetParent(ItemViewportContent.transform);
+
+                Item.GetComponent<UIItem>().ItemImage.sprite = Inventory.Items[i].ItemSprite;
+                Item.GetComponent<UIItem>().ItemAmount.text = Inventory.Items[i].ItemAmount.ToString();
+                Item.GetComponent<UIItem>().ItemData = Inventory.Items[i];
+
+                ItemButtons.Add(Item);
+            }
+        }
+
+        SortItemButtons();
+    }
+
+    void SortItemButtons()
+    {
+        for (int i = 0; i < ItemButtons.Count - 1; i++)
+        {
+            for (int j = 0; j < (ItemButtons.Count - i) - 1; j++)
+            {
+                if (ItemButtons[j].GetComponent<UIItem>().ItemData.ItemID < ItemButtons[j + 1].GetComponent<UIItem>().ItemData.ItemID)
+                {
+                    ItemButtons[j].transform.SetAsLastSibling();
+                }
+            }
+        }
+    }
+
+    void ItemButtonsClicked(int number)
+    {        
+        selectedItemID = ItemButtons[number].GetComponent<UIItem>().ItemData.ItemID;
+
+        for (int i = 0; i < CharacterSelectButton.Length; i++)
+        {
+            CharacterSelectButton[i].gameObject.SetActive(true);
+        }
+        
+        ItemInformationPanel.GetComponent<Animator>().SetBool("isActive", true);
+
+        ItemImage.sprite = ItemButtons[number].GetComponent<UIItem>().ItemData.ItemSprite;
+        ItemName.text = ItemButtons[number].GetComponent<UIItem>().ItemData.ItemName;
+        ItemDescription.text = ItemButtons[number].GetComponent<UIItem>().ItemData.ItemDescription;
+    }    
+
     void EnemySelectButtonClicked(int number)
     {
         GameManager.instance.EnemyPositionNumber = number;
@@ -467,6 +485,15 @@ public class UIManager : MonoBehaviour
                     CharacterSelectButton[i].gameObject.SetActive(false);
                 }
             }
+            else if(GameManager.instance.isItemButtonActive)
+            {
+                GameManager.instance.isAction = true;
+
+                for (int i = 0; i < CharacterSelectButton.Length; i++)
+                {
+                    CharacterSelectButton[i].gameObject.SetActive(false);
+                }
+            }
         }
         else if (GameManager.instance.GretelPositionNumber == number)
         {
@@ -478,6 +505,15 @@ public class UIManager : MonoBehaviour
                 CharacterSelectButton[number].gameObject.SetActive(false);
             }
             else if (GameManager.instance.isSkillButtonActive)
+            {
+                GameManager.instance.isAction = true;
+
+                for (int i = 0; i < CharacterSelectButton.Length; i++)
+                {
+                    CharacterSelectButton[i].gameObject.SetActive(false);
+                }
+            }
+            else if (GameManager.instance.isItemButtonActive)
             {
                 GameManager.instance.isAction = true;
 
@@ -505,6 +541,15 @@ public class UIManager : MonoBehaviour
                     CharacterSelectButton[i].gameObject.SetActive(false);
                 }
             }
+            else if (GameManager.instance.isItemButtonActive)
+            {
+                GameManager.instance.isAction = true;
+
+                for (int i = 0; i < CharacterSelectButton.Length; i++)
+                {
+                    CharacterSelectButton[i].gameObject.SetActive(false);
+                }
+            }
         }
 
         actionButtonsAnimator.SetBool("isActive", false);
@@ -512,6 +557,10 @@ public class UIManager : MonoBehaviour
         SkillInformationPanel.GetComponent<Animator>().SetBool("isActive", false);
         SkillButtonViewport.GetComponent<Animator>().SetBool("isActive", false);
         SkillButtonArrow.GetComponent<Animator>().SetBool("isActive", false);
+
+        ItemButtonArrow.GetComponent<Animator>().SetBool("isActive", false);
+        ItemButtonViewport.GetComponent<Animator>().SetBool("isActive", false);
+        ItemInformationPanel.GetComponent<Animator>().SetBool("isActive", false);
 
         ResetViewportPosition();
     }

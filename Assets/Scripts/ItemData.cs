@@ -22,7 +22,7 @@ public class ItemData : ScriptableObject
     {
         var assets = Resources.FindObjectsOfTypeAll<ItemData>();
 
-        foreach(var asset in assets)
+        foreach (var asset in assets)
         {
             asset.ResetItemAmount();
         }
