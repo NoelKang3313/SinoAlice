@@ -342,13 +342,15 @@ public class SnowWhite : MonoBehaviour
                 }
                 else if (GameManager.instance.isItemButtonActive)
                 {
-                    //Debug.Log("ITEM");
+                    if (GameManager.instance.isAction)
+                    {
+                        GameManager.instance.isSWTurn = false;
+                        GameManager.instance.isAction = false;
+                        GameManager.instance.isItemButtonActive = false;                        
 
-                    //uiManager.ActionButtons.GetComponent<Animator>().SetBool("isActive", false);
-
-                    //animator.SetBool("Standby", false);
-                    //animator.SetBool("MagicStandby", false);
-                    //GameManager.instance.isAliceTurn = false;
+                        GameManager.instance.isTurn = true;
+                        GameManager.instance.TurnNumber++;
+                    }
                 }
             }
             else

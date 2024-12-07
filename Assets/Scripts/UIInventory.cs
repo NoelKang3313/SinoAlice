@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 public class UIInventory : MonoBehaviour
-{ 
+{
     public Button UIItem;
     public Button UIEquipment;
 
