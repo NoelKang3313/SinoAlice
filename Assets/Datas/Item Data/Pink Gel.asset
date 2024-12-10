@@ -15,5 +15,5 @@ MonoBehaviour:
   ItemID: 4
   ItemName: Pink Gel
   ItemSprite: {fileID: 21300000, guid: 841adc89043e848e7b3ea31b7e27970e, type: 3}
-  ItemDescription: Recover 50% of ally's HP
+  ItemDescription: Recover 40% of ally's HP
   ItemAmount: 0

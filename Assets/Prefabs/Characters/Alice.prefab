@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 996203da179e04e4bb270fe1d1936b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UIManager: {fileID: 0}
   StageManager: {fileID: 0}
   Name: Alice
   HP: 400
@@ -167,6 +168,7 @@ MonoBehaviour:
   BlizzardBombPrefab: {fileID: 2559745690904343874, guid: d1107a0f41060455ca1aeee76da85cf0, type: 3}
   TidalWavePrefab: {fileID: 1930930478688550999, guid: fcb5aaa608e6d4edfbe574d1b38f2586, type: 3}
   HealingWindPrefab: {fileID: 6928394746618661461, guid: 030cdb9e1c8af46d1b09e0dbc7a6c966, type: 3}
+  ItemHealPrefab: {fileID: 8730522197154480733, guid: 1f2c2f52203f44c4a88ad15565f0669c, type: 3}
   BattleStart:
   - {fileID: 8300000, guid: e79df957639310f47a64014c7a232971, type: 3}
   - {fileID: 8300000, guid: 4b63c2af29f2eab499512b96d4fee356, type: 3}

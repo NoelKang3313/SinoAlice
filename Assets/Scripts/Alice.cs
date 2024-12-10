@@ -49,6 +49,11 @@ public class Alice : MonoBehaviour
 
     private bool isSkillInstantiated;
 
+    [Header("Item")]
+    public GameObject ItemHealPrefab;
+    private GameObject itemHeal;
+    private bool isItemHealInstantiated;
+
     [Header("Audio")]
     private AudioSource audioSource;
     public AudioClip[] BattleStart = new AudioClip[2];
@@ -96,6 +101,7 @@ public class Alice : MonoBehaviour
         if (GameManager.instance.isBattleOver)
         {
             Victory();
+            Destroy(shield);
         }
         else
         {
@@ -177,8 +183,7 @@ public class Alice : MonoBehaviour
                     }
                 }
                 else if (GameManager.instance.isSkillButtonActive)
-                {
-                    animator.SetBool("Standby", false);
+                {                    
                     animator.SetBool("MagicStandby", true);
 
                     if (GameManager.instance.isAction)
@@ -306,7 +311,7 @@ public class Alice : MonoBehaviour
                                     GameManager.instance.isTurn = true;
                                     GameManager.instance.TurnNumber++;
 
-                                    DamageEnemy(10);
+                                    DamageAllEnemy(50);
                                 }
 
                                 break;
@@ -343,15 +348,37 @@ public class Alice : MonoBehaviour
                     }
                 }
                 else if (GameManager.instance.isItemButtonActive)
-                {
+                {                    
+                    animator.SetBool("MagicStandby", true);
+
                     if (GameManager.instance.isAction)
                     {
-                        GameManager.instance.isSWTurn = false;
-                        GameManager.instance.isAction = false;
-                        GameManager.instance.isItemButtonActive = false;
+                        UIManager.CharacterMiniGauge.SetActive(false);
 
-                        GameManager.instance.isTurn = true;
-                        GameManager.instance.TurnNumber++;
+                        animator.SetBool("MagicAttack", true);
+
+                        if(!isItemHealInstantiated)
+                        {
+                            isItemHealInstantiated = true;
+                            itemHeal = Instantiate(ItemHealPrefab, GameManager.instance.SelectedCharacterPosition + new Vector2(0, 0.25f), Quaternion.identity);
+                        }
+
+                        if(itemHeal.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                        {
+                            Destroy(itemHeal);
+                            isItemHealInstantiated = false;
+
+                            GameManager.instance.isAliceTurn = false;
+                            GameManager.instance.isAction = false;
+                            GameManager.instance.isItemButtonActive = false;
+
+                            animator.SetBool("MagicAttack", false);
+                            animator.SetBool("MagicStandby", false);
+                            animator.SetBool("Standby", false);
+
+                            GameManager.instance.isTurn = true;
+                            GameManager.instance.TurnNumber++;
+                        }
                     }
                 }
             }
@@ -380,7 +407,7 @@ public class Alice : MonoBehaviour
                 isAttacking = false;
                 Destroy(attackEffect);
 
-                DamageEnemy(100);
+                DamageEnemy(10);
             }            
         }
     }
@@ -395,6 +422,17 @@ public class Alice : MonoBehaviour
         if (StageManager.EnemyGameObject[GameManager.instance.EnemyPositionNumber].name.StartsWith("Rat"))
         {
             StageManager.EnemyGameObject[GameManager.instance.EnemyPositionNumber].GetComponent<Rat>().CurrentHP -= damage;
+        }
+    }
+
+    void DamageAllEnemy(int damage)
+    {
+        for(int i = 0; i < StageManager.EnemyGameObject.Length; i++)
+        {
+            if (StageManager.EnemyGameObject[GameManager.instance.EnemyPositionNumber].name.StartsWith("Rat"))
+            {
+                StageManager.EnemyGameObject[i].GetComponent<Rat>().CurrentHP -= damage;
+            }
         }
     }
 

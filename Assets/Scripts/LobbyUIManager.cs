@@ -422,8 +422,9 @@ public class LobbyUIManager : MonoBehaviour
     {
         if (isItemPurchaseButtonPressed && !isEquipmentPurchaseButtonPresed)
         {
-            Inventory.Items.Add(purchaseItemData);
+            Inventory.Items.Add(purchaseItemData);            
             purchaseItemData.ItemAmount++;
+            Inventory.ItemAmount.Add(purchaseItemData.ItemAmount);
 
             CheckItem();
 
@@ -577,6 +578,7 @@ public class LobbyUIManager : MonoBehaviour
                 if (Inventory.Items[i] == Inventory.Items[j])
                 {
                     Inventory.Items.Remove(Inventory.Items[j]);
+                    Inventory.ItemAmount.Remove(Inventory.ItemAmount[i]);
                 }
             }
         }
