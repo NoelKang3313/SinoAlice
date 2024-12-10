@@ -9,4 +9,6 @@ public class Inventory : MonoBehaviour
     public List<EquipmentData> Helmets = new List<EquipmentData>();
     public List<EquipmentData> Armors = new List<EquipmentData>();
     public List<EquipmentData> Shoes = new List<EquipmentData>();
+
+    public List<int> ItemAmount = new List<int>();
 }

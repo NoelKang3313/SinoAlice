@@ -15,5 +15,5 @@ MonoBehaviour:
   ItemID: 1
   ItemName: Red Gel
   ItemSprite: {fileID: 21300000, guid: 6c46ce564462b44d586f9b7e0a7c50e0, type: 3}
-  ItemDescription: Recover 30% of ally's HP
-  ItemAmount: 0
+  ItemDescription: Recover 20% of ally's HP
+  ItemAmount: 1

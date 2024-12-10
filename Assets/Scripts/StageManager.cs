@@ -5,7 +5,6 @@ using UnityEngine;
 public class StageManager : MonoBehaviour
 {
     //public GameObject[] CharacterTurn;
-
     public List<GameObject> CharacterTurns;
 
     public GameObject[] EnemyGameObject = new GameObject[4];     // For Enemy Mini Gauge

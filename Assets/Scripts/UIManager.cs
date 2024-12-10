@@ -76,7 +76,10 @@ public class UIManager : MonoBehaviour
     public Button ItemSlot;
     [SerializeField]
     private List<Button> ItemButtons = new List<Button>();
+    [SerializeField]
     private int selectedItemID;
+    [SerializeField]
+    private ItemData SelectedItemData;
 
     public GameObject ItemInformationPanel;
     public Image ItemImage;
@@ -167,6 +170,7 @@ public class UIManager : MonoBehaviour
         ActionButtonsActivate();
         CheckCharacterTurnChangeSkillIcon();
         StartCoroutine(ConfirmButtonPressed());
+        CheckItemAmount();
         BattleOver();
 
         if(GameManager.instance.isEnemyTurn)
@@ -409,7 +413,7 @@ public class UIManager : MonoBehaviour
             if (Inventory.Items.Count != 0)
             {
                 Button Item = Instantiate(ItemSlot, ItemViewportContent.transform.position, Quaternion.identity);
-                Item.transform.SetParent(ItemViewportContent.transform);
+                Item.transform.SetParent(ItemViewportContent.transform);                
 
                 Item.GetComponent<UIItem>().ItemImage.sprite = Inventory.Items[i].ItemSprite;
                 Item.GetComponent<UIItem>().ItemAmount.text = Inventory.Items[i].ItemAmount.ToString();
@@ -436,9 +440,26 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    void CheckItemAmount()
+    {
+        for(int i = 0; i < ItemButtons.Count; i++)
+        {
+            if(ItemButtons[i].GetComponent<UIItem>().ItemData.ItemAmount == 0)
+            {
+                Destroy(ItemButtons[i].gameObject);
+                ItemButtons.Remove(ItemButtons[i]);
+            }
+            else if(ItemButtons[i].GetComponent<UIItem>().ItemData.ItemAmount > 0)
+            {
+                ItemButtons[i].GetComponent<UIItem>().ItemAmount.text = ItemButtons[i].GetComponent<UIItem>().ItemData.ItemAmount.ToString();
+            }
+        }
+    }
+
     void ItemButtonsClicked(int number)
     {        
         selectedItemID = ItemButtons[number].GetComponent<UIItem>().ItemData.ItemID;
+        SelectedItemData = ItemButtons[number].GetComponent<UIItem>().ItemData;
 
         for (int i = 0; i < CharacterSelectButton.Length; i++)
         {
@@ -493,6 +514,10 @@ public class UIManager : MonoBehaviour
                 {
                     CharacterSelectButton[i].gameObject.SetActive(false);
                 }
+
+                UseItem(selectedItemID, number);
+
+                SelectedItemData.ItemAmount--;
             }
         }
         else if (GameManager.instance.GretelPositionNumber == number)
@@ -521,6 +546,10 @@ public class UIManager : MonoBehaviour
                 {
                     CharacterSelectButton[i].gameObject.SetActive(false);
                 }
+
+                UseItem(selectedItemID, number);
+
+                SelectedItemData.ItemAmount--;
             }
         }
         else if (GameManager.instance.SWPositionNumber == number)
@@ -549,6 +578,10 @@ public class UIManager : MonoBehaviour
                 {
                     CharacterSelectButton[i].gameObject.SetActive(false);
                 }
+
+                UseItem(selectedItemID, number);
+
+                SelectedItemData.ItemAmount--;
             }
         }
 
@@ -563,6 +596,138 @@ public class UIManager : MonoBehaviour
         ItemInformationPanel.GetComponent<Animator>().SetBool("isActive", false);
 
         ResetViewportPosition();
+    }    
+
+    void UseItem(int id, int characterNumber)
+    {        
+        switch(id)
+        {
+            case 1:
+                if(characterNumber == GameManager.instance.AlicePositionNumber)
+                {
+                    int heal = (int)(GameManager.instance.AlicePrefab.GetComponent<Alice>().HP * 0.2f);
+                    GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentHP += heal;
+                }
+                else if (characterNumber == GameManager.instance.GretelPositionNumber)
+                {
+                    int heal = (int)(GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP * 0.2f);
+                    GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentHP += heal;
+                }
+                else if(characterNumber == GameManager.instance.SWPositionNumber)
+                {
+                    int heal = (int)(GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP * 0.2f);
+                    GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP += heal;
+                }
+                break;
+
+            case 2:
+                if (characterNumber == GameManager.instance.AlicePositionNumber)
+                {
+                    int heal = (int)(GameManager.instance.AlicePrefab.GetComponent<Alice>().MP * 0.2f);
+                    GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP += heal;
+                }
+                else if (characterNumber == GameManager.instance.GretelPositionNumber)
+                {
+                    int heal = (int)(GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP * 0.2f);
+                    GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP += heal;
+                }
+                else if (characterNumber == GameManager.instance.SWPositionNumber)
+                {
+                    int heal = (int)(GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP * 0.2f);
+                    GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP += heal;
+                }
+                break;
+
+            case 3:
+                if (characterNumber == GameManager.instance.AlicePositionNumber)
+                {
+                    int healHP = (int)(GameManager.instance.AlicePrefab.GetComponent<Alice>().HP * 0.15f);
+                    GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentHP += healHP;
+
+                    int healMP = (int)(GameManager.instance.AlicePrefab.GetComponent<Alice>().MP * 0.15f);
+                    GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP += healMP;
+                }
+                else if (characterNumber == GameManager.instance.GretelPositionNumber)
+                {
+                    int healHP = (int)(GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP * 0.15f);
+                    GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentHP += healHP;
+
+                    int healMP = (int)(GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP * 0.15f);
+                    GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP += healMP;
+                }
+                else if (characterNumber == GameManager.instance.SWPositionNumber)
+                {
+                    int healHP = (int)(GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP * 0.15f);
+                    GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP += healHP;
+
+                    int healMP = (int)(GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP * 0.15f);
+                    GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP += healMP;
+                }
+                break;
+
+            case 4:
+                if (characterNumber == GameManager.instance.AlicePositionNumber)
+                {
+                    int heal = (int)(GameManager.instance.AlicePrefab.GetComponent<Alice>().HP * 0.4f);
+                    GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentHP += heal;
+                }
+                else if (characterNumber == GameManager.instance.GretelPositionNumber)
+                {
+                    int heal = (int)(GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP * 0.4f);
+                    GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentHP += heal;
+                }
+                else if (characterNumber == GameManager.instance.SWPositionNumber)
+                {
+                    int heal = (int)(GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP * 0.4f);
+                    GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP += heal;
+                }
+                break;
+
+            case 5:
+                if (characterNumber == GameManager.instance.AlicePositionNumber)
+                {
+                    int heal = (int)(GameManager.instance.AlicePrefab.GetComponent<Alice>().MP * 0.4f);
+                    GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP += heal;
+                }
+                else if (characterNumber == GameManager.instance.GretelPositionNumber)
+                {
+                    int heal = (int)(GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP * 0.4f);
+                    GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP += heal;
+                }
+                else if (characterNumber == GameManager.instance.SWPositionNumber)
+                {
+                    int heal = (int)(GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP * 0.4f);
+                    GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP += heal;
+                }
+                break;
+
+            case 6:
+                if (characterNumber == GameManager.instance.AlicePositionNumber)
+                {
+                    int healHP = (int)(GameManager.instance.AlicePrefab.GetComponent<Alice>().HP * 0.35f);
+                    GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentHP += healHP;
+
+                    int healMP = (int)(GameManager.instance.AlicePrefab.GetComponent<Alice>().MP * 0.35f);
+                    GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP += healMP;
+                }
+                else if (characterNumber == GameManager.instance.GretelPositionNumber)
+                {
+                    int healHP = (int)(GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP * 0.35f);
+                    GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentHP += healHP;
+
+                    int healMP = (int)(GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP * 0.35f);
+                    GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP += healMP;
+                }
+                else if (characterNumber == GameManager.instance.SWPositionNumber)
+                {
+                    int healHP = (int)(GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP * 0.35f);
+                    GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP += healHP;
+
+                    int healMP = (int)(GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP * 0.35f);
+                    GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP += healMP;
+                }
+                break;
+        }        
     }
 
     void PauseButtonClicked()
@@ -683,6 +848,16 @@ public class UIManager : MonoBehaviour
     {
         if(GameManager.instance.isAliceTurn)
         {
+            if(GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentHP > GameManager.instance.AlicePrefab.GetComponent<Alice>().HP)
+            {
+                GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentHP = GameManager.instance.AlicePrefab.GetComponent<Alice>().HP;
+            }
+
+            if (GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP > GameManager.instance.AlicePrefab.GetComponent<Alice>().MP)
+            {
+                GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP = GameManager.instance.AlicePrefab.GetComponent<Alice>().MP;
+            }
+
             CharacterImage.sprite = AliceSprite;
             CharacterName.text = GameManager.instance.AlicePrefab.GetComponent<Alice>().Name;
             CharacterHPGauge.fillAmount = GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentHP / GameManager.instance.AlicePrefab.GetComponent<Alice>().HP;
@@ -692,6 +867,16 @@ public class UIManager : MonoBehaviour
         }
         else if(GameManager.instance.isGretelTurn)
         {
+            if (GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentHP > GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP)
+            {
+                GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentHP = GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP;
+            }
+
+            if (GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP > GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP)
+            {
+                GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP = GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP;
+            }
+
             CharacterImage.sprite = GretelSprite;
             CharacterName.text = GameManager.instance.GretelPrefab.GetComponent<Gretel>().Name;
             CharacterHPGauge.fillAmount = GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentHP / GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP;
@@ -701,6 +886,16 @@ public class UIManager : MonoBehaviour
         }
         else if(GameManager.instance.isSWTurn)
         {
+            if (GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP > GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP)
+            {
+                GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP;
+            }
+
+            if (GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP > GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP)
+            {
+                GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP;
+            }
+
             CharacterImage.sprite = SnowWhiteSprite;
             CharacterName.text = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().Name;
             CharacterHPGauge.fillAmount = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP / GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP;
@@ -774,6 +969,11 @@ public class UIManager : MonoBehaviour
             {
                 isRestart = false;
 
+                for(int i = 0; i < Inventory.ItemAmount.Count; i++)
+                {
+                    Inventory.Items[i].ItemAmount = Inventory.ItemAmount[i];
+                }
+
                 GameManager.instance.isAliceTurn = false;
                 GameManager.instance.isGretelTurn = false;
                 GameManager.instance.isSWTurn = false;
@@ -786,11 +986,36 @@ public class UIManager : MonoBehaviour
                 GameManager.instance.isBattleStart = true;
                 GameManager.instance.TurnNumber = 0;
                 GameManager.instance.isBattleOver = false;
-                GameManager.instance.LoadScene("Stage1-1");
+                GameManager.instance.LoadScene("Stage1-1");                
             }
             else if(isLobby)
             {
                 isLobby = false;
+
+                //if(GameManager.instance.isBattleOver)
+                //{
+                //    if(ItemButtons.Count != 0)
+                //    {
+                //        for (int i = 0; i < Inventory.Items.Count; i++)
+                //        {
+                //            Inventory.Items.RemoveAt(i);
+                //            Inventory.ItemAmount.RemoveAt(i);
+                //        }
+
+                //        for (int i = 0; i < ItemButtons.Count; i++)
+                //        {
+                //            Inventory.Items.Add(ItemButtons[i].GetComponent<UIItem>().ItemData);
+                //            Inventory.ItemAmount.Add(ItemButtons[i].GetComponent<UIItem>().ItemData.ItemAmount);
+                //        }
+                //    }
+                //    else
+                //    {
+                //        for(int i = 0; i < Inventory.Items.Count; i++)
+                //        {
+                //            Inventory.Items.RemoveAt(i);
+                //        }
+                //    }
+                //}    
 
                 GameManager.instance.isAliceTurn = false;
                 GameManager.instance.isGretelTurn = false;

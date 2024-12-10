@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e6b25c1faec849feb7ac1adfa03bea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UIManager: {fileID: 0}
   StageManager: {fileID: 0}
   Name: Snow White
   HP: 500
@@ -167,6 +168,7 @@ MonoBehaviour:
   AerialSlashPrefab: {fileID: 1337473162761908171, guid: fe056e25e7956824a8d031d5f545c546, type: 3}
   ThunderThornPrefab: {fileID: 6920212643834073071, guid: 25df37604a42c1049b529b775d5b587d, type: 3}
   StormBladePrefab: {fileID: 3371497577832720639, guid: b92971206177bd145af0c4a90c3f8ab8, type: 3}
+  ItemHealPrefab: {fileID: 8730522197154480733, guid: 1f2c2f52203f44c4a88ad15565f0669c, type: 3}
   BattleStart:
   - {fileID: 8300000, guid: ff64921dee03b4b47baa6c5633fe1ad2, type: 3}
   - {fileID: 8300000, guid: 99879ebcd0c58754ab54a1cd56949d07, type: 3}

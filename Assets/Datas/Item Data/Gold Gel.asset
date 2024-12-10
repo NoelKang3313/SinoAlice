@@ -15,5 +15,5 @@ MonoBehaviour:
   ItemID: 6
   ItemName: Gold Gel
   ItemSprite: {fileID: 21300000, guid: d10339a4615da4eeda61ffa7b2ae869d, type: 3}
-  ItemDescription: Recover 60% of both ally's HP and MP
+  ItemDescription: Recover 35% of both ally's HP and MP
   ItemAmount: 0

@@ -15,5 +15,5 @@ MonoBehaviour:
   ItemID: 3
   ItemName: Orange Gel
   ItemSprite: {fileID: 21300000, guid: 4c07cf6ad52214feaa8285ce37f1ba49, type: 3}
-  ItemDescription: Recover 20% of both ally's HP and MP
+  ItemDescription: Recover 15% of both ally's HP and MP
   ItemAmount: 0
