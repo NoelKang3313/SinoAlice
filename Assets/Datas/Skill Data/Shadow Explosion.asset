@@ -15,6 +15,5 @@ MonoBehaviour:
   SkillIcon: {fileID: 21300000, guid: 38449a68e5ef34957826ad353074d470, type: 3}
   SkillName: Shadow Explosion
   SkillDescription: Shadow Explosion
-  CostMP: 0
+  CostMP: 60
   SkillUserName: Gretel
-  SkillUserIcon: {fileID: 21300000, guid: f2bcb705fe8f94726891ca9c66f3cf98, type: 3}

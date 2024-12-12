@@ -15,6 +15,5 @@ MonoBehaviour:
   SkillIcon: {fileID: 21300000, guid: 591430a3d3cb84e6e955298ccf130c0b, type: 3}
   SkillName: Healing Wind
   SkillDescription: Healing Wind
-  CostMP: 20
+  CostMP: 30
   SkillUserName: Alice
-  SkillUserIcon: {fileID: 21300000, guid: f22d0646fe2ba462d89679e20f85e1d6, type: 3}

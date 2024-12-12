@@ -15,6 +15,5 @@ MonoBehaviour:
   SkillIcon: {fileID: 21300000, guid: 2b1384f2090e64c77897c693ade2404c, type: 3}
   SkillName: Tidal Wave
   SkillDescription: Tidal Wave
-  CostMP: 30
+  CostMP: 50
   SkillUserName: Alice
-  SkillUserIcon: {fileID: 21300000, guid: f22d0646fe2ba462d89679e20f85e1d6, type: 3}

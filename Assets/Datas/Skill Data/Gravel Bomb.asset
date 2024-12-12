@@ -15,6 +15,5 @@ MonoBehaviour:
   SkillIcon: {fileID: 21300000, guid: 920a1bc6e84b74286beadc7bd6ae42d4, type: 3}
   SkillName: Gravel Bomb
   SkillDescription: Gravel Bomb
-  CostMP: 0
+  CostMP: 25
   SkillUserName: Gretel
-  SkillUserIcon: {fileID: 21300000, guid: f2bcb705fe8f94726891ca9c66f3cf98, type: 3}

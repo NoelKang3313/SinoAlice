@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class WorldmapUIManager : MonoBehaviour
 {
     public Button Stage1Button;
+    public GameObject Stage1;
     public GameObject BackgroundGameObject;
     public Sprite WorldBG;
     public Sprite StageBG;
@@ -109,7 +110,7 @@ public class WorldmapUIManager : MonoBehaviour
 
     void Stage1ButtonClicked()
     {
-        Stage1Button.gameObject.SetActive(false);
+        Stage1.SetActive(false);
         isWorldmap = false;
 
         BackgroundGameObject.GetComponent<SpriteRenderer>().sprite = StageBG;
@@ -131,6 +132,9 @@ public class WorldmapUIManager : MonoBehaviour
             //Return Worldmap
             BackgroundGameObject.GetComponent<SpriteRenderer>().sprite = WorldBG;
             BackgroundGameObject.transform.localScale = new Vector3(1.3f, 1, 1);
+
+            Stage1.SetActive(true);
+            Stage1_1Button.gameObject.SetActive(false);
 
             isWorldmap = true;
         }

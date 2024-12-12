@@ -58,13 +58,14 @@ public class UIManager : MonoBehaviour
     public Button[] SkillButtons = new Button[5];
     public SkillData[] SkillInfo = new SkillData[15];
     [SerializeField]private SkillData[] CurrentSkillData = new SkillData[5];
+    [SerializeField] private SkillData selectedSkillData;
 
     [Header("Skill Information Panel")]
     public GameObject SkillInformationPanel;
     public Image SkillIcon;
     public TextMeshProUGUI SkillName;
     public TextMeshProUGUI SkillDescription;
-    public Image SkillUserIcon;
+    public TextMeshProUGUI SkillCostMP;    
 
     public GameObject ItemButtonArrow;
     public GameObject ItemButtonViewport;
@@ -337,10 +338,12 @@ public class UIManager : MonoBehaviour
 
         SkillInformationPanel.GetComponent<Animator>().SetBool("isActive", true);
 
+        selectedSkillData = CurrentSkillData[number];
+
         SkillIcon.sprite = CurrentSkillData[number].SkillIcon;
         SkillName.text = CurrentSkillData[number].SkillName;
         SkillDescription.text = CurrentSkillData[number].SkillDescription;
-        SkillUserIcon.sprite = CurrentSkillData[number].SkillUserIcon;
+        SkillCostMP.text = "MP : " + CurrentSkillData[number].CostMP.ToString();        
 
         if (number == 4)
         {
@@ -479,6 +482,8 @@ public class UIManager : MonoBehaviour
         GameManager.instance.isAction = true;
         EnemySelectButtons.SetActive(false);
 
+        SkillUsedReduceMP(selectedSkillData);
+
         SkillInformationPanel.GetComponent<Animator>().SetBool("isActive", false);
         SkillButtonViewport.GetComponent<Animator>().SetBool("isActive", false);
         SkillButtonArrow.GetComponent<Animator>().SetBool("isActive", false);
@@ -563,12 +568,12 @@ public class UIManager : MonoBehaviour
             }
             else if (GameManager.instance.isSkillButtonActive)
             {
-                GameManager.instance.isAction = true;
+                GameManager.instance.isAction = true;                
 
                 for (int i = 0; i < CharacterSelectButton.Length; i++)
                 {
                     CharacterSelectButton[i].gameObject.SetActive(false);
-                }
+                }                
             }
             else if (GameManager.instance.isItemButtonActive)
             {
@@ -596,7 +601,23 @@ public class UIManager : MonoBehaviour
         ItemInformationPanel.GetComponent<Animator>().SetBool("isActive", false);
 
         ResetViewportPosition();
-    }    
+    }
+
+    void SkillUsedReduceMP(SkillData selectedSkillData)
+    {
+        if(selectedSkillData.SkillUserName == "Alice")
+        {
+            GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP -= selectedSkillData.CostMP;
+        }
+        else if(selectedSkillData.SkillUserName == "Gretel")
+        {
+            GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP -= selectedSkillData.CostMP;
+        }
+        else if(selectedSkillData.SkillUserName == "Snow White")
+        {
+            GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP -= selectedSkillData.CostMP;
+        }
+    }
 
     void UseItem(int id, int characterNumber)
     {        
@@ -992,30 +1013,20 @@ public class UIManager : MonoBehaviour
             {
                 isLobby = false;
 
-                //if(GameManager.instance.isBattleOver)
-                //{
-                //    if(ItemButtons.Count != 0)
-                //    {
-                //        for (int i = 0; i < Inventory.Items.Count; i++)
-                //        {
-                //            Inventory.Items.RemoveAt(i);
-                //            Inventory.ItemAmount.RemoveAt(i);
-                //        }
+                if(GameManager.instance.isBattleOver)
+                {
+                    if(ItemButtons.Count != 0)
+                    {
+                        Inventory.Items.Clear();
+                        Inventory.ItemAmount.Clear();
 
-                //        for (int i = 0; i < ItemButtons.Count; i++)
-                //        {
-                //            Inventory.Items.Add(ItemButtons[i].GetComponent<UIItem>().ItemData);
-                //            Inventory.ItemAmount.Add(ItemButtons[i].GetComponent<UIItem>().ItemData.ItemAmount);
-                //        }
-                //    }
-                //    else
-                //    {
-                //        for(int i = 0; i < Inventory.Items.Count; i++)
-                //        {
-                //            Inventory.Items.RemoveAt(i);
-                //        }
-                //    }
-                //}    
+                        for(int i = 0; i < ItemButtons.Count; i++)
+                        {
+                            Inventory.Items.Add(ItemButtons[i].GetComponent<UIItem>().ItemData);
+                            Inventory.ItemAmount.Add(ItemButtons[i].GetComponent<UIItem>().ItemData.ItemAmount);
+                        }
+                    }
+                }
 
                 GameManager.instance.isAliceTurn = false;
                 GameManager.instance.isGretelTurn = false;
@@ -1034,6 +1045,21 @@ public class UIManager : MonoBehaviour
             else if(isWorldmap)
             {
                 isWorldmap = false;
+
+                if (GameManager.instance.isBattleOver)
+                {
+                    if (ItemButtons.Count != 0)
+                    {
+                        Inventory.Items.Clear();
+                        Inventory.ItemAmount.Clear();
+
+                        for (int i = 0; i < ItemButtons.Count; i++)
+                        {
+                            Inventory.Items.Add(ItemButtons[i].GetComponent<UIItem>().ItemData);
+                            Inventory.ItemAmount.Add(ItemButtons[i].GetComponent<UIItem>().ItemData.ItemAmount);
+                        }
+                    }
+                }
 
                 GameManager.instance.isAliceTurn = false;
                 GameManager.instance.isGretelTurn = false;
