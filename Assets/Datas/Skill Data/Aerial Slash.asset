@@ -15,6 +15,5 @@ MonoBehaviour:
   SkillIcon: {fileID: 21300000, guid: ee1a3b387a3a3410fbec1ab558081c27, type: 3}
   SkillName: Aerial Slash
   SkillDescription: Aerial Slash
-  CostMP: 0
+  CostMP: 25
   SkillUserName: Snow White
-  SkillUserIcon: {fileID: 21300000, guid: ff57471dcd1e14c05820bc9ca9830e1f, type: 3}

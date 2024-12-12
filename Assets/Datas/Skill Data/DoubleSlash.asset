@@ -15,6 +15,5 @@ MonoBehaviour:
   SkillIcon: {fileID: 21300000, guid: c3b7e8093be1c494698f6c98d976a508, type: 3}
   SkillName: Double Slash
   SkillDescription: Double Slash
-  CostMP: 0
+  CostMP: 20
   SkillUserName: Snow White
-  SkillUserIcon: {fileID: 21300000, guid: ff57471dcd1e14c05820bc9ca9830e1f, type: 3}

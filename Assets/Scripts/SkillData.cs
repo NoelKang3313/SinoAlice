@@ -9,6 +9,5 @@ public class SkillData : ScriptableObject
     public string SkillName;
     public string SkillDescription;
     public int CostMP;
-    public string SkillUserName;
-    public Sprite SkillUserIcon;
+    public string SkillUserName;    
 }

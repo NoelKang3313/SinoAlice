@@ -15,6 +15,5 @@ MonoBehaviour:
   SkillIcon: {fileID: 21300000, guid: e0d28ee34e2944f0997dc8d4787e62d2, type: 3}
   SkillName: Meteor
   SkillDescription: Meteor
-  CostMP: 0
+  CostMP: 60
   SkillUserName: Gretel
-  SkillUserIcon: {fileID: 21300000, guid: f2bcb705fe8f94726891ca9c66f3cf98, type: 3}
