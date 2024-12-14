@@ -23,6 +23,7 @@ public class UICharacterInfo : MonoBehaviour
 
     [SerializeField] private int changeID;     //Use ID to disable left or right button (ex. if ID == 0, left button disable)
     public Button[] ChangeCharacterButtons = new Button[2];
+    public Sprite EquipmentButtonSprite;
     public Button CharacterInfoExitButton;
 
     public Button[] EquipmentButtons = new Button[4];
@@ -45,12 +46,27 @@ public class UICharacterInfo : MonoBehaviour
     public Button EquipmentConfirmButton;
     public Button EquipmentCancelButton;
 
+    [Header("Character Status Text")]
+    public TextMeshProUGUI HPText;
+    public TextMeshProUGUI MPText;
+    public TextMeshProUGUI AttackText;
+    public TextMeshProUGUI DefenseText;
+    public TextMeshProUGUI IntellText;
+    public TextMeshProUGUI SpeedText;
+
     void Start()
     {
         CharacterNameText.text = "ALICE";
         CharacterInfoExitButton.onClick.AddListener(CharacterInfoExitButtonClicked);
 
         changeID = 0;
+
+        HPText.text = "HP : " + GameManager.instance.AlicePrefab.GetComponent<Alice>().HP.ToString();
+        MPText.text = "MP : " + GameManager.instance.AlicePrefab.GetComponent<Alice>().MP.ToString();
+        AttackText.text = "ATK : " + GameManager.instance.AlicePrefab.GetComponent<Alice>().Attack.ToString();
+        DefenseText.text = "DEF : " + GameManager.instance.AlicePrefab.GetComponent<Alice>().Defense.ToString();
+        IntellText.text = "INT : " + GameManager.instance.AlicePrefab.GetComponent<Alice>().Intell.ToString();
+        SpeedText.text = "SPD : " + GameManager.instance.AlicePrefab.GetComponent<Alice>().Speed.ToString();
 
         for (int i = 0; i < ChangeCharacterButtons.Length; i++)
         {
@@ -126,10 +142,17 @@ public class UICharacterInfo : MonoBehaviour
                 CharacterAnimator.Play(alice);
                 CharacterNameText.text = "ALICE";
 
-                for(int i = 0; i < 4; i++)
+                HPText.text = "HP : " + GameManager.instance.AlicePrefab.GetComponent<Alice>().HP.ToString();
+                MPText.text = "MP : " + GameManager.instance.AlicePrefab.GetComponent<Alice>().MP.ToString();
+                AttackText.text = "ATK : " + GameManager.instance.AlicePrefab.GetComponent<Alice>().Attack.ToString();
+                DefenseText.text = "DEF : " + GameManager.instance.AlicePrefab.GetComponent<Alice>().Defense.ToString();
+                IntellText.text = "INT : " + GameManager.instance.AlicePrefab.GetComponent<Alice>().Intell.ToString();
+                SpeedText.text = "SPD : " + GameManager.instance.AlicePrefab.GetComponent<Alice>().Speed.ToString();
+
+                for (int i = 0; i < 4; i++)
                 {
                     if (GameManager.instance.AliceEquipments[i] == null)
-                        EquipmentButtons[i].GetComponent<Image>().sprite = null;
+                        EquipmentButtons[i].GetComponent<Image>().sprite = EquipmentButtonSprite;
                     else
                         EquipmentButtons[i].GetComponent<Image>().sprite = GameManager.instance.AliceEquipments[i].EquipmentSprite;
                 }
@@ -142,10 +165,17 @@ public class UICharacterInfo : MonoBehaviour
                 CharacterAnimator.Play(gretel);
                 CharacterNameText.text = "GRETEL";
 
+                HPText.text = "HP : " + GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP.ToString();
+                MPText.text = "MP : " + GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP.ToString();
+                AttackText.text = "ATK : " + GameManager.instance.GretelPrefab.GetComponent<Gretel>().Attack.ToString();
+                DefenseText.text = "DEF : " + GameManager.instance.GretelPrefab.GetComponent<Gretel>().Defense.ToString();
+                IntellText.text = "INT : " + GameManager.instance.GretelPrefab.GetComponent<Gretel>().Intell.ToString();
+                SpeedText.text = "SPD : " + GameManager.instance.GretelPrefab.GetComponent<Gretel>().Speed.ToString();
+
                 for (int i = 0; i < 4; i++)
                 {
                     if (GameManager.instance.GretelEquipments[i] == null)
-                        EquipmentButtons[i].GetComponent<Image>().sprite = null;
+                        EquipmentButtons[i].GetComponent<Image>().sprite = EquipmentButtonSprite;
                     else
                         EquipmentButtons[i].GetComponent<Image>().sprite = GameManager.instance.GretelEquipments[i].EquipmentSprite;
                 }
@@ -157,10 +187,17 @@ public class UICharacterInfo : MonoBehaviour
                 CharacterAnimator.Play(sw);
                 CharacterNameText.text = "SNOW WHITE";
 
+                HPText.text = "HP : " + GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP.ToString();
+                MPText.text = "MP : " + GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP.ToString();
+                AttackText.text = "ATK : " + GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().Attack.ToString();
+                DefenseText.text = "DEF : " + GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().Defense.ToString();
+                IntellText.text = "INT : " + GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().Intell.ToString();
+                SpeedText.text = "SPD : " + GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().Speed.ToString();
+
                 for (int i = 0; i < 4; i++)
                 {
                     if (GameManager.instance.SWEquipments[i] == null)
-                        EquipmentButtons[i].GetComponent<Image>().sprite = null;
+                        EquipmentButtons[i].GetComponent<Image>().sprite = EquipmentButtonSprite;
                     else
                         EquipmentButtons[i].GetComponent<Image>().sprite = GameManager.instance.SWEquipments[i].EquipmentSprite;
                 }
@@ -248,6 +285,18 @@ public class UICharacterInfo : MonoBehaviour
                         CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = GameManager.instance.AliceEquipments[number];
                         CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = 1;
                     }
+                    else if(changeID == 1)
+                    {
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = GameManager.instance.GretelEquipments[number].EquipmentSprite;
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = GameManager.instance.GretelEquipments[number];
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = 1;
+                    }
+                    else if(changeID == 2)
+                    {
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = GameManager.instance.SWEquipments[number].EquipmentSprite;
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = GameManager.instance.SWEquipments[number];
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = 1;
+                    }
 
                     UIWeapons.Add(CEquipmentSlot);
                 }
@@ -257,6 +306,16 @@ public class UICharacterInfo : MonoBehaviour
                     {
                         if(changeID == 0 &&
                             UIWeapons[i].GetComponent<UICEquipment>().EquipmentData == GameManager.instance.AliceEquipments[number])
+                        {
+                            UIWeapons[i].GetComponent<UICEquipment>().EquipmentAmount++;
+                        }
+                        else if(changeID == 1 &&
+                            UIWeapons[i].GetComponent<UICEquipment>().EquipmentData == GameManager.instance.GretelEquipments[number])
+                        {
+                            UIWeapons[i].GetComponent<UICEquipment>().EquipmentAmount++;
+                        }
+                        else if (changeID == 2 &&
+                            UIWeapons[i].GetComponent<UICEquipment>().EquipmentData == GameManager.instance.SWEquipments[number])
                         {
                             UIWeapons[i].GetComponent<UICEquipment>().EquipmentAmount++;
                         }
@@ -277,6 +336,18 @@ public class UICharacterInfo : MonoBehaviour
                         CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = GameManager.instance.AliceEquipments[number];
                         CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = 1;
                     }
+                    else if (changeID == 1)
+                    {
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = GameManager.instance.GretelEquipments[number].EquipmentSprite;
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = GameManager.instance.GretelEquipments[number];
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = 1;
+                    }
+                    else if (changeID == 2)
+                    {
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = GameManager.instance.SWEquipments[number].EquipmentSprite;
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = GameManager.instance.SWEquipments[number];
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = 1;
+                    }
 
                     UIHelmets.Add(CEquipmentSlot);
                 }
@@ -288,6 +359,16 @@ public class UICharacterInfo : MonoBehaviour
                             UIHelmets[i].GetComponent<UICEquipment>().EquipmentData == GameManager.instance.AliceEquipments[number])
                         {
                             UIHelmets[i].GetComponent<UICEquipment>().EquipmentAmount++;
+                        }
+                        else if (changeID == 1 &&
+                            UIWeapons[i].GetComponent<UICEquipment>().EquipmentData == GameManager.instance.GretelEquipments[number])
+                        {
+                            UIWeapons[i].GetComponent<UICEquipment>().EquipmentAmount++;
+                        }
+                        else if (changeID == 2 &&
+                            UIWeapons[i].GetComponent<UICEquipment>().EquipmentData == GameManager.instance.SWEquipments[number])
+                        {
+                            UIWeapons[i].GetComponent<UICEquipment>().EquipmentAmount++;
                         }
                     }
                 }
@@ -306,6 +387,18 @@ public class UICharacterInfo : MonoBehaviour
                         CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = GameManager.instance.AliceEquipments[number];
                         CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = 1;
                     }
+                    else if (changeID == 1)
+                    {
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = GameManager.instance.GretelEquipments[number].EquipmentSprite;
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = GameManager.instance.GretelEquipments[number];
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = 1;
+                    }
+                    else if (changeID == 2)
+                    {
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = GameManager.instance.SWEquipments[number].EquipmentSprite;
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = GameManager.instance.SWEquipments[number];
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = 1;
+                    }
 
                     UIArmors.Add(CEquipmentSlot);
                 }
@@ -317,6 +410,16 @@ public class UICharacterInfo : MonoBehaviour
                             UIArmors[i].GetComponent<UICEquipment>().EquipmentData == GameManager.instance.AliceEquipments[number])
                         {
                             UIArmors[i].GetComponent<UICEquipment>().EquipmentAmount++;
+                        }
+                        else if (changeID == 1 &&
+                            UIWeapons[i].GetComponent<UICEquipment>().EquipmentData == GameManager.instance.GretelEquipments[number])
+                        {
+                            UIWeapons[i].GetComponent<UICEquipment>().EquipmentAmount++;
+                        }
+                        else if (changeID == 2 &&
+                            UIWeapons[i].GetComponent<UICEquipment>().EquipmentData == GameManager.instance.SWEquipments[number])
+                        {
+                            UIWeapons[i].GetComponent<UICEquipment>().EquipmentAmount++;
                         }
                     }
                 }
@@ -335,6 +438,18 @@ public class UICharacterInfo : MonoBehaviour
                         CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = GameManager.instance.AliceEquipments[number];
                         CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = 1;
                     }
+                    else if (changeID == 1)
+                    {
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = GameManager.instance.GretelEquipments[number].EquipmentSprite;
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = GameManager.instance.GretelEquipments[number];
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = 1;
+                    }
+                    else if (changeID == 2)
+                    {
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = GameManager.instance.SWEquipments[number].EquipmentSprite;
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = GameManager.instance.SWEquipments[number];
+                        CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = 1;
+                    }
 
                     UIShoes.Add(CEquipmentSlot);
                 }
@@ -347,14 +462,39 @@ public class UICharacterInfo : MonoBehaviour
                         {
                             UIShoes[i].GetComponent<UICEquipment>().EquipmentAmount++;
                         }
+                        else if (changeID == 1 &&
+                            UIWeapons[i].GetComponent<UICEquipment>().EquipmentData == GameManager.instance.GretelEquipments[number])
+                        {
+                            UIWeapons[i].GetComponent<UICEquipment>().EquipmentAmount++;
+                        }
+                        else if (changeID == 2 &&
+                            UIWeapons[i].GetComponent<UICEquipment>().EquipmentData == GameManager.instance.SWEquipments[number])
+                        {
+                            UIWeapons[i].GetComponent<UICEquipment>().EquipmentAmount++;
+                        }
                     }
                 }
 
                 break;
         }
 
-        EquipmentButtons[number].GetComponent<Image>().sprite = null;
-        GameManager.instance.AliceEquipments[number] = null;
+        EquipmentButtons[number].GetComponent<Image>().sprite = EquipmentButtonSprite;
+
+        switch(changeID)
+        {
+            case 0:
+                GameManager.instance.AliceEquipments[number] = null;
+                break;
+
+            case 1:
+                GameManager.instance.GretelEquipments[number] = null;
+                break;
+
+            case 2:
+                GameManager.instance.SWEquipments[number] = null;
+                break;
+        }
+        
         RemoveEquipmentButtons[number].gameObject.SetActive(false);
 
         ResetEquipmentButtons();
@@ -635,6 +775,13 @@ public class UICharacterInfo : MonoBehaviour
 
         CharacterAnimator.Play(alice);
         CharacterNameText.text = "ALICE";
+
+        HPText.text = "HP : " + GameManager.instance.AlicePrefab.GetComponent<Alice>().HP.ToString();
+        MPText.text = "MP : " + GameManager.instance.AlicePrefab.GetComponent<Alice>().MP.ToString();
+        AttackText.text = "ATK : " + GameManager.instance.AlicePrefab.GetComponent<Alice>().Attack.ToString();
+        DefenseText.text = "DEF : " + GameManager.instance.AlicePrefab.GetComponent<Alice>().Defense.ToString();
+        IntellText.text = "INT : " + GameManager.instance.AlicePrefab.GetComponent<Alice>().Intell.ToString();
+        SpeedText.text = "SPD : " + GameManager.instance.AlicePrefab.GetComponent<Alice>().Speed.ToString();
 
         gameObject.SetActive(false);
     }
