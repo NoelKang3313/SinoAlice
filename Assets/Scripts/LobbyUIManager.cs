@@ -223,6 +223,7 @@ public class LobbyUIManager : MonoBehaviour
     void LidShopButtonClicked()
     {
         NPCPanel.SetActive(true);
+        InventoryButton.gameObject.SetActive(false);
         AliceInteractImage.SetActive(true);
         LidInteractImage.SetActive(true);
 
@@ -257,7 +258,15 @@ public class LobbyUIManager : MonoBehaviour
         EquipmentCategories.SetActive(true);
 
         LidItemShopContent.SetActive(false);
-        LidWeaponShopContent.SetActive(true);
+
+        if(LidWeaponShopContent.activeSelf || LidHelmetShopContent.activeSelf || LidArmorShopContent.activeSelf || LidShoeShopContent.activeInHierarchy)
+        {
+            return;
+        }
+        else
+        {
+            LidWeaponShopContent.SetActive(true);
+        }
 
         LidShopViewport.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -45);
         LidWeaponShopContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
@@ -341,6 +350,7 @@ public class LobbyUIManager : MonoBehaviour
     void LidShopExitButtonClicked()
     {
         NPCPanel.SetActive(false);
+        InventoryButton.gameObject.SetActive(true);
         AliceInteractImage.SetActive(false);
         LidInteractImage.SetActive(false);
 
