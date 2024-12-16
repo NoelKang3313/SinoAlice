@@ -6,6 +6,8 @@ using TMPro;
 
 public class UIInventory : MonoBehaviour
 {
+    public LobbyUIManager UIManager;
+
     public Button UIItem;
     public Button UIEquipment;
 
@@ -175,6 +177,7 @@ public class UIInventory : MonoBehaviour
 
     void InventoryExitButtonClicked()
     {
+        UIManager.InventoryButton.gameObject.SetActive(true);
         InventoryItemContent.SetActive(true);
         InventoryWeaponContent.SetActive(false);
         InventoryHelmetContent.SetActive(false);
