@@ -5,7 +5,8 @@ using UnityEngine.UI;
 using TMPro;
 
 public class UICharacterInfo : MonoBehaviour
-{
+{    
+    public LobbyUIManager UIManager;
     public UIInventory UIInventory;
 
     public Animator CharacterAnimator;
@@ -765,6 +766,8 @@ public class UICharacterInfo : MonoBehaviour
 
     void CharacterInfoExitButtonClicked()
     {
+        UIManager.NPCDialogueAnimator.SetBool("isActive", true);
+
         EquipmentListScroll.gameObject.SetActive(false);
         EquipmentSelectionButtons.SetActive(false);
 

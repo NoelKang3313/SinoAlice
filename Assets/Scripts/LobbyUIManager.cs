@@ -6,14 +6,11 @@ using TMPro;
 
 public class LobbyUIManager : MonoBehaviour
 {
+    public LobbyAudioManager AudioManager;
+
     public Inventory Inventory;
     public UIInventory UIInventory;
-    public UICharacterInfo UICharacterInfo;
-
-    public AudioSource SystemAudioSource;
-    public AudioClip ButtonAudioClip;
-    public AudioClip ConfirmAudioClip;
-    public AudioClip CancelAudioClip;
+    public UICharacterInfo UICharacterInfo;    
 
     [Header("Character Prefab")]
     public GameObject AlicePrefab;
@@ -25,17 +22,26 @@ public class LobbyUIManager : MonoBehaviour
     public GameObject LobbyPanel;
 
     [Header("NPC Buttons")]
+    public GameObject NPCButtons;
     public Button CharlotteButton;
     public Button WinryButton;
     public Button LidButton;
 
-    public GameObject NPCPanel;
+    [Header("NPC Dialogue UI")]
+    public GameObject NPCDialoguePanel;
+    public Animator NPCDialogueAnimator;
+    public Button NPCButton;
+    public TextMeshProUGUI NPCButtonText;
+    public Button ReturnButton;
+    public Image NPCImage;
+    public TextMeshProUGUI NPCDialogueText;
+    public TextMeshProUGUI NPCNameText;
+
+    public GameObject ShopPanel;
     public GameObject LidInteractImage;
     public GameObject AliceInteractImage;
 
     [Header("Lid's")]
-    public Button LidShopButton;
-
     public ScrollRect LidShopScrollRect;
     public GameObject LidItemShopContent;
     public GameObject LidWeaponShopContent;
@@ -49,19 +55,16 @@ public class LobbyUIManager : MonoBehaviour
     public GameObject EquipmentCategories;
     public Button[] EquipmentButtons = new Button[4];
 
-    public Button LidShopExitButton;
-    public Button LidReturnButton;
+    public Animator LidBubble;
 
-    [Header("Winry's")]
-    public Button WinryCharacterButton;
+    public Button LidShopExitButton;    
+
+    [Header("Winry's")]    
     public GameObject CharacterInfoPanel;
-    public Button WinryReturnButton;
 
     [Header("Charlotte's")]
-    public Button CharlotteWorldmapButton;
-    public Button CharlotteReturnButton;
-    public Button CharlotteConfirmButton;
-    public Button CharlotteCancelButton;
+    [SerializeField]
+    private bool isWorldmapButtonClicked;
 
     [Header("Inventory")]
     public Button InventoryButton;
@@ -111,10 +114,12 @@ public class LobbyUIManager : MonoBehaviour
         CharlotteButton.onClick.AddListener(CharlotteButtonClicked);
         WinryButton.onClick.AddListener(WinryButtonClicked);
         LidButton.onClick.AddListener(LidButtonClicked);
-
-        LidShopButton.onClick.AddListener(LidShopButtonClicked);
+        
         LidItemShopButton.onClick.AddListener(LidItemShopButtonClicked);
         LidEquipmentShopButton.onClick.AddListener(LidEquipmentShopButtonClicked);
+
+        NPCButton.onClick.AddListener(NPCButtonClicked);
+        ReturnButton.onClick.AddListener(ReturnButtonClicked);
 
         for(int i = 0; i < EquipmentButtons.Length; i++)
         {
@@ -122,16 +127,6 @@ public class LobbyUIManager : MonoBehaviour
 
             EquipmentButtons[i].onClick.AddListener(() => EquipmentButtonClicked(number));
         }
-
-        LidReturnButton.onClick.AddListener(LidReturnButtonClicked);
-
-        WinryCharacterButton.onClick.AddListener(WinryCharacterButtonClicked);
-        WinryReturnButton.onClick.AddListener(WinryReturnButtonClicked);
-
-        CharlotteWorldmapButton.onClick.AddListener(CharlotteWorldmapButtonClicked);
-        CharlotteReturnButton.onClick.AddListener(CharlotteReturnButtonClicked);
-        CharlotteConfirmButton.onClick.AddListener(CharlotteConfirmButtonClicked);
-        CharlotteCancelButton.onClick.AddListener(CharlotteCancelButtonClicked);
 
         LidShopExitButton.onClick.AddListener(LidShopExitButtonClicked);
 
@@ -170,7 +165,12 @@ public class LobbyUIManager : MonoBehaviour
         else
         {
             LobbyPanel.SetActive(false);
-        }        
+        }
+
+        if(LidBubble.gameObject.activeSelf && LidBubble.GetCurrentAnimatorStateInfo(0).IsName("Lid Bubble Image") && LidBubble.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        {
+            LidBubble.SetBool("isActive", false);
+        }
 
         ActivateTransition(1.0f);
 
@@ -189,49 +189,117 @@ public class LobbyUIManager : MonoBehaviour
         }
     }
 
+    void NPCButtonClicked()
+    {
+        if(GameManager.instance.isLidButtonActive)
+        {
+            NPCDialogueAnimator.SetBool("isActive", false);
+            ShopPanel.SetActive(true);
+            InventoryButton.gameObject.SetActive(false);
+            AliceInteractImage.SetActive(true);
+            LidInteractImage.SetActive(true);
+
+            LidShopScrollRect.content = LidItemShopContent.GetComponent<RectTransform>();
+
+            LidShopViewport.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+ 
+            AudioManager.NPCAudioSource.clip = AudioManager.LidEnterShopClip;
+            AudioManager.NPCAudioSource.Play();
+
+            LidBubble.gameObject.SetActive(true);
+            LidBubble.SetBool("isActive", true);
+        }
+        else if(GameManager.instance.isWinryButtonActive)
+        {
+            NPCDialogueAnimator.SetBool("isActive", false);
+
+            UICharacterInfo.ResetEquipmentButtons();
+            CharacterInfoPanel.SetActive(true);
+        }
+        else if(GameManager.instance.isCharlotteButtonActive)
+        {
+            if(!isWorldmapButtonClicked)
+            {
+                isWorldmapButtonClicked = true;
+                NPCButtonText.text = "입장";
+            }
+            else
+            {
+                AudioManager.NPCAudioSource.clip = AudioManager.CharlotteEnterWorldClip;
+                AudioManager.NPCAudioSource.Play();
+
+                GameManager.instance.isTransition = true;
+                GameManager.instance.isCharlotteButtonActive = false;
+                isWorldmapButtonClicked = false;
+            }
+        }        
+    }
+
+    void ReturnButtonClicked()
+    {
+        if(isWorldmapButtonClicked)
+        {
+            NPCButtonText.text = "월드맵";
+            isWorldmapButtonClicked = false;
+        }
+        else
+        {
+            NPCDialogueAnimator.SetBool("isActive", false);
+
+            GameManager.instance.isReturnButtonActive = true;
+            InventoryButton.interactable = true;
+
+            if(GameManager.instance.isLidButtonActive)
+            {
+                AudioManager.NPCAudioSource.clip = AudioManager.LidReturnClip;
+                AudioManager.NPCAudioSource.Play();
+            }
+            else if(GameManager.instance.isWinryButtonActive)
+            {
+                AudioManager.NPCAudioSource.clip = AudioManager.WinryReturnClip;
+                AudioManager.NPCAudioSource.Play();
+            }
+            else if(GameManager.instance.isCharlotteButtonActive)
+            {
+                AudioManager.NPCAudioSource.clip = AudioManager.CharlotteReturnClip;
+                AudioManager.NPCAudioSource.Play();
+            }
+        }
+    }
+
     // Move to Charlotte Position
     void CharlotteButtonClicked()
     {
+        NPCButtons.SetActive(false);
+
         GameManager.instance.isCharlotteButtonActive = true;
         GameManager.instance.isAction = true;
 
-        WinryButton.interactable = false;
-        LidButton.interactable = false;
+        InventoryButton.interactable = false;
     }
 
     // Move to Winry Position
     void WinryButtonClicked()
     {
+        NPCButtons.SetActive(false);
+
         GameManager.instance.isWinryButtonActive = true;
         GameManager.instance.isAction = true;
 
-        CharlotteButton.interactable = false;
-        LidButton.interactable = false;
+        InventoryButton.interactable = false;
     }
 
     // Move to Lid Position
     void LidButtonClicked()
     {
+        NPCButtons.SetActive(false);
+
         GameManager.instance.isLidButtonActive = true;
         GameManager.instance.isAction = true;
 
-        CharlotteButton.interactable = false;
-        WinryButton.interactable = false;
+        InventoryButton.interactable = false;
     }
-
-    // Enter Shop
-    void LidShopButtonClicked()
-    {
-        NPCPanel.SetActive(true);
-        InventoryButton.gameObject.SetActive(false);
-        AliceInteractImage.SetActive(true);
-        LidInteractImage.SetActive(true);
-
-        LidShopScrollRect.content = LidItemShopContent.GetComponent<RectTransform>();
-        
-        LidShopViewport.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-    }
-
+    
     // Click Item Tab
     void LidItemShopButtonClicked()
     {
@@ -247,8 +315,6 @@ public class LobbyUIManager : MonoBehaviour
 
         LidShopViewport.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
         LidItemShopContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-
-        SystemAudioSource.PlayOneShot(ButtonAudioClip);
     }
 
     // Click Equipment Tab
@@ -269,9 +335,7 @@ public class LobbyUIManager : MonoBehaviour
         }
 
         LidShopViewport.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -45);
-        LidWeaponShopContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-
-        SystemAudioSource.PlayOneShot(ButtonAudioClip);
+        LidWeaponShopContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;        
     }
 
     // Click Equipment Category Buttons
@@ -289,8 +353,6 @@ public class LobbyUIManager : MonoBehaviour
                 LidShopViewport.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -45);
                 LidWeaponShopContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 
-                SystemAudioSource.PlayOneShot(ButtonAudioClip);
-
                 break;
 
             case 1:
@@ -302,8 +364,6 @@ public class LobbyUIManager : MonoBehaviour
                 LidShopScrollRect.content = LidHelmetShopContent.GetComponent<RectTransform>();
                 LidShopViewport.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -45);
                 LidHelmetShopContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-
-                SystemAudioSource.PlayOneShot(ButtonAudioClip);
 
                 break;
                 
@@ -317,8 +377,6 @@ public class LobbyUIManager : MonoBehaviour
                 LidShopViewport.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -45);
                 LidArmorShopContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 
-                SystemAudioSource.PlayOneShot(ButtonAudioClip);
-
                 break;
 
             case 3:
@@ -331,25 +389,15 @@ public class LobbyUIManager : MonoBehaviour
                 LidShopViewport.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -45);
                 LidShoeShopContent.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 
-                SystemAudioSource.PlayOneShot(ButtonAudioClip);
-
                 break;
         }
-    }
-
-    // Return Original Position
-    void LidReturnButtonClicked()
-    {         
-        LidShopButton.gameObject.SetActive(false);
-        LidReturnButton.gameObject.SetActive(false);
-
-        GameManager.instance.isReturnButtonActive = true;
     }
 
     // Exit Shop
     void LidShopExitButtonClicked()
     {
-        NPCPanel.SetActive(false);
+        NPCDialogueAnimator.SetBool("isActive", true);
+        ShopPanel.SetActive(false);
         InventoryButton.gameObject.SetActive(true);
         AliceInteractImage.SetActive(false);
         LidInteractImage.SetActive(false);
@@ -360,6 +408,9 @@ public class LobbyUIManager : MonoBehaviour
         LidArmorShopContent.SetActive(false);
         LidShoeShopContent.SetActive(false);
         EquipmentCategories.SetActive(false);
+
+        AudioManager.NPCAudioSource.clip = AudioManager.LidGreetingClip;
+        AudioManager.NPCAudioSource.Play();
     }
 
     // Purchase Item
@@ -371,8 +422,9 @@ public class LobbyUIManager : MonoBehaviour
         PurchasePanel.SetActive(true);
 
         purchaseItemData = ItemDatas[number];
-
-        SystemAudioSource.PlayOneShot(ButtonAudioClip);
+        
+        AudioManager.NPCAudioSource.clip = AudioManager.LidPurchaseButtonClip;
+        AudioManager.NPCAudioSource.Play();
     }    
 
     // Purchase Weapon
@@ -384,8 +436,6 @@ public class LobbyUIManager : MonoBehaviour
         PurchasePanel.SetActive(true);
 
         purchaseEquipmentData = WeaponDatas[number];
-
-        SystemAudioSource.PlayOneShot(ButtonAudioClip);
     }
 
     // Purchase Helmet
@@ -396,9 +446,7 @@ public class LobbyUIManager : MonoBehaviour
 
         PurchasePanel.SetActive(true);
 
-        purchaseEquipmentData = HelmetDatas[number];
-
-        SystemAudioSource.PlayOneShot(ButtonAudioClip);
+        purchaseEquipmentData = HelmetDatas[number];        
     }
 
     // Purchase Armor
@@ -409,9 +457,7 @@ public class LobbyUIManager : MonoBehaviour
 
         PurchasePanel.SetActive(true);
 
-        purchaseEquipmentData = ArmorDatas[number];
-
-        SystemAudioSource.PlayOneShot(ButtonAudioClip);
+        purchaseEquipmentData = ArmorDatas[number];        
     }
 
     // Purchase Shoe
@@ -423,8 +469,6 @@ public class LobbyUIManager : MonoBehaviour
         PurchasePanel.SetActive(true);
 
         purchaseEquipmentData = ShoeDatas[number];
-
-        SystemAudioSource.PlayOneShot(ButtonAudioClip);
     }
 
     // Confirm purchasing
@@ -567,15 +611,14 @@ public class LobbyUIManager : MonoBehaviour
             }
         }
 
-        SystemAudioSource.PlayOneShot(ConfirmAudioClip);
+        AudioManager.NPCAudioSource.clip = AudioManager.LidPurchasedClip;
+        AudioManager.NPCAudioSource.Play();
     }
 
     // Cancel purchasing
     void PurchaseCancelButtonClicked()
     {
-        PurchasePanel.SetActive(false);
-
-        SystemAudioSource.PlayOneShot(CancelAudioClip);
+        PurchasePanel.SetActive(false);        
     }
 
     // Check if current item is already purchased, if so, remove item
@@ -719,6 +762,7 @@ public class LobbyUIManager : MonoBehaviour
     // Enter Inventory
     void InventoryButtonClicked()
     {
+        InventoryButton.gameObject.SetActive(false);
         InventoryPanel.SetActive(true);
         UIInventory.InventoryItemContent.SetActive(true);
         UIInventory.EquipmentCategories.SetActive(false);
@@ -726,55 +770,6 @@ public class LobbyUIManager : MonoBehaviour
         UIInventory.InventoryHelmetContent.SetActive(false);
         UIInventory.InventoryArmorContent.SetActive(false);
         UIInventory.InventoryShoeContent.SetActive(false);
-    }
-
-    // Enter Character Info
-    void WinryCharacterButtonClicked()
-    {
-        UICharacterInfo.ResetEquipmentButtons();
-        CharacterInfoPanel.SetActive(true);
-    }
-
-    // Return Original Position
-    void WinryReturnButtonClicked()
-    {
-        NPCPanel.SetActive(false);
-        AliceInteractImage.SetActive(false);
-
-        WinryCharacterButton.gameObject.SetActive(false);
-        WinryReturnButton.gameObject.SetActive(false);
-
-        GameManager.instance.isReturnButtonActive = true;
-    }
-
-    // Confirm or Cancel Button Activate (Entering Worldmap Scene)
-    void CharlotteWorldmapButtonClicked()
-    {
-        CharlotteConfirmButton.gameObject.SetActive(true);
-        CharlotteCancelButton.gameObject.SetActive(true);
-    }
-
-    // Return Original Position
-    void CharlotteReturnButtonClicked()
-    {
-        CharlotteWorldmapButton.gameObject.SetActive(false);
-        CharlotteReturnButton.gameObject.SetActive(false);
-
-        GameManager.instance.isReturnButtonActive = true;
-    }
-
-    // Confirm (Enter Worldmap Scene)
-    void CharlotteConfirmButtonClicked()
-    {
-        GameManager.instance.isTransition = true;
-        GameManager.instance.isCharlotteButtonActive = false;
-    }
-
-    // Cancel (Deactivate Confirm & Cancel Button)
-    void CharlotteCancelButtonClicked()
-    {
-        CharlotteConfirmButton.gameObject.SetActive(false);
-        CharlotteCancelButton.gameObject.SetActive(false);
     }
 
     void SetGaugeUI()
