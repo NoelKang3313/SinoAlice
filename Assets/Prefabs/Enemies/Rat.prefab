@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -356175604, guid: c86fa8fff0233dd4282646b065cddbcd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0013b390d9b5b429ea1266afb53f2fba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StageManager: {fileID: 0}
   Name: Rat
   HP: 100
   MP: 0

@@ -2,24 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class WorldmapUIManager : MonoBehaviour
 {
     public Button Stage1Button;
     public GameObject Stage1;
-    public GameObject BackgroundGameObject;
+    public SpriteRenderer Background;
     public Sprite WorldBG;
-    public Sprite StageBG;
+    public Sprite Stage1BG;
+
+    public GameObject StageSelectionPanel;
+    public Button StageSelectionExitButton;
 
     public Button ReturnButton;
-    private bool isWorldmap;      // Check if current map is worldmap or stage map
-    public Button Stage1_1Button;
+    [SerializeField]
+    private bool isLobby;    
+
+    public Button[] Stage1Buttons = new Button[3];
 
     public GameObject StagePanel;
+    public TextMeshProUGUI StagePanelTitle;
+    public GameObject EnemyObjects;
+    public Image[] EnemyImages = new Image[4];
+    public GameObject BossImage;
+    public Sprite RatSprite;
+    public GameObject RatPrefab;
+    public Sprite WolfSprite;
+    public GameObject WolfPrefab;
+    public Sprite BossSprite;
+    public GameObject BossPrefab;
     public Button StagePanelExitButton;
 
     public Button[] CharacterLocationButtons = new Button[3];
-    [SerializeField] private int CharacterLocationIndex;    
+    [SerializeField] private int CharacterLocationIndex;
     public GameObject CharacterSelectionScroll;
     public Button[] CharacterSelectionButtons = new Button[3];
 
@@ -27,9 +43,6 @@ public class WorldmapUIManager : MonoBehaviour
     //public GameObject[] CharacterPrefabs = new GameObject[3];
     public Sprite[] CharactersIdle = new Sprite[3];
     [SerializeField] private int changeIndex;
-
-    public Image[] EnemyImages = new Image[4];
-    public Sprite RatSprite;
 
     [SerializeField]
     private int characterCount;
@@ -42,26 +55,32 @@ public class WorldmapUIManager : MonoBehaviour
         //for(int i = 0; i < GameManager.instance.CharacterSelected.Length; i++)
         //{
         //    GameManager.instance.CharacterSelected[i] = null;
-        //}
-
-        isWorldmap = true;
+        //}        
 
         Stage1Button.onClick.AddListener(Stage1ButtonClicked);
         ReturnButton.onClick.AddListener(ReturnButtonClicked);
-        Stage1_1Button.onClick.AddListener(Stage1_1ButtonClicked);
+        //Stage1_1Button.onClick.AddListener(Stage1_1ButtonClicked);
+
+        StageSelectionExitButton.onClick.AddListener(StageSelectionExitButtonClicked);
 
         StagePanelExitButton.onClick.AddListener(StagePanelExitButtonClicked);
 
-        for(int i = 0; i < CharacterLocationButtons.Length; i++)
+        for (int i = 0; i < CharacterLocationButtons.Length; i++)
         {
             int number = i;
             CharacterLocationButtons[i].onClick.AddListener(() => CharacterLocationButtonClicked(number));
         }
 
-        for(int i = 0; i < CharacterSelectionButtons.Length; i++)
+        for (int i = 0; i < CharacterSelectionButtons.Length; i++)
         {
             int number = i;
             CharacterSelectionButtons[i].onClick.AddListener(() => CharacterSelectionButtonClicked(number));
+        }
+
+        for (int i = 0; i < Stage1Buttons.Length; i++)
+        {
+            int number = i;
+            Stage1Buttons[i].onClick.AddListener(() => Stage1ButtonsClicked(number));
         }
 
         BattleStartButton.onClick.AddListener(BattleStartButtonClicked);
@@ -100,7 +119,7 @@ public class WorldmapUIManager : MonoBehaviour
     {
         ActivateTransition(1.0f);
 
-        if(TransitionImage.fillAmount == 0)
+        if (TransitionImage.fillAmount == 0)
         {
             TransitionImage.gameObject.SetActive(false);
         }
@@ -111,56 +130,44 @@ public class WorldmapUIManager : MonoBehaviour
     void Stage1ButtonClicked()
     {
         Stage1.SetActive(false);
-        isWorldmap = false;
 
-        BackgroundGameObject.GetComponent<SpriteRenderer>().sprite = StageBG;
-        BackgroundGameObject.transform.localScale = new Vector3(1, 0.53f, 0);
-        
-        Stage1_1Button.gameObject.SetActive(true);
+        StageSelectionPanel.SetActive(true);
+
+        Background.GetComponent<Transform>().localScale = new Vector3(1.67f, 1, 1);
+        Background.sprite = Stage1BG;
+
+        ReturnButton.gameObject.SetActive(false);
     }
 
     void ReturnButtonClicked()
     {
-        if(isWorldmap)
-        {
-            //Return Lobby
-            TransitionImage.gameObject.SetActive(true);
-            GameManager.instance.isTransition = true;   
-        }
-        else
-        {
-            //Return Worldmap
-            BackgroundGameObject.GetComponent<SpriteRenderer>().sprite = WorldBG;
-            BackgroundGameObject.transform.localScale = new Vector3(1.3f, 1, 1);
+        isLobby = true;
 
-            Stage1.SetActive(true);
-            Stage1_1Button.gameObject.SetActive(false);
-
-            isWorldmap = true;
-        }
+        TransitionImage.gameObject.SetActive(true);
+        GameManager.instance.isTransition = true;
     }
 
-    void Stage1_1ButtonClicked()
+    void StageSelectionExitButtonClicked()
     {
-        StagePanel.SetActive(true);
-        ReturnButton.gameObject.SetActive(false);
+        Background.GetComponent<Transform>().localScale = new Vector3(1.3f, 1, 1);
+        Background.sprite = WorldBG;
 
-        for(int i = 0; i < EnemyImages.Length; i++)
-        {
-            EnemyImages[i].sprite = RatSprite;
-        }
+        StageSelectionPanel.SetActive(false);
+        Stage1.SetActive(true);
+
+        ReturnButton.gameObject.SetActive(true);
     }
 
     void StagePanelExitButtonClicked()
     {
         StagePanel.SetActive(false);
-        ReturnButton.gameObject.SetActive(true);
+        StageSelectionPanel.SetActive(true); 
     }
 
     void CharacterLocationButtonClicked(int number)
     {
         CharacterSelectionScroll.SetActive(true);
-        CharacterLocationIndex = number;        
+        CharacterLocationIndex = number;
     }
 
     void SwitchCharacterLocation(int oldNum, int newNum)
@@ -179,7 +186,7 @@ public class WorldmapUIManager : MonoBehaviour
 
     void CharacterSelectionButtonClicked(int number)
     {
-        switch(number)
+        switch (number)
         {
             case 0:
                 SelectedCharacter = GameManager.instance.AlicePrefab;
@@ -196,15 +203,15 @@ public class WorldmapUIManager : MonoBehaviour
 
         if (GameManager.instance.CharacterSelected[CharacterLocationIndex] == null)
         {
-            if(GameManager.instance.CharacterSelected[0] == SelectedCharacter)
+            if (GameManager.instance.CharacterSelected[0] == SelectedCharacter)
             {
                 SwitchCharacterLocation(0, number);
             }
-            else if(GameManager.instance.CharacterSelected[1] == SelectedCharacter)
+            else if (GameManager.instance.CharacterSelected[1] == SelectedCharacter)
             {
                 SwitchCharacterLocation(1, number);
             }
-            else if(GameManager.instance.CharacterSelected[2] == SelectedCharacter)
+            else if (GameManager.instance.CharacterSelected[2] == SelectedCharacter)
             {
                 SwitchCharacterLocation(2, number);
             }
@@ -218,7 +225,7 @@ public class WorldmapUIManager : MonoBehaviour
         }
         else
         {
-            for(int i = 0; i < GameManager.instance.CharacterSelected.Length; i++)
+            for (int i = 0; i < GameManager.instance.CharacterSelected.Length; i++)
             {
                 if (GameManager.instance.CharacterSelected[i] == SelectedCharacter)
                 {
@@ -241,13 +248,75 @@ public class WorldmapUIManager : MonoBehaviour
         CharacterSelectionScroll.SetActive(false);
     }
 
+    void Stage1ButtonsClicked(int number)
+    {
+        StageSelectionPanel.SetActive(false);
+        StagePanel.SetActive(true);
+
+        if(GameManager.instance.EnemySelected.Count != 0)
+        {
+            GameManager.instance.EnemySelected.Clear();
+        }
+
+        switch (number)
+        {
+            case 0:
+                StagePanelTitle.text = "스테이지 1 - " + (number + 1);
+
+                EnemyObjects.SetActive(true);
+                BossImage.SetActive(false);
+
+                for (int i = 0; i < EnemyImages.Length; i++)
+                {
+                    EnemyImages[i].sprite = RatSprite;
+                    EnemyImages[i].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+                    GameManager.instance.EnemySelected.Add(RatPrefab);
+                }
+                break;
+
+            case 1:
+                StagePanelTitle.text = "스테이지 1 - " + (number + 1);
+
+                EnemyObjects.SetActive(true);
+                BossImage.SetActive(false);
+
+                for (int i = 0; i < EnemyImages.Length; i++)
+                {
+                    if(i % 2 == 0)
+                    {
+                        EnemyImages[i].sprite = WolfSprite;
+                        EnemyImages[i].GetComponent<RectTransform>().sizeDelta = new Vector2(250, 150);
+                        GameManager.instance.EnemySelected.Add(WolfPrefab);
+                    }
+                    else
+                    {
+                        EnemyImages[i].sprite = RatSprite;
+                        EnemyImages[i].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+                        GameManager.instance.EnemySelected.Add(RatPrefab);
+                    }
+                }
+                break;
+
+            case 2:
+                StagePanelTitle.text = "스테이지 1 - " + (number + 1);
+
+                EnemyObjects.SetActive(false);
+                BossImage.SetActive(true);
+
+                BossImage.GetComponent<Image>().sprite = BossSprite;
+                GameManager.instance.EnemySelected.Add(BossPrefab);
+
+                break;
+        }
+    }
+
     void BattleStartButtonClicked()
     {
         characterCount = 0;
 
-        for(int i = 0; i < GameManager.instance.CharacterSelected.Length; i++)
+        for (int i = 0; i < GameManager.instance.CharacterSelected.Length; i++)
         {
-            if(GameManager.instance.CharacterSelected[i] != null)
+            if (GameManager.instance.CharacterSelected[i] != null)
             {
                 characterCount++;
             }
@@ -257,10 +326,10 @@ public class WorldmapUIManager : MonoBehaviour
             }
         }
 
-        if(characterCount == 3)
-        {            
+        if (characterCount == 3)
+        {
             TransitionImage.gameObject.SetActive(true);
-            GameManager.instance.isTransition = true;            
+            GameManager.instance.isTransition = true;
         }
         else
         {
@@ -288,14 +357,15 @@ public class WorldmapUIManager : MonoBehaviour
 
             GameManager.instance.isTransition = false;
 
-            if(isWorldmap)
+            if (isLobby)
             {
+                isLobby = false;
                 GameManager.instance.LoadScene("Lobby");
             }
             else
             {
                 GameManager.instance.isBattleStart = true;
-                GameManager.instance.LoadScene("Stage1-1");
+                GameManager.instance.LoadScene("Stage1");
             }
         }
     }

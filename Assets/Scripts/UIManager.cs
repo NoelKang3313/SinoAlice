@@ -90,14 +90,15 @@ public class UIManager : MonoBehaviour
     [Header("Pause Panel")]
     public Button PauseButton;
     public GameObject PausePanel;
+    public GameObject PauseObjects;
+    public GameObject SelectionObjects;
+    public GameObject SettingObjects;
     public Button RestartButton;
-    public GameObject ConfirmPanel;
-    public TextMeshProUGUI ConfirmPanelText;
-    public Button ConfirmButton;
+    public TextMeshProUGUI SelectionText;
+    public Button OKButton;
     public Button CancelButton;
     public Button SettingButton;
-    public Button SettingReturnButton;
-    public GameObject SettingPanel;
+    public Button ExitSettingButton;
     public Button ReturnLobbyButton;
     public Button ResumeButton;
 
@@ -143,10 +144,10 @@ public class UIManager : MonoBehaviour
 
         PauseButton.onClick.AddListener(PauseButtonClicked);
         RestartButton.onClick.AddListener(RestartButtonClicked);
-        ConfirmButton.onClick.AddListener(ConfirmButtonClicked);
+        OKButton.onClick.AddListener(ConfirmButtonClicked);
         CancelButton.onClick.AddListener(CancelButtonClicked);
         SettingButton.onClick.AddListener(SettingButtonClicked);
-        SettingReturnButton.onClick.AddListener(SettingReturnButtonClicked);
+        ExitSettingButton.onClick.AddListener(ExitSettingButtonClicked);
         ReturnLobbyButton.onClick.AddListener(ReturnLobbyButtonClicked);
         ResumeButton.onClick.AddListener(ResumeButtonClicked);
 
@@ -760,8 +761,10 @@ public class UIManager : MonoBehaviour
     void RestartButtonClicked()
     {
         isRestart = true;
-        ConfirmPanel.SetActive(true);
-        ConfirmPanelText.text = "RESTART?";
+        PauseObjects.SetActive(false);
+        SelectionObjects.SetActive(true);
+
+        SelectionText.text = "다시 시작하시겠습니까?";
     }
 
     void ConfirmButtonClicked()
@@ -772,24 +775,38 @@ public class UIManager : MonoBehaviour
 
     void CancelButtonClicked()
     {
-        ConfirmPanel.SetActive(false);
+        PauseObjects.SetActive(true);
+        SelectionObjects.SetActive(false);
+
+        if(isRestart)
+        {
+            isRestart = false;
+        }
+        else if(isLobby)
+        {
+            isLobby = false;
+        }
     }
 
     void SettingButtonClicked()
     {
-        SettingPanel.SetActive(true);
+        PauseObjects.SetActive(false);
+        SettingObjects.SetActive(true);
     }
 
-    void SettingReturnButtonClicked()
+    void ExitSettingButtonClicked()
     {
-        SettingPanel.SetActive(false);
+        PauseObjects.SetActive(true);
+        SettingObjects.SetActive(false);
     }
 
     void ReturnLobbyButtonClicked()
     {
         isLobby = true;
-        ConfirmPanel.SetActive(true);
-        ConfirmPanelText.text = "RETURN LOBBY?";
+        SelectionObjects.SetActive(true);
+        PauseObjects.SetActive(false);
+
+        SelectionText.text = "로비로 돌아가시겠습니까?";
     }
 
     void ResumeButtonClicked()
@@ -1007,7 +1024,7 @@ public class UIManager : MonoBehaviour
                 GameManager.instance.isBattleStart = true;
                 GameManager.instance.TurnNumber = 0;
                 GameManager.instance.isBattleOver = false;
-                GameManager.instance.LoadScene("Stage1-1");                
+                GameManager.instance.LoadScene("Stage1");                
             }
             else if(isLobby)
             {

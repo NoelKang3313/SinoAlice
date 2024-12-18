@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public bool isTransition;
     public bool isBattleStart;
     public bool isTurn;
-    public int TurnNumber;
+    public int TurnNumber;    
     public bool isBattleOver;
 
     [Header("Character Selection")]
@@ -21,6 +21,11 @@ public class GameManager : MonoBehaviour
     public GameObject AlicePrefab;
     public GameObject GretelPrefab;
     public GameObject SnowWhitePrefab;
+
+    [Header("Selected Enemy")]
+    public List<GameObject> EnemySelected = new List<GameObject>();
+    public List<GameObject> InstantiatedEnemy = new List<GameObject>();
+    public GameObject EnemyPosition;
 
     [Header("Characters Equipment Data")]
     public EquipmentData[] AliceEquipments = new EquipmentData[4];
@@ -51,7 +56,8 @@ public class GameManager : MonoBehaviour
     public Vector2[] EnemyPositions = new Vector2[4];
     public int EnemyPositionNumber;
 
-    public GameObject[] Characters = new GameObject[3];    
+    [Header("Battle Start")]
+    public GameObject[] Characters = new GameObject[3];
     public int AlicePositionNumber;
     public int GretelPositionNumber;
     public int SWPositionNumber;
@@ -94,8 +100,13 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (SceneManager.GetActiveScene().name == "Stage1")
+        {
+            EnemyPosition = GameObject.Find("Enemies");
+        }
+
         CharacterPosition();
-        StageEnterInstantiateCharacter();
+        //StageEnterInstantiateCharacter();
 
         GetDamage(10);
     }
@@ -129,18 +140,26 @@ public class GameManager : MonoBehaviour
         }
     }    
 
-    void StageEnterInstantiateCharacter()
-    {
-        if(isBattleStart)
-        {
-            for(int i = 0; i < CharacterSelected.Length; i++)
-            {
-                Characters[i] = Instantiate(CharacterSelected[i], CharacterPositions[i], Quaternion.identity);                
-            }
+    //void StageEnterInstantiateCharacter()
+    //{
+    //    if(isBattleStart)
+    //    {
+    //        for(int i = 0; i < CharacterSelected.Length; i++)
+    //        {
+    //            Characters[i] = Instantiate(CharacterSelected[i], CharacterPositions[i], Quaternion.identity);                
+    //        }
 
-            isBattleStart = false;
-        }
-    }    
+    //        for(int i = 0; i < EnemySelected.Count; i++)
+    //        {
+    //            GameObject enemy = Instantiate(EnemySelected[i], EnemyPositions[i], Quaternion.identity);
+    //            enemy.transform.SetParent(EnemyPosition.transform);
+
+    //            InstantiatedEnemy.Add(enemy);
+    //        }
+
+    //        isBattleStart = false;
+    //    }
+    //}    
 
     void GetDamage(int damage)
     {
