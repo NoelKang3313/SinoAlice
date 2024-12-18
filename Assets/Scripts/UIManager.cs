@@ -483,7 +483,10 @@ public class UIManager : MonoBehaviour
         GameManager.instance.isAction = true;
         EnemySelectButtons.SetActive(false);
 
-        SkillUsedReduceMP(selectedSkillData);
+        if(selectedSkillData != null)
+        {
+            SkillUsedReduceMP(selectedSkillData);
+        }
 
         SkillInformationPanel.GetComponent<Animator>().SetBool("isActive", false);
         SkillButtonViewport.GetComponent<Animator>().SetBool("isActive", false);
@@ -764,7 +767,7 @@ public class UIManager : MonoBehaviour
         PauseObjects.SetActive(false);
         SelectionObjects.SetActive(true);
 
-        SelectionText.text = "ë‹¤ì‹œ ì‹œì‘í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
+        SelectionText.text = "´Ù½Ã ½ÃÀÛÇÏ½Ã°Ú½À´Ï±î?";
     }
 
     void ConfirmButtonClicked()
@@ -806,7 +809,7 @@ public class UIManager : MonoBehaviour
         SelectionObjects.SetActive(true);
         PauseObjects.SetActive(false);
 
-        SelectionText.text = "ë¡œë¹„ë¡œ ëŒì•„ê°€ì‹œê² ìŠµë‹ˆê¹Œ?";
+        SelectionText.text = "·Îºñ·Î µ¹¾Æ°¡½Ã°Ú½À´Ï±î?";
     }
 
     void ResumeButtonClicked()
@@ -849,16 +852,16 @@ public class UIManager : MonoBehaviour
 
         for(int i = 0; i < EnemyHPGauge.Length; i++)
         {
-            if(StageManager.EnemyGameObject[i] == null)
+            if(StageManager.EnemyInfo[i] == null)
             {
                 EnemyHPGauge[i].gameObject.SetActive(false);
                 EnemySelectButton[i].gameObject.SetActive(false);
             }
             else
             {
-                if (StageManager.EnemyGameObject[i].name.StartsWith("Rat"))
+                if (StageManager.EnemyInfo[i].name.StartsWith("Rat"))
                 {
-                    EnemyHPGauge[i].fillAmount = StageManager.EnemyGameObject[i].GetComponent<Rat>().CurrentHP / StageManager.EnemyGameObject[i].GetComponent<Rat>().HP;
+                    EnemyHPGauge[i].fillAmount = StageManager.EnemyInfo[i].GetComponent<Rat>().CurrentHP / StageManager.EnemyInfo[i].GetComponent<Rat>().HP;
                 }
             }
         }        

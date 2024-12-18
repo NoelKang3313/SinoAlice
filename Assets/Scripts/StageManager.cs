@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class StageManager : MonoBehaviour
@@ -7,7 +8,8 @@ public class StageManager : MonoBehaviour
     //public GameObject[] CharacterTurn;
     public List<GameObject> CharacterTurns = new List<GameObject>();
 
-    public GameObject[] EnemyGameObject = new GameObject[4];     // For Enemy Mini Gauge
+    //public GameObject[] EnemyGameObject = new GameObject[4];     // For Enemy Mini Gauge
+    public List<GameObject> EnemyInfo = new List<GameObject>();
 
     //[SerializeField]
     //private float[] CharacterSpeed = new float[7];
@@ -20,6 +22,8 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
+        GameManager.instance.InstantiatedEnemy.Clear();
+
         GameManager.instance.isBattleStart = true;
 
         for (int i = 0; i < GameManager.instance.CharacterSelected.Length; i++)
@@ -31,37 +35,51 @@ public class StageManager : MonoBehaviour
         {
             GameObject enemy = Instantiate(GameManager.instance.EnemySelected[i], GameManager.instance.EnemyPositions[i], Quaternion.identity);            
 
+            if(enemy.name.StartsWith("Rat"))
+            {
+                enemy.name = "Rat" + (i + 1);
+            }
+
             GameManager.instance.InstantiatedEnemy.Add(enemy);
-        }
-
-        for (int i = 0; i < GameManager.instance.Characters.Length; i++)
-        {
-            CharacterTurns.Add(GameManager.instance.Characters[i]);
-
-            if (GameManager.instance.Characters[i].name.StartsWith("Alice"))
-            {
-                CharacterSpeeds.Add(GameManager.instance.Characters[i].GetComponent<Alice>().Speed);
-            }
-            else if (GameManager.instance.Characters[i].name.StartsWith("Gretel"))
-            {
-                CharacterSpeeds.Add(GameManager.instance.Characters[i].GetComponent<Gretel>().Speed);
-            }
-            else if (GameManager.instance.Characters[i].name.StartsWith("Snow White"))
-            {
-                CharacterSpeeds.Add(GameManager.instance.Characters[i].GetComponent<SnowWhite>().Speed);
-            }
-        }
-
-        foreach (GameObject obj in GameManager.instance.InstantiatedEnemy)
-        {
-            CharacterTurns.Add(obj);
-
-            if (obj.name.StartsWith("Rat"))
-            {
-                CharacterSpeeds.Add(obj.GetComponent<Rat>().Speed);
-            }
+            EnemyInfo.Add(enemy);
 
             EnemyCount++;
+        }
+
+        //for (int i = 0; i < GameManager.instance.Characters.Length; i++)
+        //{
+        //    CharacterTurns.Add(GameManager.instance.Characters[i]);
+
+        //    if (GameManager.instance.Characters[i].name.StartsWith("Alice"))
+        //    {
+        //        CharacterSpeeds.Add(GameManager.instance.Characters[i].GetComponent<Alice>().Speed);
+        //    }
+        //    else if (GameManager.instance.Characters[i].name.StartsWith("Gretel"))
+        //    {
+        //        CharacterSpeeds.Add(GameManager.instance.Characters[i].GetComponent<Gretel>().Speed);
+        //    }
+        //    else if (GameManager.instance.Characters[i].name.StartsWith("Snow White"))
+        //    {
+        //        CharacterSpeeds.Add(GameManager.instance.Characters[i].GetComponent<SnowWhite>().Speed);
+        //    }
+        //}
+
+        CharacterTurns.Add(GameManager.instance.AlicePrefab);
+        CharacterTurns.Add(GameManager.instance.GretelPrefab);
+        CharacterTurns.Add(GameManager.instance.SnowWhitePrefab);
+
+        CharacterSpeeds.Add(CharacterTurns[0].GetComponent<Alice>().Speed);
+        CharacterSpeeds.Add(CharacterTurns[1].GetComponent<Gretel>().Speed);
+        CharacterSpeeds.Add(CharacterTurns[2].GetComponent<SnowWhite>().Speed);
+
+        for (int i = 0; i < GameManager.instance.InstantiatedEnemy.Count; i++)
+        {
+            CharacterTurns.Add(GameManager.instance.InstantiatedEnemy[i]);
+
+            if (GameManager.instance.InstantiatedEnemy[i].name.StartsWith("Rat"))
+            {
+                CharacterSpeeds.Add(GameManager.instance.InstantiatedEnemy[i].GetComponent<Rat>().Speed);
+            }
         }
 
         //// Array

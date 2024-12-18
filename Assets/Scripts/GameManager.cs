@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public Inventory Inventory;
-    private StageManager StageManager;
 
     public bool isTransition;
     public bool isBattleStart;
@@ -83,11 +82,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if(GameObject.Find("StageManager") != null)
-        {
-            StageManager = GameObject.Find("StageManager").GetComponent<StageManager>();
-        }
-
         AlicePrefab.GetComponent<Alice>().CurrentHP = AlicePrefab.GetComponent<Alice>().HP;
         AlicePrefab.GetComponent<Alice>().CurrentMP = AlicePrefab.GetComponent<Alice>().MP;
 
@@ -106,7 +100,6 @@ public class GameManager : MonoBehaviour
         }
 
         CharacterPosition();
-        //StageEnterInstantiateCharacter();
 
         GetDamage(10);
     }
@@ -139,27 +132,6 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }    
-
-    //void StageEnterInstantiateCharacter()
-    //{
-    //    if(isBattleStart)
-    //    {
-    //        for(int i = 0; i < CharacterSelected.Length; i++)
-    //        {
-    //            Characters[i] = Instantiate(CharacterSelected[i], CharacterPositions[i], Quaternion.identity);                
-    //        }
-
-    //        for(int i = 0; i < EnemySelected.Count; i++)
-    //        {
-    //            GameObject enemy = Instantiate(EnemySelected[i], EnemyPositions[i], Quaternion.identity);
-    //            enemy.transform.SetParent(EnemyPosition.transform);
-
-    //            InstantiatedEnemy.Add(enemy);
-    //        }
-
-    //        isBattleStart = false;
-    //    }
-    //}    
 
     void GetDamage(int damage)
     {
