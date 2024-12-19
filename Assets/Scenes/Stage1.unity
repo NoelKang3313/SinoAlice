@@ -1209,11 +1209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterTurns: []
-  EnemyGameObject:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  EnemyInfo: []
   CharacterSpeeds: []
   EnemyCount: 0
 --- !u!1 &320974116
@@ -2492,6 +2488,7 @@ MonoBehaviour:
   GretelSprite: {fileID: 21300000, guid: f2bcb705fe8f94726891ca9c66f3cf98, type: 3}
   SnowWhiteSprite: {fileID: 21300000, guid: ff57471dcd1e14c05820bc9ca9830e1f, type: 3}
   RatSprite: {fileID: 21300000, guid: fd2fc4d8d641a4a8e8ba7ce6a0d12460, type: 3}
+  WolfSprite: {fileID: 21300000, guid: 1f8803d7b41fd475fbc158bb1ab75290, type: 3}
   ActionButtons: {fileID: 1272092172}
   AttackButton: {fileID: 614614976}
   GuardButton: {fileID: 1227374745}
