@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
 
     public Vector2[] EnemyPositions = new Vector2[4];
     public int EnemyPositionNumber;
+    public Vector2 BossPosition;
 
     [Header("Battle Start")]
     public GameObject[] Characters = new GameObject[3];

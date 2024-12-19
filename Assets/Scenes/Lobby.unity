@@ -27662,6 +27662,9 @@ MonoBehaviour:
   AlicePrefab: {fileID: 119765422866117814, guid: 2d46a300455ae452abbd6fb4ac0fe8d5, type: 3}
   GretelPrefab: {fileID: 5393587730986905872, guid: 740bdb33857d34ab7b6758830d6602d1, type: 3}
   SnowWhitePrefab: {fileID: 8177801638161185331, guid: 1657b3bd308b6497184b58542c266541, type: 3}
+  EnemySelected: []
+  InstantiatedEnemy: []
+  EnemyPosition: {fileID: 0}
   AliceEquipments:
   - {fileID: 0}
   - {fileID: 0}
@@ -27700,6 +27703,7 @@ MonoBehaviour:
   - {x: -5.4, y: -3}
   - {x: -6.9, y: -1}
   EnemyPositionNumber: 0
+  BossPosition: {x: -4.5, y: -1.5}
   Characters:
   - {fileID: 0}
   - {fileID: 0}
