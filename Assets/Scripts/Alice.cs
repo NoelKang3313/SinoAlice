@@ -419,19 +419,19 @@ public class Alice : MonoBehaviour
 
     void DamageEnemy(int damage)
     {
-        if (StageManager.EnemyGameObject[GameManager.instance.EnemyPositionNumber].name.StartsWith("Rat"))
+        if (StageManager.EnemyInfo[GameManager.instance.EnemyPositionNumber].name.StartsWith("Rat"))
         {
-            StageManager.EnemyGameObject[GameManager.instance.EnemyPositionNumber].GetComponent<Rat>().CurrentHP -= damage;
+            StageManager.EnemyInfo[GameManager.instance.EnemyPositionNumber].GetComponent<Rat>().CurrentHP -= damage;
         }
     }
 
     void DamageAllEnemy(int damage)
     {
-        for(int i = 0; i < StageManager.EnemyGameObject.Length; i++)
+        for(int i = 0; i < StageManager.EnemyInfo.Count; i++)
         {
-            if (StageManager.EnemyGameObject[GameManager.instance.EnemyPositionNumber].name.StartsWith("Rat"))
+            if (StageManager.EnemyInfo[GameManager.instance.EnemyPositionNumber].name.StartsWith("Rat"))
             {
-                StageManager.EnemyGameObject[i].GetComponent<Rat>().CurrentHP -= damage;
+                StageManager.EnemyInfo[i].GetComponent<Rat>().CurrentHP -= damage;
             }
         }
     }
