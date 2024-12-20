@@ -26,7 +26,7 @@ public class Wolf : MonoBehaviour
     private bool isAttacking;
     public Gradient AttackGradient;
 
-    int playerRandom;
+    private int playerRandom;
 
     void Awake()
     {

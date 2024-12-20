@@ -35,6 +35,9 @@ public class Alice : MonoBehaviour
     public GameObject ShieldPrefab;
     private GameObject shield;
 
+    private Vector2 enemyPosition;
+    private Vector2 attackEffectPosition;
+
     [Header("Skills")]
     public GameObject GlacialArrowPrefab;
     private GameObject glacialArrow;
@@ -96,6 +99,46 @@ public class Alice : MonoBehaviour
         Victory();
     }
 
+    void SetEnemyPosition()
+    {
+        if (StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
+        {
+            if (GameManager.instance.isAttackButtonActive)
+            {
+                enemyPosition = GameManager.instance.BossPosition + new Vector2(1.8f, 0.5f);
+            }
+            else if (GameManager.instance.isSkillButtonActive)
+            {
+                if (GameManager.instance.SkillButtonNumber == 0)
+                {
+                    enemyPosition = GameManager.instance.BossPosition + new Vector2(1.0f, 1.0f);
+                }
+                else
+                {
+                    enemyPosition = GameManager.instance.BossPosition;
+                }
+            }
+        }
+        else
+        {
+            if (GameManager.instance.isAttackButtonActive)
+            {
+                enemyPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(1.8f, 0.5f);
+            }
+            else if (GameManager.instance.isSkillButtonActive)
+            {
+                if (GameManager.instance.SkillButtonNumber == 0)
+                {
+                    enemyPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(1.0f, 1.0f);
+                }
+                else
+                {
+                    enemyPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber];
+                }
+            }
+        }
+    }
+
     void AliceAction()
     {
         if (GameManager.instance.isBattleOver)
@@ -135,12 +178,13 @@ public class Alice : MonoBehaviour
 
                         UIManager.CharacterMiniGauge.SetActive(false);
 
-                        animator.SetTrigger("Move");
-                        transform.position = Vector2.MoveTowards(transform.position,
-                            GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(1.8f, 0.5f), moveSpeed * Time.deltaTime);
+                        SetEnemyPosition();
 
-                        if (transform.position == new Vector3((GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].x + 1.8f),
-                            (GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].y + 0.5f), 0))
+                        animator.SetTrigger("Move");
+
+                        transform.position = Vector2.MoveTowards(transform.position, enemyPosition, moveSpeed * Time.deltaTime);
+
+                        if (transform.position == new Vector3(enemyPosition.x, enemyPosition.y, 0))
                         {
                             GameManager.instance.isAliceTurn = false;
                             GameManager.instance.isAction = false;
@@ -154,7 +198,17 @@ public class Alice : MonoBehaviour
                             if (!isAttacking)
                             {
                                 isAttacking = true;
-                                attackEffect = Instantiate(AttackEffectPrefab, GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber], Quaternion.identity);
+
+                                if (StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
+                                {
+                                    attackEffectPosition = GameManager.instance.BossPosition;
+                                }
+                                else
+                                {
+                                    attackEffectPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber];
+                                }
+
+                                attackEffect = Instantiate(AttackEffectPrefab, attackEffectPosition, Quaternion.identity);
                                 attackEffect.GetComponent<Animator>().Play("Alice_Attack");
 
                                 var colorOverLifeTime = attackEffect.GetComponentInChildren<ParticleSystem>().colorOverLifetime;
@@ -197,6 +251,8 @@ public class Alice : MonoBehaviour
                             audioSource.PlayOneShot(AttackSelect[attackSelectRandom]);
                         }
 
+                        SetEnemyPosition();
+
                         animator.SetBool("MagicAttack", true);
 
                         switch (GameManager.instance.SkillButtonNumber)
@@ -205,8 +261,7 @@ public class Alice : MonoBehaviour
                                 if (!isSkillInstantiated)
                                 {
                                     isSkillInstantiated = true;
-                                    glacialArrow = Instantiate(GlacialArrowPrefab,
-                                        GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(1, 1), Quaternion.identity);
+                                    glacialArrow = Instantiate(GlacialArrowPrefab, enemyPosition, Quaternion.identity);
                                 }
 
                                 if (glacialArrow.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
@@ -234,8 +289,7 @@ public class Alice : MonoBehaviour
                                 if (!isSkillInstantiated)
                                 {
                                     isSkillInstantiated = true;
-                                    aquaBomb = Instantiate(AquaBombPrefab,
-                                        GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber], Quaternion.identity);
+                                    aquaBomb = Instantiate(AquaBombPrefab, enemyPosition, Quaternion.identity);
                                 }
 
                                 if (aquaBomb.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
@@ -263,8 +317,7 @@ public class Alice : MonoBehaviour
                                 if (!isSkillInstantiated)
                                 {
                                     isSkillInstantiated = true;
-                                    blizzardBomb = Instantiate(BlizzardBombPrefab,
-                                        GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber], Quaternion.identity);
+                                    blizzardBomb = Instantiate(BlizzardBombPrefab, enemyPosition, Quaternion.identity);
                                 }
 
                                 if (blizzardBomb.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
@@ -427,6 +480,10 @@ public class Alice : MonoBehaviour
         {
             StageManager.EnemyInfo[GameManager.instance.EnemyPositionNumber].GetComponent<Wolf>().CurrentHP -= damage;
         }
+        else if (StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
+        {
+            StageManager.EnemyInfo[0].GetComponent<Lightning>().CurrentHP -= damage;
+        }
     }
 
     void DamageAllEnemy(int damage)
@@ -440,6 +497,10 @@ public class Alice : MonoBehaviour
             else if (StageManager.EnemyInfo[i].name.StartsWith("Wolf"))
             {
                 StageManager.EnemyInfo[i].GetComponent<Wolf>().CurrentHP -= damage;
+            }
+            else if (StageManager.EnemyInfo[i].name.StartsWith("Lightning"))
+            {
+                StageManager.EnemyInfo[i].GetComponent<Lightning>().CurrentHP -= damage;
             }
         }
     }

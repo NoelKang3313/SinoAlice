@@ -6,6 +6,8 @@ public class Lightning : MonoBehaviour
 {
     [SerializeField]
     StageManager StageManager;
+    [SerializeField]
+    UIManager UIManager;
 
     Animator animator;
 
@@ -24,23 +26,26 @@ public class Lightning : MonoBehaviour
 
     public bool isCurrentEnemyTurn;
 
-    public GameObject AttackEffectPrefab;
-    private GameObject attackEffect;
-    private bool isAttacking;
-    public Gradient AttackGradient;
-
     // Skills
+    [SerializeField]
+    private int activateSkillNum;
+    private int skillRandom;
+    private bool isSkillRandom;
+
     public GameObject ThunderArrowPrefab;
     private GameObject thunderArrow;
     public GameObject SparkSpherePrefab;
     private GameObject sparkSphere;
     public GameObject VoltageExplosionPrefab;
     private GameObject voltageExplosion;
+    private bool isSkillInstantiated;
 
     // Audios
 
 
-    int playerRandom;
+    [SerializeField]
+    private int playerRandom;
+    private bool isRandom;
 
     void Awake()
     {
@@ -62,45 +67,167 @@ public class Lightning : MonoBehaviour
             StageManager = GameObject.Find("StageManager").GetComponent<StageManager>();
         }
 
+        UIManager = FindAnyObjectByType<UIManager>();
+
         animator = GetComponent<Animator>();
     }
     
     void Update()
     {
         LightningTurn();
+        SkillStandby();
         LightningDead();
     }
 
     void LightningTurn()
     {
-        if(isCurrentEnemyTurn)
+        if (activateSkillNum != 2)
         {
-            playerRandom = Random.Range(0, 3);
-
-            animator.SetTrigger("Move");
-
-            transform.position = Vector2.MoveTowards(transform.position,
-                GameManager.instance.Characters[playerRandom].transform.position,
-                moveSpeed * Time.deltaTime);
-
-            if(transform.position == GameManager.instance.Characters[playerRandom].transform.position)
+            if (isCurrentEnemyTurn)
             {
-                ResetAnimationTrigger("Move");
-                animator.SetBool("Attack", true);
+                UIManager.BossHPGauge.gameObject.SetActive(false);
 
-                if(!isAttacking)
+                if (!isRandom)
                 {
-                    isAttacking = true;
-                    attackEffect = Instantiate(AttackEffectPrefab, GameManager.instance.Characters[playerRandom].transform.position, Quaternion.identity);
-                    attackEffect.GetComponent<Animator>().Play("Alice_Attack");
+                    isRandom = true;
+                    playerRandom = Random.Range(0, 3);
+                }
 
-                    var colorOverLifeTime = attackEffect.GetComponentInChildren<ParticleSystem>().colorOverLifetime;
-                    colorOverLifeTime.color = new ParticleSystem.MinMaxGradient(AttackGradient);
+                animator.SetTrigger("Move");
+
+                transform.position = Vector2.MoveTowards(transform.position,
+                    new Vector2(GameManager.instance.Characters[playerRandom].transform.position.x - 2.8f, GameManager.instance.Characters[playerRandom].transform.position.y - 0.5f),
+                    moveSpeed * Time.deltaTime);
+
+                if (transform.position == new Vector3(GameManager.instance.Characters[playerRandom].transform.position.x - 2.8f, GameManager.instance.Characters[playerRandom].transform.position.y - 0.5f, 0f))
+                {
+                    ResetAnimationTrigger("Move");
+                    animator.SetBool("Attack", true);
+                }
+            }
+
+            CheckCurrentAnimationEnd("Attack");
+        }
+        else if(activateSkillNum == 2)
+        {
+            if(isCurrentEnemyTurn)
+            {
+                UIManager.BossHPGauge.gameObject.SetActive(false);
+
+                if(!isSkillRandom)
+                {
+                    isSkillRandom = true;
+                    skillRandom = Random.Range(0, 3);
+                }
+
+                animator.SetBool("MagicAttack", true);
+
+                switch(skillRandom)
+                {
+                    case 0:
+                        {
+                            if(!isRandom)
+                            {
+                                isRandom = true;
+                                playerRandom = Random.Range(0, 3);
+                            }
+
+                            if(!isSkillInstantiated)
+                            {
+                                isSkillInstantiated = true;
+                                thunderArrow = Instantiate(ThunderArrowPrefab, GameManager.instance.Characters[playerRandom].transform.position, Quaternion.identity);
+                            }
+
+                            if (thunderArrow.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                            {
+                                Destroy(thunderArrow);
+                                isSkillInstantiated = false;
+
+                                animator.SetBool("MagicAttack", false);
+                                animator.SetBool("MagicStandby", false);
+
+                                isCurrentEnemyTurn = false;
+                                isSkillRandom = false;
+                                isRandom = false;
+                                GameManager.instance.isEnemyTurn = false;
+                                GameManager.instance.isTurn = true;
+                                GameManager.instance.TurnNumber++;
+                                activateSkillNum = 0;
+
+                                DamagePlayer(10, playerRandom);
+                            }
+
+                            break;
+                        }
+
+                    case 1:
+                        {
+                            if (!isRandom)
+                            {
+                                isRandom = true;
+                                playerRandom = Random.Range(0, 3);
+                            }
+
+                            if (!isSkillInstantiated)
+                            {
+                                isSkillInstantiated = true;
+                                sparkSphere = Instantiate(SparkSpherePrefab, GameManager.instance.Characters[playerRandom].transform.position, Quaternion.identity);
+                            }
+
+                            if (sparkSphere.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                            {
+                                Destroy(sparkSphere);
+                                isSkillInstantiated = false;
+
+                                animator.SetBool("MagicAttack", false);
+                                animator.SetBool("MagicStandby", false);
+
+                                isCurrentEnemyTurn = false;
+                                isSkillRandom = false;
+                                isRandom = false;
+                                GameManager.instance.isEnemyTurn = false;
+                                GameManager.instance.isTurn = true;
+                                GameManager.instance.TurnNumber++;
+                                activateSkillNum = 0;
+
+                                DamagePlayer(10, playerRandom);
+                            }
+
+                            break;
+                        }
+
+                    case 2:
+                        {                            
+                            if (!isSkillInstantiated)
+                            {
+                                isSkillInstantiated = true;
+                                voltageExplosion = Instantiate(VoltageExplosionPrefab);
+                            }
+
+                            if (voltageExplosion.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                            {
+                                Destroy(voltageExplosion);
+                                isSkillInstantiated = false;
+
+                                animator.SetBool("MagicAttack", false);
+                                animator.SetBool("MagicStandby", false);
+
+                                isCurrentEnemyTurn = false;
+                                isSkillRandom = false;
+                                isRandom = false;
+                                GameManager.instance.isEnemyTurn = false;
+                                GameManager.instance.isTurn = true;
+                                GameManager.instance.TurnNumber++;
+                                activateSkillNum = 0;
+
+                                DamageAllPlayer(10);
+                            }
+
+                            break;
+                        }
                 }
             }
         }
-
-        CheckCurrentAnimationEnd("Attack");
     }
 
     void CheckCurrentAnimationEnd(string animation)
@@ -112,17 +239,23 @@ public class Lightning : MonoBehaviour
                 animator.SetBool(animation, false);
                 transform.position = GameManager.instance.BossPosition;
 
-                isCurrentEnemyTurn = false;
-                isAttacking = false;
+                isCurrentEnemyTurn = false;                
+                isRandom = false;
                 GameManager.instance.isEnemyTurn = false;
                 GameManager.instance.isTurn = true;
                 GameManager.instance.TurnNumber++;
 
-                isAttacking = false;
-                Destroy(attackEffect);
-
                 DamagePlayer(10, playerRandom);
+                activateSkillNum++;
             }
+        }
+    }
+
+    void SkillStandby()
+    {
+        if(activateSkillNum == 2)
+        {
+            animator.SetBool("MagicStandby", true);
         }
     }
 
@@ -145,6 +278,13 @@ public class Lightning : MonoBehaviour
         {
             GameManager.instance.CharacterSelected[random].GetComponent<SnowWhite>().CurrentHP -= damage;
         }
+    }
+
+    void DamageAllPlayer(int damage)
+    {
+        GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentHP -= damage;
+        GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentHP -= damage;
+        GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentHP -= damage;
     }
 
     void LightningDead()

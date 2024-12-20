@@ -29,6 +29,8 @@ public class Gretel : MonoBehaviour
     public GameObject ShieldPrefab;
     private GameObject shield;
 
+    private Vector2 enemyPosition;
+
     [Header("Skills")]
     public GameObject BlazeArrowPrefab;
     private GameObject blazeArrow;
@@ -89,6 +91,50 @@ public class Gretel : MonoBehaviour
         GretelAction(); 
     }
 
+    void SetEnemyPosition()
+    {
+        if (StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
+        {
+            if (GameManager.instance.isAttackButtonActive)
+            {
+                enemyPosition = GameManager.instance.BossPosition + new Vector2(2.6f, 0.25f);
+            }
+            else if (GameManager.instance.isSkillButtonActive)
+            {
+                if (GameManager.instance.SkillButtonNumber == 0)
+                {
+                    enemyPosition = GameManager.instance.BossPosition + new Vector2(0.5f, 0.5f);
+                }
+                else
+                {
+                    enemyPosition = GameManager.instance.BossPosition;
+                }
+            }
+        }
+        else
+        {
+            if (GameManager.instance.isAttackButtonActive)
+            {
+                enemyPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(2.6f, 0.25f);
+            }
+            else if (GameManager.instance.isSkillButtonActive)
+            {
+                if (GameManager.instance.SkillButtonNumber == 0)
+                {
+                    enemyPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(0.5f, 0.5f);
+                }
+                else if(GameManager.instance.SkillButtonNumber == 3 || GameManager.instance.SkillButtonNumber == 4)
+                {
+                    enemyPosition = new Vector2(-5.25f, -1.0f);
+                }
+                else
+                {
+                    enemyPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber];
+                }
+            }
+        }
+    }
+
     void GretelAction()
     {
         if (GameManager.instance.isBattleOver)
@@ -128,12 +174,13 @@ public class Gretel : MonoBehaviour
                             audioSource.PlayOneShot(AttackSelect[attackSelectRandom]);
                         }
 
-                        animator.SetTrigger("Move");
-                        transform.position = Vector2.MoveTowards(transform.position,
-                            GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(2.6f, 0.25f), moveSpeed * Time.deltaTime);
+                        SetEnemyPosition();
 
-                        if (transform.position == new Vector3((GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].x + 2.6f),
-                            (GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].y + 0.25f), 0))
+                        animator.SetTrigger("Move");                        
+
+                        transform.position = Vector2.MoveTowards(transform.position, enemyPosition, moveSpeed * Time.deltaTime);
+
+                        if (transform.position == new Vector3(enemyPosition.x, enemyPosition.y, 0))
                         {
                             GameManager.instance.isGretelTurn = false;
                             GameManager.instance.isAction = false;
@@ -180,6 +227,8 @@ public class Gretel : MonoBehaviour
                             audioSource.PlayOneShot(AttackSelect[attackSelectRandom]);
                         }
 
+                        SetEnemyPosition();
+
                         animator.SetBool("MagicAttack", true);
 
                         switch (GameManager.instance.SkillButtonNumber)
@@ -188,8 +237,7 @@ public class Gretel : MonoBehaviour
                                 if (!isSkillInstantiated)
                                 {
                                     isSkillInstantiated = true;
-                                    blazeArrow = Instantiate(BlazeArrowPrefab,
-                                        GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(0.5f, 0.5f), Quaternion.identity);
+                                    blazeArrow = Instantiate(BlazeArrowPrefab, enemyPosition, Quaternion.identity);
                                 }
 
                                 if (blazeArrow.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
@@ -217,9 +265,7 @@ public class Gretel : MonoBehaviour
                                 if (!isSkillInstantiated)
                                 {
                                     isSkillInstantiated = true;
-                                    gravelBomb = Instantiate(GravelBombPrefab,
-                                        GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber],
-                                        Quaternion.identity);
+                                    gravelBomb = Instantiate(GravelBombPrefab, enemyPosition, Quaternion.identity);
                                 }
 
                                 if (gravelBomb.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
@@ -247,9 +293,7 @@ public class Gretel : MonoBehaviour
                                 if (!isSkillInstantiated)
                                 {
                                     isSkillInstantiated = true;
-                                    shadowBomb = Instantiate(ShadowBombPrefab,
-                                        GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber],
-                                        Quaternion.identity);
+                                    shadowBomb = Instantiate(ShadowBombPrefab, enemyPosition, Quaternion.identity);
                                 }
 
                                 if (shadowBomb.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
@@ -277,7 +321,7 @@ public class Gretel : MonoBehaviour
                                 if (!isSkillInstantiated)
                                 {
                                     isSkillInstantiated = true;
-                                    meteor = Instantiate(MeteorPrefab, new Vector3(-5.25f, -1.0f, 0), Quaternion.identity);
+                                    meteor = Instantiate(MeteorPrefab, enemyPosition, Quaternion.identity);
                                 }
 
                                 if (meteor.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
@@ -305,7 +349,7 @@ public class Gretel : MonoBehaviour
                                 if (!isSkillInstantiated)
                                 {
                                     isSkillInstantiated = true;
-                                    shadowExplosion = Instantiate(ShadowExplosionPrefab, new Vector3(-5.25f, -1.0f, 0), Quaternion.identity);
+                                    shadowExplosion = Instantiate(ShadowExplosionPrefab, enemyPosition, Quaternion.identity);
                                 }
 
                                 if (shadowExplosion.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
@@ -409,6 +453,10 @@ public class Gretel : MonoBehaviour
         {
             StageManager.EnemyInfo[GameManager.instance.EnemyPositionNumber].GetComponent<Wolf>().CurrentHP -= damage;
         }
+        else if (StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
+        {
+            StageManager.EnemyInfo[0].GetComponent<Lightning>().CurrentHP -= damage;
+        }
     }
 
     void DamageAllEnemy(int damage)
@@ -422,6 +470,10 @@ public class Gretel : MonoBehaviour
             else if (StageManager.EnemyInfo[i].name.StartsWith("Wolf"))
             {
                 StageManager.EnemyInfo[i].GetComponent<Wolf>().CurrentHP -= damage;
+            }
+            else if (StageManager.EnemyInfo[i].name.StartsWith("Lightning"))
+            {
+                StageManager.EnemyInfo[i].GetComponent<Lightning>().CurrentHP -= damage;
             }
         }
     }

@@ -30,6 +30,7 @@ public class UIManager : MonoBehaviour
     public Image Player2HPGauge;
     public Image Player3HPGauge;
     public Image[] EnemyHPGauge = new Image[4];
+    public Image BossHPGauge;
 
     [Header("Character Sprites")]
     public Sprite AliceSprite;
@@ -37,6 +38,7 @@ public class UIManager : MonoBehaviour
     public Sprite SnowWhiteSprite;
     public Sprite RatSprite;
     public Sprite WolfSprite;
+    public Sprite LightningSprite;
 
     [Header("Action Buttons")]
     public GameObject ActionButtons;
@@ -49,6 +51,7 @@ public class UIManager : MonoBehaviour
 
     public GameObject EnemySelectButtons;
     public Button[] EnemySelectButton = new Button[4];
+    public Button BossSelectButton;
 
     public Button[] CharacterSelectButton = new Button[3];
 
@@ -112,6 +115,13 @@ public class UIManager : MonoBehaviour
     public Button GameCompleteReturnWorldmapButton;
     public Button GameCompleteReturnLobbyButton;
 
+    private float aliceStartHP;
+    private float aliceStartMP;
+    private float gretelStartHP;
+    private float gretelStartMP;
+    private float swStartHP;
+    private float swStartMP;
+
     void Start()
     {
         Inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
@@ -127,7 +137,9 @@ public class UIManager : MonoBehaviour
         {
             int number = i;
             EnemySelectButton[i].onClick.AddListener(() => EnemySelectButtonClicked(number));
-        }        
+        }
+
+        BossSelectButton.onClick.AddListener(BossSelectButtonClicked);
 
         for(int i = 0; i < CharacterSelectButton.Length; i++)
         {
@@ -163,6 +175,13 @@ public class UIManager : MonoBehaviour
 
             ItemButtons[i].onClick.AddListener(() => ItemButtonsClicked(number));
         }
+
+        aliceStartHP = GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentHP;
+        aliceStartMP = GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentMP;
+        gretelStartHP = GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentHP;
+        gretelStartMP = GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentMP;
+        swStartHP = GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentHP;
+        swStartMP = GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentMP;
     }
     
     void Update()
@@ -221,8 +240,15 @@ public class UIManager : MonoBehaviour
             GaugePanel.SetActive(true);
             CharacterMiniGauge.SetActive(true);
 
-            GameManager.instance.isTurn = true;
+            StartCoroutine(DelayBattleStart());
         }
+    }
+
+    IEnumerator DelayBattleStart()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        GameManager.instance.isTurn = true;
     }
 
     void ActionButtonsActivate()
@@ -249,7 +275,16 @@ public class UIManager : MonoBehaviour
         GameManager.instance.isSkillButtonActive = false;
         GameManager.instance.isItemButtonActive = false;
 
-        EnemySelectButtons.SetActive(true);
+        if(StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
+        {
+            EnemySelectButtons.SetActive(false);
+            BossSelectButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            EnemySelectButtons.SetActive(true);
+            BossSelectButton.gameObject.SetActive(false);
+        }
 
         SkillButtonArrow.GetComponent<Animator>().SetBool("isActive", false);
         SkillButtonViewport.GetComponent<Animator>().SetBool("isActive", false);
@@ -317,6 +352,7 @@ public class UIManager : MonoBehaviour
         GameManager.instance.isItemButtonActive = false;
 
         EnemySelectButtons.SetActive(false);
+        BossSelectButton.gameObject.SetActive(false);
 
         SkillButtonArrow.GetComponent<Animator>().SetBool("isActive", true);
         SkillButtonViewport.GetComponent<Animator>().SetBool("isActive", true);
@@ -352,6 +388,7 @@ public class UIManager : MonoBehaviour
             if(GameManager.instance.isAliceTurn)
             {
                 EnemySelectButtons.SetActive(false);
+                BossSelectButton.gameObject.SetActive(false);
 
                 for (int i = 0; i < CharacterSelectButton.Length; i++)
                 {
@@ -360,12 +397,30 @@ public class UIManager : MonoBehaviour
             }
             else if (GameManager.instance.isGretelTurn || GameManager.instance.isSWTurn)
             {
-                EnemySelectButtons.SetActive(true);                
+                if (StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
+                {
+                    EnemySelectButtons.SetActive(false);
+                    BossSelectButton.gameObject.SetActive(true);
+                }
+                else
+                {
+                    EnemySelectButtons.SetActive(true);
+                    BossSelectButton.gameObject.SetActive(false);
+                }
             }
         }
         else
         {
-            EnemySelectButtons.SetActive(true);
+            if (StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
+            {
+                EnemySelectButtons.SetActive(false);
+                BossSelectButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                EnemySelectButtons.SetActive(true);
+                BossSelectButton.gameObject.SetActive(false);
+            }
 
             for (int i = 0; i < CharacterSelectButton.Length; i++)
             {
@@ -394,6 +449,7 @@ public class UIManager : MonoBehaviour
         GameManager.instance.isItemButtonActive = true;
 
         EnemySelectButtons.SetActive(false);
+        BossSelectButton.gameObject.SetActive(false);
 
         SkillButtonArrow.GetComponent<Animator>().SetBool("isActive", false);
         SkillButtonViewport.GetComponent<Animator>().SetBool("isActive", false);
@@ -496,11 +552,28 @@ public class UIManager : MonoBehaviour
         ResetViewportPosition();
     }
 
+    void BossSelectButtonClicked()
+    {
+        GameManager.instance.isAction = true;
+        BossSelectButton.gameObject.SetActive(false);
+
+        if (selectedSkillData != null)
+        {
+            SkillUsedReduceMP(selectedSkillData);
+        }
+
+        SkillInformationPanel.GetComponent<Animator>().SetBool("isActive", false);
+        SkillButtonViewport.GetComponent<Animator>().SetBool("isActive", false);
+        SkillButtonArrow.GetComponent<Animator>().SetBool("isActive", false);
+
+        ResetViewportPosition();
+    }
+
     void OnCharacterSelectButtonClicked(int number)
     {
         if (GameManager.instance.AlicePositionNumber == number)
         {
-            GameManager.instance.SelectedCharacterPosition = GameManager.instance.Characters[number].transform.position;
+            GameManager.instance.SelectedCharacterPosition = GameManager.instance.CharacterSelected[number].transform.position;
 
             if (GameManager.instance.isGuardButtonActive)
             {
@@ -532,7 +605,7 @@ public class UIManager : MonoBehaviour
         }
         else if (GameManager.instance.GretelPositionNumber == number)
         {
-            GameManager.instance.SelectedCharacterPosition = GameManager.instance.Characters[number].transform.position;
+            GameManager.instance.SelectedCharacterPosition = GameManager.instance.CharacterSelected[number].transform.position;
 
             if (GameManager.instance.isGuardButtonActive)
             {
@@ -564,7 +637,7 @@ public class UIManager : MonoBehaviour
         }
         else if (GameManager.instance.SWPositionNumber == number)
         {
-            GameManager.instance.SelectedCharacterPosition = GameManager.instance.Characters[number].transform.position;
+            GameManager.instance.SelectedCharacterPosition = GameManager.instance.CharacterSelected[number].transform.position;
 
             if(GameManager.instance.isGuardButtonActive)
             {
@@ -610,18 +683,31 @@ public class UIManager : MonoBehaviour
 
     void SkillUsedReduceMP(SkillData selectedSkillData)
     {
-        if(selectedSkillData.SkillUserName == "Alice")
+        if (selectedSkillData.SkillUserName == "Alice")
         {
-            GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP -= selectedSkillData.CostMP;
+            GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentMP -= selectedSkillData.CostMP;
         }
-        else if(selectedSkillData.SkillUserName == "Gretel")
+        else if (selectedSkillData.SkillUserName == "Gretel")
         {
-            GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP -= selectedSkillData.CostMP;
+            GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentMP -= selectedSkillData.CostMP;
         }
-        else if(selectedSkillData.SkillUserName == "Snow White")
+        else if (selectedSkillData.SkillUserName == "Snow White")
         {
-            GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP -= selectedSkillData.CostMP;
+            GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentMP -= selectedSkillData.CostMP;
         }
+
+        //if(selectedSkillData.SkillUserName == "Alice")
+        //{
+        //    GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP -= selectedSkillData.CostMP;
+        //}
+        //else if(selectedSkillData.SkillUserName == "Gretel")
+        //{
+        //    GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP -= selectedSkillData.CostMP;
+        //}
+        //else if(selectedSkillData.SkillUserName == "Snow White")
+        //{
+        //    GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP -= selectedSkillData.CostMP;
+        //}
     }
 
     void UseItem(int id, int characterNumber)
@@ -631,126 +717,126 @@ public class UIManager : MonoBehaviour
             case 1:
                 if(characterNumber == GameManager.instance.AlicePositionNumber)
                 {
-                    int heal = (int)(GameManager.instance.AlicePrefab.GetComponent<Alice>().HP * 0.2f);
-                    GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentHP += heal;
+                    int heal = (int)(GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().HP * 0.2f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentHP += heal;
                 }
                 else if (characterNumber == GameManager.instance.GretelPositionNumber)
                 {
-                    int heal = (int)(GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP * 0.2f);
-                    GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentHP += heal;
+                    int heal = (int)(GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().HP * 0.2f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentHP += heal;
                 }
                 else if(characterNumber == GameManager.instance.SWPositionNumber)
                 {
-                    int heal = (int)(GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP * 0.2f);
-                    GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP += heal;
+                    int heal = (int)(GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().HP * 0.2f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentHP += heal;
                 }
                 break;
 
             case 2:
                 if (characterNumber == GameManager.instance.AlicePositionNumber)
                 {
-                    int heal = (int)(GameManager.instance.AlicePrefab.GetComponent<Alice>().MP * 0.2f);
-                    GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP += heal;
+                    int heal = (int)(GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().MP * 0.2f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentMP += heal;
                 }
                 else if (characterNumber == GameManager.instance.GretelPositionNumber)
                 {
-                    int heal = (int)(GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP * 0.2f);
-                    GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP += heal;
+                    int heal = (int)(GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().MP * 0.2f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentMP += heal;
                 }
                 else if (characterNumber == GameManager.instance.SWPositionNumber)
                 {
-                    int heal = (int)(GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP * 0.2f);
-                    GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP += heal;
+                    int heal = (int)(GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().MP * 0.2f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentMP += heal;
                 }
                 break;
 
             case 3:
                 if (characterNumber == GameManager.instance.AlicePositionNumber)
                 {
-                    int healHP = (int)(GameManager.instance.AlicePrefab.GetComponent<Alice>().HP * 0.15f);
-                    GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentHP += healHP;
+                    int healHP = (int)(GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().HP * 0.15f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentHP += healHP;
 
-                    int healMP = (int)(GameManager.instance.AlicePrefab.GetComponent<Alice>().MP * 0.15f);
-                    GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP += healMP;
+                    int healMP = (int)(GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().MP * 0.15f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentMP += healMP;
                 }
                 else if (characterNumber == GameManager.instance.GretelPositionNumber)
                 {
-                    int healHP = (int)(GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP * 0.15f);
-                    GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentHP += healHP;
+                    int healHP = (int)(GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().HP * 0.15f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentHP += healHP;
 
-                    int healMP = (int)(GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP * 0.15f);
-                    GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP += healMP;
+                    int healMP = (int)(GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().MP * 0.15f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentMP += healMP;
                 }
                 else if (characterNumber == GameManager.instance.SWPositionNumber)
                 {
-                    int healHP = (int)(GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP * 0.15f);
-                    GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP += healHP;
+                    int healHP = (int)(GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().HP * 0.15f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentHP += healHP;
 
-                    int healMP = (int)(GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP * 0.15f);
-                    GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP += healMP;
+                    int healMP = (int)(GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().MP * 0.15f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentMP += healMP;
                 }
                 break;
 
             case 4:
                 if (characterNumber == GameManager.instance.AlicePositionNumber)
                 {
-                    int heal = (int)(GameManager.instance.AlicePrefab.GetComponent<Alice>().HP * 0.4f);
-                    GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentHP += heal;
+                    int heal = (int)(GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().HP * 0.4f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentHP += heal;
                 }
                 else if (characterNumber == GameManager.instance.GretelPositionNumber)
                 {
-                    int heal = (int)(GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP * 0.4f);
-                    GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentHP += heal;
+                    int heal = (int)(GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().HP * 0.4f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentHP += heal;
                 }
                 else if (characterNumber == GameManager.instance.SWPositionNumber)
                 {
-                    int heal = (int)(GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP * 0.4f);
-                    GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP += heal;
+                    int heal = (int)(GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().HP * 0.4f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentHP += heal;
                 }
                 break;
 
             case 5:
                 if (characterNumber == GameManager.instance.AlicePositionNumber)
                 {
-                    int heal = (int)(GameManager.instance.AlicePrefab.GetComponent<Alice>().MP * 0.4f);
-                    GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP += heal;
+                    int heal = (int)(GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().MP * 0.4f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentMP += heal;
                 }
                 else if (characterNumber == GameManager.instance.GretelPositionNumber)
                 {
-                    int heal = (int)(GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP * 0.4f);
-                    GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP += heal;
+                    int heal = (int)(GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().MP * 0.4f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentMP += heal;
                 }
                 else if (characterNumber == GameManager.instance.SWPositionNumber)
                 {
-                    int heal = (int)(GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP * 0.4f);
-                    GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP += heal;
+                    int heal = (int)(GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().MP * 0.4f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentMP += heal;
                 }
                 break;
 
             case 6:
                 if (characterNumber == GameManager.instance.AlicePositionNumber)
                 {
-                    int healHP = (int)(GameManager.instance.AlicePrefab.GetComponent<Alice>().HP * 0.35f);
-                    GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentHP += healHP;
+                    int healHP = (int)(GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().HP * 0.35f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentHP += healHP;
 
-                    int healMP = (int)(GameManager.instance.AlicePrefab.GetComponent<Alice>().MP * 0.35f);
-                    GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP += healMP;
+                    int healMP = (int)(GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().MP * 0.35f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentMP += healMP;
                 }
                 else if (characterNumber == GameManager.instance.GretelPositionNumber)
                 {
-                    int healHP = (int)(GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP * 0.35f);
-                    GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentHP += healHP;
+                    int healHP = (int)(GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().HP * 0.35f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentHP += healHP;
 
-                    int healMP = (int)(GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP * 0.35f);
-                    GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP += healMP;
+                    int healMP = (int)(GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().MP * 0.35f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentMP += healMP;
                 }
                 else if (characterNumber == GameManager.instance.SWPositionNumber)
                 {
-                    int healHP = (int)(GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP * 0.35f);
-                    GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP += healHP;
+                    int healHP = (int)(GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().HP * 0.35f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentHP += healHP;
 
-                    int healMP = (int)(GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP * 0.35f);
-                    GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP += healMP;
+                    int healMP = (int)(GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().MP * 0.35f);
+                    GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentMP += healMP;
                 }
                 break;
         }        
@@ -835,7 +921,7 @@ public class UIManager : MonoBehaviour
 
     void SetMiniGauge()
     {
-        for(int i = 0; i < GameManager.instance.CharacterSelected.Length; i++)
+        for(int i = 0; i < GameManager.instance.Characters.Length; i++)
         {
             switch(i)
             {
@@ -851,38 +937,77 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        for(int i = 0; i < EnemyHPGauge.Length; i++)
+
+        for(int i = 0; i < StageManager.EnemyInfo.Count; i++)
         {
-            if(StageManager.EnemyInfo[i] == null)
+            if(StageManager.EnemyInfo[i] != null && StageManager.EnemyInfo[i].name.StartsWith("Lightning"))
             {
-                EnemyHPGauge[i].gameObject.SetActive(false);
-                EnemySelectButton[i].gameObject.SetActive(false);
+                BossHPGauge.fillAmount = StageManager.EnemyInfo[i].GetComponent<Lightning>().CurrentHP / StageManager.EnemyInfo[i].GetComponent<Lightning>().HP;
+
+                for(int j = 0; j < EnemyHPGauge.Length; j++)
+                {
+                    EnemyHPGauge[j].gameObject.SetActive(false);
+                }
             }
             else
             {
-                if (StageManager.EnemyInfo[i].name.StartsWith("Rat"))
+                BossHPGauge.gameObject.SetActive(false);
+
+                if (StageManager.EnemyInfo[i] == null)
                 {
-                    EnemyHPGauge[i].fillAmount = StageManager.EnemyInfo[i].GetComponent<Rat>().CurrentHP / StageManager.EnemyInfo[i].GetComponent<Rat>().HP;
+                    EnemyHPGauge[i].gameObject.SetActive(false);
+                    EnemySelectButton[i].gameObject.SetActive(false);
                 }
-                else if(StageManager.EnemyInfo[i].name.StartsWith("Wolf"))
+                else
                 {
-                    EnemyHPGauge[i].fillAmount = StageManager.EnemyInfo[i].GetComponent<Wolf>().CurrentHP / StageManager.EnemyInfo[i].GetComponent<Wolf>().HP;
+                    if (StageManager.EnemyInfo[i].name.StartsWith("Rat"))
+                    {
+                        EnemyHPGauge[i].fillAmount = StageManager.EnemyInfo[i].GetComponent<Rat>().CurrentHP / StageManager.EnemyInfo[i].GetComponent<Rat>().HP;
+                    }
+                    else if (StageManager.EnemyInfo[i].name.StartsWith("Wolf"))
+                    {
+                        EnemyHPGauge[i].fillAmount = StageManager.EnemyInfo[i].GetComponent<Wolf>().CurrentHP / StageManager.EnemyInfo[i].GetComponent<Wolf>().HP;
+                    }
                 }
             }
-        }        
+        }
+
+        //for(int i = 0; i < EnemyHPGauge.Length; i++)
+        //{
+        //    if(StageManager.EnemyInfo[i] == null)
+        //    {
+        //        EnemyHPGauge[i].gameObject.SetActive(false);
+        //        EnemySelectButton[i].gameObject.SetActive(false);
+        //    }
+        //    else
+        //    {
+        //        if (StageManager.EnemyInfo[i].name.StartsWith("Rat"))
+        //        {
+        //            EnemyHPGauge[i].fillAmount = StageManager.EnemyInfo[i].GetComponent<Rat>().CurrentHP / StageManager.EnemyInfo[i].GetComponent<Rat>().HP;
+        //        }
+        //        else if(StageManager.EnemyInfo[i].name.StartsWith("Wolf"))
+        //        {
+        //            EnemyHPGauge[i].fillAmount = StageManager.EnemyInfo[i].GetComponent<Wolf>().CurrentHP / StageManager.EnemyInfo[i].GetComponent<Wolf>().HP;
+        //        }
+        //        else if (StageManager.EnemyInfo[i].name.StartsWith("Lightning"))
+        //        {
+        //            EnemyHPGauge[i].fillAmount = StageManager.EnemyInfo[i].GetComponent<Lightning>().CurrentHP / StageManager.EnemyInfo[i].GetComponent<Lightning>().HP;
+        //        }
+        //    }
+        //}        
     }    
 
     float GetPlayerHP(int number)
     {
-        if (GameManager.instance.CharacterSelected[number].name == "Alice")
+        if (GameManager.instance.CharacterSelected[number].name.StartsWith("Alice"))
         {
             return GameManager.instance.CharacterSelected[number].GetComponent<Alice>().CurrentHP / GameManager.instance.CharacterSelected[number].GetComponent<Alice>().HP;
         }
-        else if (GameManager.instance.CharacterSelected[number].name == "Gretel")
+        else if (GameManager.instance.CharacterSelected[number].name.StartsWith("Gretel"))
         {
             return GameManager.instance.CharacterSelected[number].GetComponent<Gretel>().CurrentHP / GameManager.instance.CharacterSelected[number].GetComponent<Gretel>().HP;
         }
-        else if (GameManager.instance.CharacterSelected[number].name == "Snow White")
+        else if (GameManager.instance.CharacterSelected[number].name.StartsWith("Snow White"))
         {
             return GameManager.instance.CharacterSelected[number].GetComponent<SnowWhite>().CurrentHP / GameManager.instance.CharacterSelected[number].GetComponent<SnowWhite>().HP;
         }
@@ -892,64 +1017,123 @@ public class UIManager : MonoBehaviour
 
     void SetGauge()
     {
-        if(GameManager.instance.isAliceTurn)
+        if (GameManager.instance.isAliceTurn)
         {
-            if(GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentHP > GameManager.instance.AlicePrefab.GetComponent<Alice>().HP)
+            if (GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentHP > GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().HP)
             {
-                GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentHP = GameManager.instance.AlicePrefab.GetComponent<Alice>().HP;
+                GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentHP = GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().HP;
             }
 
-            if (GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP > GameManager.instance.AlicePrefab.GetComponent<Alice>().MP)
+            if (GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentMP > GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().MP)
             {
-                GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP = GameManager.instance.AlicePrefab.GetComponent<Alice>().MP;
+                GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentMP = GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().MP;
             }
 
             CharacterImage.sprite = AliceSprite;
-            CharacterName.text = GameManager.instance.AlicePrefab.GetComponent<Alice>().Name;
-            CharacterHPGauge.fillAmount = GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentHP / GameManager.instance.AlicePrefab.GetComponent<Alice>().HP;
-            CharacterMPGauge.fillAmount = GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP / GameManager.instance.AlicePrefab.GetComponent<Alice>().MP;
-            CurrentHPText.text = GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentHP.ToString() + "/" + GameManager.instance.AlicePrefab.GetComponent<Alice>().HP.ToString();
-            CurrentMPText.text = GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP.ToString() + "/" + GameManager.instance.AlicePrefab.GetComponent<Alice>().MP.ToString();
+            CharacterName.text = GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().Name;
+            CharacterHPGauge.fillAmount = GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentHP / GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().HP;
+            CharacterMPGauge.fillAmount = GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentMP / GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().MP;
+            CurrentHPText.text = GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentHP.ToString() + "/" + GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().HP.ToString();
+            CurrentMPText.text = GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentMP.ToString() + "/" + GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().MP.ToString();
         }
-        else if(GameManager.instance.isGretelTurn)
+        else if (GameManager.instance.isGretelTurn)
         {
-            if (GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentHP > GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP)
+            if (GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentHP > GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().HP)
             {
-                GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentHP = GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP;
+                GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentHP = GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().HP;
             }
 
-            if (GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP > GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP)
+            if (GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentMP > GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().MP)
             {
-                GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP = GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP;
+                GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentMP = GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().MP;
             }
 
             CharacterImage.sprite = GretelSprite;
-            CharacterName.text = GameManager.instance.GretelPrefab.GetComponent<Gretel>().Name;
-            CharacterHPGauge.fillAmount = GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentHP / GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP;
-            CharacterMPGauge.fillAmount = GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP / GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP;
-            CurrentHPText.text = GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentHP.ToString() + "/" + GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP.ToString();
-            CurrentMPText.text = GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP.ToString() + "/" + GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP.ToString();
+            CharacterName.text = GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().Name;
+            CharacterHPGauge.fillAmount = GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentHP / GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().HP;
+            CharacterMPGauge.fillAmount = GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentMP / GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().MP;
+            CurrentHPText.text = GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentHP.ToString() + "/" + GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().HP.ToString();
+            CurrentMPText.text = GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentMP.ToString() + "/" + GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().MP.ToString();
         }
-        else if(GameManager.instance.isSWTurn)
+        else if (GameManager.instance.isSWTurn)
         {
-            if (GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP > GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP)
+            if (GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentHP > GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().HP)
             {
-                GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP;
+                GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentHP = GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().HP;
             }
 
-            if (GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP > GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP)
+            if (GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentMP > GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().MP)
             {
-                GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP;
+                GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentMP = GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().MP;
             }
 
             CharacterImage.sprite = SnowWhiteSprite;
-            CharacterName.text = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().Name;
-            CharacterHPGauge.fillAmount = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP / GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP;
-            CharacterMPGauge.fillAmount = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP / GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP;
-            CurrentHPText.text = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP.ToString() + "/" + GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP.ToString();
-            CurrentMPText.text = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP.ToString() + "/" + GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP.ToString();
+            CharacterName.text = GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().Name;
+            CharacterHPGauge.fillAmount = GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentHP / GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().HP;
+            CharacterMPGauge.fillAmount = GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentMP / GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().MP;
+            CurrentHPText.text = GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentHP.ToString() + "/" + GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().HP.ToString();
+            CurrentMPText.text = GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentMP.ToString() + "/" + GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().MP.ToString();
         }
-        else if(GameManager.instance.isEnemyTurn)
+        
+
+        //if(GameManager.instance.isAliceTurn)
+        //{
+        //    if(GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentHP > GameManager.instance.AlicePrefab.GetComponent<Alice>().HP)
+        //    {
+        //        GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentHP = GameManager.instance.AlicePrefab.GetComponent<Alice>().HP;
+        //    }
+
+        //    if (GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP > GameManager.instance.AlicePrefab.GetComponent<Alice>().MP)
+        //    {
+        //        GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP = GameManager.instance.AlicePrefab.GetComponent<Alice>().MP;
+        //    }
+
+        //    CharacterImage.sprite = AliceSprite;
+        //    CharacterName.text = GameManager.instance.AlicePrefab.GetComponent<Alice>().Name;
+        //    CharacterHPGauge.fillAmount = GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentHP / GameManager.instance.AlicePrefab.GetComponent<Alice>().HP;
+        //    CharacterMPGauge.fillAmount = GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP / GameManager.instance.AlicePrefab.GetComponent<Alice>().MP;
+        //    CurrentHPText.text = GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentHP.ToString() + "/" + GameManager.instance.AlicePrefab.GetComponent<Alice>().HP.ToString();
+        //    CurrentMPText.text = GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP.ToString() + "/" + GameManager.instance.AlicePrefab.GetComponent<Alice>().MP.ToString();
+        //}
+        //else if(GameManager.instance.isGretelTurn)
+        //{
+        //    if (GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentHP > GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP)
+        //    {
+        //        GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentHP = GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP;
+        //    }
+
+        //    if (GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP > GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP)
+        //    {
+        //        GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP = GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP;
+        //    }
+
+        //    CharacterImage.sprite = GretelSprite;
+        //    CharacterName.text = GameManager.instance.GretelPrefab.GetComponent<Gretel>().Name;
+        //    CharacterHPGauge.fillAmount = GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentHP / GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP;
+        //    CharacterMPGauge.fillAmount = GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP / GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP;
+        //    CurrentHPText.text = GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentHP.ToString() + "/" + GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP.ToString();
+        //    CurrentMPText.text = GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP.ToString() + "/" + GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP.ToString();
+        //}
+        //else if(GameManager.instance.isSWTurn)
+        //{
+        //    if (GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP > GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP)
+        //    {
+        //        GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP;
+        //    }
+
+        //    if (GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP > GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP)
+        //    {
+        //        GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP;
+        //    }
+
+        //    CharacterImage.sprite = SnowWhiteSprite;
+        //    CharacterName.text = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().Name;
+        //    CharacterHPGauge.fillAmount = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP / GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP;
+        //    CharacterMPGauge.fillAmount = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP / GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP;
+        //    CurrentHPText.text = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP.ToString() + "/" + GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP.ToString();
+        //    CurrentMPText.text = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP.ToString() + "/" + GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP.ToString();
+        //}
+        if (GameManager.instance.isEnemyTurn)
         {
             //// Array
             //CharacterImage.sprite = RatSprite;
@@ -977,6 +1161,15 @@ public class UIManager : MonoBehaviour
                 CharacterMPGauge.fillAmount = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Wolf>().CurrentMP / StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Wolf>().MP;
                 CurrentHPText.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Wolf>().CurrentHP.ToString() + "/" + StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Wolf>().HP.ToString();
                 CurrentMPText.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Wolf>().CurrentMP.ToString() + "/" + StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Wolf>().MP.ToString();
+            }
+            else if (StageManager.CharacterTurns[GameManager.instance.TurnNumber].name.StartsWith("Lightning"))
+            {
+                CharacterImage.sprite = LightningSprite;
+                CharacterName.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].name;
+                CharacterHPGauge.fillAmount = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Lightning>().CurrentHP / StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Lightning>().HP;
+                CharacterMPGauge.fillAmount = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Lightning>().CurrentMP / StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Lightning>().MP;
+                CurrentHPText.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Lightning>().CurrentHP.ToString() + "/" + StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Lightning>().HP.ToString();
+                CurrentMPText.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Lightning>().CurrentMP.ToString() + "/" + StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Lightning>().MP.ToString();
             }
         }
     }
@@ -1031,6 +1224,15 @@ public class UIManager : MonoBehaviour
                     Inventory.Items[i].ItemAmount = Inventory.ItemAmount[i];
                 }
 
+                GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentHP = GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().HP;
+                GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentMP = GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().MP;
+
+                GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentHP = GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().HP;
+                GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentMP = GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().MP;
+
+                GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentHP = GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().HP;
+                GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentMP = GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().MP;
+
                 GameManager.instance.isAliceTurn = false;
                 GameManager.instance.isGretelTurn = false;
                 GameManager.instance.isSWTurn = false;
@@ -1043,6 +1245,7 @@ public class UIManager : MonoBehaviour
                 GameManager.instance.isBattleStart = true;
                 GameManager.instance.TurnNumber = 0;
                 GameManager.instance.isBattleOver = false;
+
                 GameManager.instance.LoadScene("Stage1");                
             }
             else if(isLobby)
@@ -1061,6 +1264,25 @@ public class UIManager : MonoBehaviour
                             Inventory.Items.Add(ItemButtons[i].GetComponent<UIItem>().ItemData);
                             Inventory.ItemAmount.Add(ItemButtons[i].GetComponent<UIItem>().ItemData.ItemAmount);
                         }
+                    }
+                }
+                else
+                {
+                    if(aliceStartHP != GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentHP ||
+                        aliceStartMP != GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentMP ||
+                        gretelStartHP != GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentHP ||
+                        gretelStartMP != GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentMP ||
+                        swStartHP != GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentHP ||
+                        swStartMP != GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentMP)
+                    {
+                        GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentHP = aliceStartHP;
+                        GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentMP = aliceStartMP;
+
+                        GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentHP = gretelStartHP;
+                        GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentMP = gretelStartMP;
+
+                        GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentHP = swStartHP;
+                        GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentMP = swStartMP;
                     }
                 }
 

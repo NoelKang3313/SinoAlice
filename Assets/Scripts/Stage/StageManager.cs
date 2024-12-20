@@ -33,7 +33,16 @@ public class StageManager : MonoBehaviour
 
         for (int i = 0; i < GameManager.instance.EnemySelected.Count; i++)
         {
-            GameObject enemy = Instantiate(GameManager.instance.EnemySelected[i], GameManager.instance.EnemyPositions[i], Quaternion.identity);            
+            GameObject enemy;
+
+            if(GameManager.instance.EnemySelected[i].name == "Lightning")
+            {
+                enemy = Instantiate(GameManager.instance.EnemySelected[i], GameManager.instance.BossPosition, Quaternion.identity);
+            }
+            else
+            {
+                enemy = Instantiate(GameManager.instance.EnemySelected[i], GameManager.instance.EnemyPositions[i], Quaternion.identity);
+            }
 
             if(enemy.name.StartsWith("Rat"))
             {
@@ -42,6 +51,10 @@ public class StageManager : MonoBehaviour
             else if(enemy.name.StartsWith("Wolf"))
             {
                 enemy.name = "Wolf";
+            }
+            else if(enemy.name.StartsWith("Lightning"))
+            {
+                enemy.name = "Lightning";
             }
 
             GameManager.instance.InstantiatedEnemy.Add(enemy);
@@ -87,6 +100,10 @@ public class StageManager : MonoBehaviour
             else if(GameManager.instance.InstantiatedEnemy[i].name.StartsWith("Wolf"))
             {
                 CharacterSpeeds.Add(GameManager.instance.InstantiatedEnemy[i].GetComponent<Wolf>().Speed);
+            }
+            else if (GameManager.instance.InstantiatedEnemy[i].name.StartsWith("Lightning"))
+            {
+                CharacterSpeeds.Add(GameManager.instance.InstantiatedEnemy[i].GetComponent<Lightning>().Speed);
             }
         }
 
@@ -283,6 +300,10 @@ public class StageManager : MonoBehaviour
                 else if(CharacterTurns[number].name.StartsWith("Wolf"))
                 {
                     CharacterTurns[number].GetComponent<Wolf>().isCurrentEnemyTurn = true;
+                }
+                else if (CharacterTurns[number].name.StartsWith("Lightning"))
+                {
+                    CharacterTurns[number].GetComponent<Lightning>().isCurrentEnemyTurn = true;
                 }
 
                 GameManager.instance.isEnemyTurn = true;
