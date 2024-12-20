@@ -34,6 +34,9 @@ public class SnowWhite : MonoBehaviour
     public GameObject ShieldPrefab;
     private GameObject shield;
 
+    private Vector2 enemyPosition;
+    private Vector2 attackEffectPosition;
+
     [Header("Skills")]
     public GameObject DoubleSlashPrefab;
     private GameObject doubleSlash;
@@ -94,6 +97,46 @@ public class SnowWhite : MonoBehaviour
         SWAction();        
     }
 
+    void SetEnemyPosition()
+    {
+        if (StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
+        {
+            if(GameManager.instance.isAttackButtonActive)
+            {
+                enemyPosition = GameManager.instance.BossPosition + new Vector2(2.5f, 0.5f);
+            }
+            else if(GameManager.instance.isSkillButtonActive)
+            {
+                if(GameManager.instance.SkillButtonNumber == 3)
+                {
+                    enemyPosition = GameManager.instance.BossPosition + new Vector2(0f, 1.7f);
+                }
+                else
+                {
+                    enemyPosition = GameManager.instance.BossPosition;
+                }
+            }
+        }
+        else
+        {
+            if(GameManager.instance.isAttackButtonActive)
+            {
+                enemyPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(2.5f, 0.5f);
+            }
+            else if(GameManager.instance.isSkillButtonActive)
+            {
+                if(GameManager.instance.SkillButtonNumber == 3)
+                {
+                    enemyPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(0f, 1.7f);
+                }
+                else
+                {
+                    enemyPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber];
+                }
+            }
+        }
+    }
+
     void SWAction()
     {
         if (GameManager.instance.isBattleOver)
@@ -133,12 +176,13 @@ public class SnowWhite : MonoBehaviour
                             audioSource.PlayOneShot(AttackSelect[attackSelectRandom]);
                         }
 
-                        animator.SetTrigger("Move");
-                        transform.position = Vector2.MoveTowards(transform.position,
-                            GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(2.5f, 0.5f), moveSpeed * Time.deltaTime);
+                        SetEnemyPosition();
 
-                        if (transform.position == new Vector3((GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].x + 2.5f),
-                            (GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber].y + 0.5f), 0))
+                        animator.SetTrigger("Move");
+
+                        transform.position = Vector2.MoveTowards(transform.position, enemyPosition, moveSpeed * Time.deltaTime);
+
+                        if (transform.position == new Vector3(enemyPosition.x, enemyPosition.y, 0))
                         {
                             GameManager.instance.isSWTurn = false;
                             GameManager.instance.isAction = false;
@@ -151,8 +195,18 @@ public class SnowWhite : MonoBehaviour
 
                             if (!isAttacking)
                             {
-                                isAttacking = true;
-                                attackEffect = Instantiate(AttackEffectPrefab, GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber], Quaternion.identity);
+                                isAttacking = true;                                
+
+                                if (StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
+                                {
+                                    attackEffectPosition = GameManager.instance.BossPosition;
+                                }
+                                else
+                                {
+                                    attackEffectPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber];
+                                }
+
+                                attackEffect = Instantiate(AttackEffectPrefab, attackEffectPosition, Quaternion.identity);
                                 attackEffect.GetComponent<Animator>().Play("SnowWhite_Attack");
 
                                 var colorOverLifeTime = attackEffect.GetComponentInChildren<ParticleSystem>().colorOverLifetime;
@@ -195,6 +249,8 @@ public class SnowWhite : MonoBehaviour
                             audioSource.PlayOneShot(AttackSelect[attackSelectRandom]);
                         }
 
+                        SetEnemyPosition();
+
                         animator.SetBool("MagicAttack", true);
 
                         switch (GameManager.instance.SkillButtonNumber)
@@ -203,8 +259,7 @@ public class SnowWhite : MonoBehaviour
                                 if (!isSkillInstantiated)
                                 {
                                     isSkillInstantiated = true;
-                                    doubleSlash = Instantiate(DoubleSlashPrefab,
-                                        GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber], Quaternion.identity);
+                                    doubleSlash = Instantiate(DoubleSlashPrefab, enemyPosition, Quaternion.identity);
                                 }
 
                                 if (doubleSlash.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
@@ -232,8 +287,7 @@ public class SnowWhite : MonoBehaviour
                                 if (!isSkillInstantiated)
                                 {
                                     isSkillInstantiated = true;
-                                    tripleSlash = Instantiate(TripleSlashPrefab,
-                                        GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber], Quaternion.identity);
+                                    tripleSlash = Instantiate(TripleSlashPrefab, enemyPosition, Quaternion.identity);
                                 }
 
                                 if (tripleSlash.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
@@ -261,8 +315,7 @@ public class SnowWhite : MonoBehaviour
                                 if (!isSkillInstantiated)
                                 {
                                     isSkillInstantiated = true;
-                                    aerialSlash = Instantiate(AerialSlashPrefab,
-                                        GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber], Quaternion.identity);
+                                    aerialSlash = Instantiate(AerialSlashPrefab, enemyPosition, Quaternion.identity);
                                 }
 
                                 if (aerialSlash.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
@@ -290,8 +343,7 @@ public class SnowWhite : MonoBehaviour
                                 if (!isSkillInstantiated)
                                 {
                                     isSkillInstantiated = true;
-                                    thunderThorn = Instantiate(ThunderThornPrefab,
-                                        GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(0, 1.7f), Quaternion.identity);
+                                    thunderThorn = Instantiate(ThunderThornPrefab, enemyPosition, Quaternion.identity);
                                 }
 
                                 if (thunderThorn.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
@@ -425,6 +477,10 @@ public class SnowWhite : MonoBehaviour
         {
             StageManager.EnemyInfo[GameManager.instance.EnemyPositionNumber].GetComponent<Wolf>().CurrentHP -= damage;
         }
+        else if (StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
+        {
+            StageManager.EnemyInfo[0].GetComponent<Lightning>().CurrentHP -= damage;
+        }
     }
 
     void DamageAllEnemy(int damage)
@@ -440,6 +496,10 @@ public class SnowWhite : MonoBehaviour
                 else if (StageManager.EnemyInfo[i].name.StartsWith("Wolf"))
                 {
                     StageManager.EnemyInfo[i].GetComponent<Wolf>().CurrentHP -= damage;
+                }
+                else if (StageManager.EnemyInfo[i].name.StartsWith("Lightning"))
+                {
+                    StageManager.EnemyInfo[i].GetComponent<Lightning>().CurrentHP -= damage;
                 }
             }
         }

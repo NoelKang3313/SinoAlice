@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6907511609360288250}
   m_Layer: 0
   m_Name: Lightning
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: -1740722969, guid: 1cbca0fcc624347fca5a1cf523c4b8ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StageManager: {fileID: 0}
+  UIManager: {fileID: 0}
   Name: 
   HP: 0
   MP: 0
@@ -164,3 +165,4 @@ MonoBehaviour:
   ThunderArrowPrefab: {fileID: 2834923076907987169, guid: 9d8b3c0262ac74aa980573f133bca943, type: 3}
   SparkSpherePrefab: {fileID: 4251034837897535011, guid: 083cc313dca89485c96b5ebd48345868, type: 3}
   VoltageExplosionPrefab: {fileID: 1343609952809184133, guid: 4f955bfa768bc4fb495ff778e364cdb4, type: 3}
+  playerRandom: 0

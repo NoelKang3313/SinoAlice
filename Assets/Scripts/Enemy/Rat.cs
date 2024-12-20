@@ -26,7 +26,7 @@ public class Rat : MonoBehaviour
     private bool isAttacking;
     public Gradient AttackGradient;
 
-    int playerRandom;
+    private int playerRandom;
 
     void Awake()
     {
@@ -103,15 +103,15 @@ public class Rat : MonoBehaviour
 
     void DamagePlayer(int damage, int random)
     {
-        if(GameManager.instance.CharacterSelected[random].name == "Alice")
+        if(GameManager.instance.CharacterSelected[random].name.StartsWith("Alice"))
         {
             GameManager.instance.CharacterSelected[random].GetComponent<Alice>().CurrentHP -= damage;
         }
-        else if(GameManager.instance.CharacterSelected[random].name == "Gretel")
+        else if(GameManager.instance.CharacterSelected[random].name.StartsWith("Gretel"))
         {
             GameManager.instance.CharacterSelected[random].GetComponent<Gretel>().CurrentHP -= damage;
         }
-        else if(GameManager.instance.CharacterSelected[random].name == "Snow White")
+        else if(GameManager.instance.CharacterSelected[random].name.StartsWith("Snow White"))
         {
             GameManager.instance.CharacterSelected[random].GetComponent<SnowWhite>().CurrentHP -= damage;
         }
