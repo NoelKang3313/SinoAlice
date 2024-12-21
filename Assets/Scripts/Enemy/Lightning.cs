@@ -40,6 +40,9 @@ public class Lightning : MonoBehaviour
     private GameObject voltageExplosion;
     private bool isSkillInstantiated;
 
+    // Limit Break
+    private int limitBreakNum;
+
     // Audios
 
 
@@ -135,7 +138,7 @@ public class Lightning : MonoBehaviour
                             if(!isSkillInstantiated)
                             {
                                 isSkillInstantiated = true;
-                                thunderArrow = Instantiate(ThunderArrowPrefab, GameManager.instance.Characters[playerRandom].transform.position, Quaternion.identity);
+                                thunderArrow = Instantiate(ThunderArrowPrefab, GameManager.instance.Characters[playerRandom].transform.position + new Vector3(1, 1, 0), Quaternion.identity);
                             }
 
                             if (thunderArrow.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
@@ -201,7 +204,7 @@ public class Lightning : MonoBehaviour
                             if (!isSkillInstantiated)
                             {
                                 isSkillInstantiated = true;
-                                voltageExplosion = Instantiate(VoltageExplosionPrefab);
+                                voltageExplosion = Instantiate(VoltageExplosionPrefab, new Vector2(5, -1.33f), Quaternion.identity);
                             }
 
                             if (voltageExplosion.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
@@ -228,6 +231,34 @@ public class Lightning : MonoBehaviour
                 }
             }
         }
+
+        if(limitBreakNum == 5)
+        {
+            if (isCurrentEnemyTurn)
+            {
+                UIManager.BossHPGauge.gameObject.SetActive(false);
+
+                if (!isRandom)
+                {
+                    isRandom = true;
+                    playerRandom = Random.Range(0, 3);
+                }
+
+                animator.SetTrigger("Move");
+
+                transform.position = Vector2.MoveTowards(transform.position,
+                    new Vector2(GameManager.instance.Characters[playerRandom].transform.position.x - 2.8f, GameManager.instance.Characters[playerRandom].transform.position.y - 0.5f),
+                    moveSpeed * Time.deltaTime);
+
+                if (transform.position == new Vector3(GameManager.instance.Characters[playerRandom].transform.position.x - 2.8f, GameManager.instance.Characters[playerRandom].transform.position.y - 0.5f, 0f))
+                {
+                    ResetAnimationTrigger("Move");
+                    animator.SetBool("LimitBreak", true);
+                }
+            }
+
+            CheckCurrentAnimationEnd("Limit Break");
+        }
     }
 
     void CheckCurrentAnimationEnd(string animation)
@@ -247,6 +278,22 @@ public class Lightning : MonoBehaviour
 
                 DamagePlayer(10, playerRandom);
                 activateSkillNum++;
+                limitBreakNum++;
+            }
+            if (animation == "Limit Break")
+            {
+                animator.SetBool(animation, false);
+                transform.position = GameManager.instance.BossPosition;
+
+                isCurrentEnemyTurn = false;
+                isRandom = false;
+                GameManager.instance.isEnemyTurn = false;
+                GameManager.instance.isTurn = true;
+                GameManager.instance.TurnNumber++;
+
+                DamagePlayer(10, playerRandom);
+                activateSkillNum++;
+                limitBreakNum = 0;
             }
         }
     }
