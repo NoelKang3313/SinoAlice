@@ -262,7 +262,7 @@ public class WorldmapUIManager : MonoBehaviour
         switch (number)
         {
             case 0:
-                StagePanelTitle.text = "ìŠ¤í…Œì´ì§€ 1 - " + (number + 1);
+                StagePanelTitle.text = "?¤í…Œ?´ì? 1 - " + (number + 1);
 
                 EnemyObjects.SetActive(true);
                 BossImage.SetActive(false);
@@ -276,7 +276,7 @@ public class WorldmapUIManager : MonoBehaviour
                 break;
 
             case 1:
-                StagePanelTitle.text = "ìŠ¤í…Œì´ì§€ 1 - " + (number + 1);
+                StagePanelTitle.text = "?¤í…Œ?´ì? 1 - " + (number + 1);
 
                 EnemyObjects.SetActive(true);
                 BossImage.SetActive(false);
@@ -299,12 +299,13 @@ public class WorldmapUIManager : MonoBehaviour
                 break;
 
             case 2:
-                StagePanelTitle.text = "ìŠ¤í…Œì´ì§€ 1 - " + (number + 1);
+                StagePanelTitle.text = "?¤í…Œ?´ì? 1 - " + (number + 1);
 
                 EnemyObjects.SetActive(false);
                 BossImage.SetActive(true);
 
                 BossImage.GetComponent<Image>().sprite = BossSprite;
+                BossImage.GetComponent<RectTransform>().sizeDelta = new Vector3(350, 350);
                 GameManager.instance.EnemySelected.Add(BossPrefab);
 
                 break;

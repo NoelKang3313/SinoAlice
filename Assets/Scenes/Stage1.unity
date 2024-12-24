@@ -2527,7 +2527,7 @@ MonoBehaviour:
   SnowWhiteSprite: {fileID: 21300000, guid: ff57471dcd1e14c05820bc9ca9830e1f, type: 3}
   RatSprite: {fileID: 21300000, guid: fd2fc4d8d641a4a8e8ba7ce6a0d12460, type: 3}
   WolfSprite: {fileID: 21300000, guid: 1f8803d7b41fd475fbc158bb1ab75290, type: 3}
-  LightningSprite: {fileID: 21300000, guid: 8d8a788148d284850962c5876b35944f, type: 3}
+  LightningSprite: {fileID: 21300000, guid: 0e929849ac4a03c44bfe714590390112, type: 3}
   ActionButtons: {fileID: 1272092172}
   AttackButton: {fileID: 614614976}
   GuardButton: {fileID: 1227374745}
@@ -11474,7 +11474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 725015043051562913, guid: f3a130460a9eb4ce197f3422473f5971, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7681609208216776539, guid: f3a130460a9eb4ce197f3422473f5971, type: 3}
       propertyPath: m_Pivot.x
@@ -11665,7 +11665,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986953107599185901, guid: 36f6fdad8bd5447c7a5db944da7d9a10, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

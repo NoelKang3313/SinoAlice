@@ -4707,8 +4707,8 @@ MonoBehaviour:
   RatPrefab: {fileID: 4817061552027593439, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
   WolfSprite: {fileID: 814240889, guid: 7b68cec9bc93c499f8f60932fd9eec94, type: 3}
   WolfPrefab: {fileID: 1186888771167775432, guid: cdb9f0ff0ef614734b56ec99b2469480, type: 3}
-  BossSprite: {fileID: -1740722969, guid: 1cbca0fcc624347fca5a1cf523c4b8ed, type: 3}
-  BossPrefab: {fileID: 1102345674611555748, guid: 2792bd849eb7047eb923cc4d6bfa3cd0, type: 3}
+  BossSprite: {fileID: 1414530232, guid: 4e2a2071c4f3747cd818481a4a8fef45, type: 3}
+  BossPrefab: {fileID: 1501270656212315637, guid: 73ecc8b353064474ca2b8a3514d275d3, type: 3}
   StagePanelExitButton: {fileID: 1124707124}
   CharacterLocationButtons:
   - {fileID: 590093189}

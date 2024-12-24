@@ -11,6 +11,11 @@ public class Lightning : MonoBehaviour
 
     Animator animator;
 
+    public GameObject AttackEffectPrefab;
+    private GameObject attackEffect;
+    private bool isAttacking;
+    public Gradient AttackGradient;
+
     [Header("Lightning Stats")]
     public string Name;
     public float HP;
@@ -99,13 +104,24 @@ public class Lightning : MonoBehaviour
                 animator.SetTrigger("Move");
 
                 transform.position = Vector2.MoveTowards(transform.position,
-                    new Vector2(GameManager.instance.Characters[playerRandom].transform.position.x - 2.8f, GameManager.instance.Characters[playerRandom].transform.position.y - 0.5f),
+                    new Vector2(GameManager.instance.Characters[playerRandom].transform.position.x - 3.2f, GameManager.instance.Characters[playerRandom].transform.position.y - 0.1f),
                     moveSpeed * Time.deltaTime);
 
-                if (transform.position == new Vector3(GameManager.instance.Characters[playerRandom].transform.position.x - 2.8f, GameManager.instance.Characters[playerRandom].transform.position.y - 0.5f, 0f))
+                if (transform.position == new Vector3(GameManager.instance.Characters[playerRandom].transform.position.x - 3.2f, GameManager.instance.Characters[playerRandom].transform.position.y - 0.1f, 0f))
                 {
                     ResetAnimationTrigger("Move");
                     animator.SetBool("Attack", true);
+
+                    if (!isAttacking)
+                    {
+                        isAttacking = true;
+
+                        attackEffect = Instantiate(AttackEffectPrefab, GameManager.instance.Characters[playerRandom].transform.position, Quaternion.identity);
+                        attackEffect.GetComponent<Animator>().Play("Lightning_Attack");
+
+                        var colorOverLifeTime = attackEffect.GetComponentInChildren<ParticleSystem>().colorOverLifetime;
+                        colorOverLifeTime.color = new ParticleSystem.MinMaxGradient(AttackGradient);
+                    }
                 }
             }
 
@@ -267,10 +283,13 @@ public class Lightning : MonoBehaviour
         {
             if (animation == "Attack")
             {
+                Destroy(attackEffect);
+
                 animator.SetBool(animation, false);
                 transform.position = GameManager.instance.BossPosition;
 
-                isCurrentEnemyTurn = false;                
+                isCurrentEnemyTurn = false;   
+                isAttacking = false;
                 isRandom = false;
                 GameManager.instance.isEnemyTurn = false;
                 GameManager.instance.isTurn = true;
