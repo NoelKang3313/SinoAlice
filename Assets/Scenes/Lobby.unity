@@ -27072,10 +27072,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Winry
       objectReference: {fileID: 0}
-    - target: {fileID: 7121150169027194578, guid: 17ffa1f658cae424d9ef98fbd23b83a6, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -37131,10 +37127,6 @@ PrefabInstance:
     - target: {fileID: 6922193903350743069, guid: fff5a415bcf724546a2bb3bd5c39ca42, type: 3}
       propertyPath: m_Name
       value: Lid
-      objectReference: {fileID: 0}
-    - target: {fileID: 6922193903350743069, guid: fff5a415bcf724546a2bb3bd5c39ca42, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7164954893851844409, guid: fff5a415bcf724546a2bb3bd5c39ca42, type: 3}
       propertyPath: m_LocalPosition.x
@@ -53626,10 +53618,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Charlotte
       objectReference: {fileID: 0}
-    - target: {fileID: 1401122717968787907, guid: d4811cbbd4dfd4b27b188270ff1048d5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3360576992370518433, guid: d4811cbbd4dfd4b27b188270ff1048d5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6
@@ -54898,11 +54886,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143479983}
   m_CullTransparentMesh: 1
---- !u!1 &1260660901403289128 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3063898709524713126, guid: fa643ba2f69bf49a08f395aaffe1d994, type: 3}
-  m_PrefabInstance: {fileID: 4795622511861208132}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4795622511861208132
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54911,6 +54894,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 415440007115551619, guid: fa643ba2f69bf49a08f395aaffe1d994, type: 3}
+      propertyPath: AudioManager
+      value: 
+      objectReference: {fileID: 456563526}
     - target: {fileID: 653449264966781302, guid: fa643ba2f69bf49a08f395aaffe1d994, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -54955,35 +54942,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Alice_Lobby
       objectReference: {fileID: 0}
-    - target: {fileID: 3063898709524713126, guid: fa643ba2f69bf49a08f395aaffe1d994, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3443503247141954819, guid: fa643ba2f69bf49a08f395aaffe1d994, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 2b7bf77eacb0040098a649d0b2c6ada6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3063898709524713126, guid: fa643ba2f69bf49a08f395aaffe1d994, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6105398513629467099}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa643ba2f69bf49a08f395aaffe1d994, type: 3}
---- !u!114 &6105398513629467099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1260660901403289128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f61b47228b744f3b9fe2f385a245bd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AudioManager: {fileID: 456563526}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

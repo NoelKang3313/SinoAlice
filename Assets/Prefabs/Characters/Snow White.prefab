@@ -123,13 +123,13 @@ MonoBehaviour:
   UIManager: {fileID: 0}
   StageManager: {fileID: 0}
   Name: Snow White
-  HP: 500
-  CurrentHP: 500
-  MP: 300
-  CurrentMP: 300
-  Attack: 90
-  Defense: 60
-  Intell: 30
+  HP: 350
+  CurrentHP: 350
+  MP: 200
+  CurrentMP: 200
+  Attack: 10
+  Defense: 10
+  Intell: 10
   Speed: 100
   AttackEffectPrefab: {fileID: 611716050284685982, guid: a91e240fd06014da2961e819b712d514, type: 3}
   AttackGradient:

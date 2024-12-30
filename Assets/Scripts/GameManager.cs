@@ -79,10 +79,7 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
             Destroy(Inventory.gameObject);
         }
-    }
 
-    void Start()
-    {
         AlicePrefab.GetComponent<Alice>().CurrentHP = AlicePrefab.GetComponent<Alice>().HP;
         AlicePrefab.GetComponent<Alice>().CurrentMP = AlicePrefab.GetComponent<Alice>().MP;
 

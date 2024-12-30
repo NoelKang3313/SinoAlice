@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 653449264966781302}
   - component: {fileID: 8551887605593555642}
   - component: {fileID: 3443503247141954819}
+  - component: {fileID: 415440007115551619}
   m_Layer: 0
   m_Name: Alice_Lobby
   m_TagString: Untagged
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 1726971271, guid: 60b17edabde9a42f198cb9f0b19fc994, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -95,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 3063898709524713126}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 258899e02f43748cf839e69afa01edaa, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2b7bf77eacb0040098a649d0b2c6ada6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -106,3 +107,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &415440007115551619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3063898709524713126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f61b47228b744f3b9fe2f385a245bd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioManager: {fileID: 0}

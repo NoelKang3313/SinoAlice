@@ -123,13 +123,13 @@ MonoBehaviour:
   UIManager: {fileID: 0}
   StageManager: {fileID: 0}
   Name: Gretel
-  HP: 300
-  CurrentHP: 300
-  MP: 500
-  CurrentMP: 500
-  Attack: 40
-  Defense: 50
-  Intell: 100
+  HP: 150
+  CurrentHP: 150
+  MP: 350
+  CurrentMP: 350
+  Attack: 10
+  Defense: 10
+  Intell: 10
   Speed: 70
   ShieldPrefab: {fileID: 8752544847113877612, guid: 2d155d6c4e1e5483fbd984a70183a0d9, type: 3}
   BlazeArrowPrefab: {fileID: 1310103297946559148, guid: c9c883c517c8f461f8ae1c8d5f5d460b, type: 3}

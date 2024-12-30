@@ -25,6 +25,7 @@ public class SnowWhite : MonoBehaviour
     private float moveSpeed = 15.0f;
 
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     public GameObject AttackEffectPrefab;
     private GameObject attackEffect;    
@@ -66,20 +67,24 @@ public class SnowWhite : MonoBehaviour
     private bool isBattleStartAudioPlaying;
     private bool isAttackSelectAudioPlaying;
 
-    void Start()
+    void Awake()
     {
         Name = "Snow White";
-        HP = 500;
-        MP = 300;        
+        HP = 350;
+        MP = 200;
         Attack = 10;
         Defense = 10;
         Intell = 10;
         Speed = 100;
+    }
 
+    void Start()
+    {
         swStartPosition = transform.position;
 
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         if (GameObject.Find("UIManager") != null)
         {
@@ -103,7 +108,7 @@ public class SnowWhite : MonoBehaviour
         {
             if(GameManager.instance.isAttackButtonActive)
             {
-                enemyPosition = GameManager.instance.BossPosition + new Vector2(2.5f, 0.5f);
+                enemyPosition = GameManager.instance.BossPosition + new Vector2(2.5f, 0);
             }
             else if(GameManager.instance.isSkillButtonActive)
             {
@@ -121,7 +126,7 @@ public class SnowWhite : MonoBehaviour
         {
             if(GameManager.instance.isAttackButtonActive)
             {
-                enemyPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(2.5f, 0.5f);
+                enemyPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(2.5f, 0);
             }
             else if(GameManager.instance.isSkillButtonActive)
             {
@@ -133,6 +138,23 @@ public class SnowWhite : MonoBehaviour
                 {
                     enemyPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber];
                 }
+            }
+        }
+    }
+
+    void SortOrder()
+    {
+        spriteRenderer.sortingOrder = StageManager.MaxSortLayer;
+
+        if(StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
+        {
+            StageManager.EnemyInfo[0].GetComponent<SpriteRenderer>().sortingOrder = StageManager.MinSortLayer;
+        }
+        else
+        {
+            for(int i = 0; i < StageManager.EnemyInfo.Count; i++)
+            {
+                StageManager.EnemyInfo[i].GetComponent<SpriteRenderer>().sortingOrder = StageManager.MinSortLayer;
             }
         }
     }
@@ -161,6 +183,8 @@ public class SnowWhite : MonoBehaviour
 
                 animator.SetBool("Standby", true);
 
+                SortOrder();
+
                 if (GameManager.instance.isAttackButtonActive)
                 {
                     animator.SetBool("MagicStandby", false);
@@ -184,6 +208,8 @@ public class SnowWhite : MonoBehaviour
 
                         if (transform.position == new Vector3(enemyPosition.x, enemyPosition.y, 0))
                         {
+                            spriteRenderer.sortingOrder = StageManager.MaxSortLayer;
+
                             GameManager.instance.isSWTurn = false;
                             GameManager.instance.isAction = false;
                             GameManager.instance.isAttackButtonActive = false;
@@ -198,11 +224,11 @@ public class SnowWhite : MonoBehaviour
                                 isAttacking = true;                                
 
                                 if (StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
-                                {
+                                {                                    
                                     attackEffectPosition = GameManager.instance.BossPosition;
                                 }
                                 else
-                                {
+                                {                                    
                                     attackEffectPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber];
                                 }
 
@@ -229,6 +255,7 @@ public class SnowWhite : MonoBehaviour
                         GameManager.instance.isGuardButtonActive = false;
 
                         shield = Instantiate(ShieldPrefab, transform.position + new Vector3(0.5f, 0, 0), Quaternion.identity);
+                        shield.GetComponent<SpriteRenderer>().sortingOrder = spriteRenderer.sortingOrder + 1;
 
                         GameManager.instance.isTurn = true;
                         GameManager.instance.TurnNumber++;
