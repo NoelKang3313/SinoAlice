@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 1414530232, guid: 4e2a2071c4f3747cd818481a4a8fef45, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -196,4 +196,7 @@ MonoBehaviour:
   ThunderArrowPrefab: {fileID: 2834923076907987169, guid: 9d8b3c0262ac74aa980573f133bca943, type: 3}
   SparkSpherePrefab: {fileID: 4251034837897535011, guid: 083cc313dca89485c96b5ebd48345868, type: 3}
   VoltageExplosionPrefab: {fileID: 1343609952809184133, guid: 4f955bfa768bc4fb495ff778e364cdb4, type: 3}
+  ZephyrStrikePrefab: {fileID: 2532288062599275112, guid: 246a6a6575a1f468a82631f5719386e5, type: 3}
+  HolyArrowPrefab: {fileID: 3232412721634816340, guid: b4e32d8378bb140259597dbaa2afac68, type: 3}
+  JudgementPrefab: {fileID: 4379570072789683410, guid: 8824039629ae94d21b108e8f33372428, type: 3}
   playerRandom: 0

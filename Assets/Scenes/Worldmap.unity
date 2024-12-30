@@ -614,6 +614,7 @@ GameObject:
   - component: {fileID: 55096778}
   - component: {fileID: 55096780}
   - component: {fileID: 55096779}
+  - component: {fileID: 55096781}
   m_Layer: 5
   m_Name: Character Image 2
   m_TagString: Untagged
@@ -679,6 +680,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 55096777}
   m_CullTransparentMesh: 1
+--- !u!95 &55096781
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55096777}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8f40190d4ed294f5e966e0fcc07d4f0b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &74651502
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,6 +1611,7 @@ GameObject:
   - component: {fileID: 477526873}
   - component: {fileID: 477526875}
   - component: {fileID: 477526874}
+  - component: {fileID: 477526876}
   m_Layer: 5
   m_Name: Character Image 3
   m_TagString: Untagged
@@ -1654,6 +1677,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477526872}
   m_CullTransparentMesh: 1
+--- !u!95 &477526876
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477526872}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8f40190d4ed294f5e966e0fcc07d4f0b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &505479987
 GameObject:
   m_ObjectHideFlags: 0
@@ -2910,6 +2954,7 @@ GameObject:
   - component: {fileID: 1180880039}
   - component: {fileID: 1180880041}
   - component: {fileID: 1180880040}
+  - component: {fileID: 1180880042}
   m_Layer: 5
   m_Name: Character Image 1
   m_TagString: Untagged
@@ -2975,6 +3020,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1180880038}
   m_CullTransparentMesh: 1
+--- !u!95 &1180880042
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180880038}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8f40190d4ed294f5e966e0fcc07d4f0b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1188008866
 GameObject:
   m_ObjectHideFlags: 0
@@ -4721,10 +4787,6 @@ MonoBehaviour:
   - {fileID: 2066448227}
   - {fileID: 1296999201}
   SelectedCharacter: {fileID: 0}
-  CharactersIdle:
-  - {fileID: 1726971271, guid: 60b17edabde9a42f198cb9f0b19fc994, type: 3}
-  - {fileID: -233897792, guid: 17e2f3dea4d814313b643cfa297dd2ef, type: 3}
-  - {fileID: 1443461145, guid: 38ebe1d2927a04e3788807fffbf3b4c0, type: 3}
   changeIndex: 0
   characterCount: 0
   BattleStartButton: {fileID: 1544665952}

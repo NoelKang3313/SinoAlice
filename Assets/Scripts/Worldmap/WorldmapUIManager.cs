@@ -41,7 +41,7 @@ public class WorldmapUIManager : MonoBehaviour
 
     public GameObject SelectedCharacter;
     //public GameObject[] CharacterPrefabs = new GameObject[3];
-    public Sprite[] CharactersIdle = new Sprite[3];
+    //public Sprite[] CharactersIdle = new Sprite[3];
     [SerializeField] private int changeIndex;
 
     [SerializeField]
@@ -96,22 +96,45 @@ public class WorldmapUIManager : MonoBehaviour
                 if (GameManager.instance.CharacterSelected[i].name == "Alice")
                 {
                     CharacterLocationButtons[i].transform.parent.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                    CharacterLocationButtons[i].transform.parent.GetComponent<Image>().sprite = CharactersIdle[0];
+                    //CharacterLocationButtons[i].transform.parent.GetComponent<Image>().sprite = CharactersIdle[0];
+                    CharacterLocationButtons[i].transform.parent.GetComponent<Animator>().Play("Alice_Idle");
                     CharacterLocationButtons[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
                 }
                 else if (GameManager.instance.CharacterSelected[i].name == "Gretel")
                 {
                     CharacterLocationButtons[i].transform.parent.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                    CharacterLocationButtons[i].transform.parent.GetComponent<Image>().sprite = CharactersIdle[1];
+                    //CharacterLocationButtons[i].transform.parent.GetComponent<Image>().sprite = CharactersIdle[1];
+                    CharacterLocationButtons[i].transform.parent.GetComponent<Animator>().Play("Gretel_Idle");
                     CharacterLocationButtons[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
                 }
                 else if (GameManager.instance.CharacterSelected[i].name == "Snow White")
                 {
                     CharacterLocationButtons[i].transform.parent.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                    CharacterLocationButtons[i].transform.parent.GetComponent<Image>().sprite = CharactersIdle[2];
+                    //CharacterLocationButtons[i].transform.parent.GetComponent<Image>().sprite = CharactersIdle[2];
+                    CharacterLocationButtons[i].transform.parent.GetComponent<Animator>().Play("SnowWhite_Idle");
                     CharacterLocationButtons[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
                 }
             }
+        }
+    }
+
+    string CharacterImageAnimation(int number)
+    {
+        if (GameManager.instance.CharacterSelected[number].name == "Alice")
+        {
+            return "Alice_Idle";
+        }
+        else if (GameManager.instance.CharacterSelected[number].name == "Gretel")
+        {
+            return "Gretel_Idle";
+        }
+        else if (GameManager.instance.CharacterSelected[number].name == "Snow White")
+        {
+            return "SnowWhite_Idle";
+        }
+        else
+        {
+            return null;
         }
     }
 
@@ -177,7 +200,8 @@ public class WorldmapUIManager : MonoBehaviour
         GameManager.instance.CharacterSelected[oldNum] = null;
 
         CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-        CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Image>().sprite = CharactersIdle[newNum];
+        //CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Image>().sprite = CharactersIdle[newNum];
+        CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Animator>().Play(CharacterImageAnimation(newNum));
         CharacterLocationButtons[CharacterLocationIndex].GetComponent<Image>().color = new Color(0, 0, 0, 0);
 
         CharacterLocationButtons[oldNum].transform.parent.GetComponent<Image>().color = new Color(0, 0, 0, 0);
@@ -220,7 +244,8 @@ public class WorldmapUIManager : MonoBehaviour
             {
                 GameManager.instance.CharacterSelected[CharacterLocationIndex] = SelectedCharacter;
                 CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Image>().sprite = CharactersIdle[number];
+                //CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Image>().sprite = CharactersIdle[number];
+                CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Animator>().Play(CharacterImageAnimation(number));
                 CharacterLocationButtons[CharacterLocationIndex].GetComponent<Image>().color = new Color(0, 0, 0, 0);
             }
         }
@@ -234,7 +259,8 @@ public class WorldmapUIManager : MonoBehaviour
                     Sprite GOS = CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Image>().sprite;
 
                     GameManager.instance.CharacterSelected[CharacterLocationIndex] = SelectedCharacter;
-                    CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Image>().sprite = CharactersIdle[number];
+                    //CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Image>().sprite = CharactersIdle[number];
+                    CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Animator>().Play(CharacterImageAnimation(number));
 
                     GameManager.instance.CharacterSelected[i] = GO;
                     CharacterLocationButtons[i].transform.parent.GetComponent<Image>().sprite = GOS;
@@ -262,7 +288,7 @@ public class WorldmapUIManager : MonoBehaviour
         switch (number)
         {
             case 0:
-                StagePanelTitle.text = "?¤í…Œ?´ì? 1 - " + (number + 1);
+                StagePanelTitle.text = "????????? 1 - " + (number + 1);
 
                 EnemyObjects.SetActive(true);
                 BossImage.SetActive(false);
@@ -276,7 +302,7 @@ public class WorldmapUIManager : MonoBehaviour
                 break;
 
             case 1:
-                StagePanelTitle.text = "?¤í…Œ?´ì? 1 - " + (number + 1);
+                StagePanelTitle.text = "????????? 1 - " + (number + 1);
 
                 EnemyObjects.SetActive(true);
                 BossImage.SetActive(false);
@@ -299,7 +325,7 @@ public class WorldmapUIManager : MonoBehaviour
                 break;
 
             case 2:
-                StagePanelTitle.text = "?¤í…Œ?´ì? 1 - " + (number + 1);
+                StagePanelTitle.text = "????????? 1 - " + (number + 1);
 
                 EnemyObjects.SetActive(false);
                 BossImage.SetActive(true);

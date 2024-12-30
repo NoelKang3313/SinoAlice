@@ -26,6 +26,7 @@ public class Alice : MonoBehaviour
     private float moveSpeed = 15.0f;
 
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     public GameObject AttackEffectPrefab;
     private GameObject attackEffect;
@@ -67,20 +68,24 @@ public class Alice : MonoBehaviour
     private bool isBattleStartAudioPlaying;
     private bool isAttackSelectAudioPlaying;    
 
-    void Start()
+    void Awake()
     {
         Name = "Alice";
-        HP = 400;        
-        MP = 400;        
+        HP = 250;
+        MP = 250;
         Attack = 10;
         Defense = 10;
         Intell = 10;
         Speed = 90;
+    }
 
+    void Start()
+    {
         aliceStartPosition = transform.position;
 
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         if(GameObject.Find("UIManager") != null)
         {
@@ -105,7 +110,7 @@ public class Alice : MonoBehaviour
         {
             if (GameManager.instance.isAttackButtonActive)
             {
-                enemyPosition = GameManager.instance.BossPosition + new Vector2(1.8f, 0.5f);
+                enemyPosition = GameManager.instance.BossPosition + new Vector2(1.8f, 0);
             }
             else if (GameManager.instance.isSkillButtonActive)
             {
@@ -123,7 +128,7 @@ public class Alice : MonoBehaviour
         {
             if (GameManager.instance.isAttackButtonActive)
             {
-                enemyPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(1.8f, 0.5f);
+                enemyPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(1.8f, 0f);
             }
             else if (GameManager.instance.isSkillButtonActive)
             {
@@ -135,6 +140,23 @@ public class Alice : MonoBehaviour
                 {
                     enemyPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber];
                 }
+            }
+        }
+    }
+
+    void SortOrder()
+    {
+        spriteRenderer.sortingOrder = StageManager.MaxSortLayer;
+
+        if(StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
+        {
+            StageManager.EnemyInfo[0].GetComponent<SpriteRenderer>().sortingOrder = StageManager.MinSortLayer;
+        }
+        else
+        {
+            for(int i = 0; i < StageManager.EnemyInfo.Count; i++)
+            {
+                StageManager.EnemyInfo[i].GetComponent<SpriteRenderer>().sortingOrder = StageManager.MinSortLayer;
             }
         }
     }
@@ -163,6 +185,8 @@ public class Alice : MonoBehaviour
 
                 animator.SetBool("Standby", true);
 
+                SortOrder();
+
                 if (GameManager.instance.isAttackButtonActive)
                 {
                     animator.SetBool("MagicStandby", false);
@@ -186,6 +210,8 @@ public class Alice : MonoBehaviour
 
                         if (transform.position == new Vector3(enemyPosition.x, enemyPosition.y, 0))
                         {
+                            spriteRenderer.sortingOrder = StageManager.MaxSortLayer;
+
                             GameManager.instance.isAliceTurn = false;
                             GameManager.instance.isAction = false;
                             GameManager.instance.isAttackButtonActive = false;
@@ -201,10 +227,12 @@ public class Alice : MonoBehaviour
 
                                 if (StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
                                 {
+                                    StageManager.EnemyInfo[0].GetComponent<SpriteRenderer>().sortingOrder = StageManager.MinSortLayer;
                                     attackEffectPosition = GameManager.instance.BossPosition;
                                 }
                                 else
                                 {
+                                    StageManager.EnemyInfo[GameManager.instance.EnemyPositionNumber].GetComponent<SpriteRenderer>().sortingOrder = StageManager.MinSortLayer;
                                     attackEffectPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber];
                                 }
 
@@ -231,6 +259,7 @@ public class Alice : MonoBehaviour
                         GameManager.instance.isGuardButtonActive = false;
 
                         shield = Instantiate(ShieldPrefab, transform.position, Quaternion.identity);
+                        shield.GetComponent<SpriteRenderer>().sortingOrder = spriteRenderer.sortingOrder + 1;
 
                         GameManager.instance.isTurn = true;
                         GameManager.instance.TurnNumber++;

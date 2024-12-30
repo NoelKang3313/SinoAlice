@@ -123,13 +123,13 @@ MonoBehaviour:
   UIManager: {fileID: 0}
   StageManager: {fileID: 0}
   Name: Alice
-  HP: 400
-  CurrentHP: 400
-  MP: 400
-  CurrentMP: 400
-  Attack: 70
-  Defense: 70
-  Intell: 50
+  HP: 250
+  CurrentHP: 250
+  MP: 250
+  CurrentMP: 250
+  Attack: 10
+  Defense: 10
+  Intell: 10
   Speed: 90
   AttackEffectPrefab: {fileID: 611716050284685982, guid: a91e240fd06014da2961e819b712d514, type: 3}
   AttackGradient:

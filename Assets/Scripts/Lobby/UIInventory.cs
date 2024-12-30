@@ -69,7 +69,7 @@ public class UIInventory : MonoBehaviour
 
     void InventoryItemButtonClicked()
     {
-        InventoryViewport.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+        InventoryViewport.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -45);
 
         InventoryItemContent.SetActive(true);
         InventoryWeaponContent.SetActive(false);

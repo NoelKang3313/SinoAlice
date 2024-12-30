@@ -4956,18 +4956,6 @@ PrefabInstance:
       value: AttackEffect
       objectReference: {fileID: 0}
     - target: {fileID: 4930715472278989072, guid: ebd52167387eb4fe9b21f79c27404592, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4930715472278989072, guid: ebd52167387eb4fe9b21f79c27404592, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4930715472278989072, guid: ebd52167387eb4fe9b21f79c27404592, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4930715472278989072, guid: ebd52167387eb4fe9b21f79c27404592, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -5006,22 +4994,6 @@ PrefabInstance:
     - target: {fileID: 4930715472278989072, guid: ebd52167387eb4fe9b21f79c27404592, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4930715472278989072, guid: ebd52167387eb4fe9b21f79c27404592, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7639916968355346559, guid: ebd52167387eb4fe9b21f79c27404592, type: 3}
-      propertyPath: m_Color.g
-      value: 0.47058824
-      objectReference: {fileID: 0}
-    - target: {fileID: 7639916968355346559, guid: ebd52167387eb4fe9b21f79c27404592, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7639916968355346559, guid: ebd52167387eb4fe9b21f79c27404592, type: 3}
-      propertyPath: m_SortingOrder
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
