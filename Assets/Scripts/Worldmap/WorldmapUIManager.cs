@@ -260,15 +260,14 @@ public class WorldmapUIManager : MonoBehaviour
 
                     GameManager.instance.CharacterSelected[CharacterLocationIndex] = SelectedCharacter;
                     //CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Image>().sprite = CharactersIdle[number];
-                    CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Animator>().Play(CharacterImageAnimation(number));
+                    CharacterLocationButtons[CharacterLocationIndex].transform.parent.GetComponent<Animator>().Play(CharacterImageAnimation(CharacterLocationIndex));
 
                     GameManager.instance.CharacterSelected[i] = GO;
                     CharacterLocationButtons[i].transform.parent.GetComponent<Image>().sprite = GOS;
+                    CharacterLocationButtons[i].transform.parent.GetComponent<Animator>().Play(CharacterImageAnimation(i));
 
                     break;
                 }
-                else
-                    continue;
             }
         }
 
