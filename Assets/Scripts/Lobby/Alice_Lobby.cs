@@ -33,6 +33,7 @@ public class Alice_Lobby : MonoBehaviour
             if (transform.position == new Vector3(5.0f, -0.4f, 0))
             {
                 UIManager.NPCDialogueAnimator.SetBool("isActive", true);
+                UIManager.NPCDialogueText.text = "어서오십시오, 기다리고 있었습니다.";
                 UIManager.NPCNameText.text = "샤를로트";
                 UIManager.NPCButtonText.text = "월드맵";
 
@@ -53,6 +54,7 @@ public class Alice_Lobby : MonoBehaviour
             if (transform.position == new Vector3(-1.5f, 0.2f, 0))
             {
                 UIManager.NPCDialogueAnimator.SetBool("isActive", true);
+                UIManager.NPCDialogueText.text = "나의 정비소에 어서와.";
                 UIManager.NPCNameText.text = "윈리";
                 UIManager.NPCButtonText.text = "캐릭터";
 
@@ -72,7 +74,8 @@ public class Alice_Lobby : MonoBehaviour
 
             if (transform.position == new Vector3(-5.0f, 0.2f, 0))
             {
-                UIManager.NPCDialogueAnimator.SetBool("isActive", true);                
+                UIManager.NPCDialogueAnimator.SetBool("isActive", true);
+                UIManager.NPCDialogueText.text = "어서옵쇼, 리드 샵에 환영합니다!";
                 UIManager.NPCNameText.text = "리드";
                 UIManager.NPCButtonText.text = "샵";
 

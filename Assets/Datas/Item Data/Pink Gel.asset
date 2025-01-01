@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Pink Gel
   m_EditorClassIdentifier: 
   ItemID: 4
-  ItemName: Pink Gel
+  ItemName: "\uD551\uD06C \uC824\uB9AC"
   ItemSprite: {fileID: 21300000, guid: 841adc89043e848e7b3ea31b7e27970e, type: 3}
-  ItemDescription: Recover 40% of ally's HP
+  ItemDescription: "\uD300\uC6D0\uC758 HP 40% \uD68C\uBCF5"
   ItemAmount: 0
+  ItemCost: 3000
