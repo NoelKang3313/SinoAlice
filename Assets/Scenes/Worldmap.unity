@@ -1461,6 +1461,7 @@ GameObject:
   - component: {fileID: 379995874}
   - component: {fileID: 379995876}
   - component: {fileID: 379995875}
+  - component: {fileID: 379995877}
   m_Layer: 5
   m_Name: Boss Image
   m_TagString: Untagged
@@ -1525,6 +1526,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 379995873}
   m_CullTransparentMesh: 1
+--- !u!95 &379995877
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379995873}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8f40190d4ed294f5e966e0fcc07d4f0b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &408557647
 GameObject:
   m_ObjectHideFlags: 0
@@ -4773,7 +4795,6 @@ MonoBehaviour:
   RatPrefab: {fileID: 4817061552027593439, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
   WolfSprite: {fileID: 814240889, guid: 7b68cec9bc93c499f8f60932fd9eec94, type: 3}
   WolfPrefab: {fileID: 1186888771167775432, guid: cdb9f0ff0ef614734b56ec99b2469480, type: 3}
-  BossSprite: {fileID: 1414530232, guid: 4e2a2071c4f3747cd818481a4a8fef45, type: 3}
   BossPrefab: {fileID: 1501270656212315637, guid: 73ecc8b353064474ca2b8a3514d275d3, type: 3}
   StagePanelExitButton: {fileID: 1124707124}
   CharacterLocationButtons:

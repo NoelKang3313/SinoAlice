@@ -10,6 +10,7 @@ public class ItemData : ScriptableObject
     public Sprite ItemSprite;
     public string ItemDescription;
     public int ItemAmount;
+    public int ItemCost;
 
     public void ResetItemAmount()
     {

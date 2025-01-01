@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     public bool isTurn;
     public int TurnNumber;    
     public bool isBattleOver;
+    public bool isBossStage;
+
+    public int Gald;
 
     [Header("Character Selection")]
     public GameObject[] CharacterSelected = new GameObject[3];
@@ -23,8 +26,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Selected Enemy")]
     public List<GameObject> EnemySelected = new List<GameObject>();
-    public List<GameObject> InstantiatedEnemy = new List<GameObject>();
-    public GameObject EnemyPosition;
+    public List<GameObject> InstantiatedEnemy = new List<GameObject>();    
 
     [Header("Characters Equipment Data")]
     public EquipmentData[] AliceEquipments = new EquipmentData[4];
@@ -80,6 +82,8 @@ public class GameManager : MonoBehaviour
             Destroy(Inventory.gameObject);
         }
 
+        Gald = 50000;
+
         AlicePrefab.GetComponent<Alice>().CurrentHP = AlicePrefab.GetComponent<Alice>().HP;
         AlicePrefab.GetComponent<Alice>().CurrentMP = AlicePrefab.GetComponent<Alice>().MP;
 
@@ -92,11 +96,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "Stage1")
-        {
-            EnemyPosition = GameObject.Find("Enemies");
-        }
-
         CharacterPosition();
 
         GetDamage(10);

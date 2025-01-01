@@ -1248,6 +1248,8 @@ MonoBehaviour:
   EnemyInfo: []
   CharacterSpeeds: []
   EnemyCount: 0
+  MaxSortLayer: 4
+  MinSortLayer: 2
 --- !u!1 &320974116
 GameObject:
   m_ObjectHideFlags: 0
@@ -1600,37 +1602,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 346697947}
   m_CullTransparentMesh: 1
---- !u!1 &364985871
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 364985872}
-  m_Layer: 0
-  m_Name: Enemies
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &364985872
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 364985871}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &402561478
 GameObject:
   m_ObjectHideFlags: 0
@@ -6022,6 +5993,7 @@ MonoBehaviour:
   LetsRockClip: {fileID: 8300000, guid: 09d5afe44e2724f889782f473799d4c2, type: 3}
   BattleBGM: {fileID: 8300000, guid: 90651d92347c44429aaaabb72774535f, type: 3}
   VictoryBGM: {fileID: 8300000, guid: ca6e24e310eae45b08a84e4b52223856, type: 3}
+  LightningBGM: {fileID: 8300000, guid: abcf3782dbc8e46d6b8c1cfd0166d2c4, type: 3}
 --- !u!1 &1078347638
 GameObject:
   m_ObjectHideFlags: 0
@@ -11681,6 +11653,5 @@ SceneRoots:
   - {fileID: 1078347642}
   - {fileID: 1748225845}
   - {fileID: 528362871}
-  - {fileID: 364985872}
   - {fileID: 1065261410}
   - {fileID: 318657503}

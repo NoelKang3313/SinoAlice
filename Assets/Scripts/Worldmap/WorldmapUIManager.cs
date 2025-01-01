@@ -29,8 +29,7 @@ public class WorldmapUIManager : MonoBehaviour
     public Sprite RatSprite;
     public GameObject RatPrefab;
     public Sprite WolfSprite;
-    public GameObject WolfPrefab;
-    public Sprite BossSprite;
+    public GameObject WolfPrefab;    
     public GameObject BossPrefab;
     public Button StagePanelExitButton;
 
@@ -85,6 +84,8 @@ public class WorldmapUIManager : MonoBehaviour
 
         BattleStartButton.onClick.AddListener(BattleStartButtonClicked);
 
+        
+
         for (int i = 0; i < GameManager.instance.CharacterSelected.Length; i++)
         {
             if (GameManager.instance.CharacterSelected[i] == null)
@@ -93,27 +94,29 @@ public class WorldmapUIManager : MonoBehaviour
             }
             else
             {
-                if (GameManager.instance.CharacterSelected[i].name == "Alice")
-                {
-                    CharacterLocationButtons[i].transform.parent.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                    //CharacterLocationButtons[i].transform.parent.GetComponent<Image>().sprite = CharactersIdle[0];
-                    CharacterLocationButtons[i].transform.parent.GetComponent<Animator>().Play("Alice_Idle");
-                    CharacterLocationButtons[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
-                }
-                else if (GameManager.instance.CharacterSelected[i].name == "Gretel")
-                {
-                    CharacterLocationButtons[i].transform.parent.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                    //CharacterLocationButtons[i].transform.parent.GetComponent<Image>().sprite = CharactersIdle[1];
-                    CharacterLocationButtons[i].transform.parent.GetComponent<Animator>().Play("Gretel_Idle");
-                    CharacterLocationButtons[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
-                }
-                else if (GameManager.instance.CharacterSelected[i].name == "Snow White")
-                {
-                    CharacterLocationButtons[i].transform.parent.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                    //CharacterLocationButtons[i].transform.parent.GetComponent<Image>().sprite = CharactersIdle[2];
-                    CharacterLocationButtons[i].transform.parent.GetComponent<Animator>().Play("SnowWhite_Idle");
-                    CharacterLocationButtons[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
-                }
+                GameManager.instance.CharacterSelected[i] = null;
+
+                //if (GameManager.instance.CharacterSelected[i].name == "Alice")
+                //{
+                //    CharacterLocationButtons[i].transform.parent.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                //    //CharacterLocationButtons[i].transform.parent.GetComponent<Image>().sprite = CharactersIdle[0];
+                //    CharacterLocationButtons[i].transform.parent.GetComponent<Animator>().Play("Alice_Idle");
+                //    CharacterLocationButtons[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                //}
+                //else if (GameManager.instance.CharacterSelected[i].name == "Gretel")
+                //{
+                //    CharacterLocationButtons[i].transform.parent.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                //    //CharacterLocationButtons[i].transform.parent.GetComponent<Image>().sprite = CharactersIdle[1];
+                //    CharacterLocationButtons[i].transform.parent.GetComponent<Animator>().Play("Gretel_Idle");
+                //    CharacterLocationButtons[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                //}
+                //else if (GameManager.instance.CharacterSelected[i].name == "Snow White")
+                //{
+                //    CharacterLocationButtons[i].transform.parent.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                //    //CharacterLocationButtons[i].transform.parent.GetComponent<Image>().sprite = CharactersIdle[2];
+                //    CharacterLocationButtons[i].transform.parent.GetComponent<Animator>().Play("SnowWhite_Idle");
+                //    CharacterLocationButtons[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                //}
             }
         }
     }
@@ -298,6 +301,9 @@ public class WorldmapUIManager : MonoBehaviour
                     EnemyImages[i].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
                     GameManager.instance.EnemySelected.Add(RatPrefab);
                 }
+
+                GameManager.instance.isBossStage = false;
+
                 break;
 
             case 1:
@@ -321,6 +327,9 @@ public class WorldmapUIManager : MonoBehaviour
                         GameManager.instance.EnemySelected.Add(RatPrefab);
                     }
                 }
+
+                GameManager.instance.isBossStage = false;
+
                 break;
 
             case 2:
@@ -329,9 +338,11 @@ public class WorldmapUIManager : MonoBehaviour
                 EnemyObjects.SetActive(false);
                 BossImage.SetActive(true);
 
-                BossImage.GetComponent<Image>().sprite = BossSprite;
+                BossImage.GetComponent<Animator>().Play("Lightning_Idle");
                 BossImage.GetComponent<RectTransform>().sizeDelta = new Vector3(350, 350);
                 GameManager.instance.EnemySelected.Add(BossPrefab);
+
+                GameManager.instance.isBossStage = true;
 
                 break;
         }

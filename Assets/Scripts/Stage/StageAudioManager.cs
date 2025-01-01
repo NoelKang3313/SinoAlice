@@ -9,4 +9,5 @@ public class StageAudioManager : MonoBehaviour
     public AudioClip LetsRockClip;
     public AudioClip BattleBGM;
     public AudioClip VictoryBGM;
+    public AudioClip LightningBGM;
 }

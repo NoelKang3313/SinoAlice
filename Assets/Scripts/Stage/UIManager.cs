@@ -229,7 +229,16 @@ public class UIManager : MonoBehaviour
         if(!StageAudioManager.AudioSource.isPlaying && StageAudioManager.AudioSource.clip.name == "Let's Rock")
         {
             StageAudioManager.AudioSource.Stop();
-            StageAudioManager.AudioSource.clip = StageAudioManager.BattleBGM;
+
+            if(!GameManager.instance.isBossStage)
+            {
+                StageAudioManager.AudioSource.clip = StageAudioManager.BattleBGM;
+            }
+            else
+            {
+                StageAudioManager.AudioSource.clip = StageAudioManager.LightningBGM;
+            }
+
             StageAudioManager.AudioSource.Play();
 
             Transition.SetActive(false);

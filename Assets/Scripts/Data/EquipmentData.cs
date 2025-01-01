@@ -11,10 +11,13 @@ public class EquipmentData : ScriptableObject
     public string EquipmentDescription;
     public int EquipmentAmount;
     public string EquipmentCategory;
+    public int EquipmentCost;
+
+    public int HP;
+    public int MP;
     public int Attack;
-    public int Magic;
     public int Defense;
-    public int Health;
+    public int Intell;
     public int Speed;
 
     public void ResetEquipmentAmount()

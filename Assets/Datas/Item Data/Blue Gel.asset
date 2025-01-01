@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Blue Gel
   m_EditorClassIdentifier: 
   ItemID: 2
-  ItemName: Blue Gel
+  ItemName: "\uBE14\uB8E8 \uC824\uB9AC"
   ItemSprite: {fileID: 21300000, guid: ba2fe1e8639b24e1f8260dcb7fd05a9e, type: 3}
-  ItemDescription: Recover 20% of ally's MP
+  ItemDescription: "\uD300\uC6D0\uC758 MP 20% \uD68C\uBCF5"
   ItemAmount: 0
+  ItemCost: 1500

@@ -38,8 +38,8 @@ public class LobbyUIManager : MonoBehaviour
     public TextMeshProUGUI NPCNameText;
 
     public GameObject ShopPanel;
-    public GameObject LidInteractImage;
-    public GameObject AliceInteractImage;
+    public GameObject LidShopImage;
+    public GameObject AliceShopImage;
 
     [Header("Lid's")]
     public ScrollRect LidShopScrollRect;
@@ -56,6 +56,8 @@ public class LobbyUIManager : MonoBehaviour
     public Button[] EquipmentButtons = new Button[4];
 
     public Animator LidBubble;
+    public TextMeshProUGUI LidBubbleText;
+    public Animator AliceBubble;
 
     public Button LidShopExitButton;    
 
@@ -86,8 +88,13 @@ public class LobbyUIManager : MonoBehaviour
     [SerializeField] private ItemData purchaseItemData;
     [SerializeField] private EquipmentData purchaseEquipmentData;
     public GameObject PurchasePanel;
+    public Image PurchasePanelItemImage;
+    public TextMeshProUGUI PurchasePanelItemName;
+    public TextMeshProUGUI PurchasePanelItemCostText;
     public Button PurchaseConfirmButton;
     public Button PurchaseCancelButton;
+
+    public TextMeshProUGUI GaldText;
 
     [Header("Alice Gauge")]
     public Image AliceHPGauge;
@@ -110,6 +117,8 @@ public class LobbyUIManager : MonoBehaviour
     void Start()
     {
         Inventory = FindObjectOfType<Inventory>();
+
+        GaldText.text = GameManager.instance.Gald.ToString("#,##0");
 
         CharlotteButton.onClick.AddListener(CharlotteButtonClicked);
         WinryButton.onClick.AddListener(WinryButtonClicked);
@@ -167,7 +176,8 @@ public class LobbyUIManager : MonoBehaviour
             LobbyPanel.SetActive(false);
         }
 
-        if(LidBubble.gameObject.activeSelf && LidBubble.GetCurrentAnimatorStateInfo(0).IsName("Lid Bubble Image") && LidBubble.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+
+        if (LidBubble.gameObject.activeSelf && LidBubble.GetCurrentAnimatorStateInfo(0).IsName("Bubble Image") && LidBubble.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
         {
             LidBubble.SetBool("isActive", false);
         }
@@ -196,8 +206,10 @@ public class LobbyUIManager : MonoBehaviour
             NPCDialogueAnimator.SetBool("isActive", false);
             ShopPanel.SetActive(true);
             InventoryButton.gameObject.SetActive(false);
-            AliceInteractImage.SetActive(true);
-            LidInteractImage.SetActive(true);
+            AliceShopImage.SetActive(true);
+            LidShopImage.SetActive(true);
+
+            LidShopImage.GetComponent<Animator>().Play("Lid_Idle");
 
             LidShopScrollRect.content = LidItemShopContent.GetComponent<RectTransform>();
 
@@ -208,6 +220,11 @@ public class LobbyUIManager : MonoBehaviour
 
             LidBubble.gameObject.SetActive(true);
             LidBubble.SetBool("isActive", true);
+
+            LidBubbleText.text = "무엇을" + System.Environment.NewLine + "구매하시겠습니까?";
+
+            AliceBubble.gameObject.SetActive(true);
+            AliceBubble.Play("Bubble Active");
         }
         else if(GameManager.instance.isWinryButtonActive)
         {
@@ -221,6 +238,7 @@ public class LobbyUIManager : MonoBehaviour
             if(!isWorldmapButtonClicked)
             {
                 isWorldmapButtonClicked = true;
+                NPCDialogueText.text = "준비되셨습니까?";
                 NPCButtonText.text = "입장";
             }
             else
@@ -240,6 +258,7 @@ public class LobbyUIManager : MonoBehaviour
         if(isWorldmapButtonClicked)
         {
             NPCButtonText.text = "월드맵";
+            NPCDialogueText.text = "어서오십시오, 기다리고 있었습니다.";
             isWorldmapButtonClicked = false;
         }
         else
@@ -399,8 +418,8 @@ public class LobbyUIManager : MonoBehaviour
         NPCDialogueAnimator.SetBool("isActive", true);
         ShopPanel.SetActive(false);
         InventoryButton.gameObject.SetActive(true);
-        AliceInteractImage.SetActive(false);
-        LidInteractImage.SetActive(false);
+        AliceShopImage.SetActive(false);
+        LidShopImage.SetActive(false);
 
         LidItemShopContent.SetActive(true);
         LidWeaponShopContent.SetActive(false);
@@ -408,6 +427,8 @@ public class LobbyUIManager : MonoBehaviour
         LidArmorShopContent.SetActive(false);
         LidShoeShopContent.SetActive(false);
         EquipmentCategories.SetActive(false);
+
+        AliceBubble.gameObject.SetActive(false);        
 
         AudioManager.NPCAudioSource.clip = AudioManager.LidGreetingClip;
         AudioManager.NPCAudioSource.Play();
@@ -419,10 +440,13 @@ public class LobbyUIManager : MonoBehaviour
         isItemPurchaseButtonPressed = true;
         isEquipmentPurchaseButtonPresed = false;
 
-        PurchasePanel.SetActive(true);
-
         purchaseItemData = ItemDatas[number];
-        
+
+        PurchasePanel.SetActive(true);
+        PurchasePanelItemImage.sprite = purchaseItemData.ItemSprite;
+        PurchasePanelItemName.text = purchaseItemData.ItemName;
+        PurchasePanelItemCostText.text = purchaseItemData.ItemCost.ToString("#,##0") + " Gald";
+
         AudioManager.NPCAudioSource.clip = AudioManager.LidPurchaseButtonClip;
         AudioManager.NPCAudioSource.Play();
     }    
@@ -476,24 +500,40 @@ public class LobbyUIManager : MonoBehaviour
     {
         if (isItemPurchaseButtonPressed && !isEquipmentPurchaseButtonPresed)
         {
-            Inventory.Items.Add(purchaseItemData);            
-            purchaseItemData.ItemAmount++;
-            Inventory.ItemAmount.Add(purchaseItemData.ItemAmount);
+            if (GameManager.instance.Gald >= purchaseItemData.ItemCost)
+            {
+                Inventory.Items.Add(purchaseItemData);
+                purchaseItemData.ItemAmount++;
+                Inventory.ItemAmount.Add(purchaseItemData.ItemAmount);
 
-            CheckItem();
+                GameManager.instance.Gald -= purchaseItemData.ItemCost;
+                GaldText.text = GameManager.instance.Gald.ToString("#,##0");
 
-            Button ItemSlot = Instantiate(UIInventory.UIItem, UIInventory.InventoryItemContent.transform.position, Quaternion.identity);
-            ItemSlot.transform.SetParent(UIInventory.InventoryItemContent.transform);
+                CheckItem();
 
-            ItemSlot.GetComponent<UIItem>().ItemImage.sprite = purchaseItemData.ItemSprite;
-            ItemSlot.GetComponent<UIItem>().ItemAmount.text = purchaseItemData.ItemAmount.ToString();
-            ItemSlot.GetComponent<UIItem>().ItemData = purchaseItemData;
+                Button ItemSlot = Instantiate(UIInventory.UIItem, UIInventory.InventoryItemContent.transform.position, Quaternion.identity);
+                ItemSlot.transform.SetParent(UIInventory.InventoryItemContent.transform);
 
-            UIInventory.UIItems.Add(ItemSlot);
+                ItemSlot.GetComponent<UIItem>().ItemImage.sprite = purchaseItemData.ItemSprite;
+                ItemSlot.GetComponent<UIItem>().ItemAmount.text = purchaseItemData.ItemAmount.ToString();
+                ItemSlot.GetComponent<UIItem>().ItemData = purchaseItemData;
 
-            CheckUIItem();
+                UIInventory.UIItems.Add(ItemSlot);
 
-            PurchasePanel.SetActive(false);
+                CheckUIItem();
+
+                PurchasePanel.SetActive(false);
+
+                LidBubble.SetBool("isActive", true);
+                LidBubbleText.text = "구매 감사합니다";
+            }
+            else
+            {
+                LidBubble.SetBool("isActive", true);
+                LidBubbleText.text = "현재는 구매하실 수" + System.Environment.NewLine + "없습니다";
+
+                PurchasePanel.SetActive(false);
+            }
         }
         else if (!isItemPurchaseButtonPressed && isEquipmentPurchaseButtonPresed)
         {

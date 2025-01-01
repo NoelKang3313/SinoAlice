@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Orange Gel
   m_EditorClassIdentifier: 
   ItemID: 3
-  ItemName: Orange Gel
+  ItemName: "\uC624\uB80C\uC9C0 \uC824\uB9AC"
   ItemSprite: {fileID: 21300000, guid: 4c07cf6ad52214feaa8285ce37f1ba49, type: 3}
-  ItemDescription: Recover 15% of both ally's HP and MP
+  ItemDescription: "\uD300\uC6D0\uC758 HP & MP 15% \uD68C\uBCF5"
   ItemAmount: 0
+  ItemCost: 2000
