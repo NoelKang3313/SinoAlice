@@ -146,15 +146,18 @@ public class SnowWhite : MonoBehaviour
     {
         spriteRenderer.sortingOrder = StageManager.MaxSortLayer;
 
-        if(StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
+        for (int i = 0; i < StageManager.EnemyInfo.Count; i++)
         {
-            StageManager.EnemyInfo[0].GetComponent<SpriteRenderer>().sortingOrder = StageManager.MinSortLayer;
-        }
-        else
-        {
-            for(int i = 0; i < StageManager.EnemyInfo.Count; i++)
+            if (StageManager.EnemyInfo[i] != null)
             {
-                StageManager.EnemyInfo[i].GetComponent<SpriteRenderer>().sortingOrder = StageManager.MinSortLayer;
+                if (StageManager.EnemyInfo[i].name.StartsWith("Lightning"))
+                {
+                    StageManager.EnemyInfo[i].GetComponent<SpriteRenderer>().sortingOrder = StageManager.MinSortLayer;
+                }
+                else
+                {
+                    StageManager.EnemyInfo[i].GetComponent<SpriteRenderer>().sortingOrder = StageManager.MinSortLayer;
+                }
             }
         }
     }
@@ -417,7 +420,7 @@ public class SnowWhite : MonoBehaviour
                                     GameManager.instance.isTurn = true;
                                     GameManager.instance.TurnNumber++;
 
-                                    DamageAllEnemy(100);
+                                    DamageAllEnemy(10);
                                 }
 
                                 break;
@@ -484,7 +487,7 @@ public class SnowWhite : MonoBehaviour
                 isAttacking = false;
                 Destroy(attackEffect);
 
-                DamageEnemy(10);
+                DamageEnemy(100);
             }
         }
     }

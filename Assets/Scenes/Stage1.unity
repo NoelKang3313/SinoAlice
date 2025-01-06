@@ -1248,6 +1248,8 @@ MonoBehaviour:
   EnemyInfo: []
   CharacterSpeeds: []
   EnemyCount: 0
+  DeadEnemyPositions: []
+  CoinPrefab: {fileID: 8800266211396121382, guid: eec75ca663dd040a9959566729c218f6, type: 3}
   MaxSortLayer: 4
   MinSortLayer: 2
 --- !u!1 &320974116

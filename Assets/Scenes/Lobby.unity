@@ -27966,6 +27966,7 @@ MonoBehaviour:
   isTurn: 0
   TurnNumber: 0
   isBattleOver: 0
+  isBossStage: 0
   Gald: 0
   CharacterSelected:
   - {fileID: 0}
@@ -27976,7 +27977,6 @@ MonoBehaviour:
   SnowWhitePrefab: {fileID: 8177801638161185331, guid: 1657b3bd308b6497184b58542c266541, type: 3}
   EnemySelected: []
   InstantiatedEnemy: []
-  EnemyPosition: {fileID: 0}
   AliceEquipments:
   - {fileID: 0}
   - {fileID: 0}

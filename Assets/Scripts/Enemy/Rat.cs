@@ -120,8 +120,9 @@ public class Rat : MonoBehaviour
     void EnemyDead()
     {
         if(gameObject != null && CurrentHP <= 0)
-        {
+        {            
             Destroy(gameObject);
+            StageManager.DeadEnemyPositions.Add(gameObject.transform.position);
             StageManager.CharacterTurns.Remove(gameObject);
             StageManager.CharacterSpeeds.Remove(gameObject.GetComponent<Rat>().Speed);
             StageManager.EnemyCount--;
