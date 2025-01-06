@@ -24,13 +24,13 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI CurrentHPText;
     public TextMeshProUGUI CurrentMPText;
 
-    [Header("Character Mini HP Gauge")]
-    public GameObject CharacterMiniGauge;
-    public Image Player1HPGauge;
-    public Image Player2HPGauge;
-    public Image Player3HPGauge;
-    public Image[] EnemyHPGauge = new Image[4];
-    public Image BossHPGauge;
+    //[Header("Character Mini HP Gauge")]
+    //public GameObject CharacterMiniGauge;
+    //public Image Player1HPGauge;
+    //public Image Player2HPGauge;
+    //public Image Player3HPGauge;
+    //public Image[] EnemyHPGauge = new Image[4];
+    //public Image BossHPGauge;
 
     [Header("Character Sprites")]
     public Sprite AliceSprite;
@@ -122,6 +122,11 @@ public class UIManager : MonoBehaviour
     private float swStartHP;
     private float swStartMP;
 
+    void Awake()
+    {
+        SetInitialGauge();
+    }
+
     void Start()
     {
         Inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
@@ -188,17 +193,17 @@ public class UIManager : MonoBehaviour
     {
         BattleStart();
         SetGauge();
-        SetMiniGauge();
+        //SetMiniGauge();
         ActionButtonsActivate();
         CheckCharacterTurnChangeSkillIcon();
         StartCoroutine(ConfirmButtonPressed());
         CheckItemAmount();
         BattleOver();
 
-        if(GameManager.instance.isEnemyTurn)
-        {
-            CharacterMiniGauge.SetActive(true);
-        }
+        //if(GameManager.instance.isEnemyTurn)
+        //{
+        //    CharacterMiniGauge.SetActive(true);
+        //}
     }
 
     void CheckCharacterTurnChangeSkillIcon()
@@ -247,7 +252,7 @@ public class UIManager : MonoBehaviour
             StageAudioManager.AudioSource.loop = true;
 
             GaugePanel.SetActive(true);
-            CharacterMiniGauge.SetActive(true);
+            //CharacterMiniGauge.SetActive(true);
 
             StartCoroutine(DelayBattleStart());
         }
@@ -284,7 +289,7 @@ public class UIManager : MonoBehaviour
         GameManager.instance.isSkillButtonActive = false;
         GameManager.instance.isItemButtonActive = false;
 
-        if(StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
+        if(GameManager.instance.isBossStage)
         {
             EnemySelectButtons.SetActive(false);
             BossSelectButton.gameObject.SetActive(true);
@@ -406,7 +411,7 @@ public class UIManager : MonoBehaviour
             }
             else if (GameManager.instance.isGretelTurn || GameManager.instance.isSWTurn)
             {
-                if (StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
+                if (GameManager.instance.isBossStage)
                 {
                     EnemySelectButtons.SetActive(false);
                     BossSelectButton.gameObject.SetActive(true);
@@ -420,7 +425,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            if (StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
+            if (GameManager.instance.isBossStage)
             {
                 EnemySelectButtons.SetActive(false);
                 BossSelectButton.gameObject.SetActive(true);
@@ -928,100 +933,112 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void SetMiniGauge()
+    //void SetMiniGauge()
+    //{
+    //    for(int i = 0; i < GameManager.instance.Characters.Length; i++)
+    //    {
+    //        switch(i)
+    //        {
+    //            case 0:
+    //                Player1HPGauge.fillAmount = GetPlayerHP(i);
+    //                break;
+    //            case 1:
+    //                Player2HPGauge.fillAmount = GetPlayerHP(i);
+    //                break;
+    //            case 2:
+    //                Player3HPGauge.fillAmount = GetPlayerHP(i);
+    //                break;
+    //        }
+    //    }
+
+
+    //    for(int i = 0; i < StageManager.EnemyInfo.Count; i++)
+    //    {
+    //        if(StageManager.EnemyInfo[i] != null && StageManager.EnemyInfo[i].name.StartsWith("Lightning"))
+    //        {
+    //            BossHPGauge.fillAmount = StageManager.EnemyInfo[i].GetComponent<Lightning>().CurrentHP / StageManager.EnemyInfo[i].GetComponent<Lightning>().HP;
+
+    //            for(int j = 0; j < EnemyHPGauge.Length; j++)
+    //            {
+    //                EnemyHPGauge[j].gameObject.SetActive(false);
+    //            }
+    //        }
+    //        else
+    //        {
+    //            BossHPGauge.gameObject.SetActive(false);
+
+    //            if (StageManager.EnemyInfo[i] == null)
+    //            {
+    //                EnemyHPGauge[i].gameObject.SetActive(false);
+    //                EnemySelectButton[i].gameObject.SetActive(false);
+    //            }
+    //            else
+    //            {
+    //                if (StageManager.EnemyInfo[i].name.StartsWith("Rat"))
+    //                {
+    //                    EnemyHPGauge[i].fillAmount = StageManager.EnemyInfo[i].GetComponent<Rat>().CurrentHP / StageManager.EnemyInfo[i].GetComponent<Rat>().HP;
+    //                }
+    //                else if (StageManager.EnemyInfo[i].name.StartsWith("Wolf"))
+    //                {
+    //                    EnemyHPGauge[i].fillAmount = StageManager.EnemyInfo[i].GetComponent<Wolf>().CurrentHP / StageManager.EnemyInfo[i].GetComponent<Wolf>().HP;
+    //                }
+    //            }
+    //        }
+    //    }
+
+    //    //for(int i = 0; i < EnemyHPGauge.Length; i++)
+    //    //{
+    //    //    if(StageManager.EnemyInfo[i] == null)
+    //    //    {
+    //    //        EnemyHPGauge[i].gameObject.SetActive(false);
+    //    //        EnemySelectButton[i].gameObject.SetActive(false);
+    //    //    }
+    //    //    else
+    //    //    {
+    //    //        if (StageManager.EnemyInfo[i].name.StartsWith("Rat"))
+    //    //        {
+    //    //            EnemyHPGauge[i].fillAmount = StageManager.EnemyInfo[i].GetComponent<Rat>().CurrentHP / StageManager.EnemyInfo[i].GetComponent<Rat>().HP;
+    //    //        }
+    //    //        else if(StageManager.EnemyInfo[i].name.StartsWith("Wolf"))
+    //    //        {
+    //    //            EnemyHPGauge[i].fillAmount = StageManager.EnemyInfo[i].GetComponent<Wolf>().CurrentHP / StageManager.EnemyInfo[i].GetComponent<Wolf>().HP;
+    //    //        }
+    //    //        else if (StageManager.EnemyInfo[i].name.StartsWith("Lightning"))
+    //    //        {
+    //    //            EnemyHPGauge[i].fillAmount = StageManager.EnemyInfo[i].GetComponent<Lightning>().CurrentHP / StageManager.EnemyInfo[i].GetComponent<Lightning>().HP;
+    //    //        }
+    //    //    }
+    //    //}        
+    //}    
+
+    //float GetPlayerHP(int number)
+    //{
+    //    if (GameManager.instance.CharacterSelected[number].name.StartsWith("Alice"))
+    //    {
+    //        return GameManager.instance.CharacterSelected[number].GetComponent<Alice>().CurrentHP / GameManager.instance.CharacterSelected[number].GetComponent<Alice>().HP;
+    //    }
+    //    else if (GameManager.instance.CharacterSelected[number].name.StartsWith("Gretel"))
+    //    {
+    //        return GameManager.instance.CharacterSelected[number].GetComponent<Gretel>().CurrentHP / GameManager.instance.CharacterSelected[number].GetComponent<Gretel>().HP;
+    //    }
+    //    else if (GameManager.instance.CharacterSelected[number].name.StartsWith("Snow White"))
+    //    {
+    //        return GameManager.instance.CharacterSelected[number].GetComponent<SnowWhite>().CurrentHP / GameManager.instance.CharacterSelected[number].GetComponent<SnowWhite>().HP;
+    //    }
+
+    //    return 0;
+    //}
+
+    void SetInitialGauge()
     {
-        for(int i = 0; i < GameManager.instance.Characters.Length; i++)
-        {
-            switch(i)
-            {
-                case 0:
-                    Player1HPGauge.fillAmount = GetPlayerHP(i);
-                    break;
-                case 1:
-                    Player2HPGauge.fillAmount = GetPlayerHP(i);
-                    break;
-                case 2:
-                    Player3HPGauge.fillAmount = GetPlayerHP(i);
-                    break;
-            }
-        }
+        GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentHP = GameManager.instance.AliceCurrentHP;
+        GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentMP = GameManager.instance.AliceCurrentMP;
 
+        GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentHP = GameManager.instance.GretelCurrentHP;
+        GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentMP = GameManager.instance.GretelCurrentMP;
 
-        for(int i = 0; i < StageManager.EnemyInfo.Count; i++)
-        {
-            if(StageManager.EnemyInfo[i] != null && StageManager.EnemyInfo[i].name.StartsWith("Lightning"))
-            {
-                BossHPGauge.fillAmount = StageManager.EnemyInfo[i].GetComponent<Lightning>().CurrentHP / StageManager.EnemyInfo[i].GetComponent<Lightning>().HP;
-
-                for(int j = 0; j < EnemyHPGauge.Length; j++)
-                {
-                    EnemyHPGauge[j].gameObject.SetActive(false);
-                }
-            }
-            else
-            {
-                BossHPGauge.gameObject.SetActive(false);
-
-                if (StageManager.EnemyInfo[i] == null)
-                {
-                    EnemyHPGauge[i].gameObject.SetActive(false);
-                    EnemySelectButton[i].gameObject.SetActive(false);
-                }
-                else
-                {
-                    if (StageManager.EnemyInfo[i].name.StartsWith("Rat"))
-                    {
-                        EnemyHPGauge[i].fillAmount = StageManager.EnemyInfo[i].GetComponent<Rat>().CurrentHP / StageManager.EnemyInfo[i].GetComponent<Rat>().HP;
-                    }
-                    else if (StageManager.EnemyInfo[i].name.StartsWith("Wolf"))
-                    {
-                        EnemyHPGauge[i].fillAmount = StageManager.EnemyInfo[i].GetComponent<Wolf>().CurrentHP / StageManager.EnemyInfo[i].GetComponent<Wolf>().HP;
-                    }
-                }
-            }
-        }
-
-        //for(int i = 0; i < EnemyHPGauge.Length; i++)
-        //{
-        //    if(StageManager.EnemyInfo[i] == null)
-        //    {
-        //        EnemyHPGauge[i].gameObject.SetActive(false);
-        //        EnemySelectButton[i].gameObject.SetActive(false);
-        //    }
-        //    else
-        //    {
-        //        if (StageManager.EnemyInfo[i].name.StartsWith("Rat"))
-        //        {
-        //            EnemyHPGauge[i].fillAmount = StageManager.EnemyInfo[i].GetComponent<Rat>().CurrentHP / StageManager.EnemyInfo[i].GetComponent<Rat>().HP;
-        //        }
-        //        else if(StageManager.EnemyInfo[i].name.StartsWith("Wolf"))
-        //        {
-        //            EnemyHPGauge[i].fillAmount = StageManager.EnemyInfo[i].GetComponent<Wolf>().CurrentHP / StageManager.EnemyInfo[i].GetComponent<Wolf>().HP;
-        //        }
-        //        else if (StageManager.EnemyInfo[i].name.StartsWith("Lightning"))
-        //        {
-        //            EnemyHPGauge[i].fillAmount = StageManager.EnemyInfo[i].GetComponent<Lightning>().CurrentHP / StageManager.EnemyInfo[i].GetComponent<Lightning>().HP;
-        //        }
-        //    }
-        //}        
-    }    
-
-    float GetPlayerHP(int number)
-    {
-        if (GameManager.instance.CharacterSelected[number].name.StartsWith("Alice"))
-        {
-            return GameManager.instance.CharacterSelected[number].GetComponent<Alice>().CurrentHP / GameManager.instance.CharacterSelected[number].GetComponent<Alice>().HP;
-        }
-        else if (GameManager.instance.CharacterSelected[number].name.StartsWith("Gretel"))
-        {
-            return GameManager.instance.CharacterSelected[number].GetComponent<Gretel>().CurrentHP / GameManager.instance.CharacterSelected[number].GetComponent<Gretel>().HP;
-        }
-        else if (GameManager.instance.CharacterSelected[number].name.StartsWith("Snow White"))
-        {
-            return GameManager.instance.CharacterSelected[number].GetComponent<SnowWhite>().CurrentHP / GameManager.instance.CharacterSelected[number].GetComponent<SnowWhite>().HP;
-        }
-
-        return 0;
+        GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentHP = GameManager.instance.SWCurrentHP;
+        GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentMP = GameManager.instance.SWCurrentMP;
     }
 
     void SetGauge()
@@ -1274,6 +1291,15 @@ public class UIManager : MonoBehaviour
                             Inventory.ItemAmount.Add(ItemButtons[i].GetComponent<UIItem>().ItemData.ItemAmount);
                         }
                     }
+
+                    GameManager.instance.AliceCurrentHP = GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentHP;
+                    GameManager.instance.AliceCurrentMP = GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentMP;
+
+                    GameManager.instance.GretelCurrentHP = GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentHP;
+                    GameManager.instance.GretelCurrentMP = GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentMP;
+
+                    GameManager.instance.SWCurrentHP = GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentHP;
+                    GameManager.instance.SWCurrentMP = GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentMP;
                 }
                 else
                 {

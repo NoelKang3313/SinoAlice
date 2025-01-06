@@ -64,6 +64,14 @@ public class GameManager : MonoBehaviour
     public int GretelPositionNumber;
     public int SWPositionNumber;
 
+    [Header("Characters HP & MP Gauge")]
+    public float AliceCurrentHP;
+    public float AliceCurrentMP;
+    public float GretelCurrentHP;
+    public float GretelCurrentMP;
+    public float SWCurrentHP;
+    public float SWCurrentMP;
+
     public int SkillButtonNumber;     //Check Skill Button Number and Instantiate Skill Prefab
 
     public bool isAction = false;
@@ -84,14 +92,14 @@ public class GameManager : MonoBehaviour
 
         Gald = 50000;
 
-        AlicePrefab.GetComponent<Alice>().CurrentHP = AlicePrefab.GetComponent<Alice>().HP;
-        AlicePrefab.GetComponent<Alice>().CurrentMP = AlicePrefab.GetComponent<Alice>().MP;
+        AliceCurrentHP = AlicePrefab.GetComponent<Alice>().HP;
+        AliceCurrentMP = AlicePrefab.GetComponent<Alice>().MP;
 
-        GretelPrefab.GetComponent<Gretel>().CurrentHP = GretelPrefab.GetComponent<Gretel>().HP;
-        GretelPrefab.GetComponent<Gretel>().CurrentMP = GretelPrefab.GetComponent<Gretel>().MP;
+        GretelCurrentHP = GretelPrefab.GetComponent<Gretel>().HP;
+        GretelCurrentMP = GretelPrefab.GetComponent<Gretel>().MP;
 
-        SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP = SnowWhitePrefab.GetComponent<SnowWhite>().HP;
-        SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP = SnowWhitePrefab.GetComponent<SnowWhite>().MP;
+        SWCurrentHP = SnowWhitePrefab.GetComponent<SnowWhite>().HP;
+        SWCurrentMP = SnowWhitePrefab.GetComponent<SnowWhite>().MP;
     }
 
     void Update()

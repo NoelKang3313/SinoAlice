@@ -111,7 +111,7 @@ public class Lightning : MonoBehaviour
         {
             if (isCurrentEnemyTurn)
             {
-                UIManager.CharacterMiniGauge.SetActive(false);
+                //UIManager.CharacterMiniGauge.SetActive(false);
 
                 if (!isRandom)
                 {
@@ -183,7 +183,7 @@ public class Lightning : MonoBehaviour
         {
             if(isCurrentEnemyTurn)
             {
-                UIManager.CharacterMiniGauge.SetActive(false);
+                //UIManager.CharacterMiniGauge.SetActive(false);
 
                 if (activateSkillNum == 2 || activateSkillNum == 4)
                 {
@@ -229,7 +229,7 @@ public class Lightning : MonoBehaviour
                                         GameManager.instance.TurnNumber++;
                                         activateSkillNum++;
 
-                                        UIManager.CharacterMiniGauge.SetActive(true);
+                                        //UIManager.CharacterMiniGauge.SetActive(true);
 
                                         DamagePlayer(10, playerRandom);
                                     }
@@ -267,7 +267,7 @@ public class Lightning : MonoBehaviour
                                         GameManager.instance.TurnNumber++;
                                         activateSkillNum++;
 
-                                        UIManager.CharacterMiniGauge.SetActive(true);
+                                        //UIManager.CharacterMiniGauge.SetActive(true);
 
                                         DamagePlayer(10, playerRandom);
                                     }
@@ -299,7 +299,7 @@ public class Lightning : MonoBehaviour
                                         GameManager.instance.TurnNumber++;
                                         activateSkillNum++;
 
-                                        UIManager.CharacterMiniGauge.SetActive(true);
+                                        //UIManager.CharacterMiniGauge.SetActive(true);
 
                                         DamageAllPlayer(10);
                                     }
@@ -343,7 +343,7 @@ public class Lightning : MonoBehaviour
                                     GameManager.instance.TurnNumber++;
                                     activateSkillNum++;
 
-                                    UIManager.CharacterMiniGauge.SetActive(true);
+                                    //UIManager.CharacterMiniGauge.SetActive(true);
 
                                     DamagePlayer(10, playerRandom);
                                 }
@@ -379,7 +379,7 @@ public class Lightning : MonoBehaviour
                                     GameManager.instance.TurnNumber++;
                                     activateSkillNum++;
 
-                                    UIManager.CharacterMiniGauge.SetActive(true);
+                                    //UIManager.CharacterMiniGauge.SetActive(true);
 
                                     DamagePlayer(10, playerRandom);
                                 }
@@ -415,7 +415,7 @@ public class Lightning : MonoBehaviour
                                     GameManager.instance.TurnNumber++;
                                     activateSkillNum++;
 
-                                    UIManager.CharacterMiniGauge.SetActive(true);
+                                    //UIManager.CharacterMiniGauge.SetActive(true);
 
                                     DamageAllPlayer(10);
                                 }
@@ -489,7 +489,7 @@ public class Lightning : MonoBehaviour
                 GameManager.instance.isTurn = true;
                 GameManager.instance.TurnNumber++;
 
-                UIManager.CharacterMiniGauge.SetActive(true);
+                //UIManager.CharacterMiniGauge.SetActive(true);
 
                 DamagePlayer(10, playerRandom);
                 activateSkillNum++;                
@@ -508,7 +508,7 @@ public class Lightning : MonoBehaviour
                 GameManager.instance.isTurn = true;
                 GameManager.instance.TurnNumber++;
 
-                UIManager.CharacterMiniGauge.SetActive(true);
+                //UIManager.CharacterMiniGauge.SetActive(true);
 
                 DamagePlayer(10, playerRandom);
                 activateSkillNum++;
@@ -528,7 +528,7 @@ public class Lightning : MonoBehaviour
                 GameManager.instance.isTurn = true;
                 GameManager.instance.TurnNumber++;
 
-                UIManager.CharacterMiniGauge.SetActive(true);
+                //UIManager.CharacterMiniGauge.SetActive(true);
 
                 DamageAllPlayer(10);
                 activateSkillNum = 0;
@@ -548,7 +548,7 @@ public class Lightning : MonoBehaviour
                 GameManager.instance.isTurn = true;
                 GameManager.instance.TurnNumber++;
 
-                UIManager.CharacterMiniGauge.SetActive(true);
+                //UIManager.CharacterMiniGauge.SetActive(true);
 
                 DamagePlayer(10, playerRandom);
                 activateSkillNum = 0;

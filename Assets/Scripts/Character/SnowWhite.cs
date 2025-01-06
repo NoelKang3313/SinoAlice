@@ -104,7 +104,7 @@ public class SnowWhite : MonoBehaviour
 
     void SetEnemyPosition()
     {
-        if (StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
+        if (GameManager.instance.isBossStage)
         {
             if(GameManager.instance.isAttackButtonActive)
             {
@@ -126,7 +126,7 @@ public class SnowWhite : MonoBehaviour
         {
             if(GameManager.instance.isAttackButtonActive)
             {
-                enemyPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(2.5f, 0);
+                enemyPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(2.5f, 0.5f);
             }
             else if(GameManager.instance.isSkillButtonActive)
             {
@@ -173,7 +173,7 @@ public class SnowWhite : MonoBehaviour
         {
             if (GameManager.instance.isSWTurn)
             {
-                UIManager.CharacterMiniGauge.SetActive(true);
+                //UIManager.CharacterMiniGauge.SetActive(true);
 
                 if (!isBattleStartAudioPlaying)
                 {
@@ -194,7 +194,7 @@ public class SnowWhite : MonoBehaviour
 
                     if (GameManager.instance.isAction)
                     {
-                        UIManager.CharacterMiniGauge.SetActive(false);
+                        //UIManager.CharacterMiniGauge.SetActive(false);
 
                         if (!isAttackSelectAudioPlaying)
                         {
@@ -226,7 +226,7 @@ public class SnowWhite : MonoBehaviour
                             {
                                 isAttacking = true;                                
 
-                                if (StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
+                                if (GameManager.instance.isBossStage)
                                 {                                    
                                     attackEffectPosition = GameManager.instance.BossPosition;
                                 }
@@ -270,7 +270,7 @@ public class SnowWhite : MonoBehaviour
 
                     if (GameManager.instance.isAction)
                     {
-                        UIManager.CharacterMiniGauge.SetActive(false);
+                        //UIManager.CharacterMiniGauge.SetActive(false);
 
                         if (!isAttackSelectAudioPlaying)
                         {
@@ -420,7 +420,7 @@ public class SnowWhite : MonoBehaviour
                                     GameManager.instance.isTurn = true;
                                     GameManager.instance.TurnNumber++;
 
-                                    DamageAllEnemy(10);
+                                    DamageAllEnemy(100);
                                 }
 
                                 break;
@@ -433,7 +433,7 @@ public class SnowWhite : MonoBehaviour
 
                     if (GameManager.instance.isAction)
                     {
-                        UIManager.CharacterMiniGauge.SetActive(false);
+                        //UIManager.CharacterMiniGauge.SetActive(false);
 
                         animator.SetBool("MagicAttack", true);
 

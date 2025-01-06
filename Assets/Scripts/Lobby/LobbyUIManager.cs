@@ -221,7 +221,7 @@ public class LobbyUIManager : MonoBehaviour
             LidBubble.gameObject.SetActive(true);
             LidBubble.SetBool("isActive", true);
 
-            LidBubbleText.text = "무엇을" + System.Environment.NewLine + "구매하시겠습니까?";
+            LidBubbleText.text = "무엇??" + System.Environment.NewLine + "구매?�시겠습?�까?";
 
             AliceBubble.gameObject.SetActive(true);
             AliceBubble.Play("Bubble Active");
@@ -238,8 +238,8 @@ public class LobbyUIManager : MonoBehaviour
             if(!isWorldmapButtonClicked)
             {
                 isWorldmapButtonClicked = true;
-                NPCDialogueText.text = "준비되셨습니까?";
-                NPCButtonText.text = "입장";
+                NPCDialogueText.text = "준비되?�습?�까?";
+                NPCButtonText.text = "?�장";
             }
             else
             {
@@ -257,8 +257,8 @@ public class LobbyUIManager : MonoBehaviour
     {
         if(isWorldmapButtonClicked)
         {
-            NPCButtonText.text = "월드맵";
-            NPCDialogueText.text = "어서오십시오, 기다리고 있었습니다.";
+            NPCButtonText.text = "?�드�?";
+            NPCDialogueText.text = "?�서?�십?�오, 기다리고 ?�었?�니??";
             isWorldmapButtonClicked = false;
         }
         else
@@ -525,12 +525,12 @@ public class LobbyUIManager : MonoBehaviour
                 PurchasePanel.SetActive(false);
 
                 LidBubble.SetBool("isActive", true);
-                LidBubbleText.text = "구매 감사합니다";
+                LidBubbleText.text = "구매 감사?�니??";
             }
             else
             {
                 LidBubble.SetBool("isActive", true);
-                LidBubbleText.text = "현재는 구매하실 수" + System.Environment.NewLine + "없습니다";
+                LidBubbleText.text = "?�재??구매?�실 ??" + System.Environment.NewLine + "?�습?�다";
 
                 PurchasePanel.SetActive(false);
             }
@@ -814,23 +814,23 @@ public class LobbyUIManager : MonoBehaviour
 
     void SetGaugeUI()
     {
-        AliceHPText.text = AlicePrefab.GetComponent<Alice>().CurrentHP.ToString() + "/" + AlicePrefab.GetComponent<Alice>().HP.ToString();
-        AliceMPText.text = AlicePrefab.GetComponent<Alice>().CurrentMP.ToString() + "/" + AlicePrefab.GetComponent<Alice>().MP.ToString();
+        AliceHPText.text = GameManager.instance.AliceCurrentHP.ToString() + "/" + AlicePrefab.GetComponent<Alice>().HP.ToString();
+        AliceMPText.text = GameManager.instance.AliceCurrentMP.ToString() + "/" + AlicePrefab.GetComponent<Alice>().MP.ToString();
 
-        AliceHPGauge.fillAmount  = GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentHP / GameManager.instance.AlicePrefab.GetComponent<Alice>().HP;
-        AliceMPGauge.fillAmount = GameManager.instance.AlicePrefab.GetComponent<Alice>().CurrentMP / GameManager.instance.AlicePrefab.GetComponent<Alice>().MP;
+        AliceHPGauge.fillAmount  = GameManager.instance.AliceCurrentHP / GameManager.instance.AlicePrefab.GetComponent<Alice>().HP;
+        AliceMPGauge.fillAmount = GameManager.instance.AliceCurrentMP / GameManager.instance.AlicePrefab.GetComponent<Alice>().MP;
 
-        GretelHPText.text = GretelPrefab.GetComponent<Gretel>().CurrentHP.ToString() + "/" + GretelPrefab.GetComponent<Gretel>().HP.ToString();
-        GretelMPText.text = GretelPrefab.GetComponent<Gretel>().CurrentMP.ToString() + "/" + GretelPrefab.GetComponent<Gretel>().MP.ToString();
+        GretelHPText.text = GameManager.instance.GretelCurrentHP.ToString() + "/" + GretelPrefab.GetComponent<Gretel>().HP.ToString();
+        GretelMPText.text = GameManager.instance.GretelCurrentMP.ToString() + "/" + GretelPrefab.GetComponent<Gretel>().MP.ToString();
 
-        GretelHPGauge.fillAmount = GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentHP / GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP;
-        GretelMPGauge.fillAmount = GameManager.instance.GretelPrefab.GetComponent<Gretel>().CurrentMP / GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP;
+        GretelHPGauge.fillAmount = GameManager.instance.GretelCurrentHP / GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP;
+        GretelMPGauge.fillAmount = GameManager.instance.GretelCurrentMP / GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP;
 
-        SWHPText.text = SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP.ToString() + "/" + SnowWhitePrefab.GetComponent<SnowWhite>().HP.ToString();
-        SWMPText.text = SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP.ToString() + "/" + SnowWhitePrefab.GetComponent<SnowWhite>().MP.ToString();
+        SWHPText.text = GameManager.instance.SWCurrentHP.ToString() + "/" + SnowWhitePrefab.GetComponent<SnowWhite>().HP.ToString();
+        SWMPText.text = GameManager.instance.SWCurrentMP.ToString() + "/" + SnowWhitePrefab.GetComponent<SnowWhite>().MP.ToString();
 
-        SWHPGauge.fillAmount = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentHP / GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP;
-        SWMPGauge.fillAmount = GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().CurrentMP / GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP;
+        SWHPGauge.fillAmount = GameManager.instance.SWCurrentHP / GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP;
+        SWMPGauge.fillAmount = GameManager.instance.SWCurrentMP / GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP;
     }
 
     void SetUIInventory()
