@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -15,9 +16,12 @@ public class StageManager : MonoBehaviour
     public int EnemyCount = 0;  // Check All Enemies are Eliminated    
 
     public List<Vector2> DeadEnemyPositions = new List<Vector2>();
+    public List<int> CoinAmount = new List<int>();
     public GameObject CoinPrefab;
-    private GameObject coin;
+    public List<GameObject> coin = new List<GameObject>();
     private bool isCoinInstantiated;
+    public int ObtainedCoin;
+    private bool isCoinObtained;
 
     public int MaxSortLayer = 4;
     public int MinSortLayer = 2;
@@ -111,6 +115,12 @@ public class StageManager : MonoBehaviour
         }
 
         EnemyDeadCoinDrop();
+
+        if(GameManager.instance.isBattleOver && !isCoinObtained)
+        {
+            isCoinObtained = true;
+            GameManager.instance.Gald += ObtainedCoin;
+        }
     }
 
     void SetCharactersTurn()
@@ -174,23 +184,35 @@ public class StageManager : MonoBehaviour
 
     void EnemyDeadCoinDrop()
     {
-        if(DeadEnemyPositions.Count != 0)
+        if(DeadEnemyPositions.Count != 0 && !isCoinInstantiated)
         {
+            isCoinInstantiated = true;
+
             for(int i = 0; i < DeadEnemyPositions.Count; i++)
             {
-                if(!isCoinInstantiated)
-                {
-                    isCoinInstantiated = true;
-                    coin = Instantiate(CoinPrefab, DeadEnemyPositions[i], Quaternion.identity);
-                }
+                coin.Add(Instantiate(CoinPrefab, DeadEnemyPositions[i], Quaternion.identity));
+                coin[i].GetComponentInChildren<TextMeshPro>().text = "+" + CoinAmount[i].ToString();
+                ObtainedCoin += CoinAmount[i];
+            }
+        }
 
-                if (coin.activeSelf && coin.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
+        if(coin.Count != 0)
+        {
+            for(int i = 0; i < coin.Count; i++)
+            {
+                if (coin[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
                 {
-                    isCoinInstantiated = false;
+                    Destroy(coin[i]);
                     DeadEnemyPositions.RemoveAt(i);
-                    Destroy(coin);
+                    coin.RemoveAt(i);
+                    CoinAmount.RemoveAt(i);
                 }
             }
+        }
+
+        if (DeadEnemyPositions.Count == 0)
+        {
+            isCoinInstantiated = false;
         }
     }
 }

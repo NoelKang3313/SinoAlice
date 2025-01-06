@@ -106,7 +106,7 @@ public class Alice : MonoBehaviour
 
     void SetEnemyPosition()
     {
-        if (StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
+        if (GameManager.instance.isBossStage)
         {
             if (GameManager.instance.isAttackButtonActive)
             {
@@ -128,7 +128,7 @@ public class Alice : MonoBehaviour
         {
             if (GameManager.instance.isAttackButtonActive)
             {
-                enemyPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(1.8f, 0f);
+                enemyPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(1.8f, 0.5f);
             }
             else if (GameManager.instance.isSkillButtonActive)
             {
@@ -175,7 +175,7 @@ public class Alice : MonoBehaviour
         {
             if (GameManager.instance.isAliceTurn)
             {
-                UIManager.CharacterMiniGauge.SetActive(true);
+                //UIManager.CharacterMiniGauge.SetActive(true);
 
                 if (!isBattleStartAudioPlaying)
                 {
@@ -203,7 +203,7 @@ public class Alice : MonoBehaviour
                             audioSource.PlayOneShot(AttackSelect[attackSelectRandom]);
                         }
 
-                        UIManager.CharacterMiniGauge.SetActive(false);
+                        //UIManager.CharacterMiniGauge.SetActive(false);
 
                         SetEnemyPosition();
 
@@ -228,7 +228,7 @@ public class Alice : MonoBehaviour
                             {
                                 isAttacking = true;
 
-                                if (StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
+                                if (GameManager.instance.isBossStage)
                                 {
                                     StageManager.EnemyInfo[0].GetComponent<SpriteRenderer>().sortingOrder = StageManager.MinSortLayer;
                                     attackEffectPosition = GameManager.instance.BossPosition;
@@ -274,7 +274,7 @@ public class Alice : MonoBehaviour
 
                     if (GameManager.instance.isAction)
                     {
-                        UIManager.CharacterMiniGauge.SetActive(false);
+                        //UIManager.CharacterMiniGauge.SetActive(false);
 
                         if (!isAttackSelectAudioPlaying)
                         {
@@ -438,7 +438,7 @@ public class Alice : MonoBehaviour
 
                     if (GameManager.instance.isAction)
                     {
-                        UIManager.CharacterMiniGauge.SetActive(false);
+                        //UIManager.CharacterMiniGauge.SetActive(false);
 
                         animator.SetBool("MagicAttack", true);
 
@@ -492,7 +492,7 @@ public class Alice : MonoBehaviour
                 isAttacking = false;
                 Destroy(attackEffect);
 
-                DamageEnemy(10);
+                DamageEnemy(100);
             }            
         }
     }

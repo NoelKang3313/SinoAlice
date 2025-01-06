@@ -123,6 +123,7 @@ public class Rat : MonoBehaviour
         {            
             Destroy(gameObject);
             StageManager.DeadEnemyPositions.Add(gameObject.transform.position);
+            StageManager.CoinAmount.Add(10);
             StageManager.CharacterTurns.Remove(gameObject);
             StageManager.CharacterSpeeds.Remove(gameObject.GetComponent<Rat>().Speed);
             StageManager.EnemyCount--;

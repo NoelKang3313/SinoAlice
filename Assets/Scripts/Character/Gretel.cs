@@ -98,7 +98,7 @@ public class Gretel : MonoBehaviour
 
     void SetEnemyPosition()
     {
-        if (StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
+        if (GameManager.instance.isBossStage)
         {
             if (GameManager.instance.isAttackButtonActive)
             {
@@ -120,7 +120,7 @@ public class Gretel : MonoBehaviour
         {
             if (GameManager.instance.isAttackButtonActive)
             {
-                enemyPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(2.6f, 0);
+                enemyPosition = GameManager.instance.EnemyPositions[GameManager.instance.EnemyPositionNumber] + new Vector2(2.6f, 0.5f);
             }
             else if (GameManager.instance.isSkillButtonActive)
             {
@@ -171,7 +171,7 @@ public class Gretel : MonoBehaviour
         {
             if (GameManager.instance.isGretelTurn)
             {
-                UIManager.CharacterMiniGauge.SetActive(true);
+                //UIManager.CharacterMiniGauge.SetActive(true);
 
                 if (!isBattleStartAudioPlaying)
                 {
@@ -192,7 +192,7 @@ public class Gretel : MonoBehaviour
 
                     if (GameManager.instance.isAction)
                     {
-                        UIManager.CharacterMiniGauge.SetActive(false);
+                        //UIManager.CharacterMiniGauge.SetActive(false);
 
                         if (!isAttackSelectAudioPlaying)
                         {
@@ -220,7 +220,7 @@ public class Gretel : MonoBehaviour
                             ResetAnimationTrigger("Move");
                             animator.SetBool("Attack", true);
 
-                            if (StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
+                            if (GameManager.instance.isBossStage)
                             {
                                 StageManager.EnemyInfo[0].GetComponent<SpriteRenderer>().sortingOrder = StageManager.MinSortLayer;                                
                             }
@@ -257,7 +257,7 @@ public class Gretel : MonoBehaviour
 
                     if (GameManager.instance.isAction)
                     {
-                        UIManager.CharacterMiniGauge.SetActive(false);
+                        //UIManager.CharacterMiniGauge.SetActive(false);
 
                         if (!isAttackSelectAudioPlaying)
                         {
@@ -421,7 +421,7 @@ public class Gretel : MonoBehaviour
 
                     if (GameManager.instance.isAction)
                     {
-                        UIManager.CharacterMiniGauge.SetActive(false);
+                        //UIManager.CharacterMiniGauge.SetActive(false);
 
                         animator.SetBool("MagicAttack", true);
 
@@ -472,7 +472,7 @@ public class Gretel : MonoBehaviour
                 GameManager.instance.isTurn = true;
                 GameManager.instance.TurnNumber++;
 
-                DamageEnemy(10);
+                DamageEnemy(100);
             }
         }
     }

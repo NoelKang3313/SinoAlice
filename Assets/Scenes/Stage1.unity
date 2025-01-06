@@ -1249,7 +1249,10 @@ MonoBehaviour:
   CharacterSpeeds: []
   EnemyCount: 0
   DeadEnemyPositions: []
+  CoinAmount: 
   CoinPrefab: {fileID: 8800266211396121382, guid: eec75ca663dd040a9959566729c218f6, type: 3}
+  coin: []
+  ObtainedCoin: 0
   MaxSortLayer: 4
   MinSortLayer: 2
 --- !u!1 &320974116
@@ -2485,16 +2488,6 @@ MonoBehaviour:
   CharacterMPGauge: {fileID: 60103669}
   CurrentHPText: {fileID: 1058925854}
   CurrentMPText: {fileID: 1932286549}
-  CharacterMiniGauge: {fileID: 452238515}
-  Player1HPGauge: {fileID: 972625395}
-  Player2HPGauge: {fileID: 1422188327}
-  Player3HPGauge: {fileID: 454289221}
-  EnemyHPGauge:
-  - {fileID: 978774940}
-  - {fileID: 1266333757}
-  - {fileID: 309483259}
-  - {fileID: 1329539863}
-  BossHPGauge: {fileID: 1147304561}
   AliceSprite: {fileID: 21300000, guid: f22d0646fe2ba462d89679e20f85e1d6, type: 3}
   GretelSprite: {fileID: 21300000, guid: f2bcb705fe8f94726891ca9c66f3cf98, type: 3}
   SnowWhiteSprite: {fileID: 21300000, guid: ff57471dcd1e14c05820bc9ca9830e1f, type: 3}

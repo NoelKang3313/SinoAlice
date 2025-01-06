@@ -122,6 +122,8 @@ public class Wolf : MonoBehaviour
         if (gameObject != null && CurrentHP <= 0)
         {
             Destroy(gameObject);
+            StageManager.DeadEnemyPositions.Add(gameObject.transform.position);
+            StageManager.CoinAmount.Add(30);
             StageManager.CharacterTurns.Remove(gameObject);
             StageManager.CharacterSpeeds.Remove(gameObject.GetComponent<Wolf>().Speed);
             StageManager.EnemyCount--;
