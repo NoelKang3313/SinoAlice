@@ -12,7 +12,12 @@ public class StageManager : MonoBehaviour
 
     public List<float> CharacterSpeeds;
 
-    public int EnemyCount = 0;  // Check All Enemies are Eliminated
+    public int EnemyCount = 0;  // Check All Enemies are Eliminated    
+
+    public List<Vector2> DeadEnemyPositions = new List<Vector2>();
+    public GameObject CoinPrefab;
+    private GameObject coin;
+    private bool isCoinInstantiated;
 
     public int MaxSortLayer = 4;
     public int MinSortLayer = 2;
@@ -104,6 +109,8 @@ public class StageManager : MonoBehaviour
         {
             GameManager.instance.TurnNumber = 0;
         }
+
+        EnemyDeadCoinDrop();
     }
 
     void SetCharactersTurn()
@@ -163,5 +170,27 @@ public class StageManager : MonoBehaviour
 
             GameManager.instance.isTurn = false;
         }        
+    }
+
+    void EnemyDeadCoinDrop()
+    {
+        if(DeadEnemyPositions.Count != 0)
+        {
+            for(int i = 0; i < DeadEnemyPositions.Count; i++)
+            {
+                if(!isCoinInstantiated)
+                {
+                    isCoinInstantiated = true;
+                    coin = Instantiate(CoinPrefab, DeadEnemyPositions[i], Quaternion.identity);
+                }
+
+                if (coin.activeSelf && coin.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
+                {
+                    isCoinInstantiated = false;
+                    DeadEnemyPositions.RemoveAt(i);
+                    Destroy(coin);
+                }
+            }
+        }
     }
 }
