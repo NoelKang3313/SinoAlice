@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21961bedcd4944d3786e73fd870e71b8, type: 3}
   m_Name: Gold Gel
   m_EditorClassIdentifier: 
-  ItemID: 6
+  ItemID: 5
   ItemName: "\uACE8\uB4DC \uC824\uB9AC"
   ItemSprite: {fileID: 21300000, guid: d10339a4615da4eeda61ffa7b2ae869d, type: 3}
   ItemDescription: "\uD300\uC6D0\uC758 HP & MP 35% \uD68C\uBCF5"

@@ -10,12 +10,7 @@ public class LobbyUIManager : MonoBehaviour
 
     public Inventory Inventory;
     public UIInventory UIInventory;
-    public UICharacterInfo UICharacterInfo;    
-
-    [Header("Character Prefab")]
-    public GameObject AlicePrefab;
-    public GameObject GretelPrefab;
-    public GameObject SnowWhitePrefab;
+    public UICharacterInfo UICharacterInfo;
 
     public Image TransitionImage;
 
@@ -221,7 +216,7 @@ public class LobbyUIManager : MonoBehaviour
             LidBubble.gameObject.SetActive(true);
             LidBubble.SetBool("isActive", true);
 
-            LidBubbleText.text = "무엇??" + System.Environment.NewLine + "구매?�시겠습?�까?";
+            LidBubbleText.text = "????????" + System.Environment.NewLine + "???????????????????????";
 
             AliceBubble.gameObject.SetActive(true);
             AliceBubble.Play("Bubble Active");
@@ -238,8 +233,8 @@ public class LobbyUIManager : MonoBehaviour
             if(!isWorldmapButtonClicked)
             {
                 isWorldmapButtonClicked = true;
-                NPCDialogueText.text = "준비되?�습?�까?";
-                NPCButtonText.text = "?�장";
+                NPCDialogueText.text = "????????????????????";
+                NPCButtonText.text = "?????";
             }
             else
             {
@@ -257,8 +252,8 @@ public class LobbyUIManager : MonoBehaviour
     {
         if(isWorldmapButtonClicked)
         {
-            NPCButtonText.text = "?�드�?";
-            NPCDialogueText.text = "?�서?�십?�오, 기다리고 ?�었?�니??";
+            NPCButtonText.text = "????????";
+            NPCDialogueText.text = "???????????????, ???????????? ????????????";
             isWorldmapButtonClicked = false;
         }
         else
@@ -440,6 +435,17 @@ public class LobbyUIManager : MonoBehaviour
         isItemPurchaseButtonPressed = true;
         isEquipmentPurchaseButtonPresed = false;
 
+        LidItemShopButton.enabled = false;
+        LidEquipmentShopButton.enabled = false;
+        LidShopExitButton.enabled = false;
+
+        LidShopScrollRect.vertical = false;
+
+        for(int i = 0; i < LidShopItemPurchaseButtons.Length; i++)
+        {
+            LidShopItemPurchaseButtons[i].enabled = false;
+        }
+
         purchaseItemData = ItemDatas[number];
 
         PurchasePanel.SetActive(true);
@@ -457,9 +463,31 @@ public class LobbyUIManager : MonoBehaviour
         isItemPurchaseButtonPressed = false;
         isEquipmentPurchaseButtonPresed = true;
 
-        PurchasePanel.SetActive(true);
+        LidItemShopButton.enabled = false;
+        LidEquipmentShopButton.enabled = false;        
+        LidShopExitButton.enabled = false;
+
+        for(int i = 0; i < EquipmentButtons.Length; i++)
+        {
+            EquipmentButtons[i].enabled = false;
+        }
+
+        LidShopScrollRect.vertical = false;
+
+        for(int i = 0; i < LidShopWeaponPurchaseButtons.Length; i++)
+        {
+            LidShopWeaponPurchaseButtons[i].enabled = false;
+        }
 
         purchaseEquipmentData = WeaponDatas[number];
+
+        PurchasePanel.SetActive(true);
+        PurchasePanelItemImage.sprite = purchaseEquipmentData.EquipmentSprite;
+        PurchasePanelItemName.text = purchaseEquipmentData.EquipmentName;
+        PurchasePanelItemCostText.text = purchaseEquipmentData.EquipmentCost.ToString("#,##0") + " Gald";
+
+        AudioManager.NPCAudioSource.clip = AudioManager.LidPurchaseButtonClip;
+        AudioManager.NPCAudioSource.Play();
     }
 
     // Purchase Helmet
@@ -468,9 +496,31 @@ public class LobbyUIManager : MonoBehaviour
         isItemPurchaseButtonPressed = false;
         isEquipmentPurchaseButtonPresed = true;
 
-        PurchasePanel.SetActive(true);
+        LidItemShopButton.enabled = false;
+        LidEquipmentShopButton.enabled = false;
+        LidShopExitButton.enabled = false;
 
-        purchaseEquipmentData = HelmetDatas[number];        
+        for (int i = 0; i < EquipmentButtons.Length; i++)
+        {
+            EquipmentButtons[i].enabled = false;
+        }
+
+        LidShopScrollRect.vertical = false;
+
+        for(int i = 0; i < LidShopHelmetPurchaseButtons.Length; i++)
+        {
+            LidShopHelmetPurchaseButtons[i].enabled = false;
+        }
+
+        purchaseEquipmentData = HelmetDatas[number];
+
+        PurchasePanel.SetActive(true);
+        PurchasePanelItemImage.sprite = purchaseEquipmentData.EquipmentSprite;
+        PurchasePanelItemName.text = purchaseEquipmentData.EquipmentName;
+        PurchasePanelItemCostText.text = purchaseEquipmentData.EquipmentCost.ToString("#,##0") + " Gald";
+
+        AudioManager.NPCAudioSource.clip = AudioManager.LidPurchaseButtonClip;
+        AudioManager.NPCAudioSource.Play();
     }
 
     // Purchase Armor
@@ -479,9 +529,31 @@ public class LobbyUIManager : MonoBehaviour
         isItemPurchaseButtonPressed = false;
         isEquipmentPurchaseButtonPresed = true;
 
-        PurchasePanel.SetActive(true);
+        LidItemShopButton.enabled = false;
+        LidEquipmentShopButton.enabled = false;
+        LidShopExitButton.enabled = false;
 
-        purchaseEquipmentData = ArmorDatas[number];        
+        for (int i = 0; i < EquipmentButtons.Length; i++)
+        {
+            EquipmentButtons[i].enabled = false;
+        }
+
+        LidShopScrollRect.vertical = false;
+
+        for(int i = 0; i < LidShopArmorPurchaseButtons.Length; i++)
+        {
+            LidShopArmorPurchaseButtons[i].enabled = false;
+        }
+
+        purchaseEquipmentData = ArmorDatas[number];
+
+        PurchasePanel.SetActive(true);
+        PurchasePanelItemImage.sprite = purchaseEquipmentData.EquipmentSprite;
+        PurchasePanelItemName.text = purchaseEquipmentData.EquipmentName;
+        PurchasePanelItemCostText.text = purchaseEquipmentData.EquipmentCost.ToString("#,##0") + " Gald";
+
+        AudioManager.NPCAudioSource.clip = AudioManager.LidPurchaseButtonClip;
+        AudioManager.NPCAudioSource.Play();
     }
 
     // Purchase Shoe
@@ -490,15 +562,37 @@ public class LobbyUIManager : MonoBehaviour
         isItemPurchaseButtonPressed = false;
         isEquipmentPurchaseButtonPresed = true;
 
-        PurchasePanel.SetActive(true);
+        LidItemShopButton.enabled = false;
+        LidEquipmentShopButton.enabled = false;
+        LidShopExitButton.enabled = false;
+
+        for (int i = 0; i < EquipmentButtons.Length; i++)
+        {
+            EquipmentButtons[i].enabled = false;
+        }
+
+        LidShopScrollRect.vertical = false;
+
+        for(int i = 0; i < LidShopShoePurchaseButtons.Length; i++)
+        {
+            LidShopShoePurchaseButtons[i].enabled = false;
+        }
 
         purchaseEquipmentData = ShoeDatas[number];
+
+        PurchasePanel.SetActive(true);
+        PurchasePanelItemImage.sprite = purchaseEquipmentData.EquipmentSprite;
+        PurchasePanelItemName.text = purchaseEquipmentData.EquipmentName;
+        PurchasePanelItemCostText.text = purchaseEquipmentData.EquipmentCost.ToString("#,##0") + " Gald";
+
+        AudioManager.NPCAudioSource.clip = AudioManager.LidPurchaseButtonClip;
+        AudioManager.NPCAudioSource.Play();
     }
 
     // Confirm purchasing
     void PurchaseConfirmButtonClicked()
     {
-        if (isItemPurchaseButtonPressed && !isEquipmentPurchaseButtonPresed)
+        if (isItemPurchaseButtonPressed)
         {
             if (GameManager.instance.Gald >= purchaseItemData.ItemCost)
             {
@@ -525,140 +619,256 @@ public class LobbyUIManager : MonoBehaviour
                 PurchasePanel.SetActive(false);
 
                 LidBubble.SetBool("isActive", true);
-                LidBubbleText.text = "구매 감사?�니??";
+                LidBubbleText.text = "?????? ?????????????";
             }
             else
             {
                 LidBubble.SetBool("isActive", true);
-                LidBubbleText.text = "?�재??구매?�실 ??" + System.Environment.NewLine + "?�습?�다";
+                LidBubbleText.text = "?????????????????? ??" + System.Environment.NewLine + "??????????";
 
                 PurchasePanel.SetActive(false);
+
+                LidItemShopButton.interactable = true;
+                LidEquipmentShopButton.interactable = true;
             }
         }
-        else if (!isItemPurchaseButtonPressed && isEquipmentPurchaseButtonPresed)
+        else if (isEquipmentPurchaseButtonPresed)
         {
             if(purchaseEquipmentData.EquipmentCategory == "Weapon")
             {
-                Inventory.Weapons.Add(purchaseEquipmentData);
-                purchaseEquipmentData.EquipmentAmount++;
+                if(GameManager.instance.Gald >= purchaseEquipmentData.EquipmentCost)
+                {
+                    Inventory.Weapons.Add(purchaseEquipmentData);
+                    purchaseEquipmentData.EquipmentAmount++;
 
-                CheckEquipment();
+                    GameManager.instance.Gald -= purchaseEquipmentData.EquipmentCost;
+                    GaldText.text = GameManager.instance.Gald.ToString("#,##0");
 
-                Button EquipmentSlot = Instantiate(UIInventory.UIEquipment, UIInventory.InventoryWeaponContent.transform.position, Quaternion.identity);
-                EquipmentSlot.transform.SetParent(UIInventory.InventoryWeaponContent.transform);
+                    CheckEquipment();
 
-                EquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
-                EquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchaseEquipmentData.EquipmentAmount.ToString();
-                EquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchaseEquipmentData;
+                    Button EquipmentSlot = Instantiate(UIInventory.UIEquipment, UIInventory.InventoryWeaponContent.transform.position, Quaternion.identity);
+                    EquipmentSlot.transform.SetParent(UIInventory.InventoryWeaponContent.transform);
 
-                Button CEquipmentSlot = Instantiate(UICharacterInfo.UICEquipment, UICharacterInfo.WeaponsContent.transform.position, Quaternion.identity);
-                CEquipmentSlot.transform.SetParent(UICharacterInfo.WeaponsContent.transform);
+                    EquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
+                    EquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchaseEquipmentData.EquipmentAmount.ToString();
+                    EquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchaseEquipmentData;
 
-                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
-                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = purchaseEquipmentData;
-                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = purchaseEquipmentData.EquipmentAmount;
+                    Button CEquipmentSlot = Instantiate(UICharacterInfo.UICEquipment, UICharacterInfo.WeaponsContent.transform.position, Quaternion.identity);
+                    CEquipmentSlot.transform.SetParent(UICharacterInfo.WeaponsContent.transform);
 
-                UIInventory.UIEquipments.Add(EquipmentSlot);
-                UICharacterInfo.UIWeapons.Add(CEquipmentSlot);
+                    CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
+                    CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = purchaseEquipmentData;
+                    CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = purchaseEquipmentData.EquipmentAmount;
 
-                CheckUIEquipment();
+                    UIInventory.UIEquipments.Add(EquipmentSlot);
+                    UICharacterInfo.UIWeapons.Add(CEquipmentSlot);
 
-                PurchasePanel.SetActive(false);
+                    CheckUIEquipment();
+
+                    PurchasePanel.SetActive(false);
+
+                    LidBubble.SetBool("isActive", true);
+                    LidBubbleText.text = "?????? ?????????????";
+                }
+                else
+                {
+                    LidBubble.SetBool("isActive", true);
+                    LidBubbleText.text = "?????????????????? ??" + System.Environment.NewLine + "??????????";
+
+                    PurchasePanel.SetActive(false);
+                }
             }
             else if(purchaseEquipmentData.EquipmentCategory == "Helmet")
             {
-                Inventory.Helmets.Add(purchaseEquipmentData);
-                purchaseEquipmentData.EquipmentAmount++;
+                if (GameManager.instance.Gald >= purchaseEquipmentData.EquipmentCost)
+                {
+                    Inventory.Helmets.Add(purchaseEquipmentData);
+                    purchaseEquipmentData.EquipmentAmount++;
 
-                CheckEquipment();
+                    GameManager.instance.Gald -= purchaseEquipmentData.EquipmentCost;
+                    GaldText.text = GameManager.instance.Gald.ToString("#,##0");
 
-                Button EquipmentSlot = Instantiate(UIInventory.UIEquipment, UIInventory.InventoryHelmetContent.transform.position, Quaternion.identity);
-                EquipmentSlot.transform.SetParent(UIInventory.InventoryHelmetContent.transform);
+                    CheckEquipment();
 
-                EquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
-                EquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchaseEquipmentData.EquipmentAmount.ToString();
-                EquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchaseEquipmentData;
+                    Button EquipmentSlot = Instantiate(UIInventory.UIEquipment, UIInventory.InventoryHelmetContent.transform.position, Quaternion.identity);
+                    EquipmentSlot.transform.SetParent(UIInventory.InventoryHelmetContent.transform);
 
-                Button CEquipmentSlot = Instantiate(UICharacterInfo.UICEquipment, UICharacterInfo.HelmetsContent.transform.position, Quaternion.identity);
-                CEquipmentSlot.transform.SetParent(UICharacterInfo.HelmetsContent.transform);
+                    EquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
+                    EquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchaseEquipmentData.EquipmentAmount.ToString();
+                    EquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchaseEquipmentData;
 
-                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
-                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = purchaseEquipmentData;
-                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = purchaseEquipmentData.EquipmentAmount;
+                    Button CEquipmentSlot = Instantiate(UICharacterInfo.UICEquipment, UICharacterInfo.HelmetsContent.transform.position, Quaternion.identity);
+                    CEquipmentSlot.transform.SetParent(UICharacterInfo.HelmetsContent.transform);
 
-                UIInventory.UIEquipments.Add(EquipmentSlot);
-                UICharacterInfo.UIHelmets.Add(CEquipmentSlot);
+                    CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
+                    CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = purchaseEquipmentData;
+                    CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = purchaseEquipmentData.EquipmentAmount;
 
-                CheckUIEquipment();
+                    UIInventory.UIEquipments.Add(EquipmentSlot);
+                    UICharacterInfo.UIHelmets.Add(CEquipmentSlot);
 
-                PurchasePanel.SetActive(false);
+                    CheckUIEquipment();
+
+                    PurchasePanel.SetActive(false);
+
+                    LidBubble.SetBool("isActive", true);
+                    LidBubbleText.text = "?????? ?????????????";
+                }
+                else
+                {
+                    LidBubble.SetBool("isActive", true);
+                    LidBubbleText.text = "?????????????????? ??" + System.Environment.NewLine + "??????????";
+
+                    PurchasePanel.SetActive(false);
+                }
             }
             else if(purchaseEquipmentData.EquipmentCategory == "Armor")
             {
-                Inventory.Armors.Add(purchaseEquipmentData);
-                purchaseEquipmentData.EquipmentAmount++;
+                if (GameManager.instance.Gald >= purchaseEquipmentData.EquipmentCost)
+                {
+                    Inventory.Armors.Add(purchaseEquipmentData);
+                    purchaseEquipmentData.EquipmentAmount++;
 
-                CheckEquipment();
+                    GameManager.instance.Gald -= purchaseEquipmentData.EquipmentCost;
+                    GaldText.text = GameManager.instance.Gald.ToString("#,##0");
 
-                Button EquipmentSlot = Instantiate(UIInventory.UIEquipment, UIInventory.InventoryArmorContent.transform.position, Quaternion.identity);
-                EquipmentSlot.transform.SetParent(UIInventory.InventoryArmorContent.transform);
+                    CheckEquipment();
 
-                EquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
-                EquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchaseEquipmentData.EquipmentAmount.ToString();
-                EquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchaseEquipmentData;
+                    Button EquipmentSlot = Instantiate(UIInventory.UIEquipment, UIInventory.InventoryArmorContent.transform.position, Quaternion.identity);
+                    EquipmentSlot.transform.SetParent(UIInventory.InventoryArmorContent.transform);
 
-                Button CEquipmentSlot = Instantiate(UICharacterInfo.UICEquipment, UICharacterInfo.ArmorsContent.transform.position, Quaternion.identity);
-                CEquipmentSlot.transform.SetParent(UICharacterInfo.ArmorsContent.transform);
+                    EquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
+                    EquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchaseEquipmentData.EquipmentAmount.ToString();
+                    EquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchaseEquipmentData;
 
-                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
-                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = purchaseEquipmentData;
-                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = purchaseEquipmentData.EquipmentAmount;
+                    Button CEquipmentSlot = Instantiate(UICharacterInfo.UICEquipment, UICharacterInfo.ArmorsContent.transform.position, Quaternion.identity);
+                    CEquipmentSlot.transform.SetParent(UICharacterInfo.ArmorsContent.transform);
 
-                UIInventory.UIEquipments.Add(EquipmentSlot);
-                UICharacterInfo.UIArmors.Add(CEquipmentSlot);
+                    CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
+                    CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = purchaseEquipmentData;
+                    CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = purchaseEquipmentData.EquipmentAmount;
 
-                CheckUIEquipment();
+                    UIInventory.UIEquipments.Add(EquipmentSlot);
+                    UICharacterInfo.UIArmors.Add(CEquipmentSlot);
 
-                PurchasePanel.SetActive(false);
+                    CheckUIEquipment();
+
+                    PurchasePanel.SetActive(false);
+
+                    LidBubble.SetBool("isActive", true);
+                    LidBubbleText.text = "?????? ?????????????";
+                }
+                else
+                {
+                    LidBubble.SetBool("isActive", true);
+                    LidBubbleText.text = "?????????????????? ??" + System.Environment.NewLine + "??????????";
+
+                    PurchasePanel.SetActive(false);
+                }
+
             }
             else if(purchaseEquipmentData.EquipmentCategory == "Shoe")
             {
-                Inventory.Shoes.Add(purchaseEquipmentData);
-                purchaseEquipmentData.EquipmentAmount++;
+                if (GameManager.instance.Gald >= purchaseEquipmentData.EquipmentCost)
+                {
+                    Inventory.Shoes.Add(purchaseEquipmentData);
+                    purchaseEquipmentData.EquipmentAmount++;
 
-                CheckEquipment();
+                    GameManager.instance.Gald -= purchaseEquipmentData.EquipmentCost;
+                    GaldText.text = GameManager.instance.Gald.ToString("#,##0");
 
-                Button EquipmentSlot = Instantiate(UIInventory.UIEquipment, UIInventory.InventoryShoeContent.transform.position, Quaternion.identity);
-                EquipmentSlot.transform.SetParent(UIInventory.InventoryShoeContent.transform);
+                    CheckEquipment();
 
-                EquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
-                EquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchaseEquipmentData.EquipmentAmount.ToString();
-                EquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchaseEquipmentData;
+                    Button EquipmentSlot = Instantiate(UIInventory.UIEquipment, UIInventory.InventoryShoeContent.transform.position, Quaternion.identity);
+                    EquipmentSlot.transform.SetParent(UIInventory.InventoryShoeContent.transform);
 
-                Button CEquipmentSlot = Instantiate(UICharacterInfo.UICEquipment, UICharacterInfo.ShoesContent.transform.position, Quaternion.identity);
-                CEquipmentSlot.transform.SetParent(UICharacterInfo.ShoesContent.transform);
+                    EquipmentSlot.GetComponent<UIEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
+                    EquipmentSlot.GetComponent<UIEquipment>().EquipmentAmountText.text = purchaseEquipmentData.EquipmentAmount.ToString();
+                    EquipmentSlot.GetComponent<UIEquipment>().EquipmentData = purchaseEquipmentData;
 
-                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
-                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = purchaseEquipmentData;
-                CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = purchaseEquipmentData.EquipmentAmount;
+                    Button CEquipmentSlot = Instantiate(UICharacterInfo.UICEquipment, UICharacterInfo.ShoesContent.transform.position, Quaternion.identity);
+                    CEquipmentSlot.transform.SetParent(UICharacterInfo.ShoesContent.transform);
 
-                UIInventory.UIEquipments.Add(EquipmentSlot);
-                UICharacterInfo.UIShoes.Add(CEquipmentSlot);
+                    CEquipmentSlot.GetComponent<UICEquipment>().EquipmentImage.sprite = purchaseEquipmentData.EquipmentSprite;
+                    CEquipmentSlot.GetComponent<UICEquipment>().EquipmentData = purchaseEquipmentData;
+                    CEquipmentSlot.GetComponent<UICEquipment>().EquipmentAmount = purchaseEquipmentData.EquipmentAmount;
 
-                CheckUIEquipment();
+                    UIInventory.UIEquipments.Add(EquipmentSlot);
+                    UICharacterInfo.UIShoes.Add(CEquipmentSlot);
 
-                PurchasePanel.SetActive(false);
+                    CheckUIEquipment();
+
+                    PurchasePanel.SetActive(false);
+
+                    LidBubble.SetBool("isActive", true);
+                    LidBubbleText.text = "?????? ?????????????";
+                }
+                else
+                {
+                    LidBubble.SetBool("isActive", true);
+                    LidBubbleText.text = "?????????????????? ??" + System.Environment.NewLine + "??????????";
+
+                    PurchasePanel.SetActive(false);
+                }
             }
         }
 
         AudioManager.NPCAudioSource.clip = AudioManager.LidPurchasedClip;
         AudioManager.NPCAudioSource.Play();
+
+        LidItemShopButton.enabled = true;
+        LidEquipmentShopButton.enabled = true;
+        LidShopExitButton.enabled = true;
+
+        for (int i = 0; i < EquipmentButtons.Length; i++)
+        {
+            EquipmentButtons[i].enabled = true;
+        }
+
+        for (int i = 0; i < LidShopItemPurchaseButtons.Length; i++)
+        {
+            LidShopItemPurchaseButtons[i].enabled = true;
+        }
+
+        LidShopScrollRect.vertical = true;
+
+        for(int i = 0; i < 10; i++)
+        {
+            LidShopWeaponPurchaseButtons[i].enabled = true;
+            LidShopHelmetPurchaseButtons[i].enabled = true;
+            LidShopArmorPurchaseButtons[i].enabled = true;
+            LidShopShoePurchaseButtons[i].enabled = true;
+        }
     }
 
     // Cancel purchasing
     void PurchaseCancelButtonClicked()
     {
-        PurchasePanel.SetActive(false);        
+        PurchasePanel.SetActive(false);
+
+        LidItemShopButton.enabled = true;
+        LidEquipmentShopButton.enabled = true;
+        LidShopExitButton.enabled = true;
+
+        for (int i = 0; i < EquipmentButtons.Length; i++)
+        {
+            EquipmentButtons[i].enabled = true;
+        }
+
+        for (int i = 0; i < LidShopItemPurchaseButtons.Length; i++)
+        {
+            LidShopItemPurchaseButtons[i].enabled = true;
+        }
+
+        LidShopScrollRect.vertical = true;
+
+        for (int i = 0; i < 10; i++)
+        {
+            LidShopWeaponPurchaseButtons[i].enabled = true;
+            LidShopHelmetPurchaseButtons[i].enabled = true;
+            LidShopArmorPurchaseButtons[i].enabled = true;
+            LidShopShoePurchaseButtons[i].enabled = true;
+        }
     }
 
     // Check if current item is already purchased, if so, remove item
@@ -814,23 +1024,23 @@ public class LobbyUIManager : MonoBehaviour
 
     void SetGaugeUI()
     {
-        AliceHPText.text = GameManager.instance.AliceCurrentHP.ToString() + "/" + AlicePrefab.GetComponent<Alice>().HP.ToString();
-        AliceMPText.text = GameManager.instance.AliceCurrentMP.ToString() + "/" + AlicePrefab.GetComponent<Alice>().MP.ToString();
+        AliceHPText.text = GameManager.instance.AliceCurrentHP.ToString() + "/" + GameManager.instance.AliceFullHP.ToString();
+        AliceMPText.text = GameManager.instance.AliceCurrentMP.ToString() + "/" + GameManager.instance.AliceFullMP.ToString();
 
-        AliceHPGauge.fillAmount  = GameManager.instance.AliceCurrentHP / GameManager.instance.AlicePrefab.GetComponent<Alice>().HP;
-        AliceMPGauge.fillAmount = GameManager.instance.AliceCurrentMP / GameManager.instance.AlicePrefab.GetComponent<Alice>().MP;
+        AliceHPGauge.fillAmount  = GameManager.instance.AliceCurrentHP / GameManager.instance.AliceFullHP;
+        AliceMPGauge.fillAmount = GameManager.instance.AliceCurrentMP / GameManager.instance.AliceFullMP;
 
-        GretelHPText.text = GameManager.instance.GretelCurrentHP.ToString() + "/" + GretelPrefab.GetComponent<Gretel>().HP.ToString();
-        GretelMPText.text = GameManager.instance.GretelCurrentMP.ToString() + "/" + GretelPrefab.GetComponent<Gretel>().MP.ToString();
+        GretelHPText.text = GameManager.instance.GretelCurrentHP.ToString() + "/" + GameManager.instance.GretelFullHP.ToString();
+        GretelMPText.text = GameManager.instance.GretelCurrentMP.ToString() + "/" + GameManager.instance.GretelFullMP.ToString();
 
-        GretelHPGauge.fillAmount = GameManager.instance.GretelCurrentHP / GameManager.instance.GretelPrefab.GetComponent<Gretel>().HP;
-        GretelMPGauge.fillAmount = GameManager.instance.GretelCurrentMP / GameManager.instance.GretelPrefab.GetComponent<Gretel>().MP;
+        GretelHPGauge.fillAmount = GameManager.instance.GretelCurrentHP / GameManager.instance.GretelFullHP;
+        GretelMPGauge.fillAmount = GameManager.instance.GretelCurrentMP / GameManager.instance.GretelFullMP;
 
-        SWHPText.text = GameManager.instance.SWCurrentHP.ToString() + "/" + SnowWhitePrefab.GetComponent<SnowWhite>().HP.ToString();
-        SWMPText.text = GameManager.instance.SWCurrentMP.ToString() + "/" + SnowWhitePrefab.GetComponent<SnowWhite>().MP.ToString();
+        SWHPText.text = GameManager.instance.SWCurrentHP.ToString() + "/" + GameManager.instance.SWFullHP.ToString();
+        SWMPText.text = GameManager.instance.SWCurrentMP.ToString() + "/" + GameManager.instance.SWFullMP.ToString();
 
-        SWHPGauge.fillAmount = GameManager.instance.SWCurrentHP / GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().HP;
-        SWMPGauge.fillAmount = GameManager.instance.SWCurrentMP / GameManager.instance.SnowWhitePrefab.GetComponent<SnowWhite>().MP;
+        SWHPGauge.fillAmount = GameManager.instance.SWCurrentHP / GameManager.instance.SWFullHP;
+        SWMPGauge.fillAmount = GameManager.instance.SWCurrentMP / GameManager.instance.SWFullMP;
     }
 
     void SetUIInventory()

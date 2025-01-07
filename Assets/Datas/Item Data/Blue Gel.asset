@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21961bedcd4944d3786e73fd870e71b8, type: 3}
   m_Name: Blue Gel
   m_EditorClassIdentifier: 
-  ItemID: 2
+  ItemID: 1
   ItemName: "\uBE14\uB8E8 \uC824\uB9AC"
   ItemSprite: {fileID: 21300000, guid: ba2fe1e8639b24e1f8260dcb7fd05a9e, type: 3}
   ItemDescription: "\uD300\uC6D0\uC758 MP 20% \uD68C\uBCF5"

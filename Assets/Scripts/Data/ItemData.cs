@@ -18,14 +18,14 @@ public class ItemData : ScriptableObject
     }
 
     //Reset Item Amount when editor start playing
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    private static void OnPlayModeStart()
-    {
-        var assets = Resources.FindObjectsOfTypeAll<ItemData>();
+    //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    //private static void OnPlayModeStart()
+    //{
+    //    var assets = Resources.FindObjectsOfTypeAll<ItemData>();
 
-        foreach (var asset in assets)
-        {
-            asset.ResetItemAmount();
-        }
-    }
+    //    foreach (var asset in assets)
+    //    {
+    //        asset.ResetItemAmount();
+    //    }
+    //}
 }

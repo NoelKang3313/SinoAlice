@@ -72,6 +72,13 @@ public class GameManager : MonoBehaviour
     public float SWCurrentHP;
     public float SWCurrentMP;
 
+    public float AliceFullHP;
+    public float AliceFullMP;
+    public float GretelFullHP;
+    public float GretelFullMP;
+    public float SWFullHP;
+    public float SWFullMP;
+
     public int SkillButtonNumber;     //Check Skill Button Number and Instantiate Skill Prefab
 
     public bool isAction = false;
@@ -92,21 +99,28 @@ public class GameManager : MonoBehaviour
 
         Gald = 50000;
 
-        AliceCurrentHP = AlicePrefab.GetComponent<Alice>().HP;
-        AliceCurrentMP = AlicePrefab.GetComponent<Alice>().MP;
+        AliceFullHP = AlicePrefab.GetComponent<Alice>().HP;
+        AliceFullMP = AlicePrefab.GetComponent<Alice>().MP;
 
-        GretelCurrentHP = GretelPrefab.GetComponent<Gretel>().HP;
-        GretelCurrentMP = GretelPrefab.GetComponent<Gretel>().MP;
+        GretelFullHP = GretelPrefab.GetComponent<Gretel>().HP;
+        GretelFullMP = GretelPrefab.GetComponent<Gretel>().MP;
 
-        SWCurrentHP = SnowWhitePrefab.GetComponent<SnowWhite>().HP;
-        SWCurrentMP = SnowWhitePrefab.GetComponent<SnowWhite>().MP;
+        SWFullHP = SnowWhitePrefab.GetComponent<SnowWhite>().HP;
+        SWFullMP = SnowWhitePrefab.GetComponent<SnowWhite>().MP;
+
+        AliceCurrentHP = AliceFullHP;
+        AliceCurrentMP = AliceFullMP;
+
+        GretelCurrentHP = GretelFullHP;
+        GretelCurrentMP = GretelFullMP;
+
+        SWCurrentHP = SWFullHP;
+        SWCurrentMP = SWFullMP;
     }
 
     void Update()
     {
         CharacterPosition();
-
-        GetDamage(10);
     }
 
     public void LoadScene(string sceneName)
@@ -137,12 +151,4 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }    
-
-    void GetDamage(int damage)
-    {
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            AlicePrefab.GetComponent<Alice>().CurrentHP -= damage;
-        }
-    }
 }

@@ -728,7 +728,7 @@ public class UIManager : MonoBehaviour
     {        
         switch(id)
         {
-            case 1:
+            case 0:
                 if(characterNumber == GameManager.instance.AlicePositionNumber)
                 {
                     int heal = (int)(GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().HP * 0.2f);
@@ -746,7 +746,7 @@ public class UIManager : MonoBehaviour
                 }
                 break;
 
-            case 2:
+            case 1:
                 if (characterNumber == GameManager.instance.AlicePositionNumber)
                 {
                     int heal = (int)(GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().MP * 0.2f);
@@ -764,7 +764,7 @@ public class UIManager : MonoBehaviour
                 }
                 break;
 
-            case 3:
+            case 2:
                 if (characterNumber == GameManager.instance.AlicePositionNumber)
                 {
                     int healHP = (int)(GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().HP * 0.15f);
@@ -791,7 +791,7 @@ public class UIManager : MonoBehaviour
                 }
                 break;
 
-            case 4:
+            case 3:
                 if (characterNumber == GameManager.instance.AlicePositionNumber)
                 {
                     int heal = (int)(GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().HP * 0.4f);
@@ -809,7 +809,7 @@ public class UIManager : MonoBehaviour
                 }
                 break;
 
-            case 5:
+            case 4:
                 if (characterNumber == GameManager.instance.AlicePositionNumber)
                 {
                     int heal = (int)(GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().MP * 0.4f);
@@ -827,7 +827,7 @@ public class UIManager : MonoBehaviour
                 }
                 break;
 
-            case 6:
+            case 5:
                 if (characterNumber == GameManager.instance.AlicePositionNumber)
                 {
                     int healHP = (int)(GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().HP * 0.35f);
@@ -1290,7 +1290,7 @@ public class UIManager : MonoBehaviour
                             Inventory.Items.Add(ItemButtons[i].GetComponent<UIItem>().ItemData);
                             Inventory.ItemAmount.Add(ItemButtons[i].GetComponent<UIItem>().ItemData.ItemAmount);
                         }
-                    }
+                    }                    
 
                     GameManager.instance.AliceCurrentHP = GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentHP;
                     GameManager.instance.AliceCurrentMP = GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentMP;
