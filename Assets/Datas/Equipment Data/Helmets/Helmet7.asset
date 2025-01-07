@@ -18,8 +18,10 @@ MonoBehaviour:
   EquipmentDescription: Helmet7
   EquipmentAmount: 0
   EquipmentCategory: Helmet
+  EquipmentCost: 7000
+  HP: 0
+  MP: 0
   Attack: 0
-  Magic: 0
   Defense: 0
-  Health: 0
+  Intell: 0
   Speed: 0
