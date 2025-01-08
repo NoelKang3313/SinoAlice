@@ -53,6 +53,17 @@ public class UIInventory : MonoBehaviour
 
         InventoryExitButton.onClick.AddListener(InventoryExitButtonClicked);
 
+        UseItemButton.onClick.AddListener(UseItemButtonClicked);
+
+        for (int i = 0; i < CharacterSelectButtons.Length; i++)
+        {
+            int number = i;
+            CharacterSelectButtons[i].onClick.AddListener(() => CharacterSelectButtonClicked(number));
+        }
+    }
+
+    void Update()
+    {
         for (int i = 0; i < UIItems.Count; i++)
         {
             int number = i;
@@ -66,17 +77,6 @@ public class UIInventory : MonoBehaviour
             UIEquipments[i].onClick.AddListener(() => UIEquipmentSlotClicked(number));
         }
 
-        UseItemButton.onClick.AddListener(UseItemButtonClicked);
-
-        for (int i = 0; i < CharacterSelectButtons.Length; i++)
-        {
-            int number = i;
-            CharacterSelectButtons[i].onClick.AddListener(() => CharacterSelectButtonClicked(number));
-        }
-    }
-
-    void Update()
-    {
         SortUIItems();
         SortUIEquipments();
     }
@@ -224,6 +224,7 @@ public class UIInventory : MonoBehaviour
                         if (SelectedItemData.ItemAmount == 0)
                         {
                             Destroy(UIItems[SelectedItemData.ItemID].gameObject);
+                            UIItems.Remove(UIItems[SelectedItemData.ItemID]);
                             Inventory.Items.RemoveAt(SelectedItemData.ItemID);
                             Inventory.ItemAmount.RemoveAt(SelectedItemData.ItemID);
                         }
@@ -245,6 +246,16 @@ public class UIInventory : MonoBehaviour
                         }
 
                         SelectedItemData.ItemAmount--;
+                        UIItems[SelectedItemData.ItemID].GetComponent<UIItem>().ItemAmount.text = SelectedItemData.ItemAmount.ToString();
+                        Inventory.ItemAmount[SelectedItemData.ItemID]--;
+
+                        if (SelectedItemData.ItemAmount == 0)
+                        {
+                            Destroy(UIItems[SelectedItemData.ItemID].gameObject);
+                            UIItems.Remove(UIItems[SelectedItemData.ItemID]);
+                            Inventory.Items.RemoveAt(SelectedItemData.ItemID);
+                            Inventory.ItemAmount.RemoveAt(SelectedItemData.ItemID);
+                        }
                     }
                     else
                     {
@@ -263,6 +274,16 @@ public class UIInventory : MonoBehaviour
                         }
 
                         SelectedItemData.ItemAmount--;
+                        UIItems[SelectedItemData.ItemID].GetComponent<UIItem>().ItemAmount.text = SelectedItemData.ItemAmount.ToString();
+                        Inventory.ItemAmount[SelectedItemData.ItemID]--;
+
+                        if (SelectedItemData.ItemAmount == 0)
+                        {
+                            Destroy(UIItems[SelectedItemData.ItemID].gameObject);
+                            UIItems.Remove(UIItems[SelectedItemData.ItemID]);
+                            Inventory.Items.RemoveAt(SelectedItemData.ItemID);
+                            Inventory.ItemAmount.RemoveAt(SelectedItemData.ItemID);
+                        }
                     }
                     else
                     {
@@ -277,6 +298,8 @@ public class UIInventory : MonoBehaviour
         {
             CharacterSelectButtons[i].gameObject.SetActive(false);
         }
+
+        UIManager.SetGaugeUI();
     }
 
     void SortUIItems()
@@ -323,5 +346,6 @@ public class UIInventory : MonoBehaviour
 
         ItemNameText.text = "";
         ItemDescriptionText.text = "";
+        UseItemButton.gameObject.SetActive(false);
     }
 }

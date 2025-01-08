@@ -587,7 +587,8 @@ public class UIManager : MonoBehaviour
     {
         if (GameManager.instance.AlicePositionNumber == number)
         {
-            GameManager.instance.SelectedCharacterPosition = GameManager.instance.CharacterSelected[number].transform.position;
+            GameManager.instance.SelectedCharacterPosition = GameManager.instance.CharacterPositions[number];
+            GameManager.instance.SelectedCharacter = GameManager.instance.CharacterSelected[number];
 
             if (GameManager.instance.isGuardButtonActive)
             {
@@ -619,7 +620,8 @@ public class UIManager : MonoBehaviour
         }
         else if (GameManager.instance.GretelPositionNumber == number)
         {
-            GameManager.instance.SelectedCharacterPosition = GameManager.instance.CharacterSelected[number].transform.position;
+            GameManager.instance.SelectedCharacterPosition = GameManager.instance.CharacterPositions[number];
+            GameManager.instance.SelectedCharacter = GameManager.instance.CharacterSelected[number];
 
             if (GameManager.instance.isGuardButtonActive)
             {
@@ -651,9 +653,10 @@ public class UIManager : MonoBehaviour
         }
         else if (GameManager.instance.SWPositionNumber == number)
         {
-            GameManager.instance.SelectedCharacterPosition = GameManager.instance.CharacterSelected[number].transform.position;
+            GameManager.instance.SelectedCharacterPosition = GameManager.instance.CharacterPositions[number];
+            GameManager.instance.SelectedCharacter = GameManager.instance.CharacterSelected[number];
 
-            if(GameManager.instance.isGuardButtonActive)
+            if (GameManager.instance.isGuardButtonActive)
             {
                 GameManager.instance.isAction = true;
                 CharacterSelectButton[number].gameObject.SetActive(false);
@@ -1290,7 +1293,12 @@ public class UIManager : MonoBehaviour
                             Inventory.Items.Add(ItemButtons[i].GetComponent<UIItem>().ItemData);
                             Inventory.ItemAmount.Add(ItemButtons[i].GetComponent<UIItem>().ItemData.ItemAmount);
                         }
-                    }                    
+                    }
+                    else
+                    {
+                        Inventory.Items.Clear();
+                        Inventory.ItemAmount.Clear();
+                    }
 
                     GameManager.instance.AliceCurrentHP = GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentHP;
                     GameManager.instance.AliceCurrentMP = GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentMP;
