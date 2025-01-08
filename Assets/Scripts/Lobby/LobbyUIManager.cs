@@ -89,6 +89,8 @@ public class LobbyUIManager : MonoBehaviour
     public Button PurchaseConfirmButton;
     public Button PurchaseCancelButton;
 
+    public GameObject CoinPrefab;
+    private GameObject coin;
     public TextMeshProUGUI GaldText;
 
     [Header("Alice Gauge")]
@@ -816,6 +818,18 @@ public class LobbyUIManager : MonoBehaviour
         AudioManager.NPCAudioSource.clip = AudioManager.LidPurchasedClip;
         AudioManager.NPCAudioSource.Play();
 
+        coin = Instantiate(CoinPrefab, ShopPanel.transform);
+        coin.GetComponent<RectTransform>().anchoredPosition = new Vector2(550, 180);
+
+        if (isItemPurchaseButtonPressed)
+        {
+            coin.GetComponentInChildren<TextMeshProUGUI>().text = "-" + purchaseItemData.ItemCost.ToString("#,##0");
+        }
+        else if(isEquipmentPurchaseButtonPresed)
+        {
+            coin.GetComponentInChildren<TextMeshProUGUI>().text = "-" + purchaseEquipmentData.EquipmentCost.ToString("#,##0");
+        }
+
         LidItemShopButton.enabled = true;
         LidEquipmentShopButton.enabled = true;
         LidShopExitButton.enabled = true;
@@ -1022,7 +1036,7 @@ public class LobbyUIManager : MonoBehaviour
         UIInventory.InventoryShoeContent.SetActive(false);
     }
 
-    void SetGaugeUI()
+    public void SetGaugeUI()
     {
         AliceHPText.text = GameManager.instance.AliceCurrentHP.ToString() + "/" + GameManager.instance.AliceFullHP.ToString();
         AliceMPText.text = GameManager.instance.AliceCurrentMP.ToString() + "/" + GameManager.instance.AliceFullMP.ToString();

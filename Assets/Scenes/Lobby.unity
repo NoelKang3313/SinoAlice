@@ -1676,6 +1676,7 @@ MonoBehaviour:
   PurchasePanelItemCostText: {fileID: 1245083789}
   PurchaseConfirmButton: {fileID: 1984715199}
   PurchaseCancelButton: {fileID: 1160775709}
+  CoinPrefab: {fileID: 6892116824018208812, guid: b87b6b606ed56499ab0fd99f9a269002, type: 3}
   GaldText: {fileID: 1834219438}
   AliceHPGauge: {fileID: 497471713}
   AliceMPGauge: {fileID: 1514358315}
@@ -16414,7 +16415,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &613563058
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28336,6 +28337,7 @@ MonoBehaviour:
   - {x: 5.5, y: 0}
   - {x: 6, y: -2.5}
   SelectedCharacterPosition: {x: 0, y: 0}
+  SelectedCharacter: {fileID: 0}
   EnemyPositions:
   - {x: -2.7, y: -2}
   - {x: -4.3, y: 0}

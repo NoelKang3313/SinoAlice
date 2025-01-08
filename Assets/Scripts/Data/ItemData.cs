@@ -12,7 +12,7 @@ public class ItemData : ScriptableObject
     public int ItemAmount;
     public int ItemCost;
 
-    public void ResetItemAmount()
+    private void OnEnable()
     {
         ItemAmount = 0;
     }
