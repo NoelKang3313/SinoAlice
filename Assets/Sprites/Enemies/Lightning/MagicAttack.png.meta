@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2c011d8160d6f4a7bb7ff4cedcca044a
+guid: 2a5931e7169ba4964b353a64ce4b5c2d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -140,18 +140,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 132
-        width: 94
-        height: 66
+        y: 152
+        width: 106
+        height: 76
       alignment: 9
-      pivot: {x: 0.54, y: 0.53}
+      pivot: {x: 0.57, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 120b81a53a9f14b4ea3185fd520f4e22
-      internalID: -35146595
+      spriteID: fc661cd0253b24d348f884b888e8454e
+      internalID: 1486264909
       vertices: []
       indices: 
       edges: []
@@ -160,19 +160,19 @@ TextureImporter:
       name: MagicAttack_1
       rect:
         serializedVersion: 2
-        x: 94
-        y: 132
-        width: 94
-        height: 66
+        x: 106
+        y: 152
+        width: 106
+        height: 76
       alignment: 9
-      pivot: {x: 0.54, y: 0.53}
+      pivot: {x: 0.57, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4455f9538b0d245de80ea09315c80488
-      internalID: 429303803
+      spriteID: 03968d667d27447399a01ec74af91acd
+      internalID: 223329118
       vertices: []
       indices: 
       edges: []
@@ -181,19 +181,19 @@ TextureImporter:
       name: MagicAttack_2
       rect:
         serializedVersion: 2
-        x: 188
-        y: 132
-        width: 94
-        height: 66
+        x: 212
+        y: 152
+        width: 106
+        height: 76
       alignment: 9
-      pivot: {x: 0.54, y: 0.53}
+      pivot: {x: 0.57, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa67e04e8a8df43c08ec6d1d9e55fb55
-      internalID: 1409166954
+      spriteID: 6c10abfe1a6d048d9a760bc876141814
+      internalID: 1048558117
       vertices: []
       indices: 
       edges: []
@@ -203,18 +203,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 66
-        width: 94
-        height: 66
+        y: 76
+        width: 106
+        height: 76
       alignment: 9
-      pivot: {x: 0.54, y: 0.53}
+      pivot: {x: 0.57, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ab3b6b4d79b74445a10da2f9fa5f3dc
-      internalID: 1537595026
+      spriteID: d4f10434749cc4948856403ec3a14a9f
+      internalID: 276938106
       vertices: []
       indices: 
       edges: []
@@ -223,19 +223,19 @@ TextureImporter:
       name: MagicAttack_4
       rect:
         serializedVersion: 2
-        x: 94
-        y: 66
-        width: 94
-        height: 66
+        x: 106
+        y: 76
+        width: 106
+        height: 76
       alignment: 9
-      pivot: {x: 0.54, y: 0.53}
+      pivot: {x: 0.57, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6b25a8e3dd924619ab568d95c5c9d0c
-      internalID: -1118057414
+      spriteID: 13ec685af46214524a0086939111c29d
+      internalID: 2064024015
       vertices: []
       indices: 
       edges: []
@@ -244,19 +244,19 @@ TextureImporter:
       name: MagicAttack_5
       rect:
         serializedVersion: 2
-        x: 188
-        y: 66
-        width: 94
-        height: 66
+        x: 212
+        y: 76
+        width: 106
+        height: 76
       alignment: 9
-      pivot: {x: 0.54, y: 0.53}
+      pivot: {x: 0.57, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f60e0306feb0b4c9c8bd311d5dc6e69c
-      internalID: -682626491
+      spriteID: 339823fff4bd94b04adffe44d208c026
+      internalID: 474940161
       vertices: []
       indices: 
       edges: []
@@ -267,17 +267,17 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 94
-        height: 66
+        width: 106
+        height: 76
       alignment: 9
-      pivot: {x: 0.54, y: 0.53}
+      pivot: {x: 0.57, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91afa44e06d4a48f59ac14f97bc253e3
-      internalID: 780265811
+      spriteID: f572146b8403b4493ad93448c5b0c0f4
+      internalID: 13656336
       vertices: []
       indices: 
       edges: []
@@ -286,19 +286,19 @@ TextureImporter:
       name: MagicAttack_7
       rect:
         serializedVersion: 2
-        x: 94
+        x: 106
         y: 0
-        width: 94
-        height: 66
+        width: 106
+        height: 76
       alignment: 9
-      pivot: {x: 0.54, y: 0.53}
+      pivot: {x: 0.57, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79bc025580d8b4799a70904aea2361ab
-      internalID: 410720440
+      spriteID: c21dfb92053464b839f006fa7220c3ea
+      internalID: -2014705020
       vertices: []
       indices: 
       edges: []
@@ -314,14 +314,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      MagicAttack_0: -35146595
-      MagicAttack_1: 429303803
-      MagicAttack_2: 1409166954
-      MagicAttack_3: 1537595026
-      MagicAttack_4: -1118057414
-      MagicAttack_5: -682626491
-      MagicAttack_6: 780265811
-      MagicAttack_7: 410720440
+      MagicAttack_0: 1486264909
+      MagicAttack_1: 223329118
+      MagicAttack_2: 1048558117
+      MagicAttack_3: 276938106
+      MagicAttack_4: 2064024015
+      MagicAttack_5: 474940161
+      MagicAttack_6: 13656336
+      MagicAttack_7: -2014705020
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

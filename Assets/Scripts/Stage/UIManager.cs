@@ -23,6 +23,10 @@ public class UIManager : MonoBehaviour
     public Image CharacterMPGauge;
     public TextMeshProUGUI CurrentHPText;
     public TextMeshProUGUI CurrentMPText;
+    public GameObject HPGameObjects;
+    public GameObject MPGameObjects;
+    private Vector2 originalHPPosition = Vector2.zero;
+    private Vector2 enemyHPPosition = new Vector2(0, -15);
 
     //[Header("Character Mini HP Gauge")]
     //public GameObject CharacterMiniGauge;
@@ -198,6 +202,7 @@ public class UIManager : MonoBehaviour
         CheckCharacterTurnChangeSkillIcon();
         StartCoroutine(ConfirmButtonPressed());
         CheckItemAmount();
+        CheckEnemyInfo();
         BattleOver();
 
         //if(GameManager.instance.isEnemyTurn)
@@ -260,7 +265,7 @@ public class UIManager : MonoBehaviour
 
     IEnumerator DelayBattleStart()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
 
         GameManager.instance.isTurn = true;
     }
@@ -936,6 +941,17 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    void CheckEnemyInfo()
+    {
+        for(int i = 0; i < StageManager.EnemyInfo.Count; i++)
+        {
+            if(StageManager.EnemyInfo[i] == null)
+            {
+                EnemySelectButton[i].gameObject.SetActive(false);
+            }
+        }
+    }
+
     //void SetMiniGauge()
     //{
     //    for(int i = 0; i < GameManager.instance.Characters.Length; i++)
@@ -1064,6 +1080,9 @@ public class UIManager : MonoBehaviour
             CharacterMPGauge.fillAmount = GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentMP / GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().MP;
             CurrentHPText.text = GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentHP.ToString() + "/" + GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().HP.ToString();
             CurrentMPText.text = GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().CurrentMP.ToString() + "/" + GameManager.instance.CharacterSelected[GameManager.instance.AlicePositionNumber].GetComponent<Alice>().MP.ToString();
+
+            HPGameObjects.GetComponent<RectTransform>().anchoredPosition = originalHPPosition;
+            MPGameObjects.SetActive(true);
         }
         else if (GameManager.instance.isGretelTurn)
         {
@@ -1083,6 +1102,9 @@ public class UIManager : MonoBehaviour
             CharacterMPGauge.fillAmount = GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentMP / GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().MP;
             CurrentHPText.text = GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentHP.ToString() + "/" + GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().HP.ToString();
             CurrentMPText.text = GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().CurrentMP.ToString() + "/" + GameManager.instance.CharacterSelected[GameManager.instance.GretelPositionNumber].GetComponent<Gretel>().MP.ToString();
+
+            HPGameObjects.GetComponent<RectTransform>().anchoredPosition = originalHPPosition;
+            MPGameObjects.SetActive(true);
         }
         else if (GameManager.instance.isSWTurn)
         {
@@ -1102,6 +1124,9 @@ public class UIManager : MonoBehaviour
             CharacterMPGauge.fillAmount = GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentMP / GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().MP;
             CurrentHPText.text = GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentHP.ToString() + "/" + GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().HP.ToString();
             CurrentMPText.text = GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().CurrentMP.ToString() + "/" + GameManager.instance.CharacterSelected[GameManager.instance.SWPositionNumber].GetComponent<SnowWhite>().MP.ToString();
+
+            HPGameObjects.GetComponent<RectTransform>().anchoredPosition = originalHPPosition;
+            MPGameObjects.SetActive(true);
         }
         
 
@@ -1178,27 +1203,30 @@ public class UIManager : MonoBehaviour
                 CharacterImage.sprite = RatSprite;
                 CharacterName.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].name;
                 CharacterHPGauge.fillAmount = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Rat>().CurrentHP / StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Rat>().HP;
-                CharacterMPGauge.fillAmount = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Rat>().CurrentMP / StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Rat>().MP;
                 CurrentHPText.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Rat>().CurrentHP.ToString() + "/" + StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Rat>().HP.ToString();
-                CurrentMPText.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Rat>().CurrentMP.ToString() + "/" + StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Rat>().MP.ToString();
+
+                HPGameObjects.GetComponent<RectTransform>().anchoredPosition = enemyHPPosition;
+                MPGameObjects.SetActive(false);
             }
             else if(StageManager.CharacterTurns[GameManager.instance.TurnNumber].name.StartsWith("Wolf"))
             {
                 CharacterImage.sprite = WolfSprite;
                 CharacterName.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].name;
-                CharacterHPGauge.fillAmount = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Wolf>().CurrentHP / StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Wolf>().HP;
-                CharacterMPGauge.fillAmount = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Wolf>().CurrentMP / StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Wolf>().MP;
+                CharacterHPGauge.fillAmount = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Wolf>().CurrentHP / StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Wolf>().HP;                
                 CurrentHPText.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Wolf>().CurrentHP.ToString() + "/" + StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Wolf>().HP.ToString();
-                CurrentMPText.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Wolf>().CurrentMP.ToString() + "/" + StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Wolf>().MP.ToString();
+
+                HPGameObjects.GetComponent<RectTransform>().anchoredPosition = enemyHPPosition;
+                MPGameObjects.SetActive(false);
             }
             else if (StageManager.CharacterTurns[GameManager.instance.TurnNumber].name.StartsWith("Lightning"))
             {
                 CharacterImage.sprite = LightningSprite;
                 CharacterName.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].name;
-                CharacterHPGauge.fillAmount = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Lightning>().CurrentHP / StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Lightning>().HP;
-                CharacterMPGauge.fillAmount = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Lightning>().CurrentMP / StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Lightning>().MP;
+                CharacterHPGauge.fillAmount = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Lightning>().CurrentHP / StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Lightning>().HP;                
                 CurrentHPText.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Lightning>().CurrentHP.ToString() + "/" + StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Lightning>().HP.ToString();
-                CurrentMPText.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Lightning>().CurrentMP.ToString() + "/" + StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Lightning>().MP.ToString();
+
+                HPGameObjects.GetComponent<RectTransform>().anchoredPosition = enemyHPPosition;
+                MPGameObjects.SetActive(false);
             }
         }
     }
@@ -1210,7 +1238,8 @@ public class UIManager : MonoBehaviour
             ActionButtons.SetActive(false);
             PauseButton.gameObject.SetActive(false);
             GaugePanel.SetActive(false);
-            GameCompleteButtons.SetActive(true);
+
+            StartCoroutine(StageComplete());
 
             if(StageAudioManager.AudioSource.clip.name == "Battle BGM")
             {
@@ -1235,6 +1264,13 @@ public class UIManager : MonoBehaviour
 
         Transition.SetActive(true);
         TransitionAnimator.SetBool("isTransition", true);
+    }
+
+    IEnumerator StageComplete()
+    {
+        yield return new WaitForSeconds(1.8f);
+
+        GameCompleteButtons.SetActive(true);
     }
 
     IEnumerator ConfirmButtonPressed()

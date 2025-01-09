@@ -20,10 +20,8 @@ public class Lightning : MonoBehaviour
 
     [Header("Lightning Stats")]
     public string Name;
-    public float HP;
-    public float MP;
-    public float CurrentHP;
-    public float CurrentMP;
+    public float HP;    
+    public float CurrentHP;    
     public float Attack;
     public float Defense;
     public float Intell;
@@ -65,10 +63,8 @@ public class Lightning : MonoBehaviour
     void Awake()
     {
         Name = "Lightning";
-        HP = 500;
-        MP = 500;
-        CurrentHP = HP;
-        CurrentMP = MP;
+        HP = 500;        
+        CurrentHP = HP;        
         Attack = 10;
         Defense = 10;
         Intell = 10;

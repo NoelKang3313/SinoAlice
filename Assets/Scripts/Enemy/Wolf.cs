@@ -11,10 +11,8 @@ public class Wolf : MonoBehaviour
 
     [Header("Wolf Stats")]    
     public string Name;
-    public float HP;
-    public float MP;
+    public float HP;    
     public float CurrentHP;
-    public float CurrentMP;
     public float Attack;
     public float Defense;
     public float Speed;
@@ -31,10 +29,8 @@ public class Wolf : MonoBehaviour
     void Awake()
     {
         Name = "Wolf";
-        HP = 200;
-        MP = 100;
-        CurrentHP = HP;
-        CurrentMP = MP;
+        HP = 200;        
+        CurrentHP = HP;        
         Attack = 10;
         Defense = 10;
         Speed = 80;

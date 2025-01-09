@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2d21032c144f64eb6b9d25b13d6d0d05
+guid: beb9710ff7eb5441aad69fbd56778ac3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -140,18 +140,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 150
-        width: 67
-        height: 75
+        y: 174
+        width: 98
+        height: 87
       alignment: 9
-      pivot: {x: 0.27, y: 0.47}
+      pivot: {x: 0.48, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25013860079dc4b3c982c182542acaa2
-      internalID: 619315443
+      spriteID: 052fc6a0b6b0b4f49abc0fbc8870f509
+      internalID: 311073174
       vertices: []
       indices: 
       edges: []
@@ -160,19 +160,19 @@ TextureImporter:
       name: MagicStandby_1
       rect:
         serializedVersion: 2
-        x: 67
-        y: 150
-        width: 67
-        height: 75
+        x: 98
+        y: 174
+        width: 98
+        height: 87
       alignment: 9
-      pivot: {x: 0.27, y: 0.47}
+      pivot: {x: 0.48, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8aabb9aeb5ae4ba0988895225f11231
-      internalID: -327703568
+      spriteID: 6fba62674550d44c5a1203b33031ecad
+      internalID: -572895400
       vertices: []
       indices: 
       edges: []
@@ -181,19 +181,19 @@ TextureImporter:
       name: MagicStandby_2
       rect:
         serializedVersion: 2
-        x: 134
-        y: 150
-        width: 67
-        height: 75
+        x: 196
+        y: 174
+        width: 98
+        height: 87
       alignment: 9
-      pivot: {x: 0.27, y: 0.47}
+      pivot: {x: 0.48, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6db3073b9ce54f3aba85d906b216547
-      internalID: 1843555952
+      spriteID: 90925211b2959430f9b1569ba8e01c1f
+      internalID: -264150513
       vertices: []
       indices: 
       edges: []
@@ -203,18 +203,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 75
-        width: 67
-        height: 75
+        y: 87
+        width: 98
+        height: 87
       alignment: 9
-      pivot: {x: 0.27, y: 0.47}
+      pivot: {x: 0.48, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3eb4a65cf694b4f4aa8b4875c9a8ec4b
-      internalID: -786439194
+      spriteID: cca2cc92aaacb47ba9c20c1a61d7e817
+      internalID: 156325762
       vertices: []
       indices: 
       edges: []
@@ -223,19 +223,19 @@ TextureImporter:
       name: MagicStandby_4
       rect:
         serializedVersion: 2
-        x: 67
-        y: 75
-        width: 67
-        height: 75
+        x: 98
+        y: 87
+        width: 98
+        height: 87
       alignment: 9
-      pivot: {x: 0.27, y: 0.47}
+      pivot: {x: 0.48, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ee8bb54b110f42739d683aec8b1a439
-      internalID: -1387232868
+      spriteID: 92febcdb5d19a485a8aa2571909407a8
+      internalID: 660684875
       vertices: []
       indices: 
       edges: []
@@ -244,19 +244,19 @@ TextureImporter:
       name: MagicStandby_5
       rect:
         serializedVersion: 2
-        x: 134
-        y: 75
-        width: 67
-        height: 75
+        x: 196
+        y: 87
+        width: 98
+        height: 87
       alignment: 9
-      pivot: {x: 0.27, y: 0.47}
+      pivot: {x: 0.48, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2da673ef74b4049a888c2f7b2f29bf12
-      internalID: -37856641
+      spriteID: fc2b44457224e4ec9bc12cba6e787f8c
+      internalID: 298688239
       vertices: []
       indices: 
       edges: []
@@ -267,17 +267,17 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 67
-        height: 75
+        width: 98
+        height: 87
       alignment: 9
-      pivot: {x: 0.27, y: 0.47}
+      pivot: {x: 0.48, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58aba4f45632c4e51af65cb50cdf7ebb
-      internalID: 240005041
+      spriteID: c71c7ecf334b949af875a47d5e703e17
+      internalID: 1038000553
       vertices: []
       indices: 
       edges: []
@@ -286,19 +286,19 @@ TextureImporter:
       name: MagicStandby_7
       rect:
         serializedVersion: 2
-        x: 67
+        x: 98
         y: 0
-        width: 67
-        height: 75
+        width: 98
+        height: 87
       alignment: 9
-      pivot: {x: 0.27, y: 0.47}
+      pivot: {x: 0.48, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 978f0ae99bf534683ad019082db64d5b
-      internalID: -521672495
+      spriteID: f75ba6fc035dc4e489b3bcac05ebe3fe
+      internalID: -1152957917
       vertices: []
       indices: 
       edges: []
@@ -314,14 +314,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      MagicStandby_0: 619315443
-      MagicStandby_1: -327703568
-      MagicStandby_2: 1843555952
-      MagicStandby_3: -786439194
-      MagicStandby_4: -1387232868
-      MagicStandby_5: -37856641
-      MagicStandby_6: 240005041
-      MagicStandby_7: -521672495
+      MagicStandby_0: 311073174
+      MagicStandby_1: -572895400
+      MagicStandby_2: -264150513
+      MagicStandby_3: 156325762
+      MagicStandby_4: 660684875
+      MagicStandby_5: 298688239
+      MagicStandby_6: 1038000553
+      MagicStandby_7: -1152957917
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

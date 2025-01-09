@@ -116,6 +116,16 @@ public class StageManager : MonoBehaviour
 
         EnemyDeadCoinDrop();
 
+        if(isCoinInstantiated)
+        {
+            for(int i = 0; i < coin.Count; i++)
+            {
+                Vector2 currentPosition = coin[i].transform.position;
+                Vector2 targetPosition = coin[i].transform.position + new Vector3(0, 0.3f, 0);
+                coin[i].transform.position = Vector2.MoveTowards(currentPosition, targetPosition, 0.5f * Time.deltaTime);
+            }
+        }
+
         if(GameManager.instance.isBattleOver && !isCoinObtained)
         {
             isCoinObtained = true;
@@ -200,7 +210,7 @@ public class StageManager : MonoBehaviour
         {
             for(int i = 0; i < coin.Count; i++)
             {
-                if (coin[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
+                if (coin[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
                 {
                     Destroy(coin[i]);
                     DeadEnemyPositions.RemoveAt(i);
