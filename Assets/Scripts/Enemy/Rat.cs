@@ -7,14 +7,15 @@ public class Rat : MonoBehaviour
     [SerializeField]
     StageManager StageManager;
 
+    [SerializeField]
+    UIManager UIManager;
+
     Animator animator;
 
     [Header("Rat Stats")]
     public string Name;
-    public float HP;
-    public float MP;
-    public float CurrentHP;
-    public float CurrentMP;
+    public float HP;    
+    public float CurrentHP;    
     public float Attack;
     public float Defense;    
     public float Speed;
@@ -31,10 +32,8 @@ public class Rat : MonoBehaviour
     void Awake()
     {
         Name = "Rat";
-        HP = 100;
-        MP = 100;
-        CurrentHP = HP;
-        CurrentMP = MP;
+        HP = 100;        
+        CurrentHP = HP;        
         Attack = 10;
         Defense = 10;
         Speed = 50;
@@ -46,6 +45,8 @@ public class Rat : MonoBehaviour
         {
             StageManager = GameObject.Find("StageManager").GetComponent<StageManager>();
         }
+
+        UIManager = FindAnyObjectByType<UIManager>();
 
         animator = GetComponent<Animator>();
     }

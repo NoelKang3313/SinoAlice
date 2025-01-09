@@ -59,10 +59,6 @@ public class LobbyUIManager : MonoBehaviour
     [Header("Winry's")]    
     public GameObject CharacterInfoPanel;
 
-    [Header("Charlotte's")]
-    [SerializeField]
-    private bool isWorldmapButtonClicked;
-
     [Header("Inventory")]
     public Button InventoryButton;
     public GameObject InventoryPanel;
@@ -91,6 +87,7 @@ public class LobbyUIManager : MonoBehaviour
 
     public GameObject CoinPrefab;
     private GameObject coin;
+    private bool isCoinInstantiated;
     public TextMeshProUGUI GaldText;
 
     [Header("Alice Gauge")]
@@ -179,6 +176,20 @@ public class LobbyUIManager : MonoBehaviour
             LidBubble.SetBool("isActive", false);
         }
 
+        if(isCoinInstantiated)
+        {
+            Vector2 currentPosition = coin.GetComponent<RectTransform>().anchoredPosition;
+            Vector2 targetPosition = coin.GetComponent<RectTransform>().anchoredPosition + new Vector2(0, 70);
+
+            coin.GetComponent<RectTransform>().anchoredPosition = Vector2.MoveTowards(currentPosition, targetPosition, 100 * Time.deltaTime);
+
+            if(coin.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            {
+                Destroy(coin);
+                isCoinInstantiated = false;
+            }
+        }
+
         ActivateTransition(1.0f);
 
         StartCoroutine(DelaySceneChange());
@@ -232,54 +243,35 @@ public class LobbyUIManager : MonoBehaviour
         }
         else if(GameManager.instance.isCharlotteButtonActive)
         {
-            if(!isWorldmapButtonClicked)
-            {
-                isWorldmapButtonClicked = true;
-                NPCDialogueText.text = "????????????????????";
-                NPCButtonText.text = "?????";
-            }
-            else
-            {
-                AudioManager.NPCAudioSource.clip = AudioManager.CharlotteEnterWorldClip;
-                AudioManager.NPCAudioSource.Play();
+            AudioManager.NPCAudioSource.clip = AudioManager.CharlotteEnterWorldClip;
+            AudioManager.NPCAudioSource.Play();
 
-                GameManager.instance.isTransition = true;
-                GameManager.instance.isCharlotteButtonActive = false;
-                isWorldmapButtonClicked = false;
-            }
+            GameManager.instance.isTransition = true;
+            GameManager.instance.isCharlotteButtonActive = false;
         }        
     }
 
     void ReturnButtonClicked()
     {
-        if(isWorldmapButtonClicked)
+        NPCDialogueAnimator.SetBool("isActive", false);
+
+        GameManager.instance.isReturnButtonActive = true;
+        InventoryButton.interactable = true;
+
+        if (GameManager.instance.isLidButtonActive)
         {
-            NPCButtonText.text = "????????";
-            NPCDialogueText.text = "???????????????, ???????????? ????????????";
-            isWorldmapButtonClicked = false;
+            AudioManager.NPCAudioSource.clip = AudioManager.LidReturnClip;
+            AudioManager.NPCAudioSource.Play();
         }
-        else
+        else if (GameManager.instance.isWinryButtonActive)
         {
-            NPCDialogueAnimator.SetBool("isActive", false);
-
-            GameManager.instance.isReturnButtonActive = true;
-            InventoryButton.interactable = true;
-
-            if(GameManager.instance.isLidButtonActive)
-            {
-                AudioManager.NPCAudioSource.clip = AudioManager.LidReturnClip;
-                AudioManager.NPCAudioSource.Play();
-            }
-            else if(GameManager.instance.isWinryButtonActive)
-            {
-                AudioManager.NPCAudioSource.clip = AudioManager.WinryReturnClip;
-                AudioManager.NPCAudioSource.Play();
-            }
-            else if(GameManager.instance.isCharlotteButtonActive)
-            {
-                AudioManager.NPCAudioSource.clip = AudioManager.CharlotteReturnClip;
-                AudioManager.NPCAudioSource.Play();
-            }
+            AudioManager.NPCAudioSource.clip = AudioManager.WinryReturnClip;
+            AudioManager.NPCAudioSource.Play();
+        }
+        else if (GameManager.instance.isCharlotteButtonActive)
+        {
+            AudioManager.NPCAudioSource.clip = AudioManager.CharlotteReturnClip;
+            AudioManager.NPCAudioSource.Play();
         }
     }
 
@@ -820,6 +812,7 @@ public class LobbyUIManager : MonoBehaviour
 
         coin = Instantiate(CoinPrefab, ShopPanel.transform);
         coin.GetComponent<RectTransform>().anchoredPosition = new Vector2(550, 180);
+        isCoinInstantiated = true;
 
         if (isItemPurchaseButtonPressed)
         {

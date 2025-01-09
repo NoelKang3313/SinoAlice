@@ -1561,7 +1561,6 @@ MonoBehaviour:
   AliceBubble: {fileID: 613563062}
   LidShopExitButton: {fileID: 1858370195}
   CharacterInfoPanel: {fileID: 1513287188}
-  isWorldmapButtonClicked: 0
   InventoryButton: {fileID: 375921191}
   InventoryPanel: {fileID: 522693809}
   LidShopItemPurchaseButtons:
