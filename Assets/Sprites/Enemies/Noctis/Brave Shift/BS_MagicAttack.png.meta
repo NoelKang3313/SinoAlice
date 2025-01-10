@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -134,7 +134,343 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: BS_MagicAttack_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 690
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bee0ff6eb47b5492a87f4a21cf6ce1d8
+      internalID: -1409285574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicAttack_1
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 690
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b067bdafc6b25434086ffe653ec6a143
+      internalID: 942277944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicAttack_2
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 690
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc638c1e4e8d045f99bf1dd20966ef20
+      internalID: 939616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicAttack_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 552
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 892c0f4178ed3444695e77a91be01b14
+      internalID: 791286992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicAttack_4
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 552
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb355bc0d8661434581f588da9901eb1
+      internalID: -701701667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicAttack_5
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 552
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: debd213db9e0c491b8a00a1e8e3956e4
+      internalID: 2134925445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicAttack_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 414
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5201591bed8ec4cca8cad00881d94e97
+      internalID: -1110860035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicAttack_7
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 414
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1499aacaee5104e5f847a7b972d98a65
+      internalID: 74443023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicAttack_8
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 414
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18d282af172d34127b16ec492f9dab11
+      internalID: 1681738445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicAttack_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 276
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 778e298fce8f743469db252d3cb4d016
+      internalID: -1755739126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicAttack_10
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 276
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abed2c3150c1d4b529fdd46a908a30c7
+      internalID: 988544972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicAttack_11
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 276
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc175e5b4e9c44e94af2b1d97f4f5f64
+      internalID: -1684699036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicAttack_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 138
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3723d972494a047bd80d8d957e0b4810
+      internalID: -1385392123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicAttack_13
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 138
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83258488b402140da98f0a79c6a4981d
+      internalID: 1936302693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicAttack_14
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 138
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a42c5992f93944f4bdcc83f4612cf35
+      internalID: -1457857369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicAttack_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e596f0d11cb824d21a1b14252d478e46
+      internalID: 1864827872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +481,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BS_MagicAttack_0: -1409285574
+      BS_MagicAttack_1: 942277944
+      BS_MagicAttack_10: 988544972
+      BS_MagicAttack_11: -1684699036
+      BS_MagicAttack_12: -1385392123
+      BS_MagicAttack_13: 1936302693
+      BS_MagicAttack_14: -1457857369
+      BS_MagicAttack_15: 1864827872
+      BS_MagicAttack_2: 939616
+      BS_MagicAttack_3: 791286992
+      BS_MagicAttack_4: -701701667
+      BS_MagicAttack_5: 2134925445
+      BS_MagicAttack_6: -1110860035
+      BS_MagicAttack_7: 74443023
+      BS_MagicAttack_8: 1681738445
+      BS_MagicAttack_9: -1755739126
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

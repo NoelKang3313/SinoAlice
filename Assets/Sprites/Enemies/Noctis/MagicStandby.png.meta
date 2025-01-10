@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -134,7 +134,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: MagicStandby_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 84
+        width: 85
+        height: 84
+      alignment: 9
+      pivot: {x: 0.4, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: baea4d37472d84e3dbfaeb949da11a01
+      internalID: -1321280797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicStandby_1
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 84
+        width: 85
+        height: 84
+      alignment: 9
+      pivot: {x: 0.4, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbbdc6034c48e4d1086f701f1ffc1865
+      internalID: -366985342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicStandby_2
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 84
+        width: 85
+        height: 84
+      alignment: 9
+      pivot: {x: 0.4, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0da9e9357038e41459be996990ff1713
+      internalID: 1642918831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicStandby_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 85
+        height: 84
+      alignment: 9
+      pivot: {x: 0.4, y: 0.52}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2886295038ff4b4d98b8538694231de
+      internalID: -1809009151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +229,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      MagicStandby_0: -1321280797
+      MagicStandby_1: -366985342
+      MagicStandby_2: 1642918831
+      MagicStandby_3: -1809009151
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
