@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -134,7 +134,175 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Brave Shift_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 266
+        width: 142
+        height: 133
+      alignment: 9
+      pivot: {x: 0.53, y: 0.42}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e8bc0b5ff75048a18ce548005a66e0b
+      internalID: 1991016080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brave Shift_1
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 266
+        width: 142
+        height: 133
+      alignment: 9
+      pivot: {x: 0.53, y: 0.42}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0997c7a7b912d44d1b75460a271a6091
+      internalID: -1599980012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brave Shift_2
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 266
+        width: 142
+        height: 133
+      alignment: 9
+      pivot: {x: 0.53, y: 0.42}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82d8f03ada6224e59b832871bc9263f4
+      internalID: -2009381453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brave Shift_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 133
+        width: 142
+        height: 133
+      alignment: 9
+      pivot: {x: 0.53, y: 0.42}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6425ab227f6749e79ab756c97b4c752
+      internalID: -1994499998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brave Shift_4
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 133
+        width: 142
+        height: 133
+      alignment: 9
+      pivot: {x: 0.53, y: 0.42}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 520a5957102714bfb9fd51fba9d4939c
+      internalID: 1642194725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brave Shift_5
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 133
+        width: 142
+        height: 133
+      alignment: 9
+      pivot: {x: 0.53, y: 0.42}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ceb49dffc9164882a9f37204ac92389
+      internalID: -410333155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brave Shift_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 142
+        height: 133
+      alignment: 9
+      pivot: {x: 0.53, y: 0.42}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da9129e2a3e624ea9ad0ed6c919752f0
+      internalID: 1716726015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brave Shift_7
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 0
+        width: 142
+        height: 133
+      alignment: 9
+      pivot: {x: 0.53, y: 0.42}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de4ea91d8571e4bdcaa0945d2be97228
+      internalID: -1675431217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +313,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Brave Shift_0: 1991016080
+      Brave Shift_1: -1599980012
+      Brave Shift_2: -2009381453
+      Brave Shift_3: -1994499998
+      Brave Shift_4: 1642194725
+      Brave Shift_5: -410333155
+      Brave Shift_6: 1716726015
+      Brave Shift_7: -1675431217
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

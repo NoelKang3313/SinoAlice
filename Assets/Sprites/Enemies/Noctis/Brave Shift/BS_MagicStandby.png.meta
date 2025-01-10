@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -134,7 +134,343 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: BS_MagicStandby_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 690
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2db6a722a0fbb4a32abd1bf1738956fb
+      internalID: -1895567955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicStandby_1
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 690
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faf4e94454848483292e263276da8f82
+      internalID: -1504232661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicStandby_2
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 690
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94b72cad72a794702b0684c67586cc1b
+      internalID: 1328269615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicStandby_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 552
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74b7b83274c9f47ada6890142177baf0
+      internalID: -364585569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicStandby_4
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 552
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c9480aed9ebf4ff39dccd95272cc0d6
+      internalID: 1538718155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicStandby_5
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 552
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59e363799f486485797b2baa14531ae6
+      internalID: 1783609106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicStandby_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 414
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e17e39247069e496ba7d8bd1ec7a7c3e
+      internalID: -525706592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicStandby_7
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 414
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2eef33a7af8c4d5da30ea4d7488dd16
+      internalID: -427693000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicStandby_8
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 414
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abc9b62af68c547929ca22d786b08a92
+      internalID: 1902561927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicStandby_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 276
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1bc187e224ce42dc87f6dfaed2df30f
+      internalID: 597753894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicStandby_10
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 276
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddbce5cfc997a4f029a274c5a25215de
+      internalID: 825122557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicStandby_11
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 276
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9844b125c795e4bcb827d81cd5268aa4
+      internalID: 748001595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicStandby_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 138
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7332bf3556f0f487c92a21948a68950a
+      internalID: 733914090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicStandby_13
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 138
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19510c236a983407390b40fbe14f5fd1
+      internalID: 1214383650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicStandby_14
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 138
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23fce1e451aa6405fb85c47ef6934bf1
+      internalID: 244927827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BS_MagicStandby_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 119
+        height: 138
+      alignment: 9
+      pivot: {x: 0.44, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52ccfb38f99f9453ca7a85588da4401b
+      internalID: -134552038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +481,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BS_MagicStandby_0: -1895567955
+      BS_MagicStandby_1: -1504232661
+      BS_MagicStandby_10: 825122557
+      BS_MagicStandby_11: 748001595
+      BS_MagicStandby_12: 733914090
+      BS_MagicStandby_13: 1214383650
+      BS_MagicStandby_14: 244927827
+      BS_MagicStandby_15: -134552038
+      BS_MagicStandby_2: 1328269615
+      BS_MagicStandby_3: -364585569
+      BS_MagicStandby_4: 1538718155
+      BS_MagicStandby_5: 1783609106
+      BS_MagicStandby_6: -525706592
+      BS_MagicStandby_7: -427693000
+      BS_MagicStandby_8: 1902561927
+      BS_MagicStandby_9: 597753894
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

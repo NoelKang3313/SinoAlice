@@ -26,7 +26,7 @@ public class UIManager : MonoBehaviour
     public GameObject HPGameObjects;
     public GameObject MPGameObjects;
     private Vector2 originalHPPosition = Vector2.zero;
-    private Vector2 enemyHPPosition = new Vector2(0, -15);
+    private Vector2 enemyHPPosition = new Vector2(0, -30);
 
     //[Header("Character Mini HP Gauge")]
     //public GameObject CharacterMiniGauge;
