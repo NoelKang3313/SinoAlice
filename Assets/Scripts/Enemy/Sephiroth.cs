@@ -37,6 +37,14 @@ public class Sephiroth : MonoBehaviour
     private int skillRandom;
     private bool isSkillRandom;
 
+    public GameObject QuadrupleSlashPrefab;
+    private GameObject quadrupleSlash;
+    public GameObject CurseBreakerPrefab;
+    private GameObject curseBreaker;
+    public GameObject FinalSlashPrefab;
+    private GameObject finalSlash;
+    private bool isSkillInstantiated;
+
     // Audios
 
 
@@ -177,13 +185,136 @@ public class Sephiroth : MonoBehaviour
                     switch(skillRandom)
                     {
                         case 0:
-                            break;
+                            {
+                                if(!isRandom)
+                                {
+                                    isRandom = true;
+                                    playerRandom = Random.Range(0, 3);
+                                }
+
+                                if(!isSkillInstantiated)
+                                {
+                                    isSkillInstantiated = true;
+                                    quadrupleSlash = Instantiate(QuadrupleSlashPrefab, GameManager.instance.Characters[playerRandom].transform.position, Quaternion.identity);
+                                }
+
+                                if(quadrupleSlash.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                                {
+                                    Destroy(quadrupleSlash);
+                                    isSkillInstantiated = false;
+
+                                    if (!isBraveShift)
+                                    {
+                                        animator.SetBool("MagicAttack", false);
+                                        animator.SetBool("MagicStandby", false);
+                                    }
+                                    else
+                                    {
+                                        animator.SetBool("BS_MagicAttack", false);
+                                        animator.SetBool("BS_MagicStandby", false);
+                                    }
+
+                                    isCurrentEnemyTurn = false;
+                                    isSkillRandom = false;
+                                    isRandom = false;
+                                    GameManager.instance.isEnemyTurn = false;
+                                    GameManager.instance.isTurn = true;
+                                    GameManager.instance.TurnNumber++;
+                                    activateSkillNum++;
+
+                                    //UIManager.CharacterMiniGauge.SetActive(true);
+
+                                    DamagePlayer(10, playerRandom);
+                                }
+
+                                break;
+                            }
 
                         case 1:
-                            break;
+                            {
+                                if (!isRandom)
+                                {
+                                    isRandom = true;
+                                    playerRandom = Random.Range(0, 3);
+                                }
+
+                                if (!isSkillInstantiated)
+                                {
+                                    isSkillInstantiated = true;
+                                    curseBreaker = Instantiate(CurseBreakerPrefab, GameManager.instance.Characters[playerRandom].transform.position, Quaternion.identity);
+                                }
+
+                                if (curseBreaker.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                                {
+                                    Destroy(curseBreaker);
+                                    isSkillInstantiated = false;
+
+                                    if (!isBraveShift)
+                                    {
+                                        animator.SetBool("MagicAttack", false);
+                                        animator.SetBool("MagicStandby", false);
+                                    }
+                                    else
+                                    {
+                                        animator.SetBool("BS_MagicAttack", false);
+                                        animator.SetBool("BS_MagicStandby", false);
+                                    }
+
+                                    isCurrentEnemyTurn = false;
+                                    isSkillRandom = false;
+                                    isRandom = false;
+                                    GameManager.instance.isEnemyTurn = false;
+                                    GameManager.instance.isTurn = true;
+                                    GameManager.instance.TurnNumber++;
+                                    activateSkillNum++;
+
+                                    //UIManager.CharacterMiniGauge.SetActive(true);
+
+                                    DamagePlayer(10, playerRandom);
+                                }
+
+                                break;
+                            }
 
                         case 2:
-                            break;
+                            {
+                                if(!isSkillInstantiated)
+                                {
+                                    isSkillInstantiated = true;
+                                    finalSlash = Instantiate(FinalSlashPrefab, GameManager.instance.Characters[playerRandom].transform.position, Quaternion.identity);
+                                }
+
+                                if(finalSlash.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                                {
+                                    Destroy(finalSlash);
+                                    isSkillInstantiated = false;
+
+                                    if (!isBraveShift)
+                                    {
+                                        animator.SetBool("MagicAttack", false);
+                                        animator.SetBool("MagicStandby", false);
+                                    }
+                                    else
+                                    {
+                                        animator.SetBool("BS_MagicAttack", false);
+                                        animator.SetBool("BS_MagicStandby", false);
+                                    }
+
+                                    isCurrentEnemyTurn = false;
+                                    isSkillRandom = false;
+                                    isRandom = false;
+                                    GameManager.instance.isEnemyTurn = false;
+                                    GameManager.instance.isTurn = true;
+                                    GameManager.instance.TurnNumber++;
+                                    activateSkillNum++;
+
+                                    //UIManager.CharacterMiniGauge.SetActive(true);
+
+                                    DamageAllPlayer(10);
+                                }
+
+                                break;
+                            }
                     }
                 }
                 else if (activateSkillNum == 6)
