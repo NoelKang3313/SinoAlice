@@ -43,6 +43,8 @@ public class UIManager : MonoBehaviour
     public Sprite RatSprite;
     public Sprite WolfSprite;
     public Sprite LightningSprite;
+    public Sprite SephirothSprite;
+    public Sprite NoctisSprite;
 
     [Header("Action Buttons")]
     public GameObject ActionButtons;
@@ -1224,6 +1226,26 @@ public class UIManager : MonoBehaviour
                 CharacterName.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].name;
                 CharacterHPGauge.fillAmount = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Lightning>().CurrentHP / StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Lightning>().HP;                
                 CurrentHPText.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Lightning>().CurrentHP.ToString() + "/" + StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Lightning>().HP.ToString();
+
+                HPGameObjects.GetComponent<RectTransform>().anchoredPosition = enemyHPPosition;
+                MPGameObjects.SetActive(false);
+            }
+            else if(StageManager.CharacterTurns[GameManager.instance.TurnNumber].name.StartsWith("Sephiroth"))
+            {
+                CharacterImage.sprite = SephirothSprite;
+                CharacterName.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].name;
+                CharacterHPGauge.fillAmount = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Sephiroth>().CurrentHP / StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Sephiroth>().HP;
+                CurrentHPText.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Sephiroth>().CurrentHP.ToString() + "/" + StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Sephiroth>().HP.ToString();
+
+                HPGameObjects.GetComponent<RectTransform>().anchoredPosition = enemyHPPosition;
+                MPGameObjects.SetActive(false);
+            }
+            else if (StageManager.CharacterTurns[GameManager.instance.TurnNumber].name.StartsWith("Noctis"))
+            {
+                CharacterImage.sprite = NoctisSprite;
+                CharacterName.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].name;
+                CharacterHPGauge.fillAmount = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Noctis>().CurrentHP / StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Noctis>().HP;
+                CurrentHPText.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Noctis>().CurrentHP.ToString() + "/" + StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Noctis>().HP.ToString();
 
                 HPGameObjects.GetComponent<RectTransform>().anchoredPosition = enemyHPPosition;
                 MPGameObjects.SetActive(false);

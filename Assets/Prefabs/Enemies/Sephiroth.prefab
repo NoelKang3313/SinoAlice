@@ -124,8 +124,8 @@ MonoBehaviour:
   AttackEffectPrefab: {fileID: 0}
   AttackGradient:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
+    key0: {r: 0.627451, g: 0.627451, b: 0.627451, a: 1}
+    key1: {r: 0.8235294, g: 0.8235294, b: 0.8235294, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -141,8 +141,8 @@ MonoBehaviour:
     ctime6: 0
     ctime7: 0
     atime0: 0
-    atime1: 65535
-    atime2: 0
+    atime1: 62258
+    atime2: 65535
     atime3: 0
     atime4: 0
     atime5: 0
@@ -151,11 +151,11 @@ MonoBehaviour:
     m_Mode: 0
     m_ColorSpace: -1
     m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
+    m_NumAlphaKeys: 3
   BS_AttackGradient:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
+    key0: {r: 0.627451, g: 0, b: 1, a: 1}
+    key1: {r: 0.7058824, g: 0.39215687, b: 1, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -171,8 +171,8 @@ MonoBehaviour:
     ctime6: 0
     ctime7: 0
     atime0: 0
-    atime1: 65535
-    atime2: 0
+    atime1: 62258
+    atime2: 65535
     atime3: 0
     atime4: 0
     atime5: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
     m_Mode: 0
     m_ColorSpace: -1
     m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
+    m_NumAlphaKeys: 3
   Name: 
   HP: 0
   CurrentHP: 0
@@ -191,4 +191,7 @@ MonoBehaviour:
   Speed: 0
   isCurrentEnemyTurn: 0
   activateSkillNum: 0
+  QuadrupleSlashPrefab: {fileID: 4664310832528107135, guid: 1e1036ee26bf84fc281b851d4afb4fc2, type: 3}
+  CurseBreakerPrefab: {fileID: 6202689960133996264, guid: 1677b37f279e94d4c9671f90c7cc7cc9, type: 3}
+  FinalSlashPrefab: {fileID: 988541182421916016, guid: 05b554801691b45a1a40e1ca65a66088, type: 3}
   playerRandom: 0

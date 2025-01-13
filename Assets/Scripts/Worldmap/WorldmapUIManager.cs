@@ -6,20 +6,28 @@ using TMPro;
 
 public class WorldmapUIManager : MonoBehaviour
 {
-    public Button Stage1Button;
-    public GameObject Stage1;
+    //public Button Stage1Button;
+    //public Button Stage2Button;
+    //public Button Stage3Button;
+    //public GameObject Stage1;
+    //public GameObject Stage2;
+    //public GameObject Stage3;
+
+    public Button[] StageButton = new Button[3];
+    public GameObject[] StageGameObject = new GameObject[3];
+    public Button[] StagesButtons = new Button[3];
+
     public SpriteRenderer Background;
     public Sprite WorldBG;
-    public Sprite Stage1BG;
+    public Sprite[] StageBG = new Sprite[3];
+    //public Sprite Stage1BG;    
 
     public GameObject StageSelectionPanel;
     public Button StageSelectionExitButton;
 
     public Button ReturnButton;
     [SerializeField]
-    private bool isLobby;    
-
-    public Button[] Stage1Buttons = new Button[3];
+    private bool isLobby;
 
     public GameObject StagePanel;
     public TextMeshProUGUI StagePanelTitle;
@@ -30,7 +38,9 @@ public class WorldmapUIManager : MonoBehaviour
     public GameObject RatPrefab;
     public Sprite WolfSprite;
     public GameObject WolfPrefab;    
-    public GameObject BossPrefab;
+    public GameObject LightningPrefab;
+    public GameObject SephirothPrefab;
+    public GameObject NoctisPrefab;
     public Button StagePanelExitButton;
 
     public Button[] CharacterLocationButtons = new Button[3];
@@ -56,9 +66,15 @@ public class WorldmapUIManager : MonoBehaviour
         //    GameManager.instance.CharacterSelected[i] = null;
         //}        
 
-        Stage1Button.onClick.AddListener(Stage1ButtonClicked);
+        //Stage1Button.onClick.AddListener(Stage1ButtonClicked);
         ReturnButton.onClick.AddListener(ReturnButtonClicked);
         //Stage1_1Button.onClick.AddListener(Stage1_1ButtonClicked);
+
+        for(int i = 0; i < StageButton.Length; i++)
+        {
+            int number = i;
+            StageButton[i].onClick.AddListener(() => StageButtonClicked(number));
+        }
 
         StageSelectionExitButton.onClick.AddListener(StageSelectionExitButtonClicked);
 
@@ -76,10 +92,10 @@ public class WorldmapUIManager : MonoBehaviour
             CharacterSelectionButtons[i].onClick.AddListener(() => CharacterSelectionButtonClicked(number));
         }
 
-        for (int i = 0; i < Stage1Buttons.Length; i++)
+        for (int i = 0; i < StagesButtons.Length; i++)
         {
             int number = i;
-            Stage1Buttons[i].onClick.AddListener(() => Stage1ButtonsClicked(number));
+            StagesButtons[i].onClick.AddListener(() => StagesButtonsClicked(number));
         }
 
         BattleStartButton.onClick.AddListener(BattleStartButtonClicked);
@@ -153,16 +169,75 @@ public class WorldmapUIManager : MonoBehaviour
         StartCoroutine(DelaySceneChange());
     }
 
-    void Stage1ButtonClicked()
+    //void Stage1ButtonClicked()
+    //{
+    //    Stage1.SetActive(false);
+
+    //    StageSelectionPanel.SetActive(true);
+
+    //    Background.GetComponent<Transform>().localScale = new Vector3(1.67f, 1, 1);
+    //    Background.sprite = Stage1BG;
+
+    //    ReturnButton.gameObject.SetActive(false);
+    //}
+
+    void StageButtonClicked(int number)
     {
-        Stage1.SetActive(false);
+        for (int i = 0; i < StageGameObject.Length; i++)
+        {
+            StageGameObject[i].SetActive(false);
+        }
 
-        StageSelectionPanel.SetActive(true);
+        switch (number)
+        {
+            case 0:
+                {
+                    GameManager.instance.isStage1 = true;
+                    GameManager.instance.isStage2 = false;
+                    GameManager.instance.isStage3 = false;
 
-        Background.GetComponent<Transform>().localScale = new Vector3(1.67f, 1, 1);
-        Background.sprite = Stage1BG;
+                    StageSelectionPanel.SetActive(true);
 
-        ReturnButton.gameObject.SetActive(false);
+                    Background.GetComponent<Transform>().localScale = new Vector3(1.67f, 1, 1);
+                    Background.sprite = StageBG[number];
+
+                    ReturnButton.gameObject.SetActive(false);
+
+                    break;
+                }
+
+            case 1:
+                {
+                    GameManager.instance.isStage1 = false;
+                    GameManager.instance.isStage2 = true;
+                    GameManager.instance.isStage3 = false;
+
+                    StageSelectionPanel.SetActive(true);
+
+                    Background.GetComponent<Transform>().localScale = new Vector3(1.67f, 1, 1);
+                    Background.sprite = StageBG[number];
+
+                    ReturnButton.gameObject.SetActive(false);
+
+                    break;
+                }
+
+            case 2:
+                {
+                    GameManager.instance.isStage1 = false;
+                    GameManager.instance.isStage2 = false;
+                    GameManager.instance.isStage3 = true;
+
+                    StageSelectionPanel.SetActive(true);
+
+                    Background.GetComponent<Transform>().localScale = new Vector3(1.67f, 1, 1);
+                    Background.sprite = StageBG[number];
+
+                    ReturnButton.gameObject.SetActive(false);
+
+                    break;
+                }
+        }
     }
 
     void ReturnButtonClicked()
@@ -179,7 +254,12 @@ public class WorldmapUIManager : MonoBehaviour
         Background.sprite = WorldBG;
 
         StageSelectionPanel.SetActive(false);
-        Stage1.SetActive(true);
+        //Stage1.SetActive(true);
+
+        for(int i = 0; i < StageGameObject.Length; i++)
+        {
+            StageGameObject[i].SetActive(true);
+        }
 
         ReturnButton.gameObject.SetActive(true);
     }
@@ -277,7 +357,7 @@ public class WorldmapUIManager : MonoBehaviour
         CharacterSelectionScroll.SetActive(false);
     }
 
-    void Stage1ButtonsClicked(int number)
+    void StagesButtonsClicked(int number)
     {
         StageSelectionPanel.SetActive(false);
         StagePanel.SetActive(true);
@@ -333,18 +413,39 @@ public class WorldmapUIManager : MonoBehaviour
                 break;
 
             case 2:
-                StagePanelTitle.text = "????????? 1 - " + (number + 1);
+                {
+                    EnemyObjects.SetActive(false);
+                    BossImage.SetActive(true);
 
-                EnemyObjects.SetActive(false);
-                BossImage.SetActive(true);
+                    GameManager.instance.isBossStage = true;
 
-                BossImage.GetComponent<Animator>().Play("Lightning_Idle");
-                BossImage.GetComponent<RectTransform>().sizeDelta = new Vector3(350, 350);
-                GameManager.instance.EnemySelected.Add(BossPrefab);
+                    if(GameManager.instance.isStage1)
+                    {
+                        StagePanelTitle.text = "????????? 1 - " + (number + 1);
 
-                GameManager.instance.isBossStage = true;
+                        BossImage.GetComponent<Animator>().Play("Lightning_Idle");
+                        BossImage.GetComponent<RectTransform>().sizeDelta = new Vector3(350, 350);
+                        GameManager.instance.EnemySelected.Add(LightningPrefab);
+                    }
+                    else if(GameManager.instance.isStage2)
+                    {
+                        StagePanelTitle.text = "????????? 1 - " + (number + 1);
 
-                break;
+                        BossImage.GetComponent<Animator>().Play("Sephiroth_Idle");
+                        BossImage.GetComponent<RectTransform>().sizeDelta = new Vector3(350, 350);
+                        GameManager.instance.EnemySelected.Add(SephirothPrefab);
+                    }
+                    else if(GameManager.instance.isStage3)
+                    {
+                        StagePanelTitle.text = "????????? 1 - " + (number + 1);
+
+                        BossImage.GetComponent<Animator>().Play("Noctis_Idle");
+                        BossImage.GetComponent<RectTransform>().sizeDelta = new Vector3(350, 350);
+                        GameManager.instance.EnemySelected.Add(NoctisPrefab);
+                    }
+
+                    break;
+                }
         }
     }
 

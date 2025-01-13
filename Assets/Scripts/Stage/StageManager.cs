@@ -41,10 +41,10 @@ public class StageManager : MonoBehaviour
         {
             GameObject enemy;
 
-            if(GameManager.instance.EnemySelected[i].name == "Lightning")
+            if(GameManager.instance.EnemySelected[i].name == "Lightning" || GameManager.instance.EnemySelected[i].name == "Sephiroth" || GameManager.instance.EnemySelected[i].name == "Noctis")
             {
                 enemy = Instantiate(GameManager.instance.EnemySelected[i], GameManager.instance.BossPosition, Quaternion.identity);
-            }
+            }            
             else
             {
                 enemy = Instantiate(GameManager.instance.EnemySelected[i], GameManager.instance.EnemyPositions[i], Quaternion.identity);
@@ -61,6 +61,14 @@ public class StageManager : MonoBehaviour
             else if(enemy.name.StartsWith("Lightning"))
             {
                 enemy.name = "Lightning";
+            }
+            else if(enemy.name.StartsWith("Sephiroth"))
+            {
+                enemy.name = "Sephiroth";
+            }
+            else if(enemy.name.StartsWith("Noctis"))
+            {
+                enemy.name = "Noctis";
             }
 
             GameManager.instance.InstantiatedEnemy.Add(enemy);
@@ -92,6 +100,14 @@ public class StageManager : MonoBehaviour
             else if (GameManager.instance.InstantiatedEnemy[i].name.StartsWith("Lightning"))
             {
                 CharacterSpeeds.Add(GameManager.instance.InstantiatedEnemy[i].GetComponent<Lightning>().Speed);
+            }
+            else if(GameManager.instance.InstantiatedEnemy[i].name.StartsWith("Sephiroth"))
+            {
+                CharacterSpeeds.Add(GameManager.instance.InstantiatedEnemy[i].GetComponent<Sephiroth>().Speed);
+            }
+            else if (GameManager.instance.InstantiatedEnemy[i].name.StartsWith("Noctis"))
+            {
+                CharacterSpeeds.Add(GameManager.instance.InstantiatedEnemy[i].GetComponent<Noctis>().Speed);
             }
         }
 
@@ -183,6 +199,14 @@ public class StageManager : MonoBehaviour
                 else if (CharacterTurns[number].name.StartsWith("Lightning"))
                 {
                     CharacterTurns[number].GetComponent<Lightning>().isCurrentEnemyTurn = true;
+                }
+                else if(CharacterTurns[number].name.StartsWith("Sephiroth"))
+                {
+                    CharacterTurns[number].GetComponent<Sephiroth>().isCurrentEnemyTurn = true;
+                }
+                else if (CharacterTurns[number].name.StartsWith("Noctis"))
+                {
+                    CharacterTurns[number].GetComponent<Noctis>().isCurrentEnemyTurn = true;
                 }
 
                 GameManager.instance.isEnemyTurn = true;

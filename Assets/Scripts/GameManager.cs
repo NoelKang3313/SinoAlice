@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     public bool isTurn;
     public int TurnNumber;    
     public bool isBattleOver;
+    public bool isStage1;
+    public bool isStage2;
+    public bool isStage3;
     public bool isBossStage;
 
     public int Gald;
