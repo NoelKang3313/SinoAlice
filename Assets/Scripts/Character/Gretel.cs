@@ -492,9 +492,41 @@ public class Gretel : MonoBehaviour
         {
             StageManager.EnemyInfo[GameManager.instance.EnemyPositionNumber].GetComponent<Wolf>().CurrentHP -= damage;
         }
+        else if (StageManager.EnemyInfo[GameManager.instance.EnemyPositionNumber].name.StartsWith("Magitek Armor"))
+        {
+            StageManager.EnemyInfo[GameManager.instance.EnemyPositionNumber].GetComponent<MagitekArmor>().CurrentHP -= damage;
+        }
+        else if (StageManager.EnemyInfo[GameManager.instance.EnemyPositionNumber].name.StartsWith("Scolopendra"))
+        {
+            StageManager.EnemyInfo[GameManager.instance.EnemyPositionNumber].GetComponent<Scolopendra>().CurrentHP -= damage;
+        }
+        else if (StageManager.EnemyInfo[GameManager.instance.EnemyPositionNumber].name.StartsWith("Epimetheus"))
+        {
+            StageManager.EnemyInfo[GameManager.instance.EnemyPositionNumber].GetComponent<Epimetheus>().CurrentHP -= damage;
+        }
+        else if (StageManager.EnemyInfo[GameManager.instance.EnemyPositionNumber].name.StartsWith("Veritas"))
+        {
+            StageManager.EnemyInfo[GameManager.instance.EnemyPositionNumber].GetComponent<Veritas>().CurrentHP -= damage;
+        }
+        else if (StageManager.EnemyInfo[GameManager.instance.EnemyPositionNumber].name.StartsWith("Dark Veritas"))
+        {
+            StageManager.EnemyInfo[GameManager.instance.EnemyPositionNumber].GetComponent<DarkVeritas>().CurrentHP -= damage;
+        }
+        else if (StageManager.EnemyInfo[GameManager.instance.EnemyPositionNumber].name.StartsWith("Samatha"))
+        {
+            StageManager.EnemyInfo[GameManager.instance.EnemyPositionNumber].GetComponent<Samatha>().CurrentHP -= damage;
+        }
         else if (StageManager.EnemyInfo[0].name.StartsWith("Lightning"))
         {
             StageManager.EnemyInfo[0].GetComponent<Lightning>().CurrentHP -= damage;
+        }
+        else if (StageManager.EnemyInfo[0].name.StartsWith("Sephiroth"))
+        {
+            StageManager.EnemyInfo[0].GetComponent<Sephiroth>().CurrentHP -= damage;
+        }
+        else if (StageManager.EnemyInfo[0].name.StartsWith("Noctis"))
+        {
+            StageManager.EnemyInfo[0].GetComponent<Noctis>().CurrentHP -= damage;
         }
     }
 
@@ -510,9 +542,41 @@ public class Gretel : MonoBehaviour
             {
                 StageManager.EnemyInfo[i].GetComponent<Wolf>().CurrentHP -= damage;
             }
+            else if (StageManager.EnemyInfo[i].name.StartsWith("Magitek Armor"))
+            {
+                StageManager.EnemyInfo[i].GetComponent<MagitekArmor>().CurrentHP -= damage;
+            }
+            else if (StageManager.EnemyInfo[i].name.StartsWith("Scolopendra"))
+            {
+                StageManager.EnemyInfo[i].GetComponent<Scolopendra>().CurrentHP -= damage;
+            }
+            else if (StageManager.EnemyInfo[i].name.StartsWith("Epimetheus"))
+            {
+                StageManager.EnemyInfo[i].GetComponent<Epimetheus>().CurrentHP -= damage;
+            }
+            else if (StageManager.EnemyInfo[i].name.StartsWith("Veritas"))
+            {
+                StageManager.EnemyInfo[i].GetComponent<Veritas>().CurrentHP -= damage;
+            }
+            else if (StageManager.EnemyInfo[i].name.StartsWith("Dark Veritas"))
+            {
+                StageManager.EnemyInfo[i].GetComponent<DarkVeritas>().CurrentHP -= damage;
+            }
+            else if (StageManager.EnemyInfo[i].name.StartsWith("Samatha"))
+            {
+                StageManager.EnemyInfo[i].GetComponent<Samatha>().CurrentHP -= damage;
+            }
             else if (StageManager.EnemyInfo[i].name.StartsWith("Lightning"))
             {
                 StageManager.EnemyInfo[i].GetComponent<Lightning>().CurrentHP -= damage;
+            }
+            else if (StageManager.EnemyInfo[i].name.StartsWith("Sephiroth"))
+            {
+                StageManager.EnemyInfo[i].GetComponent<Sephiroth>().CurrentHP -= damage;
+            }
+            else if (StageManager.EnemyInfo[i].name.StartsWith("Noctis"))
+            {
+                StageManager.EnemyInfo[i].GetComponent<Noctis>().CurrentHP -= damage;
             }
         }
     }

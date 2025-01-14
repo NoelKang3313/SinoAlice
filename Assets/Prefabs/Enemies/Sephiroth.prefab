@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8407184031154578055}
   m_Layer: 0
   m_Name: Sephiroth
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StageManager: {fileID: 0}
   UIManager: {fileID: 0}
-  AttackEffectPrefab: {fileID: 0}
+  AttackEffectPrefab: {fileID: 611716050284685982, guid: a91e240fd06014da2961e819b712d514, type: 3}
   AttackGradient:
     serializedVersion: 2
     key0: {r: 0.627451, g: 0.627451, b: 0.627451, a: 1}

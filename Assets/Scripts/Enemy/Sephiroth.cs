@@ -123,7 +123,7 @@ public class Sephiroth : MonoBehaviour
                             isAttacking = true;
 
                             attackEffect = Instantiate(AttackEffectPrefab, GameManager.instance.Characters[playerRandom].transform.position, Quaternion.identity);
-                            attackEffect.GetComponent<Animator>().Play("Lightning_Attack");
+                            attackEffect.GetComponent<Animator>().Play("Sephiroth_Attack");
 
                             var colorOverLifeTime = attackEffect.GetComponentInChildren<ParticleSystem>().colorOverLifetime;
                             colorOverLifeTime.color = new ParticleSystem.MinMaxGradient(AttackGradient);
@@ -150,7 +150,7 @@ public class Sephiroth : MonoBehaviour
                             isAttacking = true;
 
                             attackEffect = Instantiate(AttackEffectPrefab, GameManager.instance.Characters[playerRandom].transform.position, Quaternion.identity);
-                            attackEffect.GetComponent<Animator>().Play("BS_Lightning_Attack");
+                            attackEffect.GetComponent<Animator>().Play("BS_Sephiroth_Attack");
 
                             var colorOverLifeTime = attackEffect.GetComponentInChildren<ParticleSystem>().colorOverLifetime;
                             colorOverLifeTime.color = new ParticleSystem.MinMaxGradient(BS_AttackGradient);

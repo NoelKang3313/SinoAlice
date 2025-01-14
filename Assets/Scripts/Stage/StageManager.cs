@@ -58,6 +58,30 @@ public class StageManager : MonoBehaviour
             {
                 enemy.name = "Wolf";
             }
+            else if(enemy.name.StartsWith("Magitek Armor"))
+            {
+                enemy.name = "Magitek Armor";
+            }
+            else if(enemy.name.StartsWith("Scolopendra"))
+            {
+                enemy.name = "Scolopendra";
+            }
+            else if (enemy.name.StartsWith("Epimetheus"))
+            {
+                enemy.name = "Epimetheus";
+            }
+            else if(enemy.name.StartsWith("Veritas"))
+            {
+                enemy.name = "Veritas";
+            }
+            else if (enemy.name.StartsWith("Dark Veritas"))
+            {
+                enemy.name = "Dark Veritas";
+            }
+            else if(enemy.name.StartsWith("Samatha"))
+            {
+                enemy.name = "Samatha";
+            }
             else if(enemy.name.StartsWith("Lightning"))
             {
                 enemy.name = "Lightning";
@@ -96,6 +120,30 @@ public class StageManager : MonoBehaviour
             else if(GameManager.instance.InstantiatedEnemy[i].name.StartsWith("Wolf"))
             {
                 CharacterSpeeds.Add(GameManager.instance.InstantiatedEnemy[i].GetComponent<Wolf>().Speed);
+            }
+            else if (GameManager.instance.InstantiatedEnemy[i].name.StartsWith("Magitek Armor"))
+            {
+                CharacterSpeeds.Add(GameManager.instance.InstantiatedEnemy[i].GetComponent<MagitekArmor>().Speed);
+            }
+            else if (GameManager.instance.InstantiatedEnemy[i].name.StartsWith("Scolopendra"))
+            {
+                CharacterSpeeds.Add(GameManager.instance.InstantiatedEnemy[i].GetComponent<Scolopendra>().Speed);
+            }
+            else if (GameManager.instance.InstantiatedEnemy[i].name.StartsWith("Epimetheus"))
+            {
+                CharacterSpeeds.Add(GameManager.instance.InstantiatedEnemy[i].GetComponent<Epimetheus>().Speed);
+            }
+            else if (GameManager.instance.InstantiatedEnemy[i].name.StartsWith("Veritas"))
+            {
+                CharacterSpeeds.Add(GameManager.instance.InstantiatedEnemy[i].GetComponent<Veritas>().Speed);
+            }
+            else if (GameManager.instance.InstantiatedEnemy[i].name.StartsWith("Dark Veritas"))
+            {
+                CharacterSpeeds.Add(GameManager.instance.InstantiatedEnemy[i].GetComponent<DarkVeritas>().Speed);
+            }
+            else if (GameManager.instance.InstantiatedEnemy[i].name.StartsWith("Samatha"))
+            {
+                CharacterSpeeds.Add(GameManager.instance.InstantiatedEnemy[i].GetComponent<Samatha>().Speed);
             }
             else if (GameManager.instance.InstantiatedEnemy[i].name.StartsWith("Lightning"))
             {
@@ -195,6 +243,30 @@ public class StageManager : MonoBehaviour
                 else if(CharacterTurns[number].name.StartsWith("Wolf"))
                 {
                     CharacterTurns[number].GetComponent<Wolf>().isCurrentEnemyTurn = true;
+                }
+                else if (CharacterTurns[number].name.StartsWith("Magitek Armor"))
+                {
+                    CharacterTurns[number].GetComponent<MagitekArmor>().isCurrentEnemyTurn = true;
+                }
+                else if (CharacterTurns[number].name.StartsWith("Scolopendra"))
+                {
+                    CharacterTurns[number].GetComponent<Scolopendra>().isCurrentEnemyTurn = true;
+                }
+                else if (CharacterTurns[number].name.StartsWith("Epimetheus"))
+                {
+                    CharacterTurns[number].GetComponent<Epimetheus>().isCurrentEnemyTurn = true;
+                }
+                else if (CharacterTurns[number].name.StartsWith("Veritas"))
+                {
+                    CharacterTurns[number].GetComponent<Veritas>().isCurrentEnemyTurn = true;
+                }
+                else if (CharacterTurns[number].name.StartsWith("Dark Veritas"))
+                {
+                    CharacterTurns[number].GetComponent<DarkVeritas>().isCurrentEnemyTurn = true;
+                }
+                else if (CharacterTurns[number].name.StartsWith("Samatha"))
+                {
+                    CharacterTurns[number].GetComponent<Samatha>().isCurrentEnemyTurn = true;
                 }
                 else if (CharacterTurns[number].name.StartsWith("Lightning"))
                 {
