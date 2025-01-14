@@ -10,6 +10,11 @@ public class UIManager : MonoBehaviour
     public StageManager StageManager;
     public StageAudioManager StageAudioManager;
 
+    public SpriteRenderer BackgroundSprite;
+    public Sprite Stage1BG;
+    public Sprite Stage2BG;
+    public Sprite Stage3BG;
+
     [Header("Battle Start")]
     public GameObject BattleIntro;
     public GameObject Transition;
@@ -42,6 +47,12 @@ public class UIManager : MonoBehaviour
     public Sprite SnowWhiteSprite;
     public Sprite RatSprite;
     public Sprite WolfSprite;
+    public Sprite MagitekArmorSprite;
+    public Sprite ScolopendraSprite;
+    public Sprite EpimetheusSprite;
+    public Sprite VeritasSprite;
+    public Sprite DarkVeritasSprite;
+    public Sprite SamathaSprite;
     public Sprite LightningSprite;
     public Sprite SephirothSprite;
     public Sprite NoctisSprite;
@@ -139,6 +150,21 @@ public class UIManager : MonoBehaviour
 
         actionButtonsAnimator = ActionButtons.GetComponent<Animator>();
 
+        if(GameManager.instance.isStage1)
+        {
+            BackgroundSprite.sprite = Stage1BG;
+        }
+        else if (GameManager.instance.isStage2)
+        {
+            BackgroundSprite.sprite = Stage2BG;
+        }
+        else if (GameManager.instance.isStage3)
+        {
+            BackgroundSprite.sprite = Stage3BG;
+        }
+
+        ActivateEnemySelectionButtons();
+
         AttackButton.onClick.AddListener(AttackButtonClicked);
         GuardButton.onClick.AddListener(GuardButtonClicked);
         SkillButton.onClick.AddListener(SkillButtonClicked);
@@ -211,6 +237,14 @@ public class UIManager : MonoBehaviour
         //{
         //    CharacterMiniGauge.SetActive(true);
         //}
+    }
+
+    void ActivateEnemySelectionButtons()
+    {
+        if(GameManager.instance.isStage2 || GameManager.instance.isStage3)
+        {
+            EnemySelectButton[3].gameObject.SetActive(false);
+        }
     }
 
     void CheckCharacterTurnChangeSkillIcon()
@@ -1220,6 +1254,66 @@ public class UIManager : MonoBehaviour
                 HPGameObjects.GetComponent<RectTransform>().anchoredPosition = enemyHPPosition;
                 MPGameObjects.SetActive(false);
             }
+            else if (StageManager.CharacterTurns[GameManager.instance.TurnNumber].name.StartsWith("Magitek Armor"))
+            {
+                CharacterImage.sprite = MagitekArmorSprite;
+                CharacterName.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].name;
+                CharacterHPGauge.fillAmount = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<MagitekArmor>().CurrentHP / StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<MagitekArmor>().HP;
+                CurrentHPText.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<MagitekArmor>().CurrentHP.ToString() + "/" + StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<MagitekArmor>().HP.ToString();
+
+                HPGameObjects.GetComponent<RectTransform>().anchoredPosition = enemyHPPosition;
+                MPGameObjects.SetActive(false);
+            }
+            else if (StageManager.CharacterTurns[GameManager.instance.TurnNumber].name.StartsWith("Scolopendra"))
+            {
+                CharacterImage.sprite = ScolopendraSprite;
+                CharacterName.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].name;
+                CharacterHPGauge.fillAmount = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Scolopendra>().CurrentHP / StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Scolopendra>().HP;
+                CurrentHPText.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Scolopendra>().CurrentHP.ToString() + "/" + StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Scolopendra>().HP.ToString();
+
+                HPGameObjects.GetComponent<RectTransform>().anchoredPosition = enemyHPPosition;
+                MPGameObjects.SetActive(false);
+            }
+            else if (StageManager.CharacterTurns[GameManager.instance.TurnNumber].name.StartsWith("Epimetheus"))
+            {
+                CharacterImage.sprite = EpimetheusSprite;
+                CharacterName.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].name;
+                CharacterHPGauge.fillAmount = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Epimetheus>().CurrentHP / StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Epimetheus>().HP;
+                CurrentHPText.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Epimetheus>().CurrentHP.ToString() + "/" + StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Epimetheus>().HP.ToString();
+
+                HPGameObjects.GetComponent<RectTransform>().anchoredPosition = enemyHPPosition;
+                MPGameObjects.SetActive(false);
+            }
+            else if (StageManager.CharacterTurns[GameManager.instance.TurnNumber].name.StartsWith("Veritas"))
+            {
+                CharacterImage.sprite = VeritasSprite;
+                CharacterName.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].name;
+                CharacterHPGauge.fillAmount = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Veritas>().CurrentHP / StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Veritas>().HP;
+                CurrentHPText.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Veritas>().CurrentHP.ToString() + "/" + StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Veritas>().HP.ToString();
+
+                HPGameObjects.GetComponent<RectTransform>().anchoredPosition = enemyHPPosition;
+                MPGameObjects.SetActive(false);
+            }
+            else if (StageManager.CharacterTurns[GameManager.instance.TurnNumber].name.StartsWith("Dark Veritas"))
+            {
+                CharacterImage.sprite = DarkVeritasSprite;
+                CharacterName.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].name;
+                CharacterHPGauge.fillAmount = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<DarkVeritas>().CurrentHP / StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<DarkVeritas>().HP;
+                CurrentHPText.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<DarkVeritas>().CurrentHP.ToString() + "/" + StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<DarkVeritas>().HP.ToString();
+
+                HPGameObjects.GetComponent<RectTransform>().anchoredPosition = enemyHPPosition;
+                MPGameObjects.SetActive(false);
+            }
+            else if (StageManager.CharacterTurns[GameManager.instance.TurnNumber].name.StartsWith("Samatha"))
+            {
+                CharacterImage.sprite = SamathaSprite;
+                CharacterName.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].name;
+                CharacterHPGauge.fillAmount = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Samatha>().CurrentHP / StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Samatha>().HP;
+                CurrentHPText.text = StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Samatha>().CurrentHP.ToString() + "/" + StageManager.CharacterTurns[GameManager.instance.TurnNumber].GetComponent<Samatha>().HP.ToString();
+
+                HPGameObjects.GetComponent<RectTransform>().anchoredPosition = enemyHPPosition;
+                MPGameObjects.SetActive(false);
+            }
             else if (StageManager.CharacterTurns[GameManager.instance.TurnNumber].name.StartsWith("Lightning"))
             {
                 CharacterImage.sprite = LightningSprite;
@@ -1333,7 +1427,7 @@ public class UIManager : MonoBehaviour
                 GameManager.instance.TurnNumber = 0;
                 GameManager.instance.isBattleOver = false;
 
-                GameManager.instance.LoadScene("Stage1");                
+                GameManager.instance.LoadScene("Stage");                
             }
             else if(isLobby)
             {

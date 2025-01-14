@@ -7,9 +7,6 @@ public class Rat : MonoBehaviour
     [SerializeField]
     StageManager StageManager;
 
-    [SerializeField]
-    UIManager UIManager;
-
     Animator animator;
 
     [Header("Rat Stats")]
@@ -44,9 +41,7 @@ public class Rat : MonoBehaviour
         if (GameObject.Find("StageManager") != null)
         {
             StageManager = GameObject.Find("StageManager").GetComponent<StageManager>();
-        }
-
-        UIManager = FindAnyObjectByType<UIManager>();
+        }        
 
         animator = GetComponent<Animator>();
     }

@@ -37,10 +37,27 @@ public class WorldmapUIManager : MonoBehaviour
     public Sprite RatSprite;
     public GameObject RatPrefab;
     public Sprite WolfSprite;
-    public GameObject WolfPrefab;    
+    public GameObject WolfPrefab;
+    public GameObject MagitekArmorPrefab;
+    public Sprite MagitekArmorSprite;
+    public GameObject ScolopendraPrefab;
+    public Sprite ScolopendraSprite;
+    public GameObject EpimetheusPrefab;
+    public Sprite EpimetheusSprite;
+    public GameObject VeritasPrefab;
+    public Sprite VeritasSprite;
+    public GameObject DarkVeritasPrefab;
+    public Sprite DarkVeritasSprite;
+    public GameObject SamathaPrefab;
+    public Sprite SamathaSprite;
+
     public GameObject LightningPrefab;
     public GameObject SephirothPrefab;
     public GameObject NoctisPrefab;
+
+    public Vector2[] FourEnemyPosition = new Vector2[4];
+    public Vector2[] ThreeEnemyPosition = new Vector2[3];
+
     public Button StagePanelExitButton;
 
     public Button[] CharacterLocationButtons = new Button[3];
@@ -188,6 +205,13 @@ public class WorldmapUIManager : MonoBehaviour
             StageGameObject[i].SetActive(false);
         }
 
+        for (int i = 0; i < StagesButtons.Length; i++)
+        {
+            StagesButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "스테이지 " + (number + 1) + " - " + (i + 1);
+        }
+
+        StagePanelTitle.text = "스테이지 " + (number + 1) + " - ";
+
         switch (number)
         {
             case 0:
@@ -269,6 +293,30 @@ public class WorldmapUIManager : MonoBehaviour
         StagePanel.SetActive(false);
         CharacterSelectionScroll.SetActive(false);
         StageSelectionPanel.SetActive(true);
+    }
+
+    void CheckCharacterSelected()
+    {
+        for(int i = 0; i < GameManager.instance.CharacterSelected.Length; i++)
+        {
+            if (GameManager.instance.CharacterSelected[i] != null)
+            {
+                if (GameManager.instance.CharacterSelected[i].name == "Alice")
+                {
+                    CharacterLocationButtons[i].transform.parent.GetComponent<Animator>().Play("Alice_Idle");
+                }
+                else if (GameManager.instance.CharacterSelected[i].name == "Gretel")
+                {
+                    CharacterLocationButtons[i].transform.parent.GetComponent<Animator>().Play("Gretel_Idle");
+                }
+                else if (GameManager.instance.CharacterSelected[i].name == "Snow White")
+                {
+                    CharacterLocationButtons[i].transform.parent.GetComponent<Animator>().Play("SnowWhite_Idle");
+                }
+            }
+            else
+                continue;
+        }
     }
 
     void CharacterLocationButtonClicked(int number)
@@ -360,55 +408,152 @@ public class WorldmapUIManager : MonoBehaviour
     void StagesButtonsClicked(int number)
     {
         StageSelectionPanel.SetActive(false);
-        StagePanel.SetActive(true);
+        StagePanel.SetActive(true);        
 
         if(GameManager.instance.EnemySelected.Count != 0)
         {
             GameManager.instance.EnemySelected.Clear();
         }
 
+        CheckCharacterSelected();
+        
+        StagePanelTitle.text = StagePanelTitle.text + (number + 1);
+
         switch (number)
         {
             case 0:
-                StagePanelTitle.text = "????????? 1 - " + (number + 1);
-
-                EnemyObjects.SetActive(true);
-                BossImage.SetActive(false);
-
-                for (int i = 0; i < EnemyImages.Length; i++)
                 {
-                    EnemyImages[i].sprite = RatSprite;
-                    EnemyImages[i].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
-                    GameManager.instance.EnemySelected.Add(RatPrefab);
+                    EnemyObjects.SetActive(true);
+                    BossImage.SetActive(false);
+
+                    GameManager.instance.isBossStage = false;
+
+                    if (GameManager.instance.isStage1)
+                    {
+                        for (int i = 0; i < EnemyImages.Length; i++)
+                        {
+                            EnemyImages[i].sprite = RatSprite;
+                            EnemyImages[i].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+                            EnemyImages[i].GetComponent<RectTransform>().anchoredPosition = FourEnemyPosition[i];
+                            GameManager.instance.EnemySelected.Add(RatPrefab);
+                        }
+
+                        EnemyImages[3].gameObject.SetActive(true);
+                    }
+                    else if (GameManager.instance.isStage2)
+                    {
+                        EnemyImages[0].sprite = MagitekArmorSprite;
+                        EnemyImages[1].sprite = MagitekArmorSprite;
+                        EnemyImages[2].sprite = ScolopendraSprite;
+
+                        EnemyImages[0].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+                        EnemyImages[1].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+                        EnemyImages[2].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+
+                        GameManager.instance.EnemySelected.Add(MagitekArmorPrefab);
+                        GameManager.instance.EnemySelected.Add(MagitekArmorPrefab);
+                        GameManager.instance.EnemySelected.Add(ScolopendraPrefab);
+
+                        for(int i = 0; i < 3; i++)
+                        {
+                            EnemyImages[i].GetComponent<RectTransform>().anchoredPosition = ThreeEnemyPosition[i];
+                        }
+
+                        EnemyImages[3].gameObject.SetActive(false);
+                    }
+                    else if (GameManager.instance.isStage3)
+                    {
+                        EnemyImages[0].sprite = VeritasSprite;
+                        EnemyImages[1].sprite = SamathaSprite;
+                        EnemyImages[2].sprite = SamathaSprite;
+
+                        EnemyImages[0].GetComponent<RectTransform>().sizeDelta = new Vector2(230, 150);
+                        EnemyImages[1].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+                        EnemyImages[2].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+
+                        GameManager.instance.EnemySelected.Add(VeritasPrefab);
+                        GameManager.instance.EnemySelected.Add(SamathaPrefab);
+                        GameManager.instance.EnemySelected.Add(SamathaPrefab);
+
+                        for (int i = 0; i < 3; i++)
+                        {
+                            EnemyImages[i].GetComponent<RectTransform>().anchoredPosition = ThreeEnemyPosition[i];
+                        }
+
+                        EnemyImages[3].gameObject.SetActive(false);
+                    }
+
+                    break;
                 }
-
-                GameManager.instance.isBossStage = false;
-
-                break;
 
             case 1:
-                StagePanelTitle.text = "????????? 1 - " + (number + 1);
-
                 EnemyObjects.SetActive(true);
                 BossImage.SetActive(false);
 
-                for (int i = 0; i < EnemyImages.Length; i++)
+                GameManager.instance.isBossStage = false;
+
+                if (GameManager.instance.isStage1)
                 {
-                    if(i % 2 == 0)
+                    for (int i = 0; i < EnemyImages.Length; i++)
                     {
-                        EnemyImages[i].sprite = WolfSprite;
-                        EnemyImages[i].GetComponent<RectTransform>().sizeDelta = new Vector2(250, 150);
-                        GameManager.instance.EnemySelected.Add(WolfPrefab);
-                    }
-                    else
-                    {
-                        EnemyImages[i].sprite = RatSprite;
-                        EnemyImages[i].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
-                        GameManager.instance.EnemySelected.Add(RatPrefab);
+                        if (i % 2 == 0)
+                        {
+                            EnemyImages[i].sprite = WolfSprite;
+                            EnemyImages[i].GetComponent<RectTransform>().sizeDelta = new Vector2(250, 150);
+                            GameManager.instance.EnemySelected.Add(WolfPrefab);
+                        }
+                        else
+                        {
+                            EnemyImages[i].sprite = RatSprite;
+                            EnemyImages[i].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+                            GameManager.instance.EnemySelected.Add(RatPrefab);
+                        }
+
+                        EnemyImages[i].GetComponent<RectTransform>().anchoredPosition = FourEnemyPosition[i];
                     }
                 }
+                else if (GameManager.instance.isStage2)
+                {
+                    EnemyImages[0].sprite = ScolopendraSprite;
+                    EnemyImages[1].sprite = ScolopendraSprite;
+                    EnemyImages[2].sprite = EpimetheusSprite;
 
-                GameManager.instance.isBossStage = false;
+                    EnemyImages[0].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+                    EnemyImages[1].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+                    EnemyImages[2].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+
+                    GameManager.instance.EnemySelected.Add(ScolopendraPrefab);
+                    GameManager.instance.EnemySelected.Add(ScolopendraPrefab);
+                    GameManager.instance.EnemySelected.Add(EpimetheusPrefab);
+
+                    for (int i = 0; i < 3; i++)
+                    {
+                        EnemyImages[i].GetComponent<RectTransform>().anchoredPosition = ThreeEnemyPosition[i];
+                    }
+
+                    EnemyImages[3].gameObject.SetActive(false);
+                }
+                else if (GameManager.instance.isStage3)
+                {
+                    EnemyImages[0].sprite = VeritasSprite;
+                    EnemyImages[1].sprite = SamathaSprite;
+                    EnemyImages[2].sprite = DarkVeritasSprite;
+
+                    EnemyImages[0].GetComponent<RectTransform>().sizeDelta = new Vector2(230, 150);
+                    EnemyImages[1].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+                    EnemyImages[2].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+
+                    GameManager.instance.EnemySelected.Add(VeritasPrefab);
+                    GameManager.instance.EnemySelected.Add(SamathaPrefab);
+                    GameManager.instance.EnemySelected.Add(DarkVeritasPrefab);
+
+                    for (int i = 0; i < 3; i++)
+                    {
+                        EnemyImages[i].GetComponent<RectTransform>().anchoredPosition = ThreeEnemyPosition[i];
+                    }
+
+                    EnemyImages[3].gameObject.SetActive(false);
+                }
 
                 break;
 
@@ -421,26 +566,20 @@ public class WorldmapUIManager : MonoBehaviour
 
                     if(GameManager.instance.isStage1)
                     {
-                        StagePanelTitle.text = "????????? 1 - " + (number + 1);
-
                         BossImage.GetComponent<Animator>().Play("Lightning_Idle");
                         BossImage.GetComponent<RectTransform>().sizeDelta = new Vector3(350, 350);
                         GameManager.instance.EnemySelected.Add(LightningPrefab);
                     }
                     else if(GameManager.instance.isStage2)
                     {
-                        StagePanelTitle.text = "????????? 1 - " + (number + 1);
-
                         BossImage.GetComponent<Animator>().Play("Sephiroth_Idle");
                         BossImage.GetComponent<RectTransform>().sizeDelta = new Vector3(350, 350);
                         GameManager.instance.EnemySelected.Add(SephirothPrefab);
                     }
                     else if(GameManager.instance.isStage3)
-                    {
-                        StagePanelTitle.text = "????????? 1 - " + (number + 1);
-
+                    {                        
                         BossImage.GetComponent<Animator>().Play("Noctis_Idle");
-                        BossImage.GetComponent<RectTransform>().sizeDelta = new Vector3(350, 350);
+                        BossImage.GetComponent<RectTransform>().sizeDelta = new Vector3(300, 300);
                         GameManager.instance.EnemySelected.Add(NoctisPrefab);
                     }
 
@@ -504,7 +643,7 @@ public class WorldmapUIManager : MonoBehaviour
             else
             {
                 GameManager.instance.isBattleStart = true;
-                GameManager.instance.LoadScene("Stage1");
+                GameManager.instance.LoadScene("Stage");
             }
         }
     }
