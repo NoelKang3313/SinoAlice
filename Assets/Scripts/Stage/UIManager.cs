@@ -282,7 +282,18 @@ public class UIManager : MonoBehaviour
             }
             else
             {
-                StageAudioManager.AudioSource.clip = StageAudioManager.LightningBGM;
+                if(GameManager.instance.isStage1)
+                {
+                    StageAudioManager.AudioSource.clip = StageAudioManager.LightningBGM;
+                }
+                else if(GameManager.instance.isStage2)
+                {
+                    StageAudioManager.AudioSource.clip = StageAudioManager.SephirothBGM;
+                }
+                else if(GameManager.instance.isStage3)
+                {
+                    StageAudioManager.AudioSource.clip = StageAudioManager.NoctisBGM;
+                }
             }
 
             StageAudioManager.AudioSource.Play();

@@ -42,7 +42,7 @@ public class Noctis : MonoBehaviour
     public GameObject AvalanchePrefab;
     private GameObject avalanche;
     public GameObject BlizzardBombPrefab;
-    private GameObject blizzardBomb;
+    private GameObject[] blizzardBombs = new GameObject[3];
     public GameObject JudgementPrefab;
     private GameObject judgement;
     private bool isSkillInstantiated;
@@ -182,7 +182,7 @@ public class Noctis : MonoBehaviour
                     }
                     else
                     {
-                        animator.SetBool("MagicAttack", false);
+                        animator.SetBool("BS_MagicAttack", true);
                     }
 
                     switch (skillRandom)
@@ -206,6 +206,17 @@ public class Noctis : MonoBehaviour
                                     Destroy(iceStrike);
                                     isSkillInstantiated = false;
 
+                                    if (!isBraveShift)
+                                    {
+                                        animator.SetBool("MagicAttack", false);
+                                        animator.SetBool("MagicStandby", false);
+                                    }
+                                    else
+                                    {
+                                        animator.SetBool("BS_MagicAttack", false);
+                                        animator.SetBool("BS_MagicStandby", false);
+                                    }
+
                                     isCurrentEnemyTurn = false;
                                     isSkillRandom = false;
                                     isRandom = false;
@@ -224,7 +235,7 @@ public class Noctis : MonoBehaviour
 
                         case 1:
                             {
-                                if(isSkillInstantiated)
+                                if(!isSkillInstantiated)
                                 {
                                     isSkillInstantiated = true;
                                     avalanche = Instantiate(AvalanchePrefab);
@@ -232,44 +243,48 @@ public class Noctis : MonoBehaviour
 
                                 if(avalanche.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f && !isBlizzardBombInstantiated)
                                 {
-                                    isBlizzardBombInstantiated = true;
+                                    isBlizzardBombInstantiated = true;                                    
 
-                                    for(int i = 0; i < 3; i++)
+                                    for(int i = 0; i < blizzardBombs.Length; i++)
                                     {
-                                        blizzardBomb = Instantiate(BlizzardBombPrefab, GameManager.instance.Characters[i].transform.position, Quaternion.identity);
+                                        blizzardBombs[i] = Instantiate(BlizzardBombPrefab, GameManager.instance.Characters[i].transform.position, Quaternion.identity);
+                                    }
+                                }
+
+                                if (isBlizzardBombInstantiated && blizzardBombs[0].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                                {
+                                    isSkillInstantiated = false;
+                                    isBlizzardBombInstantiated = false;
+
+                                    for (int i = 0; i < blizzardBombs.Length; i++)
+                                    {
+                                        Destroy(blizzardBombs[i]);
                                     }
 
-                                    if (blizzardBomb.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                                    Destroy(avalanche);
+
+                                    if (!isBraveShift)
                                     {
-                                        Destroy(blizzardBomb);
-                                        Destroy(avalanche);
-
-                                        isSkillInstantiated = false;
-                                        isBlizzardBombInstantiated = false;
-
-                                        if (!isBraveShift)
-                                        {
-                                            animator.SetBool("MagicAttack", false);
-                                            animator.SetBool("MagicStandby", false);
-                                        }
-                                        else
-                                        {
-                                            animator.SetBool("BS_MagicAttack", false);
-                                            animator.SetBool("BS_MagicStandby", false);
-                                        }
-
-                                        isCurrentEnemyTurn = false;
-                                        isSkillRandom = false;
-                                        isRandom = false;
-                                        GameManager.instance.isEnemyTurn = false;
-                                        GameManager.instance.isTurn = true;
-                                        GameManager.instance.TurnNumber++;
-                                        activateSkillNum++;
-
-                                        //UIManager.CharacterMiniGauge.SetActive(true);
-
-                                        DamageAllPlayer(10);
+                                        animator.SetBool("MagicAttack", false);
+                                        animator.SetBool("MagicStandby", false);
                                     }
+                                    else
+                                    {
+                                        animator.SetBool("BS_MagicAttack", false);
+                                        animator.SetBool("BS_MagicStandby", false);
+                                    }
+
+                                    isCurrentEnemyTurn = false;
+                                    isSkillRandom = false;
+                                    isRandom = false;
+                                    GameManager.instance.isEnemyTurn = false;
+                                    GameManager.instance.isTurn = true;
+                                    GameManager.instance.TurnNumber++;
+                                    activateSkillNum++;
+
+                                    //UIManager.CharacterMiniGauge.SetActive(true);
+
+                                    DamageAllPlayer(10);
                                 }
 
                                 break;
