@@ -179,7 +179,7 @@ public class Sephiroth : MonoBehaviour
                     }
                     else
                     {
-                        animator.SetBool("MagicAttack", false);
+                        animator.SetBool("BS_MagicAttack", true);
                     }
 
                     switch(skillRandom)

@@ -10,4 +10,6 @@ public class StageAudioManager : MonoBehaviour
     public AudioClip BattleBGM;
     public AudioClip VictoryBGM;
     public AudioClip LightningBGM;
+    public AudioClip SephirothBGM;
+    public AudioClip NoctisBGM;
 }

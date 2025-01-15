@@ -4104,9 +4104,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1690759268}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -200}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 130, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &795837931
@@ -4224,9 +4224,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1690759268}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -335}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 130, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &813805775
@@ -5921,7 +5921,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c23ce8b9758f2467cb69792fbbb9d80d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -6037,6 +6037,8 @@ MonoBehaviour:
   BattleBGM: {fileID: 8300000, guid: 90651d92347c44429aaaabb72774535f, type: 3}
   VictoryBGM: {fileID: 8300000, guid: ca6e24e310eae45b08a84e4b52223856, type: 3}
   LightningBGM: {fileID: 8300000, guid: abcf3782dbc8e46d6b8c1cfd0166d2c4, type: 3}
+  SephirothBGM: {fileID: 8300000, guid: e84d63b35157e4d7e8289734f5c7104f, type: 3}
+  NoctisBGM: {fileID: 8300000, guid: 9f0576a2621a54d28ba5e644d2217a52, type: 3}
 --- !u!1 &1078347638
 GameObject:
   m_ObjectHideFlags: 0
@@ -7657,9 +7659,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1690759268}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -605}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 130, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1295226639
@@ -8635,9 +8637,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1690759268}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -65}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 130, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1487010393
@@ -9955,9 +9957,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1690759268}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -470}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 130, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1751111340
