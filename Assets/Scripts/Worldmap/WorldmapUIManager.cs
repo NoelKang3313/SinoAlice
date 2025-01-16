@@ -432,8 +432,7 @@ public class WorldmapUIManager : MonoBehaviour
                     {
                         for (int i = 0; i < EnemyImages.Length; i++)
                         {
-                            EnemyImages[i].sprite = RatSprite;
-                            EnemyImages[i].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+                            EnemyImages[i].sprite = RatSprite;                            
                             EnemyImages[i].GetComponent<RectTransform>().anchoredPosition = FourEnemyPosition[i];
                             GameManager.instance.EnemySelected.Add(RatPrefab);
                         }
@@ -445,10 +444,6 @@ public class WorldmapUIManager : MonoBehaviour
                         EnemyImages[0].sprite = MagitekArmorSprite;
                         EnemyImages[1].sprite = MagitekArmorSprite;
                         EnemyImages[2].sprite = ScolopendraSprite;
-
-                        EnemyImages[0].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
-                        EnemyImages[1].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
-                        EnemyImages[2].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
 
                         GameManager.instance.EnemySelected.Add(MagitekArmorPrefab);
                         GameManager.instance.EnemySelected.Add(MagitekArmorPrefab);
@@ -466,10 +461,6 @@ public class WorldmapUIManager : MonoBehaviour
                         EnemyImages[0].sprite = VeritasSprite;
                         EnemyImages[1].sprite = SamathaSprite;
                         EnemyImages[2].sprite = SamathaSprite;
-
-                        EnemyImages[0].GetComponent<RectTransform>().sizeDelta = new Vector2(230, 150);
-                        EnemyImages[1].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
-                        EnemyImages[2].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
 
                         GameManager.instance.EnemySelected.Add(VeritasPrefab);
                         GameManager.instance.EnemySelected.Add(SamathaPrefab);
@@ -498,14 +489,12 @@ public class WorldmapUIManager : MonoBehaviour
                     {
                         if (i % 2 == 0)
                         {
-                            EnemyImages[i].sprite = WolfSprite;
-                            EnemyImages[i].GetComponent<RectTransform>().sizeDelta = new Vector2(250, 150);
+                            EnemyImages[i].sprite = WolfSprite;                            
                             GameManager.instance.EnemySelected.Add(WolfPrefab);
                         }
                         else
                         {
-                            EnemyImages[i].sprite = RatSprite;
-                            EnemyImages[i].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+                            EnemyImages[i].sprite = RatSprite;                            
                             GameManager.instance.EnemySelected.Add(RatPrefab);
                         }
 
@@ -517,10 +506,6 @@ public class WorldmapUIManager : MonoBehaviour
                     EnemyImages[0].sprite = ScolopendraSprite;
                     EnemyImages[1].sprite = ScolopendraSprite;
                     EnemyImages[2].sprite = EpimetheusSprite;
-
-                    EnemyImages[0].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
-                    EnemyImages[1].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
-                    EnemyImages[2].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
 
                     GameManager.instance.EnemySelected.Add(ScolopendraPrefab);
                     GameManager.instance.EnemySelected.Add(ScolopendraPrefab);
@@ -537,11 +522,7 @@ public class WorldmapUIManager : MonoBehaviour
                 {
                     EnemyImages[0].sprite = VeritasSprite;
                     EnemyImages[1].sprite = SamathaSprite;
-                    EnemyImages[2].sprite = DarkVeritasSprite;
-
-                    EnemyImages[0].GetComponent<RectTransform>().sizeDelta = new Vector2(230, 150);
-                    EnemyImages[1].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
-                    EnemyImages[2].GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+                    EnemyImages[2].sprite = DarkVeritasSprite;                    
 
                     GameManager.instance.EnemySelected.Add(VeritasPrefab);
                     GameManager.instance.EnemySelected.Add(SamathaPrefab);

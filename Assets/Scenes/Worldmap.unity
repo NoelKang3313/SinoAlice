@@ -1004,7 +1004,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 75, y: -75}
-  m_SizeDelta: {x: 150, y: 150}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &178970078
 MonoBehaviour:
@@ -1582,7 +1582,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 75, y: -275}
-  m_SizeDelta: {x: 150, y: 150}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &408557649
 MonoBehaviour:
@@ -2855,7 +2855,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 325, y: -75}
-  m_SizeDelta: {x: 150, y: 150}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1101611852
 MonoBehaviour:
@@ -5212,22 +5212,22 @@ MonoBehaviour:
   - {fileID: 408557649}
   - {fileID: 2028006188}
   BossImage: {fileID: 379995873}
-  RatSprite: {fileID: -356175604, guid: c86fa8fff0233dd4282646b065cddbcd, type: 3}
+  RatSprite: {fileID: 21300000, guid: fd2fc4d8d641a4a8e8ba7ce6a0d12460, type: 3}
   RatPrefab: {fileID: 4817061552027593439, guid: 86435b00d2fa4b3498eb464b24f207e7, type: 3}
-  WolfSprite: {fileID: 814240889, guid: 7b68cec9bc93c499f8f60932fd9eec94, type: 3}
+  WolfSprite: {fileID: 21300000, guid: 1f8803d7b41fd475fbc158bb1ab75290, type: 3}
   WolfPrefab: {fileID: 1186888771167775432, guid: cdb9f0ff0ef614734b56ec99b2469480, type: 3}
   MagitekArmorPrefab: {fileID: 2491217336487572974, guid: 0ec3c8d544d5f4e54a295e77e7d7c611, type: 3}
-  MagitekArmorSprite: {fileID: -81168896, guid: 24b0af4b8680a4cd994993ad2d10cb2a, type: 3}
+  MagitekArmorSprite: {fileID: 21300000, guid: f1210b0acb2e547a8af99d5a028eaf88, type: 3}
   ScolopendraPrefab: {fileID: 6718900825511939539, guid: 44a219867807f4cae92949468f90cae5, type: 3}
-  ScolopendraSprite: {fileID: -315555176, guid: a23f0c26b11fd4facbe32ab029ea6aeb, type: 3}
+  ScolopendraSprite: {fileID: 21300000, guid: 4463772638faa4df0a126f2b4e3cd1e6, type: 3}
   EpimetheusPrefab: {fileID: 607767630899784888, guid: 34bed7b9dd27c4847a9502078583c220, type: 3}
-  EpimetheusSprite: {fileID: 954445856, guid: cc002b3cdc0b04b39acc2bed8dbcb754, type: 3}
+  EpimetheusSprite: {fileID: 21300000, guid: 22a702f9027534fab8c16249417f5e22, type: 3}
   VeritasPrefab: {fileID: 2760017361414970978, guid: 46cc16e5afa094c34bea295fe5f0f331, type: 3}
-  VeritasSprite: {fileID: -1553952691, guid: b06a0d841889b4bc0961d34e7446a0c9, type: 3}
+  VeritasSprite: {fileID: 21300000, guid: a4793de49e5d14f86bc042737be194d5, type: 3}
   DarkVeritasPrefab: {fileID: 1857006731494959107, guid: d612623a6915d4b41ac4b954d11c9ad1, type: 3}
-  DarkVeritasSprite: {fileID: -1247767626, guid: 9cd9ee00dc7a8419585ae76b69586890, type: 3}
+  DarkVeritasSprite: {fileID: 21300000, guid: e857ff9ef33e9443b90c8c502cdc8282, type: 3}
   SamathaPrefab: {fileID: 6578918313527215356, guid: 85aa8152e98854c9fa1c5107b04f00c7, type: 3}
-  SamathaSprite: {fileID: 1797001936, guid: 8503698747b284661ac8f4a4f123f02e, type: 3}
+  SamathaSprite: {fileID: 21300000, guid: 3273905a5b65a46d4be5ec71fa35cd2e, type: 3}
   LightningPrefab: {fileID: 1501270656212315637, guid: 73ecc8b353064474ca2b8a3514d275d3, type: 3}
   SephirothPrefab: {fileID: 2173819011673110650, guid: ca2f506c99b1340d28b8857595270681, type: 3}
   NoctisPrefab: {fileID: 7126113060188307594, guid: fd620a4be5b3f47c7a003b263d6688cb, type: 3}
@@ -5752,7 +5752,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 325, y: -275}
-  m_SizeDelta: {x: 150, y: 150}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2028006188
 MonoBehaviour:

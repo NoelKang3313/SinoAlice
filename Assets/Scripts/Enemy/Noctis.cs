@@ -49,7 +49,10 @@ public class Noctis : MonoBehaviour
     private bool isBlizzardBombInstantiated;
 
     // Audios
-
+    private AudioSource audioSource;
+    public AudioClip[] AttackClips = new AudioClip[3];
+    private int attackClipRandom;
+    private bool isAudioPlaying;
 
     [SerializeField]
     private int playerRandom;
@@ -75,11 +78,13 @@ public class Noctis : MonoBehaviour
 
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
         NoctisTurn();
+        NoctisAudioPlay();
         SkillStandby();
         NoctisDead();
     }
@@ -91,6 +96,23 @@ public class Noctis : MonoBehaviour
         for (int i = 0; i < GameManager.instance.Characters.Length; i++)
         {
             GameManager.instance.Characters[i].GetComponent<SpriteRenderer>().sortingOrder = StageManager.MinSortLayer;
+        }
+    }
+
+    void NoctisAudioPlay()
+    {
+        if (isCurrentEnemyTurn)
+        {
+            if (!isAudioPlaying)
+            {
+                isAudioPlaying = true;
+                attackClipRandom = Random.Range(0, 3);
+                audioSource.PlayOneShot(AttackClips[attackClipRandom]);
+            }
+        }
+        else
+        {
+            isAudioPlaying = false;
         }
     }
 
