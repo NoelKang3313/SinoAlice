@@ -52,7 +52,10 @@ public class Lightning : MonoBehaviour
     private bool isSkillInstantiated;
 
     // Audios
-
+    private AudioSource audioSource;
+    public AudioClip[] AttackClips = new AudioClip[3];
+    private int attackClipRandom;
+    private bool isAudioPlaying;
 
     [SerializeField]
     private int playerRandom;
@@ -78,11 +81,13 @@ public class Lightning : MonoBehaviour
 
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
     
     void Update()
     {
         LightningTurn();
+        LightningAudioPlay();
         SkillStandby();
         LightningDead();
     }
@@ -94,6 +99,23 @@ public class Lightning : MonoBehaviour
         for(int i = 0; i < GameManager.instance.Characters.Length; i++)
         {
             GameManager.instance.Characters[i].GetComponent<SpriteRenderer>().sortingOrder = StageManager.MinSortLayer;
+        }
+    }
+
+    void LightningAudioPlay()
+    {
+        if(isCurrentEnemyTurn)
+        {
+            if(!isAudioPlaying)
+            {
+                isAudioPlaying = true;
+                attackClipRandom = Random.Range(0, 3);
+                audioSource.PlayOneShot(AttackClips[attackClipRandom]);
+            }
+        }
+        else
+        {
+            isAudioPlaying = false;
         }
     }
 

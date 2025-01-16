@@ -46,7 +46,10 @@ public class Sephiroth : MonoBehaviour
     private bool isSkillInstantiated;
 
     // Audios
-
+    private AudioSource audioSource;
+    public AudioClip[] AttackClips = new AudioClip[3];
+    private int attackClipRandom;
+    private bool isAudioPlaying;
 
     [SerializeField]
     private int playerRandom;
@@ -72,11 +75,13 @@ public class Sephiroth : MonoBehaviour
 
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
     
     void Update()
     {
         SephirothTurn();
+        SephirothAudioPlay();
         SkillStandby();
         SephirothDead();
     }
@@ -88,6 +93,23 @@ public class Sephiroth : MonoBehaviour
         for (int i = 0; i < GameManager.instance.Characters.Length; i++)
         {
             GameManager.instance.Characters[i].GetComponent<SpriteRenderer>().sortingOrder = StageManager.MinSortLayer;
+        }
+    }
+
+    void SephirothAudioPlay()
+    {
+        if (isCurrentEnemyTurn)
+        {
+            if (!isAudioPlaying)
+            {
+                isAudioPlaying = true;
+                attackClipRandom = Random.Range(0, 3);
+                audioSource.PlayOneShot(AttackClips[attackClipRandom]);
+            }
+        }
+        else
+        {
+            isAudioPlaying = false;
         }
     }
 

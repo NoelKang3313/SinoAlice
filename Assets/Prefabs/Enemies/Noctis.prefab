@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4159030182711893958}
   - component: {fileID: 8220519069951853352}
   - component: {fileID: 211036704194064531}
+  - component: {fileID: -1635589289827076063}
   m_Layer: 0
   m_Name: Noctis
   m_TagString: Enemy
@@ -195,4 +196,104 @@ MonoBehaviour:
   AvalanchePrefab: {fileID: 387249227549980485, guid: 93fb8af931a6c4cd59d12590dc6d463a, type: 3}
   BlizzardBombPrefab: {fileID: 2559745690904343874, guid: d1107a0f41060455ca1aeee76da85cf0, type: 3}
   JudgementPrefab: {fileID: 4379570072789683410, guid: 8824039629ae94d21b108e8f33372428, type: 3}
+  AttackClips:
+  - {fileID: 8300000, guid: b2a4240c3d6e041568b2e813b2d563c3, type: 3}
+  - {fileID: 8300000, guid: 525e20cdce8e04be28e43f5f80e9d75f, type: 3}
+  - {fileID: 8300000, guid: b4c0d06dd722d4bdfa37c84db21c1cee, type: 3}
   playerRandom: 0
+--- !u!82 &-1635589289827076063
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7126113060188307594}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
